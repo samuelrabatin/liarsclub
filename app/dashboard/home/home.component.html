@@ -1,5 +1,93 @@
 <div class="main-content">
     <div class="container-fluid">
-
+        <div class="row" *ngIf="userLoggedIn">
+            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <ul class="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
+                                    <li class="active">
+                                        <a href="#dashboard-2" role="tab" data-toggle="tab">
+                                            <i class="material-icons">dashboard</i> Updates
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#schedule-2" role="tab" data-toggle="tab">
+                                            <i class="material-icons">schedule</i> Social
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="dashboard-2">
+                                        <div>
+                                            <i class="material-icons btn-lg">event</i>
+                                            <span>The Stanford Liars Club is meeting on <strong>Sunday at 8pm</strong></span>
+                                        </div>
+                                        <div>
+                                            <i class="material-icons btn-lg">receipt</i>
+                                            <span><strong>activatedalien</strong> has uploaded a new article, <strong>"Ax Endgames"</strong></span>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="schedule-2">
+                                        <div>
+                                            <i class="material-icons">straighten</i>
+                                            <span><strong>2 meetings</strong> near you this week</span>
+                                        </div>
+                                        <button class="btn btn-success btn-large"> Review Your Games </button>
+                                        <button class="btn btn-success btn-large"> Manage Your Groups </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="userLoggedIn">
+            <div class="col-md-7 col-lg-7 col-xs-12 col-sm-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="/assets/img/main-article.png" class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                <h4>Main Article</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content col-lg-6 col-md-6 col-sm-12 col-xs-6">
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="/assets/img/article1.png" class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                <h4>Article 1</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content col-lg-6 col-md-6 col-sm-12 col-xs-6">
+                        <div class="card">
+                            <div class="card-content">
+                                <img src="/assets/img/article2.png" class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                                <h4>Article 2</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-lg-5 col-xs-12 col-sm-12">
+                <div class="card">
+                    <div class="card-content">
+                        <img src="/assets/img/main-forum.png" class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                        <h4>Main Forum/Blog Post</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="coming-soon" *ngIf="!userLoggedIn">
+            <h1>Signup Form here, coming soon</h1>
+        </div>
     </div>
 </div>
