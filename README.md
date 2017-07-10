@@ -1,279 +1,106 @@
-# [Material Dashboard Angular PRO](https://www.creative-tim.com/product/material-dashboard-pro-angular2)
+# [Material Dashboard Angular - Free Bootstrap Material Design Admin](https://www.creative-tim.com/product/material-dashboard-angular2)
 
-![alt text](https://s3.amazonaws.com/creativetim_bucket/products/55/opt_mdp_angular_thumbnail.jpg "Material Dashboard PRO Angular 2")
+![alt text](http://s3.amazonaws.com/creativetim_bucket/products/53/original/opt_md_angular_thumbnail.jpg "Material Dashboard Angular Free")
 
-**[Material Dashboard PRO Angular2](https://www.creative-tim.com/product/material-dashboard-pro-angular2/)** is a This dashboard is the premium version for the [Material Dashboard Angular](https://www.creative-tim.com/product/material-dashboard-angular2), which is available for free download. **Material Dashboard PRO Angular 2** was built based on the feedback that we received from the users of the free version. We tried to keep it as user-friendly as possible, but to provide all the useful tools for developing a complex product. This dashboard can help you build admin panels, CRMs or content management systems.
+**[Material Dashboard Angular](https://www.creative-tim.com/product/material-dashboard-angular2/)** is a free Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design. We are very excited to introduce our take on the material concepts through an easy to use and beautiful set of components. Material Dashboard was built over the popular Bootstrap framework and it comes with a couple of third-party plugins redesigned to fit in with the rest of the elements.
 
- Material Dashboard PRO Angular 2 has the same line of design as the [Material Kit PRO](https://www.creative-tim.com/product/material-kit-pro), so they will help you have the presentation pages of your site and the Admin/CMS having the same design trend. If you think you will need more landing and example pages, be sure to check it out. If you love the material design, you'll probably enjoy using these products! We recommend you to use them separate and not to try to combine their CSS and JS files.
+Material Dashboard makes use of light, surface and movement. The general layout resembles sheets of paper following multiple different layers, so that the depth and order is obvious. The navigation stays mainly on the left sidebar and the content is on the right inside the main panel.
 
-Material Dashboard PRO Angular 2 uses a framework built by our friend Federico - Bootstrap Material Design (http://fezvrasta.github.io/bootstrap-material-design/), who did an amazing job creating the backbone for the material effects, animations, ripples and transitions. Big thanks to his team for the effort and forward thinking they put into it.
+This product came as a result of users asking for a material dashboard after we released our successful [Material Kit](http://www.creative-tim.com/product/material-kit). We developed it based on your feedback and it is a powerful bootstrap admin dashboard, which allows you to build products like admin panels, content managements systems and CRMs.
 
+Material Dashboard comes with 5 color filter choices for both the sidebar and the card headers (blue, green, orange, red and purple) and an option to have a background image on the sidebar.
 
-During the development of this dashboard, we have used many existing resources from awesome developers. We want to thank them for providing their tools open source:
+Material Dashboard uses a framework built by our friend [Federico - Bootstrap Material Design](http://fezvrasta.github.io/bootstrap-material-design/), who did an amazing job creating the backbone for the material effects, animations, ripples and transitions. Big thanks to his team for the effort and forward thinking they put into it.
 
-* [Robert McIntosh](https://github.com/mouse0270) for the notification system
-* [Chartist](https://gionkunz.github.io/chartist-js/) for the wonderful charts
-* [Tristan Edwards](https://twitter.com/t4t5) for the [Sweet Alert](http://limonte.github.io/sweetalert2/)
-* [Eonasdan](https://github.com/Eonasdan) for the [DateTimPicker](https://eonasdan.github.io/bootstrap-datetimepicker/)
-* Kirill Lebedev for [jVector Maps](http://jvectormap.com/)
-* [Vincent Gabriel](https://twitter.com/gabrielva) for the [Bootstrap Wizard](https://github.com/VinceG/twitter-bootstrap-wizard)
-* [FullCalendar.io](https://fullcalendar.io/) for the awesome Calendar
+Special thanks go to:
+[Robert McIntosh](https://github.com/mouse0270/bootstrap-notify) for the notification system.
+[Chartist](https://gionkunz.github.io/chartist-js/) for the wonderful charts.
+We are very excited to share this dashboard with you and we look forward to hearing your feedback!
 
- Let us know your thoughts below. And good luck with development!
-
-
+You can find the Github Repo here.
 
 ## Links:
 
-+ [Live Preview](https://www.creative-tim.com/product/material-dashboard-pro-angular2)
++ [Live Preview](https://www.creative-tim.com/product/material-dashboard-angular2)
 + [Material Kit - For Front End Development](http://www.creative-tim.com/product/material-kit?ref=github-md-angular)
 
 ## Quick start
 
 Quick start options:
 
-- [Download from Creative Tim](http://www.creative-tim.com/product/material-dashboard-pro-angular2).
+- [Download from Github](https://github.com/tiniestory/material-dashboard-angular/archive/master.zip).
+- [Download from Creative Tim](http://www.creative-tim.com/product/material-dashboard-angular2).
+- Clone the repo: `git clone https://github.com/tiniestory/material-dashboard-angular.git`.
 
 ## Terminal Commands
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0 and angular 4.x.
 
 1. Install NodeJs from [NodeJs Official Page](https://nodejs.org/en).
 2. Open Terminal
 3. Go to your file project
 4. Run in terminal: ```npm install```
-5. And: ```npm start```
+5. Make sure you have installed [Angular CLI](https://github.com/angular/angular-cli) already. If not, please install.
+6. Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ### What's included
 
 Within the download you'll find the following directories and files:
 
 ```
-md-pro-angular2
-├── LICENSE.pdf
+material-dashboard-angular
 ├── README.md
-├── app
-│   ├── app.component.html
-│   ├── app.component.js
-│   ├── app.component.js.map
-│   ├── app.component.ts
-│   ├── app.module.js
-│   ├── app.module.js.map
-│   ├── app.module.ts
-│   ├── dashboard
-│   │   ├── calendar
-│   │   │   ├── calendar.component.html
-│   │   │   ├── calendar.component.js
-│   │   │   ├── calendar.component.js.map
-│   │   │   └── calendar.component.ts
-│   │   ├── charts
-│   │   │   ├── charts.component.html
-│   │   │   ├── charts.component.js
-│   │   │   ├── charts.component.js.map
-│   │   │   └── charts.component.ts
-│   │   ├── components
-│   │   │   ├── buttons
-│   │   │   │   ├── buttons.component.html
-│   │   │   │   ├── buttons.component.js
-│   │   │   │   ├── buttons.component.js.map
-│   │   │   │   └── buttons.component.ts
-│   │   │   ├── grid
-│   │   │   │   ├── grid.component.html
-│   │   │   │   ├── grid.component.js
-│   │   │   │   ├── grid.component.js.map
-│   │   │   │   └── grid.component.ts
-│   │   │   ├── icons
-│   │   │   │   ├── icons.component.html
-│   │   │   │   ├── icons.component.js
-│   │   │   │   ├── icons.component.js.map
-│   │   │   │   └── icons.component.ts
-│   │   │   ├── notifications
-│   │   │   │   ├── notifications.component.html
-│   │   │   │   ├── notifications.component.js
-│   │   │   │   ├── notifications.component.js.map
-│   │   │   │   └── notifications.component.ts
-│   │   │   ├── panels
-│   │   │   │   ├── panels.component.html
-│   │   │   │   ├── panels.component.js
-│   │   │   │   ├── panels.component.js.map
-│   │   │   │   └── panels.component.ts
-│   │   │   ├── sweetalert
-│   │   │   │   ├── sweetalert.component.html
-│   │   │   │   ├── sweetalert.component.js
-│   │   │   │   ├── sweetalert.component.js.map
-│   │   │   │   └── sweetalert.component.ts
-│   │   │   └── typography
-│   │   │       ├── typography.component.html
-│   │   │       ├── typography.component.js
-│   │   │       ├── typography.component.js.map
-│   │   │       └── typography.component.ts
-│   │   ├── dashboard.component.html
-│   │   ├── dashboard.component.js
-│   │   ├── dashboard.component.js.map
-│   │   ├── dashboard.component.ts
-│   │   ├── dashboard.module.js
-│   │   ├── dashboard.module.js.map
-│   │   ├── dashboard.module.ts
-│   │   ├── dashboard.routes.js
-│   │   ├── dashboard.routes.js.map
-│   │   ├── dashboard.routes.ts
-│   │   ├── forms
-│   │   │   ├── extendedforms
-│   │   │   │   ├── extendedforms.component.html
-│   │   │   │   ├── extendedforms.component.js
-│   │   │   │   ├── extendedforms.component.js.map
-│   │   │   │   └── extendedforms.component.ts
-│   │   │   ├── regularforms
-│   │   │   │   ├── regularforms.component.html
-│   │   │   │   ├── regularforms.component.js
-│   │   │   │   ├── regularforms.component.js.map
-│   │   │   │   └── regularforms.component.ts
-│   │   │   ├── validationforms
-│   │   │   │   ├── validationforms.component.html
-│   │   │   │   ├── validationforms.component.js
-│   │   │   │   ├── validationforms.component.js.map
-│   │   │   │   └── validationforms.component.ts
-│   │   │   └── wizard
-│   │   │       ├── wizard.component.html
-│   │   │       ├── wizard.component.js
-│   │   │       ├── wizard.component.js.map
-│   │   │       └── wizard.component.ts
-│   │   ├── home
-│   │   │   ├── home.component.html
-│   │   │   ├── home.component.js
-│   │   │   ├── home.component.js.map
-│   │   │   └── home.component.ts
-│   │   ├── maps
-│   │   │   ├── fullscreenmap
-│   │   │   │   ├── fullscreenmap.component.html
-│   │   │   │   ├── fullscreenmap.component.js
-│   │   │   │   ├── fullscreenmap.component.js.map
-│   │   │   │   └── fullscreenmap.component.ts
-│   │   │   ├── googlemaps
-│   │   │   │   ├── googlemaps.component.html
-│   │   │   │   ├── googlemaps.component.js
-│   │   │   │   ├── googlemaps.component.js.map
-│   │   │   │   └── googlemaps.component.ts
-│   │   │   └── vectormaps
-│   │   │       ├── vectormaps.component.html
-│   │   │       ├── vectormaps.component.js
-│   │   │       ├── vectormaps.component.js.map
-│   │   │       └── vectormaps.component.ts
-│   │   ├── pages
-│   │   │   ├── timeline
-│   │   │   │   ├── timeline.component.html
-│   │   │   │   ├── timeline.component.js
-│   │   │   │   ├── timeline.component.js.map
-│   │   │   │   └── timeline.component.ts
-│   │   │   └── user
-│   │   │       ├── user.component.html
-│   │   │       ├── user.component.js
-│   │   │       ├── user.component.js.map
-│   │   │       └── user.component.ts
-│   │   ├── tables
-│   │   │   ├── datatable.net
-│   │   │   │   ├── datatable.component.html
-│   │   │   │   ├── datatable.component.js
-│   │   │   │   ├── datatable.component.js.map
-│   │   │   │   └── datatable.component.ts
-│   │   │   ├── extendedtable
-│   │   │   │   ├── extendedtable.component.html
-│   │   │   │   ├── extendedtable.component.js
-│   │   │   │   ├── extendedtable.component.js.map
-│   │   │   │   └── extendedtable.component.ts
-│   │   │   └── regulartable
-│   │   │       ├── regulartable.component.html
-│   │   │       ├── regulartable.component.js
-│   │   │       ├── regulartable.component.js.map
-│   │   │       └── regulartable.component.ts
-│   │   └── widgets
-│   │       ├── widgets.component.html
-│   │       ├── widgets.component.js
-│   │       ├── widgets.component.js.map
-│   │       └── widgets.component.ts
-│   ├── main.js
-│   ├── main.js.map
-│   ├── main.ts
-│   ├── shared
-│   │   ├── footer
-│   │   │   ├── footer.component.html
-│   │   │   ├── footer.component.js
-│   │   │   ├── footer.component.js.map
-│   │   │   ├── footer.component.ts
-│   │   │   ├── footer.module.js
-│   │   │   ├── footer.module.js.map
-│   │   │   └── footer.module.ts
-│   │   └── navbar
-│   │       ├── navbar.component.html
-│   │       ├── navbar.component.js
-│   │       ├── navbar.component.js.map
-│   │       ├── navbar.component.ts
-│   │       ├── navbar.module.js
-│   │       ├── navbar.module.js.map
-│   │       └── navbar.module.ts
-│   └── sidebar
-│       ├── sidebar-routes.config.js
-│       ├── sidebar-routes.config.js.map
-│       ├── sidebar-routes.config.ts
-│       ├── sidebar.component.html
-│       ├── sidebar.component.js
-│       ├── sidebar.component.js.map
-│       ├── sidebar.component.ts
-│       ├── sidebar.metadata.js
-│       ├── sidebar.metadata.js.map
-│       ├── sidebar.metadata.ts
-│       ├── sidebar.module.js
-│       ├── sidebar.module.js.map
-│       └── sidebar.module.ts
-├── assets
-│   ├── css
-│   │   ├── bootstrap.min.css
-│   │   ├── demo.css
-│   │   ├── material-dashboard.css
-│   │   └── material-dashboard.css.map
-│   ├── img
-│   ├── js
-│   │   ├── core
-│   │   ├── demo.js
-│   │   ├── init
-│   │   ├── material-dashboard-angular.js
-│   │   ├── plugins
-│   │   └── sidebar-moving-tab.js
-│   └── sass
-│       ├── material-dashboard
-│       └── material-dashboard.scss
-├── changelog.txt
+├── e2e
+│   ├── app.e2e-spec.ts
+│   ├── app.po.ts
+│   └── tsconfig.e2e.json
+├── src
+│   ├── app
+│   │   ├── app.component.css
+│   │   ├── app.component.html
+│   │   ├── app.component.spec.ts
+│   │   ├── app.component.ts
+│   │   ├── app.module.ts
+|   |   
+│   │   ```
+|   |
+│   |── assets
+│   |   ├── css
+│   |   ├── img
+│   |   │   └── faces
+│   |   ├── js
+│   |   │   |── bootstrap-notify.js
+│   |   │   |── bootstrap.min.js
+│   |   │   |── chartist.min.js
+│   |   │   |── charts.d.ts
+│   |   │   |── charts.js
+│   |   │   |── initMenu.js
+│   |   │   |── jquery-3.1.0.min.js
+│   |   │   |── material-dashboard-angular.js
+│   |   │   |── material-dashboard.js
+│   |   │   └── material.min.js
+│   |   └── scss
+│   |       └── material-dashboard.scss
+|   |
+│   |── environments
+│   |   ├── environment.ts
+│   |   └── environment.prod.ts
+│   |── favicon.ico
+|   
+|   ```
+|
 ├── documentation
 │   ├── css
-│   │   └── demo-documentation.css
 │   └── tutorial-components.html
-├── index.html
-├── lock.html
-├── login.html
+├── karma.config.js
 ├── package.json
-├── pricing.html
-├── register.html
-├── systemjs.config.js
-└── tsconfig.json
+├── protractor.conf.js
+├── tsconfig.json
+└── tslint.json
 
 ```
-### Version logs
-
-V1.0.0 - 24 Mar 2017 [initial Release]
-
-V1.0.1 - 01 May 2017 - Bug Fixes
-- fixed red background for sidebar without image
-- fixed Widges -> Widgets typo
-- fixed Extended Tables titles alignment
-- fixed issue with Burger menu on mobile/tablet in Login/Register/Lock/Pricing pages
-- fix double scroll problems on Windows
-- added Google Maps API Key for Demo presentation
-
-What's next?
-MD Pro Angular CLI V1.1.0 - End of May 2017 Release
-- rebuild whole product for Angular CLI with Angular Components from Typescript
-- replace jQuery libraries with Angular similar versions
-- move Off Canvas Menu generation from jQuery to Angular
-- added 2 layouts: for Dashboard and for login/register/lock/pricing pages
-
 
 ## Useful Links
 
