@@ -9,11 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var main_service_1 = require('../../services/main.service');
 var HomeComponent = (function () {
-    function HomeComponent() {
+    function HomeComponent(mainService) {
+        this.mainService = mainService;
         this.userLoggedIn = true;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.mainService.getUsersData().subscribe(function (d) {
+            _this.users = d;
+            console.log(d);
+        }, function (e) {
+            console.log(e);
+        });
     };
     HomeComponent = __decorate([
         core_1.Component({
@@ -21,7 +30,7 @@ var HomeComponent = (function () {
             selector: ' home-cmp ',
             templateUrl: 'home.component.html'
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [main_service_1.MainService])
     ], HomeComponent);
     return HomeComponent;
 }());
