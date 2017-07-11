@@ -1,1 +1,0 @@
-{"version":3,"file":"clubs.component.js","sourceRoot":"","sources":["clubs.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAAkC,eAAe,CAAC,CAAA;AAQlD;IAAA;IAIA,CAAC;IAHG,iCAAQ,GAAR;IAEA,CAAC;IATL;QAAC,gBAAS,CAAC;YACP,QAAQ,EAAE,MAAM,CAAC,EAAE;YACnB,QAAQ,EAAE,YAAY;YACtB,WAAW,EAAE,sBAAsB;SACtC,CAAC;;sBAAA;IAMF,qBAAC;AAAD,CAAC,AAJD,IAIC;AAJY,sBAAc,iBAI1B,CAAA"}

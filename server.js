@@ -21,7 +21,6 @@ app.use(express.static('dist'));
 app.get('/users', (req, res) => {
   db.collection('users').find().toArray((err, result) => {
     if (err) return console.log(err)
-    console.log(result);
     res.send(result);
   });
 });

@@ -1,5 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
-        <h1>Coming Soon!</h1>
+        <div class="row col-lg-7 col-md-7 col-sm-12 col-xs-12 clubs-list">
+            <app-club *ngFor="let club of clubs" [club] = "club" ></app-club>
+        </div>
     </div>
 </div>

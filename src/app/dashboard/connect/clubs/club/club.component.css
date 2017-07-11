@@ -1,0 +1,23 @@
+.card .card-content {
+  display: flex;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+.card .card-content > span {
+  width: calc(100% - 50px);
+  padding: 0 30px;
+}
+
+..card .card-content > span .club-title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.card .card-content > span > span {
+  display: block;
+}
+
+.hover {
+  cursor: pointer;
+}
