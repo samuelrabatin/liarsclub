@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-declare var swal:any;
+declare var $:any;
 
 @Component({
   selector: 'app-club',
@@ -10,23 +10,22 @@ declare var swal:any;
 export class ClubComponent implements OnInit {
   @Input() club;
 
+  private showDiag:Boolean = false;
+
   constructor() { }
 
   ngOnInit() {
-
   }
 
   private editClick() {
-    swal({
-      confirmButtonText: 'Tag myself with this club',
-      confirmButtonClass: "btn btn-success",
-      html: `
-        <h2>${this.club.title}</h2>
-        <p>${this.club.location}</p>
-      `,
-      buttonsStyling: false
-    }).then(function() {
+    this.showDiag = true;
+  }
 
-    });
+  private confirm() {
+    this.showDiag = false;
+  }
+
+  private cancel() {
+    this.showDiag = false;
   }
 }

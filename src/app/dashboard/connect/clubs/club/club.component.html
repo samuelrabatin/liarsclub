@@ -8,3 +8,34 @@
     <i class="material-icons hover" (click)="editClick()">info</i>
   </div>
 </div>
+
+<div class="transparent-panel" *ngIf="showDiag" (click)="cancel()">
+</div>
+
+
+<div class=' {{ showDiag ? "card editDiag" : "card editDiag hidden" }} '>
+  <div class="card-content">
+    <h2>{{club.title}}</h2>
+    <p>{{club.location}}</p>
+    <p>{{club.activeMembers}} active members, {{club.pastMembers}} past members</p>
+    <p>Meets on {{club.dayOfWeek}}s at {{club.time}}</p>
+    <div class="select-member">
+      <p>I am a ...</p>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <select class="selectpicker" data-style="select-with-transition" data-size="7">
+          <option value="active">Active</option>
+          <option value="past">Past</option>
+        </select>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <select class="selectpicker" data-style="select-with-transition" data-size="7">
+          <option value="member">Member</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-success pull-right" (click)="confirm()">Tag myself with this club</button>
+  </div>
+</div>
