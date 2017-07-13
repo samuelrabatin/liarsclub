@@ -19,6 +19,7 @@ export class ClubComponent implements OnInit {
 
   private editClick() {
     this.showDiag = true;
+    $(".selectpicker").selectpicker();
   }
 
   private confirm() {

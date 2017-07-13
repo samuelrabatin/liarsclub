@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ClubComponent } from './club/club.component';
+import { AddClubComponent } from './add-club/add-club.component';
 
 @Component({
     moduleId: module.id,

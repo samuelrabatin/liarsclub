@@ -1,0 +1,32 @@
+<div class="card">
+  <div class="card-header">
+    <legend>Add a Club</legend>
+  </div>
+  <div class="card-content">
+    <div class="row">
+      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+        <input class="form-control" #clubName />
+        <input class="form-control" #clubAddress />
+      </div>
+      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+          <div class="fileinput-new thumbnail">
+            <img src="../../../../../assets/img/image_placeholder.jpg" alt="...">
+          </div>
+          <div class="fileinput-preview fileinput-exists thumbnail"></div>
+          <div>
+          <span class="btn btn-rose btn-round btn-file btn-sm">
+              <span class="fileinput-new">Select image</span>
+              <span class="fileinput-exists">Change</span>
+              <input type="file" name="..." />
+          </span>
+            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists btn-sm" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="regularMap" class="map"></div>
+    </div>
+  </div>
+</div>
