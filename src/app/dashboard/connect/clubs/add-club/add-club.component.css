@@ -1,0 +1,28 @@
+.panel .panel-body {
+  padding: 10px 0px;
+}
+
+.panel .panel-body .checkbox {
+  margin-top: 0px;
+}
+
+.repeat {
+  display: flex;
+  align-items: center;
+}
+
+.row {
+  padding: 0 20px;
+}
+
+.m-t-m-15 {
+  margin-top: -15px;
+}
+
+.m-t-m-10 {
+  margin-top: -10px;
+}
+
+.m-l-15 {
+  margin-left: 15px;
+}

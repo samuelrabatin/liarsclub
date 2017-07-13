@@ -3,30 +3,102 @@
     <legend>Add a Club</legend>
   </div>
   <div class="card-content">
-    <div class="row">
-      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-        <input class="form-control" #clubName />
-        <input class="form-control" #clubAddress />
-      </div>
-      <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-          <div class="fileinput-new thumbnail">
-            <img src="../../../../../assets/img/image_placeholder.jpg" alt="...">
+    <form method="#" action="#">
+      <div class="row">
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+          <div class="form-group label-floating">
+            <label class="control-label">Club Name</label>
+            <input class="form-control" required #clubName />
           </div>
-          <div class="fileinput-preview fileinput-exists thumbnail"></div>
-          <div>
+          <div class="form-group label-floating">
+            <label class="control-label">Club Address</label>
+            <input class="form-control" required #clubAddress />
+          </div>
+        </div>
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+            <div class="fileinput-new thumbnail">
+              <img src="../../../../../assets/img/image_placeholder.jpg" alt="...">
+            </div>
+            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+            <div>
           <span class="btn btn-rose btn-round btn-file btn-sm">
               <span class="fileinput-new">Select image</span>
               <span class="fileinput-exists">Change</span>
               <input type="file" name="..." />
           </span>
-            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists btn-sm" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+              <a href="#pablo" class="btn btn-danger btn-round fileinput-exists btn-sm" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div id="regularMap" class="map"></div>
-    </div>
+
+      <div class="row">
+        <div id="regularMap" class="map"></div>
+      </div>
+
+      <div class="row">
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <h4 class="panel-title">
+                  Meets up...
+                  <i class="material-icons">keyboard_arrow_down</i>
+                </h4>
+              </a>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 checkbox">
+                    <label>
+                      <input type="checkbox" #irregulary>  Irregularly
+                    </label>
+                  </div>
+                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 checkbox">
+                    <label>
+                      <input type="checkbox" #regularly>  Regularly
+                    </label>
+                  </div>
+                </div>
+                <div class="row repeat">
+                  <label class="col-sm-2 label-on-left">Every</label>
+                  <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 m-t-m-15">
+                    <input type="number" min="1" class="form-control" value="1" #repeatPeriod required>
+                  </div>
+                  <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 m-t-m-10">
+                    <select class="selectpicker" data-style="select-with-transition" required>
+                      <option>weeks</option>
+                      <option>months</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row repeat">
+                  <label class="col-sm-2 label-on-left">On</label>
+                  <div class="col-lg-10">
+                    <select class="selectpicker" multiple data-style="select-with-transition" required>
+                      <option>Sunday</option>
+                      <option>Monday</option>
+                      <option>Tuesday</option>
+                      <option>Wednesday</option>
+                      <option>Thursday</option>
+                      <option>Friday</option>
+                      <option>Saturday</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row repeat">
+                  <label class="col-sm-2 label-on-left">At</label>
+                  <div class="col-md-10 m-t-m-15">
+                    <input type="text"class="form-control timepicker" #time>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <button type="submit" class="btn btn-fill btn-rose">Submit</button>
+    </form>
   </div>
 </div>

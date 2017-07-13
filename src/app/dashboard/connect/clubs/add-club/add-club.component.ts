@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MainService } from '../../../../services/main.service';
+
+import initDateTimePicker = require('../../../../../assets/js/init/initDatetimepickers');
 
 declare var $:any;
 declare var google:any;
@@ -10,7 +13,7 @@ declare var google:any;
 })
 export class AddClubComponent implements OnInit {
 
-  constructor() { }
+  constructor(private mainService: MainService) { }
 
   ngOnInit() {
     const myLatlng = new google.maps.LatLng(40.748817, -73.985428);
@@ -28,6 +31,8 @@ export class AddClubComponent implements OnInit {
     });
 
     marker.setMap(map);
+
+    initDateTimePicker();
   }
 
 }
