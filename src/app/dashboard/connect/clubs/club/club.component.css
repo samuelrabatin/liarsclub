@@ -27,6 +27,7 @@
   left: calc(50% - 300px);
   top: calc(50% - 200px);
   width: 500px;
+  z-index: 101;
 }
 
 .editDiag > .card-content {
@@ -40,6 +41,7 @@
   position: fixed;
   top: 70px;
   left: 0;
+  z-index: 100;
 }
 
 .select-member {

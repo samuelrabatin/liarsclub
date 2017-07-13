@@ -3,7 +3,7 @@
     <legend>Add a Club</legend>
   </div>
   <div class="card-content">
-    <form method="#" action="#">
+    <form>
       <div class="row">
         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
           <div class="form-group label-floating">
@@ -96,6 +96,25 @@
               </div>
             </div>
           </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group label-floating">
+          <label class="control-label">Physical Location</label>
+          <input class="form-control" required #phsicalLocation />
+        </div>
+        <div class="form-group label-floating">
+          <label class="control-label">Email address</label>
+          <input class="form-control" type="email" required #email />
+        </div>
+        <div class="form-group label-floating">
+          <label class="control-label">Link to website</label>
+          <input class="form-control" #websiteLink />
+        </div>
+        <div class="form-group label-floating">
+          <label class="control-label">Link to Facebook page</label>
+          <input class="form-control" required #facebookLink />
+        </div>
       </div>
 
       <button type="submit" class="btn btn-fill btn-rose">Submit</button>
