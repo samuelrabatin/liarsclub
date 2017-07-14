@@ -23,7 +23,7 @@ export class AddClubComponent implements OnInit {
       scrollwheel: true
     }
 
-    const map = new google.maps.Map(document.getElementById("regularMap"), mapOptions);
+    const map = new google.maps.Map(document.getElementById('regularMap'), mapOptions);
 
     const marker = new google.maps.Marker({
       position: myLatlng,
@@ -32,6 +32,7 @@ export class AddClubComponent implements OnInit {
 
     marker.setMap(map);
 
+    $('.selectpicker').selectpicker();
     initDateTimePicker();
   }
 
