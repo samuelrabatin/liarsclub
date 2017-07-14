@@ -7,13 +7,30 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MainService {
-  private apiUrl:string = "";
+  private apiUrl = 'http://localhost:3000';
+
   constructor ( private http: Http ) {
 
   }
 
+  public login(username, password) {
+    return this.http.post(this.apiUrl + '/users/login', {name: username, password: password})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   public getUsersData() {
     return this.http.get(this.apiUrl + '/users')
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public getClubs() {
+    return;
+  }
+
+  public addClub(data) {
+    return this.http.post(this.apiUrl + '/clubs/addclub', data)
       .map(this.extractData)
       .catch(this.handleError);
   }
