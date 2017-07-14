@@ -6,7 +6,7 @@ const path = require('path');
 
 var db;
 
-MongoClient.connect('mongodb://ds028310.mlab.com:28310/liars_club', (err, database) => {
+MongoClient.connect('mongodb://samuelrabatinuser1:mongouser1@ds028310.mlab.com:28310/liars_club', (err, database) => {
   if (err) return console.log(err);
   db = database;
   app.listen(process.env.PORT || 8000, () => {
