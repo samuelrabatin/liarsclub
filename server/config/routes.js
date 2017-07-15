@@ -6,6 +6,7 @@
 
 const home = require('../app/controllers/home');
 const users = require('../app/controllers/users');
+const clubs = require('../app/controllers/clubs');
 
 /**
  * Expose
@@ -30,8 +31,10 @@ module.exports = function (app, passport) {
 
   app.get('/', home.index);
 
-  app.post('/users/login', users.login);
-  app.get('/users', users.users);
+  app.post('/users/login/', users.login);
+
+  app.post('/clubs/all/', clubs.getClubs);
+  app.post('/clubs/add/', clubs.addClub);
 
   /**
    * Error handling

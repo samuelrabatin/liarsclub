@@ -15,14 +15,16 @@ export class ClubsComponent implements OnInit{
     ngOnInit(){
       this.clubs = [
         {
-          title: "Princeton Liars Club",
-          type: "Regularly",
-          regularType: "weeks",
+          title: 'Princeton Liars Club',
+          address: 'New York',
+          type: 'Regularly',
+          imgUrl: '',
+          regularType: 'weeks',
           regularPeriod: 2,
-          dayOfWeek: "Friday",
-          time: "16:00",
-          starting: "2012/2/12",
-          location: "Whiteman College Dining Hall",
+          dayOfWeek: 'Friday',
+          time: '16:00',
+          starting: '2012/2/12',
+          location: 'Whiteman College Dining Hall',
           activeMembers: 46,
           pastMembers: 100
         }

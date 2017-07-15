@@ -23,25 +23,4 @@ var UserSchema = new Schema(
   { collection : 'users' }
 );
 
-/**
- * User plugin
- */
-
-
-UserSchema.method({
-
-});
-
-/**
- * Statics
- */
-
-UserSchema.static({
-
-});
-
-/**
- * Register
- */
-
 module.exports = mongoose.model('User', UserSchema);
