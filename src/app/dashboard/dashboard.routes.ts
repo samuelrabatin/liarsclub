@@ -17,6 +17,7 @@ import { VideosComponent } from './learn/videos/videos.component';
 //
 export const MODULE_ROUTES: Route[] =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
+
     { path: 'home', component: HomeComponent },
 
     { path: 'connect/clubs', component: ClubsComponent},

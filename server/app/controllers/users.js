@@ -1,5 +1,6 @@
 const User = require('../models/user.js');
 var jwt        = require("jsonwebtoken");
+var randtoken = require('rand-token');
 
 exports.login = function (req, res) {
   User.findOne({name: req.body.name, password: req.body.password}, function(err, user) {
@@ -10,7 +11,7 @@ exports.login = function (req, res) {
       });
     } else {
       if (user) {
-          user.token = jwt.sign(user, 'JWT_SECRET');
+          user.token = randtoken.generate(256);
           user.save(function (err, user1) {
             if (err) {
               res.json({
@@ -27,7 +28,7 @@ exports.login = function (req, res) {
       } else {
         res.json({
           type: false,
-          data: "User already exists!"
+          data: "Username or password is not correct!"
         });
       }
     }

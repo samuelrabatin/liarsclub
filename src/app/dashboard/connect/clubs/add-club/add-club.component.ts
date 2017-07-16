@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MainService } from '../../../../services/main.service';
 
 import initDateTimePicker = require('../../../../../assets/js/init/initDatetimepickers');
@@ -12,6 +12,19 @@ declare var google:any;
   styleUrls: ['./add-club.component.css']
 })
 export class AddClubComponent implements OnInit {
+  @ViewChild('clubName') clubName;
+  @ViewChild('clubAddress') clubAddress;
+  @ViewChild('clubImg') clubImg;
+  @ViewChild('irregulary') irregulary;
+  @ViewChild('regularly') regularly;
+  @ViewChild('repeatPeriod') repeatPeriod;
+  @ViewChild('repeatType') repeatType;
+  @ViewChild('dayOfWeek') dayOfWeek;
+  @ViewChild('time') time;
+  @ViewChild('phsicalLocation') phsicalLocation;
+  @ViewChild('email') email;
+  @ViewChild('websiteLink') websiteLink;
+  @ViewChild('facebookLink') facebookLink;
 
   constructor(private mainService: MainService) { }
 
@@ -34,6 +47,25 @@ export class AddClubComponent implements OnInit {
 
     $('.selectpicker').selectpicker();
     initDateTimePicker();
+  }
+
+  addClub() {
+    const club = {
+      title: this.clubName.nativeElement.value,
+      address: this.clubAddress.nativeElement.value,
+      type: this.regularly.nativeElement.checked ? 'Regularly' : 'Irreglarly',
+      imgUrl: this.clubImg.nativeElement.src,
+      regularType: this.repeatType.nativeElement.value,
+      regularPeriod: this.repeatPeriod.nativeElement.value,
+      dayOfWeek: this.dayOfWeek.nativeElement.value,
+      time: this.time.nativeElement.value,
+      starting: this.time.nativeElement.value,
+      location: this.phsicalLocation.nativeElement.value,
+      activeMembers: 0,
+      pastMembers: 0
+    };
+
+    this.mainService.addClub(club);
   }
 
 }

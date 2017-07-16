@@ -14,7 +14,7 @@ export class MainService {
   }
 
   public login(username, password) {
-    return this.http.post(this.apiUrl + '/users/login', {name: username, password: password})
+    return this.http.post(this.apiUrl + '/users/login/', {name: username, password: password})
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -26,17 +26,22 @@ export class MainService {
   }
 
   public getClubs() {
-    return;
-  }
-
-  public addClub(data) {
-    return this.http.post(this.apiUrl + '/clubs/addclub', data)
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/clubs/all/', {access_token: token})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  private extractData(res:Response) {
-    let body = res.json();
+  public addClub(data) {
+    const token = localStorage.getItem('liarsclubtoken');
+    data.access_token = token;
+    return this.http.post(this.apiUrl + '/clubs/add/', data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  private extractData(res: Response) {
+    const body = res.json();
 
     return body || { };
   }

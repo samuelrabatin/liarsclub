@@ -5,12 +5,12 @@ import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
 // import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
-import { AppComponent }   from './app.component';
+import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { DashboardModule } from './dashboard/dashboard.module';
-import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
+import { SidebarModule } from './sidebar/sidebar.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
 
 

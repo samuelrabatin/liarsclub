@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ClubComponent } from './club/club.component';
 import { AddClubComponent } from './add-club/add-club.component';
 
+import { MainService } from '../../../services/main.service';
+
 @Component({
     moduleId: module.id,
     selector: 'clubs-cmp ',
@@ -9,25 +11,16 @@ import { AddClubComponent } from './add-club/add-club.component';
     styleUrls: [ 'clubs.component.css' ]
 })
 
-export class ClubsComponent implements OnInit{
-    private clubs:any;
+export class ClubsComponent implements OnInit {
+    private clubs: any;
 
-    ngOnInit(){
-      this.clubs = [
-        {
-          title: 'Princeton Liars Club',
-          address: 'New York',
-          type: 'Regularly',
-          imgUrl: '',
-          regularType: 'weeks',
-          regularPeriod: 2,
-          dayOfWeek: 'Friday',
-          time: '16:00',
-          starting: '2012/2/12',
-          location: 'Whiteman College Dining Hall',
-          activeMembers: 46,
-          pastMembers: 100
-        }
-      ];
+    constructor( private mainService: MainService ) {
+    }
+
+    ngOnInit() {
+      this.mainService.getClubs().subscribe(
+        d => { this.clubs = d.data; },
+        e => { console.log(e); }
+      );
     }
 }

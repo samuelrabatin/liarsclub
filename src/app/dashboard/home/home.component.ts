@@ -17,7 +17,10 @@ export class HomeComponent implements OnInit{
 
     ngOnInit(){
       this.mainService.login('admin1', 'password').subscribe(
-        d => { console.log(d); },
+        d => {
+          console.log(d.data);
+          localStorage.setItem('liarsclubtoken', d.data.token);
+        },
         e => { console.log(e); }
       );
     }

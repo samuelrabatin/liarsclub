@@ -16,8 +16,6 @@ export class AppComponent implements OnInit{
     ngOnInit(){
         $.getScript('../assets/js/init/initMenu.js');
         $.getScript('../assets/js/demo.js');
-
-
     }
     public isMap(){
         // console.log(this.location);

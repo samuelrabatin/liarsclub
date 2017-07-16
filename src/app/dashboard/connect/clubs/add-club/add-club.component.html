@@ -3,7 +3,6 @@
     <legend>Add a Club</legend>
   </div>
   <div class="card-content">
-    <form>
       <div class="row">
         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
           <div class="form-group label-floating">
@@ -18,7 +17,7 @@
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
           <div class="fileinput fileinput-new text-center" data-provides="fileinput">
             <div class="fileinput-new thumbnail">
-              <img src="../../../../../assets/img/image_placeholder.jpg" alt="...">
+              <img src="../../../../../assets/img/image_placeholder.jpg" alt="..." #clubImg>
             </div>
             <div class="fileinput-preview fileinput-exists thumbnail"></div>
             <div>
@@ -67,7 +66,7 @@
                     <input type="number" min="1" class="form-control" value="1" #repeatPeriod required>
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 m-t-m-10">
-                    <select class="selectpicker" data-style="select-with-transition" required>
+                    <select class="selectpicker" data-style="select-with-transition" required #repeatType>
                       <option>weeks</option>
                       <option>months</option>
                     </select>
@@ -76,7 +75,7 @@
                 <div class="row repeat">
                   <label class="col-sm-2 label-on-left">On</label>
                   <div class="col-lg-10">
-                    <select class="selectpicker" multiple data-style="select-with-transition" required>
+                    <select class="selectpicker" multiple data-style="select-with-transition" required #dayOfWeek>
                       <option>Sunday</option>
                       <option>Monday</option>
                       <option>Tuesday</option>
@@ -117,7 +116,6 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-fill btn-rose">Submit</button>
-    </form>
+      <button class="btn btn-fill btn-rose" (click)="addClub()" >Submit</button>
   </div>
 </div>
