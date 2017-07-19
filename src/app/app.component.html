@@ -1,5 +1,5 @@
 
-<div class="wrapper">
+<div class="wrapper" *ngIf="!isUsers()">
     <div class="sidebar" data-active-color="white" data-background-color="red" data-image="../assets/img/sidebar-1.jpg">
     <!-- <div class="sidebar" data-color="red" data-image=""> -->
         <sidebar-cmp></sidebar-cmp>
@@ -12,4 +12,8 @@
             <footer-cmp></footer-cmp>
         </div>
     </div>
+</div>
+
+<div class="wrapper" *ngIf="isUsers()">
+  <dashboard-cmp></dashboard-cmp>
 </div>

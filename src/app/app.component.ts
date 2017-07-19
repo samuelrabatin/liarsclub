@@ -26,4 +26,13 @@ export class AppComponent implements OnInit{
             return false;
         }
     }
+
+    public isUsers(){
+      // console.log(this.location);
+      if (this.location.prepareExternalUrl(this.location.path()).includes('#/users/')) {
+        return true;
+      } else {
+        return false;
+      }
+    }
 }

@@ -14,6 +14,9 @@ import { BlogsComponent } from './discuss/blogs/blogs.component';
 import { ArticlesComponent } from './learn/articles/articles.component';
 import { VideosComponent } from './learn/videos/videos.component';
 
+import { LoginComponent } from './users/login/login.component';
+import { RegisterComponent } from './users/register/register.component';
+
 //
 export const MODULE_ROUTES: Route[] =[
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -31,6 +34,9 @@ export const MODULE_ROUTES: Route[] =[
 
     { path: 'learn/articles', component: ArticlesComponent },
     { path: 'learn/videos', component: VideosComponent },
+
+    { path: 'users/login', component: LoginComponent },
+    { path: 'users/register', component: RegisterComponent },
 ]
 //
 export const MODULE_COMPONENTS = [
