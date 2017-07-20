@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MainService {
-  private apiUrl = 'https://liarsclubserver.herokuapp.com';
+  private apiUrl = 'http://localhost:3000';
 
   constructor ( private http: Http ) {
 
@@ -36,6 +36,15 @@ export class MainService {
     const token = localStorage.getItem('liarsclubtoken');
     data.access_token = token;
     return this.http.post(this.apiUrl + '/clubs/add/', data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public validateUsertoken() {
+    const username = localStorage.getItem('username');
+    const token = localStorage.getItem('liarsclubtoken');
+
+    return this.http.post(this.apiUrl + '/users/checktoken/', {name: username, token: token})
       .map(this.extractData)
       .catch(this.handleError);
   }

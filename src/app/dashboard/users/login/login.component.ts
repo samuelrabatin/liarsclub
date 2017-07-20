@@ -39,9 +39,10 @@ export class LoginComponent implements OnInit {
     this.mainService.login(this.username.nativeElement.value, this.password.nativeElement.value).subscribe(
       d => {
         if (d.data.token) {
+          localStorage.setItem('username', this.username.nativeElement.value);
           localStorage.setItem('liarsclubtoken', d.data.token);
           this.loginFaildMsg = '';
-          this.router.navigate(['/']);
+          this.router.navigate(['/home']);
         } else {
           this.loginFaildMsg = d.data;
         }

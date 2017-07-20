@@ -17,10 +17,11 @@ import { VideosComponent } from './learn/videos/videos.component';
 import { LoginComponent } from './users/login/login.component';
 import { RegisterComponent } from './users/register/register.component';
 
+import { ClubComponent } from './connect/clubs/club/club.component';
+import { AddClubComponent } from './connect/clubs/add-club/add-club.component';
+
 //
 export const MODULE_ROUTES: Route[] =[
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-
     { path: 'home', component: HomeComponent },
 
     { path: 'connect/clubs', component: ClubsComponent},
@@ -37,12 +38,16 @@ export const MODULE_ROUTES: Route[] =[
 
     { path: 'users/login', component: LoginComponent },
     { path: 'users/register', component: RegisterComponent },
+
+    { path: '**', redirectTo: 'home' },
 ]
 //
 export const MODULE_COMPONENTS = [
     HomeComponent,
 
     ClubsComponent,
+    ClubComponent,
+    AddClubComponent,
     MeetingsComponent,
     PeopleComponent,
 
@@ -52,5 +57,8 @@ export const MODULE_COMPONENTS = [
     BlogsComponent,
 
     ArticlesComponent,
-    VideosComponent
+    VideosComponent,
+
+    LoginComponent,
+    RegisterComponent
 ]

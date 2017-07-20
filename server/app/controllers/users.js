@@ -34,3 +34,13 @@ exports.login = function (req, res) {
     }
   });
 };
+
+exports.checkToken = function(req, res) {
+  User.findOne({name: req.body.name, token: req.body.token}, function(err, user) {
+    if (err || user === null) {
+      res.json({type: false});
+    } else {
+      res.json({type: true});
+    }
+  });
+}

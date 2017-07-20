@@ -6,11 +6,7 @@ import { FooterModule } from '../shared/footer/footer.module';
 import { SidebarModule } from '../sidebar/sidebar.module';
 import { NavbarModule} from '../shared/navbar/navbar.module';
 
-import { MODULE_ROUTES,MODULE_COMPONENTS } from './dashboard.routes';
-import { ClubComponent } from './connect/clubs/club/club.component';
-import { AddClubComponent } from './connect/clubs/add-club/add-club.component';
-import { LoginComponent } from './users/login/login.component';
-import { RegisterComponent } from './users/register/register.component';
+import { MODULE_ROUTES, MODULE_COMPONENTS } from './dashboard.routes';
 
 @NgModule({
     imports: [
@@ -20,7 +16,7 @@ import { RegisterComponent } from './users/register/register.component';
         NavbarModule,
         FooterModule,
     ],
-    declarations: [ MODULE_COMPONENTS, ClubComponent, AddClubComponent, LoginComponent, RegisterComponent ]
+    declarations: [ MODULE_COMPONENTS ]
 })
 
 export class DashboardModule{}

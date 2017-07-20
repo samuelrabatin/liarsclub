@@ -2,37 +2,50 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 
-declare var $:any;
+import { MainService } from './services/main.service';
+
+declare var $: any;
 @Component({
     selector: 'my-app',
-    templateUrl: 'app.component.html'
+    templateUrl: 'app.component.html',
+    styleUrls: ['app.component.css']
 })
 
 export class AppComponent implements OnInit{
     location: Location;
-    constructor(location:Location) {
+    private isUsers = true;
+
+    constructor(location: Location, private mainService: MainService, private router: Router) {
         this.location = location;
+
+        router.events.subscribe((val: any) => {
+          this.isUsers = val.url.includes('/users/');
+
+          this.mainService.validateUsertoken().subscribe(
+            d => {
+              if (d.type === false) {
+                this.router.navigate(['/users/login']);
+              }
+            },
+            e => {
+              console.log(e);
+              this.router.navigate(['/users/login']);
+            }
+          );
+        });
     }
+
     ngOnInit(){
         $.getScript('../assets/js/init/initMenu.js');
         $.getScript('../assets/js/demo.js');
     }
+
     public isMap(){
         // console.log(this.location);
-        if(this.location.prepareExternalUrl(this.location.path()) == '#/maps/fullscreen'){
+        if (this.location.prepareExternalUrl(this.location.path()) === '#/maps/fullscreen'){
             return true;
-        }
-        else {
+        } else {
             return false;
         }
-    }
-
-    public isUsers(){
-      // console.log(this.location);
-      if (this.location.prepareExternalUrl(this.location.path()).includes('#/users/')) {
-        return true;
-      } else {
-        return false;
-      }
     }
 }

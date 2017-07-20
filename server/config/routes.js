@@ -32,6 +32,7 @@ module.exports = function (app, passport) {
   app.get('/', home.index);
 
   app.post('/users/login/', users.login);
+  app.post('/users/checktoken/', users.checkToken);
 
   app.post('/clubs/all/', clubs.getClubs);
   app.post('/clubs/add/', clubs.addClub);
