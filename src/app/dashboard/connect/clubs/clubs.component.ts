@@ -18,6 +18,10 @@ export class ClubsComponent implements OnInit {
     }
 
     ngOnInit() {
+      this.getClubs();
+    }
+
+    public getClubs() {
       this.mainService.getClubs().subscribe(
         d => { this.clubs = d.data; },
         e => { console.log(e); }

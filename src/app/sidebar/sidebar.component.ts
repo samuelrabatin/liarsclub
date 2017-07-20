@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ROUTES } from './sidebar-routes.config';
 import { MenuType } from './sidebar.metadata';
+import { Router } from '@angular/router';
+
+import { MainService } from '../services/main.service';
 
 declare var $:any;
 
@@ -12,10 +15,28 @@ declare var $:any;
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
+
+    constructor( private mainService: MainService, private router: Router ) {}
+
     ngOnInit() {
         $.getScript('../../assets/js/sidebar-moving-tab.js');
 
         this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
+    }
+
+    logout(evt) {
+      evt.preventDefault();
+
+      this.mainService.logout().subscribe(
+        d => {
+          localStorage.setItem('username', '');
+          localStorage.setItem('liarsclubtoken', '');
+          this.router.navigate(['/users/login']);
+        },
+        e => {
+          console.log(e);
+        }
+      );
     }
 
 }

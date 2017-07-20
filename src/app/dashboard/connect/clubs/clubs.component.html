@@ -5,7 +5,7 @@
             <app-club *ngFor="let club of clubs" [club] = "club" ></app-club>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-            <app-add-club></app-add-club>
+            <app-add-club (clubAdded)="getClubs()"></app-add-club>
         </div>
       </div>
     </div>

@@ -14,4 +14,6 @@ export const ROUTES: RouteInfo[] = [
 
     { path: 'learn/articles', title: 'Regular Forms', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
     { path: 'learn/videos', title: 'Extended Forms', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
+
+    { path: 'profile', title: 'Extended Forms', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
 ];

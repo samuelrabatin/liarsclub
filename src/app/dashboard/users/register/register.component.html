@@ -1,3 +1,81 @@
-<p>
-  register works!
-</p>
+<nav class="navbar navbar-primary navbar-transparent navbar-absolute">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/#/home">Liars Club</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="/#/home">
+            <i class="material-icons">dashboard</i> Dashboard
+          </a>
+        </li>
+        <li class="active">
+          <a href="/#/users/register">
+            <i class="material-icons">person_add</i> Register
+          </a>
+        </li>
+        <li class="">
+          <a href="/#/users/login">
+            <i class="material-icons">fingerprint</i> Login
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="wrapper wrapper-full-page">
+  <div class="full-page register-page" filter-color="black" data-image="../assets/img/register.jpeg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="card card-signup card-hidden">
+            <h2 class="card-title text-center">Register</h2>
+            <div class="row text-center">
+              <div class="col-md-10 col-md-offset-1">
+                <div class="card-content">
+                  <div>
+                    <span *ngIf="errmsg" class="errmsg">{{errmsg}}</span>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">face</i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Username..." #username>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">email</i>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Email..." #email>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                        <i class="material-icons">lock_outline</i>
+                    </span>
+                    <input type="password" placeholder="Password..." class="form-control" #password/>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" name="optionsCheckboxes" checked> I agree to the
+                      <a>terms and conditions</a>.
+                    </label>
+                  </div>
+                </div>
+                <div class="footer text-center">
+                  <button class="btn btn-primary btn-round" (click)="register()" >Register</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

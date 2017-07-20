@@ -19,6 +19,18 @@ export class MainService {
       .catch(this.handleError);
   }
 
+  public register(username, email, password) {
+    return this.http.post(this.apiUrl + '/users/register/', {username: username, email: email, password: password})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public logout() {
+    return this.http.post(this.apiUrl + '/users/logout/', {username: localStorage.getItem('username')})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   public getUsersData() {
     return this.http.get(this.apiUrl + '/users')
       .map(this.extractData)

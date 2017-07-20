@@ -23,13 +23,15 @@ export class AppComponent implements OnInit{
 
           this.mainService.validateUsertoken().subscribe(
             d => {
-              if (d.type === false) {
+              if (d.type === false && !this.isUsers) {
                 this.router.navigate(['/users/login']);
               }
             },
             e => {
               console.log(e);
-              this.router.navigate(['/users/login']);
+              if (!this.isUsers) {
+                this.router.navigate(['/users/login']);
+              }
             }
           );
         });

@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MainService } from '../../../../services/main.service';
 
 import initDateTimePicker = require('../../../../../assets/js/init/initDatetimepickers');
 
-declare var $:any;
-declare var google:any;
+declare var $: any;
+declare var google: any;
 
 @Component({
   selector: 'app-add-club',
@@ -25,6 +25,8 @@ export class AddClubComponent implements OnInit {
   @ViewChild('email') email;
   @ViewChild('websiteLink') websiteLink;
   @ViewChild('facebookLink') facebookLink;
+
+  @Output() clubAdded: EventEmitter<string> = new EventEmitter();
 
   constructor(private mainService: MainService) { }
 
@@ -49,7 +51,7 @@ export class AddClubComponent implements OnInit {
     initDateTimePicker();
   }
 
-  addClub() {
+  addClub(evt) {
     const club = {
       title: this.clubName.nativeElement.value,
       address: this.clubAddress.nativeElement.value,
@@ -65,7 +67,38 @@ export class AddClubComponent implements OnInit {
       pastMembers: 0
     };
 
-    this.mainService.addClub(club);
+    this.mainService.addClub(club).subscribe(
+      d => {
+        this.clubAdded.emit('club added');
+      },
+      e => {
+        console.log(e);
+      }
+    );
+
+    return false;
   }
 
+  locationChange(evt) {
+    const geocoder =  new google.maps.Geocoder();
+    geocoder.geocode( { 'address': evt.target.value }, function(results, status) {
+      if (status === google.maps.GeocoderStatus.OK) {
+        const myLatlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+        const marker = new google.maps.Marker({
+          position: myLatlng,
+          title: 'Regular Map!'
+        });
+
+        const mapOptions = {
+          zoom: 8,
+          center: myLatlng,
+          scrollwheel: true
+        }
+
+        const map = new google.maps.Map(document.getElementById('regularMap'), mapOptions);
+        marker.setMap(map);
+      } else {
+      }
+    });
+  }
 }

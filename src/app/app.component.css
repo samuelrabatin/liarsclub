@@ -1,3 +1,7 @@
 .sidebar-background {
   display: none;
 }
+
+.sidebar {
+  background-color: #224e54;
+}
