@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MainService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://liarsclubserver.herokuapp.com';
   public loading = false;
 
   constructor ( private http: Http ) {
