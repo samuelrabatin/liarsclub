@@ -67,16 +67,23 @@ export class AddClubComponent implements OnInit {
       pastMembers: 0
     };
 
-    this.mainService.addClub(club).subscribe(
-      d => {
-        this.mainService.loading = false;
-        this.clubAdded.emit('club added');
-      },
-      e => {
-        this.mainService.loading = false;
-        console.log(e);
-      }
-    );
+    const requireInputs = $('input,select').filter('[required]:visible');
+    requireInputs.map((index, val) => {
+      $(val).val() === '' ? $(val).parent().addClass('has-error') : $(val).parent().removeClass('has-error');
+    });
+
+    if ($('.has-error').length === 0) {
+      this.mainService.addClub(club).subscribe(
+        d => {
+          this.mainService.loading = false;
+          this.clubAdded.emit('club added');
+        },
+        e => {
+          this.mainService.loading = false;
+          console.log(e);
+        }
+      );
+    }
 
     return false;
   }
