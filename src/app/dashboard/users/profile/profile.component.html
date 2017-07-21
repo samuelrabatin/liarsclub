@@ -1,0 +1,36 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2">
+      <form (submit)="saveProfile()">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-header" data-background-color="orange">
+              <h3 class="text-center">My Profile</h3>
+            </div>
+          </div>
+          <div class="card-content">
+              <div class="row">
+                <div class="form-group">
+                  <label class="control-label">First Name</label>
+                  <input class="form-control" required [(ngModel)]="firstName" name="firstName"/>
+                </div>
+                <div class="form-group">
+                  <label class="control-label">Last Name</label>
+                  <input class="form-control" required [(ngModel)]="lastName" name="lastName" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
+                  <label class="control-label">Email address</label>
+                  <input class="form-control" type="email" required [(ngModel)]="email" name="email" />
+                </div>
+              </div>
+          </div>
+          <div class="card-footer">
+            <button type="submit" class="btn btn-success pull-right">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

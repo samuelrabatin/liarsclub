@@ -1,4 +1,6 @@
 const User = require('../models/user.js');
+const Profile = require('../models/profile.js');
+
 var jwt        = require("jsonwebtoken");
 var randtoken = require('rand-token');
 
@@ -94,6 +96,88 @@ exports.checkToken = function(req, res) {
       res.json({type: false});
     } else {
       res.json({type: true});
+    }
+  });
+};
+
+exports.saveProfile = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      Profile.findOne({username: user.name}, function(err, userProfile) {
+        if (err) {
+          return res.status(400).send('Faild to register');
+        } else if (userProfile) {
+          userProfile.firstname = req.body.firstname;
+          userProfile.lastname = req.body.lastname;
+          userProfile.email = req.body.email;
+          userProfile.updated_date = new Date();
+
+          userProfile.save(function (err, item) {
+            if (err) {
+              res.json({
+                type: false
+              })
+            } else {
+              res.json({
+                type: true,
+                msg: "Successfully updated"
+              })
+            }
+          });
+        } else {
+          var item = new Profile({
+            username: user.name,
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            email: req.body.email,
+            created_date: new Date()
+          });
+          item.save(function (err, item) {
+            if (err) {
+              res.json({
+                type: false
+              })
+            } else {
+              res.json({
+                type: true,
+                msg: "Successfully added"
+              })
+            }
+          });
+        }
+      });
+    }
+  });
+};
+
+exports.getProfile = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      Profile.findOne({username: user.name}, function(err, userProfile) {
+        var return_val = userProfile ||
+          {
+            firstname: '',
+            lastname: '',
+            email: user.email
+          };
+
+        res.json({
+          type: true,
+          profile: return_val
+        });
+      });
     }
   });
 };

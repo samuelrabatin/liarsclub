@@ -37,9 +37,9 @@ export class AppComponent implements OnInit{
         });
     }
 
-    ngOnInit(){
-        $.getScript('../assets/js/init/initMenu.js');
-        $.getScript('../assets/js/demo.js');
+    ngOnInit() {
+      $.getScript('../assets/js/init/initMenu.js');
+      $.getScript('../assets/js/demo.js');
     }
 
     public isMap(){

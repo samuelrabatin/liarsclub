@@ -37,6 +37,21 @@ export class MainService {
       .catch(this.handleError);
   }
 
+  public saveProfile(data) {
+    const token = localStorage.getItem('liarsclubtoken');
+    data.access_token = token;
+    return this.http.post(this.apiUrl + '/users/saveprofile/', data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public getProfileData() {
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/users/getprofile/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   public getClubs() {
     const token = localStorage.getItem('liarsclubtoken');
     return this.http.post(this.apiUrl + '/clubs/all/', {access_token: token})

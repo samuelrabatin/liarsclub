@@ -12,8 +12,8 @@ export const ROUTES: RouteInfo[] = [
     { path: 'discuss/forums', title: 'Forums', menuType: MenuType.LEFT, icon:'pe-7s-plugin' },
     { path: 'discuss/blogs', title: 'Blogs', menuType: MenuType.LEFT, icon:'pe-7s-plugin' },
 
-    { path: 'learn/articles', title: 'Regular Forms', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
-    { path: 'learn/videos', title: 'Extended Forms', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
+    { path: 'learn/articles', title: 'Articles', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
+    { path: 'learn/videos', title: 'Videos', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
 
-    { path: 'profile', title: 'Extended Forms', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
+    { path: 'profile', title: 'Profile', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
 ];
