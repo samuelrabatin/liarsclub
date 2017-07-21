@@ -23,8 +23,8 @@ export class ClubsComponent implements OnInit {
 
     public getClubs() {
       this.mainService.getClubs().subscribe(
-        d => { this.clubs = d.data; },
-        e => { console.log(e); }
+        d => { this.clubs = d.data; this.mainService.loading = false; },
+        e => { console.log(e); this.mainService.loading = false; }
       );
     }
 }

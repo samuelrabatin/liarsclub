@@ -26,8 +26,10 @@ export class AppComponent implements OnInit{
               if (d.type === false && !this.isUsers) {
                 this.router.navigate(['/users/login']);
               }
+              this.mainService.loading = false;
             },
             e => {
+              this.mainService.loading = false;
               console.log(e);
               if (!this.isUsers) {
                 this.router.navigate(['/users/login']);
@@ -42,7 +44,7 @@ export class AppComponent implements OnInit{
       $.getScript('../assets/js/demo.js');
     }
 
-    public isMap(){
+    public isMap() {
         // console.log(this.location);
         if (this.location.prepareExternalUrl(this.location.path()) === '#/maps/fullscreen'){
             return true;

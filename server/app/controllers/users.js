@@ -126,6 +126,7 @@ exports.saveProfile = function(req, res) {
             } else {
               res.json({
                 type: true,
+                profile: item,
                 msg: "Successfully updated"
               })
             }
@@ -138,7 +139,7 @@ exports.saveProfile = function(req, res) {
             email: req.body.email,
             created_date: new Date()
           });
-          item.save(function (err, item) {
+          item.save(function (err, item1) {
             if (err) {
               res.json({
                 type: false
@@ -146,6 +147,7 @@ exports.saveProfile = function(req, res) {
             } else {
               res.json({
                 type: true,
+                profile: item1,
                 msg: "Successfully added"
               })
             }

@@ -5,3 +5,21 @@
 .sidebar {
   background-color: #224e54;
 }
+
+loading-gif {
+  position: fixed;
+  top: 75px;
+  left: 0;
+  background: rgba(210, 255, 255, 0.2);
+  z-index: 1000;
+  width: 100%;
+  height: 10000px;
+}
+
+.loading-gif img {
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  left: calc(50% - 75px);
+  top: calc(50% - 75px);
+}

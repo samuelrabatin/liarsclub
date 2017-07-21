@@ -29,11 +29,13 @@ export class SidebarComponent implements OnInit {
 
       this.mainService.logout().subscribe(
         d => {
+          this.mainService.loading = false;
           localStorage.setItem('username', '');
           localStorage.setItem('liarsclubtoken', '');
           this.router.navigate(['/users/login']);
         },
         e => {
+          this.mainService.loading = false;
           console.log(e);
         }
       );

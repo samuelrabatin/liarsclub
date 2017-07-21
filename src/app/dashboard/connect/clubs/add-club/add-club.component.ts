@@ -69,9 +69,11 @@ export class AddClubComponent implements OnInit {
 
     this.mainService.addClub(club).subscribe(
       d => {
+        this.mainService.loading = false;
         this.clubAdded.emit('club added');
       },
       e => {
+        this.mainService.loading = false;
         console.log(e);
       }
     );
