@@ -1,3 +1,7 @@
 form > .card > .card-content > .row {
   padding: 0 20px;
 }
+
+.upload-avatar {
+  padding: 30px;
+}

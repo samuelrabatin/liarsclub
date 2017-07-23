@@ -10,13 +10,35 @@
           </div>
           <div class="card-content">
               <div class="row">
-                <div class="form-group">
-                  <label class="control-label">First Name</label>
-                  <input class="form-control" required [(ngModel)]="firstName" name="firstName"/>
+                <div class="col-md-5 pull-right upload-avatar">
+                  <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                    <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                      <div class="fileinput-new thumbnail">
+                        <img src="../../../../../assets/img/image_placeholder.jpg" alt="..." #clubImg *ngIf="imgChanged">
+                        <cl-image data-u="image" public-id="{{imgId}}" cloud-name="da2w1aszs" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
+                        </cl-image>
+                      </div>
+                      <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                      <div>
+                        <span class="btn btn-rose btn-round btn-file btn-sm">
+                            <span class="fileinput-new">Select image</span>
+                            <span class="fileinput-exists">Change</span>
+                            <input type="file" name="..." #avatar class="btn btn-file" ng2FileSelect [uploader]="uploader" (change)="imgChanged = true"/>
+                        </span>
+                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists btn-sm" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                  <label class="control-label">Last Name</label>
-                  <input class="form-control" required [(ngModel)]="lastName" name="lastName" />
+                <div class="col-md-7">
+                  <div class="form-group">
+                    <label class="control-label">First Name</label>
+                    <input class="form-control" required [(ngModel)]="firstName" name="firstName"/>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label">Last Name</label>
+                    <input class="form-control" required [(ngModel)]="lastName" name="lastName" />
+                  </div>
                 </div>
               </div>
               <div class="row">
@@ -27,7 +49,7 @@
               </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-success pull-right" [disabled]="orgFirstname == firstName && orgLastname == lastName && orgEmail == email">Save</button>
+            <button type="submit" class="btn btn-success pull-right" [disabled]="orgFirstname == firstName && orgLastname == lastName && orgEmail == email && !imgChanged">Save</button>
           </div>
         </div>
       </form>

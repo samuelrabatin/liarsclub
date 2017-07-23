@@ -119,6 +119,7 @@ exports.saveProfile = function(req, res) {
         } else if (userProfile) {
           userProfile.firstname = req.body.firstname;
           userProfile.lastname = req.body.lastname;
+          userProfile.imgId = req.body.imgId,
           userProfile.email = req.body.email;
           userProfile.updated_date = new Date();
 
@@ -140,6 +141,7 @@ exports.saveProfile = function(req, res) {
             username: user.name,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
+            imgId: req.body.imgId,
             email: req.body.email,
             created_date: new Date()
           });
@@ -176,7 +178,8 @@ exports.getProfile = function(req, res) {
           {
             firstname: '',
             lastname: '',
-            email: user.email
+            email: user.email,
+            imgId: user.imgId
           };
 
         res.json({

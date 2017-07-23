@@ -1,0 +1,18 @@
+li .users-option::before {
+  content: '\E87C';
+}
+
+.setup-image {
+  text-align: center;
+}
+
+.row {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.roles .description {
+  font-style: italic;
+  font-size: 16px;
+  margin-left: 10px;
+}

@@ -1,0 +1,46 @@
+<form (submit)="saveSetup()">
+  <div class="row">
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+      <div class="form-group label-floating">
+        <label class="control-label">Setup Name</label>
+        <input class="form-control" required />
+      </div>
+      <div class="form-group label-floating">
+        <label class="control-label">Created by:</label>
+        <select class="selectpicker" multiple data-style="select-with-transition" required>
+          <option>
+            <span class="users-option"><strong>username</strong>(name)</span>
+          </option>
+          <option>
+            <span class="users-option"><strong>username</strong>(name)</span>
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 setup-image">
+      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+        <div class="fileinput-new thumbnail">
+          <img src="../../../../../assets/img/image_placeholder.jpg" alt="..." #clubImg>
+        </div>
+        <div class="fileinput-preview fileinput-exists thumbnail"></div>
+        <div>
+              <span class="btn btn-rose btn-round btn-file btn-sm">
+                  <span class="fileinput-new">Select image</span>
+                  <span class="fileinput-exists">Change</span>
+                  <input type="file" name="..." />
+              </span>
+          <a href="#pablo" class="btn btn-danger btn-round fileinput-exists btn-sm" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row roles">
+    <div class="header">
+      <h3>Roles <span class="description">What roles are in the game and how do they work?</span></h3>
+    </div>
+    <div class="roles-list">
+    </div>
+    <div class="add-roles">
+    </div>
+  </div>
+</form>

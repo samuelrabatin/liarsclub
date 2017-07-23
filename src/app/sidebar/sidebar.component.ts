@@ -15,6 +15,7 @@ declare var $:any;
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
+    private fullname: String;
 
     constructor( private mainService: MainService, private router: Router ) {}
 

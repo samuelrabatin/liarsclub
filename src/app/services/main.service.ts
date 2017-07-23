@@ -7,10 +7,23 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MainService {
-  private apiUrl = 'https://liarsclubserver.herokuapp.com';
+  //private apiUrl = 'https://liarsclubserver.herokuapp.com';
+  private apiUrl = 'http://localhost:3000';
   public loading;
 
+  public name = 'User';
+  public avatarPublicId = '';
+
   constructor ( private http: Http ) {
+    this.getProfileData().subscribe(
+      d => {
+        this.loading = false;
+        if (d.type) {
+          this.name = `${d.profile.firstname} ${d.profile.lastname}`;
+          this.avatarPublicId = d.profile.imgId;
+        }
+      }
+    );
   }
 
   public login(username, password) {

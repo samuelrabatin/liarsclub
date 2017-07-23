@@ -43,6 +43,16 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('username', this.username.nativeElement.value);
           localStorage.setItem('liarsclubtoken', d.data.token);
           this.loginFaildMsg = '';
+
+          this.mainService.getProfileData().subscribe(
+            dd => {
+              this.mainService.avatarPublicId = dd.profile.imgId;
+              this.mainService.name = `${dd.profile.firstname} ${dd.profile.lastname}`;
+            },
+            ee => console.log(ee)
+          );
+          this.mainService.avatarPublicId = d.data.imgId;
+
           this.router.navigate(['/home']);
         } else {
           this.mainService.loading = false;

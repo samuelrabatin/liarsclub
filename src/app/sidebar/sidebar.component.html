@@ -17,12 +17,13 @@
 
             <div class="user">
                 <div class="photo">
-                    <img src="../assets/img/faces/avatar.jpg" />
+                  <cl-image data-u="image" public-id="{{mainService.avatarPublicId}}" cloud-name="da2w1aszs" class="md-card-image" crop="fill" quality="80" height="860" width="860" format="jpg">
+                  </cl-image>
                 </div>
                 <div class="info">
                     <a data-toggle="collapse" href="#collapseExample" class="collapsed">
                         <span>
-                            Tania Andrew
+                            {{ mainService.name }}
                             <b class="caret"></b>
                         </span>
                     </a>

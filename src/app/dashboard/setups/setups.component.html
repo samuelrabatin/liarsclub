@@ -1,5 +1,22 @@
 <div class="main-content">
     <div class="container-fluid">
+      <div class="row fadeOutUp" *ngIf="!isAddsetup">
         <h1>Coming Soon!</h1>
+        <button class="btn btn-primary" (click)="addSetup()">Add Setup</button>
+      </div>
+      <div class="row add-setup fadeInDown" *ngIf="isAddsetup">
+        <div class="card">
+          <div class="card-header">
+            <h3>Add Setup</h3>
+          </div>
+          <div class="card-content">
+            <app-add-edit></app-add-edit>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-primary">Save</button>
+            <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
