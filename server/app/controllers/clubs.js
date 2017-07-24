@@ -55,4 +55,4 @@ exports.addClub = function (req, res) {
       });
     }
   });
-}
+};

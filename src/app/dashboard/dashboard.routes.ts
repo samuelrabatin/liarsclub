@@ -21,8 +21,10 @@ import { ProfileComponent } from './users/profile/profile.component';
 import { ClubComponent } from './connect/clubs/club/club.component';
 import { AddClubComponent } from './connect/clubs/add-club/add-club.component';
 
+import { AddEditComponent } from './setups/add-edit/add-edit.component';
+
 //
-export const MODULE_ROUTES: Route[] =[
+export const MODULE_ROUTES: Route[] = [
     { path: 'home', component: HomeComponent },
 
     { path: 'connect/clubs', component: ClubsComponent},
@@ -30,6 +32,7 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'connect/people', component: PeopleComponent},
 
     { path: 'setups', component: SetupsComponent},
+    { path: 'setups/add/:index', component: AddEditComponent},
 
     { path: 'discuss/forums', component: ForumsComponent},
     { path: 'discuss/blogs', component: BlogsComponent},

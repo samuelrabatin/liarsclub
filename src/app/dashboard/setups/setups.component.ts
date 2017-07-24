@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
+import { MainService } from '../../services/main.service';
 
 @Component({
     moduleId: module.id,
@@ -7,11 +8,27 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: [ 'setups.component.css' ]
 })
 
-export class SetupsComponent implements OnInit{
+export class SetupsComponent implements OnInit, AfterViewChecked {
   private isAddsetup: Boolean = false;
+  private isEditsetup: Boolean = false;
+
+  private setups;
+
+  private currentSetup;
+
+  @ViewChild('editDiag') editDiag;
+
+  constructor( private mainService: MainService ) {}
 
   ngOnInit() {
+    this.getSetups();
+  }
 
+  ngAfterViewChecked() {
+    if (this.isEditsetup) {
+      console.log(1, this.currentSetup);
+      this.editDiag.updateSetupValue(this.currentSetup);
+    }
   }
 
   addSetup() {
@@ -20,6 +37,25 @@ export class SetupsComponent implements OnInit{
 
   cancel() {
     this.isAddsetup = false;
+    this.isEditsetup = false;
+  }
+
+  update() {
+    this.isAddsetup = false;
+    this.isEditsetup = false;
+    this.getSetups();
+  }
+
+  getSetups() {
+    this.mainService.getSetups().subscribe(
+      d => {
+        this.setups = d.data;
+      },
+      e => console.log(e)
+    );
+  }
+
+  editSetup(evt) {
   }
 }
 

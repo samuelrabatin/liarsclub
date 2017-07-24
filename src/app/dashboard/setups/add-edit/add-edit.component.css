@@ -6,13 +6,44 @@ li .users-option::before {
   text-align: center;
 }
 
+.setup-image > div {
+  max-width: 150px;
+}
+
 .row {
   padding-left: 40px;
   padding-right: 40px;
 }
 
-.roles .description {
+.description {
   font-style: italic;
   font-size: 16px;
   margin-left: 10px;
+}
+
+.roles .cheader i:hover {
+  cursor: pointer;
+}
+
+.roles .cheader i {
+  position: relative;
+  top: 5px;
+  left: 10px;
+}
+
+.row {
+  padding-bottom: 40px;
+}
+
+.mins-text {
+  position: relative;
+  top: 25px;
+}
+
+.card-footer {
+  text-align: center;
+}
+
+.card-footer button {
+  width: 250px;
 }

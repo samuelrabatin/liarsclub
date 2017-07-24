@@ -101,7 +101,7 @@
       <div class="row">
         <div class="form-group label-floating">
           <label class="control-label">Physical Location</label>
-          <input class="form-control" (change)="locationChange($event)" required #phsicalLocation />
+          <input class="form-control" id="physicalLocation" (keyup)="locationChange($event)" required #phsicalLocation />
         </div>
         <div class="form-group label-floating">
           <label class="control-label">Email address</label>
@@ -113,7 +113,7 @@
         </div>
         <div class="form-group label-floating">
           <label class="control-label">Link to Facebook page</label>
-          <input class="form-control" required #facebookLink />
+          <input class="form-control" #facebookLink />
         </div>
       </div>
 

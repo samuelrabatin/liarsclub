@@ -7,6 +7,7 @@
 const home = require('../app/controllers/home');
 const users = require('../app/controllers/users');
 const clubs = require('../app/controllers/clubs');
+const roles = require('../app/controllers/setups');
 
 /**
  * Expose
@@ -31,6 +32,7 @@ module.exports = function (app, passport) {
 
   app.get('/', home.index);
 
+  app.post('/users/', users.getAllUsers);
   app.post('/users/login/', users.login);
   app.post('/users/checktoken/', users.checkToken);
   app.post('/users/register/', users.register);
@@ -40,6 +42,13 @@ module.exports = function (app, passport) {
 
   app.post('/clubs/all/', clubs.getClubs);
   app.post('/clubs/add/', clubs.addClub);
+
+  app.post('/setups/getallroles/', roles.getAllRoles);
+  app.post('/setups/getallvotings/', roles.getAllVotings);
+  app.post('/setups/addrole/', roles.addRole);
+  app.post('/setups/addsetup/', roles.addSetup);
+  app.post('/setups/updatesetup/', roles.updateSetup);
+  app.post('/setups/getallsetups/', roles.getSetups);
 
   /**
    * Error handling

@@ -4,6 +4,7 @@ import { MainService } from '../../../../services/main.service';
 import initDateTimePicker = require('../../../../../assets/js/init/initDatetimepickers');
 
 declare var $: any;
+declare var window: any;
 declare var google: any;
 
 @Component({
@@ -28,7 +29,7 @@ export class AddClubComponent implements OnInit {
 
   @Output() clubAdded: EventEmitter<string> = new EventEmitter();
 
-  constructor(private mainService: MainService) { }
+  constructor(private mainService: MainService) { window.addClubComponent = this; }
 
   ngOnInit() {
     const myLatlng = new google.maps.LatLng(40.748817, -73.985428);
@@ -36,9 +37,11 @@ export class AddClubComponent implements OnInit {
       zoom: 8,
       center: myLatlng,
       scrollwheel: true
-    }
+    };
 
     const map = new google.maps.Map(document.getElementById('regularMap'), mapOptions);
+
+    map.addListener('click', this.mapLocationChange);
 
     const marker = new google.maps.Marker({
       position: myLatlng,
@@ -49,6 +52,40 @@ export class AddClubComponent implements OnInit {
 
     $('.selectpicker').selectpicker();
     initDateTimePicker();
+  }
+
+  mapLocationChange(e) {
+    const geocoder = new google.maps.Geocoder;
+
+    geocoder.geocode({'location': e.latLng}, function(results, status) {
+      if (status === 'OK') {
+        if (results[1]) {
+          const myLatlng = e.latLng;
+          const marker = new google.maps.Marker({
+            position: myLatlng,
+            title: 'Regular Map!'
+          });
+
+          const mapOptions = {
+            zoom: 8,
+            center: myLatlng,
+            scrollwheel: true
+          };
+
+          $('#physicalLocation').val(results[1].formatted_address);
+          $('#physicalLocation').parent().removeClass('is-empty');
+
+          const map = new google.maps.Map(document.getElementById('regularMap'), mapOptions);
+          map.addListener('click', window.addClubComponent.mapLocationChange);
+
+          marker.setMap(map);
+        } else {
+          console.log('results not found');
+        }
+      } else {
+        console.log('Geocoder failed due to: ' + status);
+      }
+    });
   }
 
   addClub(evt) {
@@ -102,7 +139,7 @@ export class AddClubComponent implements OnInit {
           zoom: 8,
           center: myLatlng,
           scrollwheel: true
-        }
+        };
 
         const map = new google.maps.Map(document.getElementById('regularMap'), mapOptions);
         marker.setMap(map);

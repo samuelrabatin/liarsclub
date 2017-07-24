@@ -1,20 +1,42 @@
 <div class="main-content">
     <div class="container-fluid">
-      <div class="row fadeOutUp" *ngIf="!isAddsetup">
-        <h1>Coming Soon!</h1>
-        <button class="btn btn-primary" (click)="addSetup()">Add Setup</button>
-      </div>
-      <div class="row add-setup fadeInDown" *ngIf="isAddsetup">
-        <div class="card">
-          <div class="card-header">
-            <h3>Add Setup</h3>
-          </div>
-          <div class="card-content">
-            <app-add-edit></app-add-edit>
-          </div>
-          <div class="card-footer">
-            <button class="btn btn-primary">Save</button>
-            <button class="btn btn-primary" (click)="cancel()">Cancel</button>
+      <a [routerLink]="['/setups/add', -1]" class="btn btn-primary">Add Setup</a>
+      <div class="row fadeOutUp">
+        <div class="col-lg-6 col-md-6">
+          <div class="card card-product" *ngFor="let setup of setups; let idx = index">
+            <div class="card-image" data-header-animation="true">
+              <a href="#pablo">
+                <img class="img" src="../assets/img/card-2.jpeg">
+              </a>
+            </div>
+            <div class="card-content">
+              <div class="card-actions" [attr.idx]="idx">
+                <button type="button" class="btn btn-danger btn-simple fix-broken-card">
+                  <i class="material-icons">build</i> Fix Header!
+                </button>
+                <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View" (click)="setupDetails($event)">
+                  <i class="material-icons">art_track</i>
+                </button>
+                <a type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit" [routerLink]="['/setups/add', setup._id]">
+                  <i class="material-icons">edit</i>
+                </a>
+              </div>
+              <h4 class="card-title">
+                <a href="#pablo">{{setup.name}}</a>
+              </h4>
+              <div class="card-description">
+                {{setup.setupDescription}}
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="players-count">
+                <p>Ideal for {{setup.minimumMember}}~{{setup.maximumMember}} members</p>
+                <p>Difficulty: {{setup.difficulty}} Level</p>
+              </div>
+              <div class="stats pull-right">
+                <p class="category"><i class="material-icons">access_time</i> {{setup.playTime}} mins</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

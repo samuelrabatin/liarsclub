@@ -1,46 +1,259 @@
-<form (submit)="saveSetup()">
-  <div class="row">
-    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-      <div class="form-group label-floating">
-        <label class="control-label">Setup Name</label>
-        <input class="form-control" required />
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <h3>{{isEdit ? 'Edit Setup' : 'Add Setup'}}</h3>
       </div>
-      <div class="form-group label-floating">
-        <label class="control-label">Created by:</label>
-        <select class="selectpicker" multiple data-style="select-with-transition" required>
-          <option>
-            <span class="users-option"><strong>username</strong>(name)</span>
-          </option>
-          <option>
-            <span class="users-option"><strong>username</strong>(name)</span>
-          </option>
-        </select>
-      </div>
-    </div>
-    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 setup-image">
-      <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-        <div class="fileinput-new thumbnail">
-          <img src="../../../../../assets/img/image_placeholder.jpg" alt="..." #clubImg>
-        </div>
-        <div class="fileinput-preview fileinput-exists thumbnail"></div>
-        <div>
+      <div class="card-content">
+        <form (submit)="saveSetup()">
+          <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+              <div class="form-group label-floating">
+                <label class="control-label">Setup Name</label>
+                <input class="form-control" [(ngModel)]="name" name="name" required />
+              </div>
+              <div class="form-group label-floating">
+                <label class="control-label">Created by:</label>
+                <input class="form-control" list="usernames" [(ngModel)]="createdUser" name="createdUser" required>
+                <datalist id="usernames"  multiple data-style="select-with-transition" required>
+                  <option *ngFor="let user of users">
+                    {{user.name}}
+                  </option>
+                </datalist>
+              </div>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 setup-image">
+              <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                <div class="fileinput-new thumbnail">
+                  <img src="../../../../../assets/img/image_placeholder.jpg" alt="..." #clubImg>
+                </div>
+                <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                <div>
               <span class="btn btn-rose btn-round btn-file btn-sm">
                   <span class="fileinput-new">Select image</span>
                   <span class="fileinput-exists">Change</span>
                   <input type="file" name="..." />
               </span>
-          <a href="#pablo" class="btn btn-danger btn-round fileinput-exists btn-sm" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
-        </div>
+                  <a href="#pablo" class="btn btn-danger btn-round fileinput-exists btn-sm" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row setup-description">
+            <div class="cheader">
+              <h3>
+                Description
+              </h3>
+            </div>
+            <div class="col-md-12 col-lg-12">
+              <textarea class="form-control" required [(ngModel)]="setupDescription" name="setupDescription" ></textarea>
+            </div>
+          </div>
+
+
+          <div class="row difficulty">
+            <div class="cheader">
+              <h3>
+                Difficulty
+              </h3>
+            </div>
+            <div class="col-md-4 col-lg-4">
+              <select class="selectpicker" [(ngModel)]="difficulty" name="difficulty" data-style="select-with-transition">
+                <option>Easy</option>
+                <option>Medium</option>
+                <option>Difficult</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row member-count">
+            <div class="cheader">
+              <h3>
+                Ideal Number of Players
+              </h3>
+            </div>
+            <div class="col-md-12 col-lg-12">
+              <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
+                <label class="control-label">Minimum</label>
+                <input class="form-control" required type="number" [(ngModel)]="minimumMember" name="minimumMember" min="1" />
+              </div>
+              <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
+                <label class="control-label">Maximum</label>
+                <input class="form-control" type="number" [(ngModel)]="maximumMember" name="maximumMember" min="1" required />
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row playTime">
+            <div class="cheader">
+              <h3>
+                Expected Play Time
+              </h3>
+            </div>
+            <div class="col-md-12 col-lg-12">
+              <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
+                <label class="control-label"></label>
+                <input class="form-control" required type="number" min="1" [(ngModel)]="playTime" name="playTime"/>
+              </div>
+              <span class="mins-text">mins</span>
+            </div>
+          </div>
+
+          <div class="row roles">
+            <div class="cheader">
+              <h3>
+                Roles <span class="description">What roles are in the game and how do they work?</span>
+                <i class="material-icons" (click)="addNewRole()">add_circle</i>
+              </h3>
+            </div>
+            <div class="roles-list">
+              <div class="row" *ngFor="let role of roles; let ii = index;">
+                <div class="fileinput fileinput-new text-center col-md-2 col-lg-2 col-sm-2" data-provides="fileinput">
+                  <div class="fileinput-new thumbnail">
+                    <img src="../../../../../assets/img/image_placeholder.jpg" alt="..." #clubImg>
+                  </div>
+                  <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                  <div>
+                  <span class="btn btn-rose btn-round btn-file btn-sm">
+                      <span class="fileinput-new">Select</span>
+                      <span class="fileinput-exists">Change</span>
+                      <input type="file" name="..." />
+                  </span>
+                    <a href="#pablo" class="btn btn-danger btn-round fileinput-exists btn-sm" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                  </div>
+                </div>
+                <div class="col-md-10 col-lg-10 col-sm-10">
+                  <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating">
+                    <label class="control-label">Role Name</label>
+                    <input class="form-control" list="defalutRolesLists" value="{{role.name}}" [attr.index]="ii" required (blur)="roleNameChanged($event)" />
+                    <datalist id="defalutRolesLists" [attr.index]="ii">
+                      <option *ngFor="let role1 of defaultRoles; let i = index" [attr.id]="role1._id" [attr.roleIndex]="i" selected="{{ role._id == role1._id ? 'selected' : '' }}" >
+                        {{role1.name}}
+                      </option>
+                    </datalist>
+                  </div>
+                  <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
+                    <label class="control-label">Team</label>
+                    <input class="form-control" value="{{role.team}}" required />
+                  </div>
+                  <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
+                    <label class="control-label">Description</label>
+                    <textarea class="form-control" required >{{role.description}}</textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row narration">
+            <div class="cheader">
+              <h3>
+                Narration <span class="description">Does the order in which roles are woken up matter? What is announced when people die? How are day phases moderated? etc.</span>
+              </h3>
+            </div>
+            <div class="col-md-12 col-lg-12">
+              <textarea class="form-control" required [(ngModel)]="narrationText" name="narrationText" ></textarea>
+            </div>
+          </div>
+
+
+          <div class="row voting-roles">
+            <div class="cheader">
+              <h3>
+                Voting Roles <span class="description">How does voting work? Are ties possible? etc.</span>
+              </h3>
+            </div>
+            <div class="roles-list">
+              <div class="col-md-10 col-lg-10 col-sm-10">
+                <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating">
+                  <label class="control-label">Voting Name</label>
+                  <input class="form-control" list="defalutVotingsLists" value="{{voting.name}}" (blur)="votingNameChanged($event)" required/>
+                  <datalist id="defalutVotingsLists">
+                    <option *ngFor="let cvoting of defaultVotings">
+                      {{cvoting.name}}
+                    </option>
+                  </datalist>
+                </div>
+                <div class="{{voting.description ? 'form-group label-floating col-lg-12 col-md-12 col-sm-12' : 'form-group label-floating col-lg-12 col-md-12 col-sm-12 is-empty'}}">
+                  <label class="control-label">Description</label>
+                  <textarea class="form-control" value="{{voting.description}}" required ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row missing-rules">
+            <div class="cheader">
+              <h3>
+                Additional Rules and Corner Cases <span class="description">What rules have you missed</span>
+              </h3>
+            </div>
+            <div class="col-md-12 col-lg-12">
+              <textarea class="form-control" required [(ngModel)]="missingRules" name="missingRules" ></textarea>
+            </div>
+          </div>
+
+
+          <div class="row role-frequecies">
+            <div class="cheader">
+              <h3>
+                Role Frequencies
+              </h3>
+              <h5>
+                Do you use randomization to generate your set of roles? If so, how?
+              </h5>
+            </div>
+            <div class="col-md-12 col-lg-12">
+              <textarea class="form-control" required [(ngModel)]="roleFrequencies" name="roleFrequencies" ></textarea>
+            </div>
+            <div class="col-md-12 col-lg-12">
+              <div class="card">
+                <div class="card-content">
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead class="text-primary">
+                      <tr>
+                        <th>Number of players</th>
+                        <th>9</th>
+                        <th>10</th>
+                        <th>11</th>
+                        <th>12</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let role of defaultRoles">
+                        <td>{{role.name}}</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                      </tr>
+                      </tbody>
+                      <tfoot>
+                      <tr>
+                        <td>Total</td>
+                        <td>{{defaultRoles.length}}</td>
+                        <td>{{defaultRoles.length}}</td>
+                        <td>{{defaultRoles.length}}</td>
+                        <td>{{defaultRoles.length}}</td>
+                      </tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-primary" [disabled]="dataChanged()" (click)="save()">Save</button>
       </div>
     </div>
   </div>
-  <div class="row roles">
-    <div class="header">
-      <h3>Roles <span class="description">What roles are in the game and how do they work?</span></h3>
-    </div>
-    <div class="roles-list">
-    </div>
-    <div class="add-roles">
-    </div>
-  </div>
-</form>
+</div>

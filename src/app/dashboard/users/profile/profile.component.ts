@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
     );
 
     this.uploader.onSuccessItem = ( item, response, status, headers) => {
-      let img = JSON.parse(response);
+      const img = JSON.parse(response);
 
       this.imgId = img.public_id;
 
@@ -46,9 +46,9 @@ export class ProfileComponent implements OnInit {
 
     this.uploader.onErrorItem = ( item, response, status, headers) => {
       $.notify({
-        icon: "notifications",
-        message: "Image Upload Failed"
-      },{
+        icon: 'notifications',
+        message: 'Image Upload Failed'
+      } , {
         type: 'success',
         timer: 3000,
         placement: {
@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
       });
 
       return {item, response, status, headers};
-    }
+    };
   }
 
   ngOnInit() {
@@ -99,9 +99,9 @@ export class ProfileComponent implements OnInit {
         this.mainService.name = `${d.profile.firstname} ${d.profile.lastname}`;
 
         $.notify({
-          icon: "notifications",
+          icon: 'notifications',
           message: d.msg
-        },{
+        }, {
           type: 'success',
           timer: 3000,
           placement: {

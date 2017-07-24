@@ -1,8 +1,10 @@
-import { NgModule }      from '@angular/core';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { APP_BASE_HREF } from '@angular/common';
+import { Ng2AutoCompleteModule } from 'ng2-auto-complete';
+
 // import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
 
 import { AppComponent } from './app.component';
@@ -26,7 +28,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
         NavbarModule,
         FooterModule,
         RouterModule.forRoot([]),
-        HttpModule
+        HttpModule,
+        Ng2AutoCompleteModule
     ],
     declarations: [ AppComponent, DashboardComponent ],
     providers: [

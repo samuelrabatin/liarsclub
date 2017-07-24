@@ -54,6 +54,14 @@ export class MainService {
       .catch(this.handleError);
   }
 
+  public getAllUsers() {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/users/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   public saveProfile(data) {
     this.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
@@ -87,6 +95,52 @@ export class MainService {
       .map(this.extractData)
       .catch(this.handleError);
   }
+
+  ////////-----------   Setups Services  --------------//////////////
+  public getAllRoles() {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/setups/getallroles/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  };
+
+  public getAllVotings() {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/setups/getallvotings/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  };
+
+  public addSetup(data) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    data.access_token = token;
+    return this.http.post(this.apiUrl + '/setups/addsetup/', data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public updateSetup(data, id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    data.access_token = token;
+    data.object_id = id;
+    return this.http.post(this.apiUrl + '/setups/updatesetup/', data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public getSetups() {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/setups/getallsetups/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  /////////////////////////////////////////////////////////////////////
 
   public validateUsertoken() {
     this.loading = false;

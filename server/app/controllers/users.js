@@ -190,3 +190,21 @@ exports.getProfile = function(req, res) {
     }
   });
 };
+
+exports.getAllUsers = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.find({}, function(err, users) {
+    if (err) {
+      res.json({
+        type: false
+      });
+    } else {
+      res.json({
+        users: users
+      });
+    }
+  });
+};
