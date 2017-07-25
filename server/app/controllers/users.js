@@ -1,18 +1,22 @@
 const User = require('../models/user.js');
+var bcrypt = require('bcrypt');
 const Profile = require('../models/profile.js');
 
 var jwt        = require("jsonwebtoken");
 var randtoken = require('rand-token');
 
+const saltRounds = 4;
+
 exports.login = function (req, res) {
-  User.findOne({name: req.body.name, password: req.body.password}, function(err, user) {
-    if (err) {
+  User.findOne({name: req.body.name}, function(err, user) {
+    if (err || !user) {
       res.json({
         type: false,
         data: "Error occured: " + err
       });
     } else {
-      if (user) {
+      bcrypt.compare(req.body.password, user.password, function(err, res1) {
+        if (res1 == true) {
           user.token = randtoken.generate(256);
           user.save(function (err, user1) {
             if (err) {
@@ -27,12 +31,13 @@ exports.login = function (req, res) {
               })
             }
           })
-      } else {
-        res.json({
-          type: false,
-          data: "Username or password is not correct!"
-        });
-      }
+        } else {
+          res.json({
+            type: false,
+            data: "Username or password is not correct!"
+          });
+        }
+      });
     }
   });
 };
@@ -45,27 +50,31 @@ exports.register = function(req, res) {
         errmsg: "Same username or email address already exists"
       });
     } else {
-      const user = new User({
-        name: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        created_date: new Date(),
-        token: ''
-      });
+      bcrypt.genSalt(saltRounds, function(err, salt) {
+        bcrypt.hash(req.body.password, salt, function(err, hash) {
+          const user = new User({
+            name: req.body.username,
+            email: req.body.email,
+            password: hash,
+            created_date: new Date(),
+            token: ''
+          });
 
-      user.save(function (err, user1) {
-        if (err) {
-          res.json({
-            type: false,
-            errmsg: "Database Error",
-            err: err
-          })
-        } else {
-          res.json({
-            type: true,
-            data: user
-          })
-        }
+          user.save(function (err, user1) {
+            if (err) {
+              res.json({
+                type: false,
+                errmsg: "Database Error",
+                err: err
+              })
+            } else {
+              res.json({
+                type: true,
+                data: user
+              })
+            }
+          });
+        });
       });
     }
   });
