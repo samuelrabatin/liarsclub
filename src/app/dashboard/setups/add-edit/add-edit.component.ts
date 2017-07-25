@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewChecked, EventEmitter, Output, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
 
 import { MainService } from '../../../services/main.service';
 
@@ -18,6 +20,11 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
   private voting;
 
   private orgData: any;
+  private imgChanged: Boolean = false;
+
+  private roleImgChanged = [];
+  private rolImgId = [];
+  private isUpload = false;
 
   // input values
   private name = '';
@@ -30,16 +37,18 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
   private narrationText = '';
   private missingRules = '';
   private roleFrequencies = '';
+  private imgId = '';
 
   @ViewChild('roleNameLists') private roleNameLists;
 
   @Output() cancelled: EventEmitter<string> = new EventEmitter();
   @Output() saved: EventEmitter<string> = new EventEmitter();
 
+  private uploader: CloudinaryUploader;
   private isEdit: Boolean;
   private objectId;
 
-  constructor( private mainService: MainService, private route: ActivatedRoute ) {
+  constructor( private mainService: MainService, private route: ActivatedRoute, private router: Router ) {
     this.orgData = {
       name: '',
       createdUser: '',
@@ -51,6 +60,42 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
       narrationText: '',
       missingRules: '',
       roleFrequencies: '',
+      roles: [],
+      voting: {
+        name: '',
+        description: ''
+      }
+    };
+
+    this.uploader = new CloudinaryUploader(
+      new CloudinaryOptions({
+        cloudName: 'da2w1aszs',
+        uploadPreset: 'w5wu0ytu'
+      })
+    );
+
+    this.uploader.onSuccessItem = ( item, response, status, headers) => {
+      const img = JSON.parse(response);
+
+      this.imgId = img.public_id;
+
+      this.save();
+
+      return {item, response, status, headers};
+    };
+
+    this.uploader.onErrorItem = ( item, response, status, headers) => {
+      $.notify({
+        icon: 'notifications',
+        message: 'Image Upload Failed'
+      }, {
+        type: 'success',
+        timer: 3000,
+        placement: {
+          from: 'top',
+          align: 'right'
+        }
+      });
     };
   }
 
@@ -106,6 +151,9 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
                 this.narrationText = this.orgData.narrationText;
                 this.missingRules = this.orgData.missingRules;
                 this.roleFrequencies = this.orgData.roleFrequencies;
+                this.imgId = this.orgData.imgId;
+                this.roles = this.orgData.roles;
+                this.voting = this.orgData.voting;
                 $('.is-empty').removeClass('is-empty');
               }
             }
@@ -162,7 +210,10 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
       playTime: this.playTime,
       narrationText: this.narrationText,
       missingRules: this.missingRules,
-      roleFrequencies: this.roleFrequencies
+      roleFrequencies: this.roleFrequencies,
+      imgId: this.imgId,
+      roles: this.roles,
+      voting: this.voting
     };
 
     const requireInputs = $('input,select').filter('[required]:visible');
@@ -176,6 +227,7 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
           d => {
             this.saved.emit('saved');
             this.orgData = data;
+            this.router.navigate(['/setups']);
           },
           e => console.log(e)
         );
@@ -191,6 +243,14 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  saveDataWithImgs() {
+    if (this.imgChanged || this.isUpload) {
+      this.uploader.uploadAll();
+    } else {
+      this.save();
+    }
+  }
+
   dataChanged() {
     return (this.orgData.name === this.name
               && this.orgData.createdUser === this.createdUser
@@ -201,6 +261,8 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
               && this.orgData.playTime === this.playTime
               && this.orgData.narrationText === this.narrationText
               && this.orgData.missingRules === this.missingRules
-              && this.orgData.roleFrequencies === this.roleFrequencies);
+              && this.orgData.voting === this.voting
+              && this.orgData.roles === this.roles
+              && this.orgData.roleFrequencies === this.roleFrequencies && !this.imgChanged && !this.isUpload);
   }
 }

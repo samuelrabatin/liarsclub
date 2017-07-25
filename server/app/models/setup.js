@@ -26,7 +26,7 @@ var SetupsSchema = new Schema(
     roleFrequencies: { type: String },
     imgId: { type: String },
     roles: { type: Array },
-    votings: { type: Array },
+    voting: { type: Object, default: {name: '', description: ''} },
     create_date: { type: Date },
     updated_date: { type: Date }
   },
