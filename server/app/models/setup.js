@@ -27,6 +27,7 @@ var SetupsSchema = new Schema(
     imgId: { type: String },
     roles: { type: Array },
     voting: { type: Object, default: {name: '', description: ''} },
+    tblVal: Array,
     create_date: { type: Date },
     updated_date: { type: Date }
   },

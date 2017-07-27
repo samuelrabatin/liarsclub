@@ -31,13 +31,14 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
   private createdUser = '';
   private setupDescription = '';
   private difficulty = '';
-  private minimumMember = '';
-  private maximumMember = '';
+  private minimumMember;
+  private maximumMember;
   private playTime = '';
   private narrationText = '';
   private missingRules = '';
   private roleFrequencies = '';
   private imgId = '';
+  private numbers;
 
   @ViewChild('roleNameLists') private roleNameLists;
 
@@ -47,6 +48,8 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
   private uploader: CloudinaryUploader;
   private isEdit: Boolean;
   private objectId;
+
+  private tblVal = [];
 
   constructor( private mainService: MainService, private route: ActivatedRoute, private router: Router ) {
     this.orgData = {
@@ -67,6 +70,7 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
       }
     };
 
+    ///////////////                 Main Image Uploader         ////////////////
     this.uploader = new CloudinaryUploader(
       new CloudinaryOptions({
         cloudName: 'da2w1aszs',
@@ -77,12 +81,17 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     this.uploader.onSuccessItem = ( item, response, status, headers) => {
       const img = JSON.parse(response);
 
-      this.imgId = img.public_id;
+      const index = this.uploader.queue.indexOf(item);
 
-      this.save();
+      index === 0 ? this.imgId = img.public_id
+        : this.roles[index - 1].imgId = img.public_id;
 
       return {item, response, status, headers};
     };
+
+    this.uploader.onCompleteAll = () => {
+      this.save();
+    }
 
     this.uploader.onErrorItem = ( item, response, status, headers) => {
       $.notify({
@@ -152,8 +161,10 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
                 this.missingRules = this.orgData.missingRules;
                 this.roleFrequencies = this.orgData.roleFrequencies;
                 this.imgId = this.orgData.imgId;
-                this.roles = this.orgData.roles;
+                this.roles = this.cloneArray(this.orgData.roles);
                 this.voting = this.orgData.voting;
+                this.tblVal = this.cloneArray(this.orgData.tblVal);
+                this.fillNumbers();
                 $('.is-empty').removeClass('is-empty');
               }
             }
@@ -171,12 +182,22 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
 
   addNewRole() {
     const newRole = {
+      imgId: '',
       name: '',
       team: '',
       description: ''
     };
 
+    this.tblVal[this.roles.length] = [];
+    for (let i = 0; i <= this.maximumMember - this.minimumMember; i++) {
+      this.tblVal[this.roles.length][i] = 1;
+    }
+
     this.roles.push(newRole);
+  }
+
+  removeRole(idx) {
+    this.roles.splice(idx, 1);
   }
 
   roleNameChanged(evt) {
@@ -213,7 +234,8 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
       roleFrequencies: this.roleFrequencies,
       imgId: this.imgId,
       roles: this.roles,
-      voting: this.voting
+      voting: this.voting,
+      tblVal: this.tblVal
     };
 
     const requireInputs = $('input,select').filter('[required]:visible');
@@ -262,7 +284,59 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
               && this.orgData.narrationText === this.narrationText
               && this.orgData.missingRules === this.missingRules
               && this.orgData.voting === this.voting
-              && this.orgData.roles === this.roles
+              && this.compareTwoArray(this.orgData.roles, this.roles)
+              && this.compareTwoArray(this.orgData.tblVal, this.tblVal)
               && this.orgData.roleFrequencies === this.roleFrequencies && !this.imgChanged && !this.isUpload);
+  }
+
+  minChange() {
+    if (this.maximumMember < this.minimumMember) {
+      this.minimumMember = this.maximumMember;
+    }
+    this.fillNumbers();
+  }
+
+  maxChange() {
+    if (this.maximumMember < this.minimumMember) {
+      this.maximumMember = this.minimumMember;
+    }
+    this.fillNumbers();
+  }
+
+  fillNumbers() {
+    this.numbers = [];
+    for (let i = this.minimumMember; i <= this.maximumMember; i++) {
+      this.numbers.push(i);
+    }
+  }
+
+  calcNumTotal() {
+    const sum = [];
+
+    for (let i = 0; i < this.tblVal.length; i++) {
+      for (let j = 0; j < this.tblVal[i].length; j++) {
+        sum[j] = 0;
+      }
+    }
+
+    for (let i = 0; i < this.tblVal.length; i++) {
+      for (let j = 0; j < this.tblVal[i].length; j++) {
+        sum[j] += Number.parseInt(this.tblVal[i][j]);
+      }
+    }
+
+    return sum;
+  }
+
+  tblValChange(evt, roleIdx, valIdx) {
+    this.tblVal[roleIdx][valIdx] = evt.target.value;
+  }
+
+  cloneArray(arr1) {
+    return JSON.parse(JSON.stringify(arr1));
+  }
+
+  compareTwoArray(arr1, arr2) {
+    return JSON.stringify(arr1) === JSON.stringify(arr2);
   }
 }

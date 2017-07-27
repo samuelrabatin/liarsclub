@@ -19,6 +19,8 @@ var UserSchema = new Schema(
     password: { type: String, default: '' },
     hashed_password: { type: String, default: '' },
     created_date: { type: Date },
+    updated_date: { type: Date },
+    last_login: { type: Date },
     token: String
   },
   { collection : 'users' }

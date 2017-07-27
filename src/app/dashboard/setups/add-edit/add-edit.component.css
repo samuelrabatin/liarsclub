@@ -47,3 +47,8 @@ li .users-option::before {
 .card-footer button {
   width: 250px;
 }
+
+.bigger-textarea {
+  height: 150px;
+}
+

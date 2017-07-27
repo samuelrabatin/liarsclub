@@ -9,15 +9,21 @@ const saltRounds = 4;
 
 exports.login = function (req, res) {
   User.findOne({name: req.body.name}, function(err, user) {
-    if (err || !user) {
+    if (err) {
       res.json({
         type: false,
         data: "Error occured: " + err
+      });
+    } else if (!user) {
+      res.json({
+        type: false,
+        data: "Username does not exist"
       });
     } else {
       bcrypt.compare(req.body.password, user.password, function(err, res1) {
         if (res1 == true) {
           user.token = randtoken.generate(256);
+          user.last_login = new Date();
           user.save(function (err, user1) {
             if (err) {
               res.json({
@@ -34,7 +40,7 @@ exports.login = function (req, res) {
         } else {
           res.json({
             type: false,
-            data: "Username or password is not correct!"
+            data: "Password is not correct!"
           });
         }
       });
@@ -128,7 +134,7 @@ exports.saveProfile = function(req, res) {
         } else if (userProfile) {
           userProfile.firstname = req.body.firstname;
           userProfile.lastname = req.body.lastname;
-          userProfile.imgId = req.body.imgId,
+          userProfile.imgId = req.body.imgId;
           userProfile.email = req.body.email;
           userProfile.updated_date = new Date();
 
@@ -140,7 +146,7 @@ exports.saveProfile = function(req, res) {
             } else {
               res.json({
                 type: true,
-                profile: item,
+                profile: userProfile,
                 msg: "Successfully updated"
               })
             }
@@ -152,7 +158,8 @@ exports.saveProfile = function(req, res) {
             lastname: req.body.lastname,
             imgId: req.body.imgId,
             email: req.body.email,
-            created_date: new Date()
+            created_date: new Date(),
+            updated_date: new Date()
           });
           item.save(function (err, item1) {
             if (err) {
@@ -162,7 +169,7 @@ exports.saveProfile = function(req, res) {
             } else {
               res.json({
                 type: true,
-                profile: item1,
+                profile: item,
                 msg: "Successfully added"
               })
             }
@@ -183,13 +190,22 @@ exports.getProfile = function(req, res) {
       return res.status(400).send('Authentication failed');
     } else {
       Profile.findOne({username: user.name}, function(err, userProfile) {
-        var return_val = userProfile ||
-          {
+        var return_val;
+        if (userProfile) {
+          return_val = {
+            firstname: userProfile.firstname,
+            lastname: userProfile.lastname,
+            email: userProfile.email,
+            imgId: userProfile.imgId
+          };
+        } else {
+          return_val = {
             firstname: '',
             lastname: '',
             email: user.email,
             imgId: user.imgId
           };
+        }
 
         res.json({
           type: true,
@@ -205,7 +221,7 @@ exports.getAllUsers = function(req, res) {
     return res.status(400).send('Authentication is required');
   }
 
-  User.find({}, function(err, users) {
+  User.find({}, 'name email created_date', function(err, users) {
     if (err) {
       res.json({
         type: false

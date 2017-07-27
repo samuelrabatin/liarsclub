@@ -31,12 +31,11 @@
                 </div>
                 <div class="fileinput-preview fileinput-exists thumbnail"></div>
                 <div>
-              <span class="btn btn-rose btn-round btn-file btn-sm">
-                  <span class="fileinput-new">Select image</span>
-                  <span class="fileinput-exists">Change</span>
-                  <input type="file" name="..." #avatar class="btn btn-file" ng2FileSelect [uploader]="uploader" (change)="imgChanged = true"/>
-              </span>
-                  <a href="#pablo" class="btn btn-danger btn-round fileinput-exists btn-sm" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                  <span class="btn btn-rose btn-round btn-file btn-sm">
+                      <span class="fileinput-new">Select image</span>
+                      <span class="fileinput-exists">Select image</span>
+                      <input type="file" name="..." #avatar class="btn btn-file" ng2FileSelect [uploader]="uploader" (change)="imgChanged = true"/>
+                  </span>
                 </div>
               </div>
             </div>
@@ -83,11 +82,11 @@
             <div class="col-md-12 col-lg-12">
               <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
                 <label class="control-label">Minimum</label>
-                <input class="form-control" required type="number" [(ngModel)]="minimumMember" name="minimumMember" min="1" />
+                <input class="form-control" required type="number" [(ngModel)]="minimumMember" (change)="minChange()" name="minimumMember" min="1" />
               </div>
               <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
                 <label class="control-label">Maximum</label>
-                <input class="form-control" type="number" [(ngModel)]="maximumMember" name="maximumMember" min="1" required />
+                <input class="form-control" type="number" [(ngModel)]="maximumMember" (change)="maxChange()" name="maximumMember" min="1" required />
               </div>
             </div>
           </div>
@@ -125,12 +124,17 @@
                   </div>
                   <div class="fileinput-preview fileinput-exists thumbnail"></div>
                   <div>
+                    <span class="btn btn-rose btn-round btn-file btn-sm">
+                        <span class="fileinput-new">Select</span>
+                        <span class="fileinput-exists">Select</span>
+                        <input type="file" name="..." #avatar class="btn btn-file" ng2FileSelect [uploader]="uploader" (change)="imgChanged = true"/>
+                    </span>
                   </div>
                 </div>
                 <div class="col-md-10 col-lg-10 col-sm-10">
                   <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating">
                     <label class="control-label">Role Name</label>
-                    <input class="form-control" list="defalutRolesLists" value="{{role.name}}" [attr.index]="ii" required (blur)="roleNameChanged($event)" />
+                    <input class="form-control" list="defalutRolesLists" [(ngModel)]="role.name" name="{{'rolename' + ii}}" [attr.index]="ii" required (blur)="roleNameChanged($event)" />
                     <datalist id="defalutRolesLists" [attr.index]="ii">
                       <option *ngFor="let role1 of defaultRoles; let i = index" [attr.id]="role1._id" [attr.roleIndex]="i" selected="{{ role._id == role1._id ? 'selected' : '' }}" >
                         {{role1.name}}
@@ -139,11 +143,14 @@
                   </div>
                   <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
                     <label class="control-label">Team</label>
-                    <input class="form-control" value="{{role.team}}" required />
+                    <input class="form-control" [(ngModel)]="role.team" required name="{{'roleteam' + ii}}" />
                   </div>
                   <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
                     <label class="control-label">Description</label>
-                    <textarea class="form-control" required >{{role.description}}</textarea>
+                    <textarea class="form-control" required [(ngModel)]="role.description" name="{{'roledescription' + ii}}"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <span class="btn btn-round btn-danger pull-right" (click)="removeRole(ii)">Remove Role</span>
                   </div>
                 </div>
               </div>
@@ -158,7 +165,7 @@
               </h3>
             </div>
             <div class="col-md-12 col-lg-12">
-              <textarea class="form-control" required [(ngModel)]="narrationText" name="narrationText" ></textarea>
+              <textarea class="form-control bigger-textarea" required [(ngModel)]="narrationText" name="narrationText" ></textarea>
             </div>
           </div>
 
@@ -196,7 +203,7 @@
               </h3>
             </div>
             <div class="col-md-12 col-lg-12">
-              <textarea class="form-control" required [(ngModel)]="missingRules" name="missingRules" ></textarea>
+              <textarea class="form-control bigger-textarea" required [(ngModel)]="missingRules" name="missingRules" ></textarea>
             </div>
           </div>
 
@@ -221,28 +228,21 @@
                       <thead class="text-primary">
                       <tr>
                         <th>Number of players</th>
-                        <th>9</th>
-                        <th>10</th>
-                        <th>11</th>
-                        <th>12</th>
+                        <th *ngFor="let val of numbers">{{val}}</th>
                       </tr>
                       </thead>
                       <tbody>
-                      <tr *ngFor="let role of defaultRoles">
+                      <tr *ngFor="let role of roles; let roleIdx = index;">
                         <td>{{role.name}}</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
+                        <td *ngFor="let val of numbers; let valIdx = index;">
+                          <input class="form-control" type="number" (change)="tblValChange($event, roleIdx, valIdx)" [attr.value]="tblVal[roleIdx][valIdx]" name="{{'tblVal-' + 'roleIdx' + '-' + 'valIdx'}}">
+                        </td>
                       </tr>
                       </tbody>
                       <tfoot>
                       <tr>
                         <td>Total</td>
-                        <td>{{defaultRoles.length}}</td>
-                        <td>{{defaultRoles.length}}</td>
-                        <td>{{defaultRoles.length}}</td>
-                        <td>{{defaultRoles.length}}</td>
+                        <td *ngFor="let val of calcNumTotal();">{{val}}</td>
                       </tr>
                       </tfoot>
                     </table>

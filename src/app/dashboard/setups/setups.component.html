@@ -1,6 +1,8 @@
 <div class="main-content">
     <div class="container-fluid">
-      <a [routerLink]="['/setups/add', -1]" class="btn btn-primary">Add Setup</a>
+      <div class="row add-button">
+        <a [routerLink]="['/setups/add', -1]" class="btn btn-primary">Add Setup</a>
+      </div>
       <div class="row fadeOutUp">
         <div class="col-lg-6 col-md-6" *ngFor="let setup of setups; let idx = index">
           <div class="card card-product">
@@ -13,14 +15,9 @@
             </div>
             <div class="card-content">
               <div class="card-actions" [attr.idx]="idx">
-                <button type="button" class="btn btn-danger btn-simple fix-broken-card">
-                  <i class="material-icons">build</i> Fix Header!
-                </button>
-                <button type="button" class="btn btn-default btn-simple" rel="tooltip" data-placement="bottom" title="View" (click)="setupDetails($event)">
-                  <i class="material-icons">art_track</i>
-                </button>
                 <a type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit" [routerLink]="['/setups/add', setup._id]">
                   <i class="material-icons">edit</i>
+                  Edit Setup
                 </a>
               </div>
               <h4 class="card-title">

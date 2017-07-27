@@ -148,6 +148,7 @@ exports.updateSetup = function (req, res) {
           setup.imgId = req.body.imgId;
           setup.votings = req.body.votings;
           setup.roles = req.body.roles;
+          setup.tblVal = req.body.tblVal;
 
           setup.save(function (err) {
             if (err) {
