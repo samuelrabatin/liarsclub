@@ -27,7 +27,8 @@ var ClubSchema = new Schema(
     pastMembers: {type: Number, default: ''},
     username: {type: String, default: ''},
     confirmed: {type: Boolean, default: false},
-    created: {type: String, default: new Date()}
+    created: {type: String, default: new Date()},
+    taggedUsers: Array
   },
   { collection : 'clubs' }
 );

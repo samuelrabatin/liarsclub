@@ -16,4 +16,6 @@ export const ROUTES: RouteInfo[] = [
     { path: 'learn/videos', title: 'Videos', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
 
     { path: 'profile', title: 'Profile', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
+
+    { path: 'admin/clubs', title: 'Manage Clubs', menuType: MenuType.LEFT, icon:'pe-7s-note2' },
 ];

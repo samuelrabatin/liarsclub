@@ -2,10 +2,40 @@
   <div class="card-content">
     <i class="material-icons">perm_contact_calendar</i>
     <span>
-        <span class="club-title">{{club.title}}</span>
-        <span class="club-desciption">{{club.dayOfWeek}}s at {{club.time}}, {{club.activeMembers}} members</span>
+        <span class="club-title">
+          {{club.title}}
+          <small>{{club.tagged ? '   -- You tagged with this club as ' + (club.taggedUsers[club.taggedIndex].memberState === 'active' ? 'an ' : 'a ')
+            +  club.taggedUsers[club.taggedIndex].memberState + ' ' + club.taggedUsers[club.taggedIndex].memberType : ''}}</small>
+        </span>
+        <span class="club-desciption">{{club.dayOfWeek}}s at {{club.time}}, {{club.activeMembers + club.pastMembers}} members</span>
     </span>
-    <i class="material-icons hover" (click)="editClick()">info</i>
+    <i class="material-icons hover" (click)="showEditDiag = !showEditDiag">info</i>
+  </div>
+  <div class="card-footer" *ngIf="showEditDiag">
+    <div class="edit">
+      <p>Location: {{club.location}}</p>
+      <p>{{club.activeMembers}} active members, {{club.pastMembers}} past members</p>
+      <p>Meets on {{club.dayOfWeek}}s at {{club.time}}</p>
+      <div class="select-member" *ngIf="!club.tagged">
+        <p>I am a ...</p>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <select class="selectpicker" data-style="select-with-transition" data-size="7" [(ngModel)]="memberState" name="memberState">
+            <option value="active">Active</option>
+            <option value="past">Past</option>
+          </select>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <select class="selectpicker" data-style="select-with-transition" data-size="7" [(ngModel)]="memberType" name="memberType">
+            <option value="member">Member</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+      </div>
+      <div class="">
+        <button class="btn btn-success pull-right" (click)="tag()" *ngIf="!club.tagged">Tag myself with this club</button>
+        <button class="btn btn-danger pull-right" (click)="unTag()" *ngIf="club.tagged">Untag this club</button>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -13,7 +43,7 @@
 </div>
 
 
-<div class=' {{ showDiag ? "card editDiag" : "card editDiag hidden" }} '>
+<div class=' {{ showDiag ? "card editDiag" : "card editDiag hidden" }} ' #editDiag>
   <div class="card-content">
     <h2>{{club.title}}</h2>
     <p>{{club.location}}</p>
@@ -22,13 +52,13 @@
     <div class="select-member">
       <p>I am a ...</p>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <select class="selectpicker" data-style="select-with-transition" data-size="7">
+        <select class="selectpicker" data-style="select-with-transition" data-size="7" [(ngModel)]="memberState" name="memberState">
           <option value="active">Active</option>
           <option value="past">Past</option>
         </select>
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-        <select class="selectpicker" data-style="select-with-transition" data-size="7">
+        <select class="selectpicker" data-style="select-with-transition" data-size="7" [(ngModel)]="memberType" name="memberType">
           <option value="member">Member</option>
           <option value="admin">Admin</option>
         </select>
@@ -36,6 +66,7 @@
     </div>
   </div>
   <div class="card-footer">
-    <button class="btn btn-success pull-right" (click)="confirm()">Tag myself with this club</button>
+    <button class="btn btn-success pull-right" (click)="tag()" *ngIf="!club.tagged">Tag myself with this club</button>
+    <button class="btn btn-danger pull-right" (click)="unTag()" *ngIf="club.tagged">Untag myself with this club</button>
   </div>
 </div>

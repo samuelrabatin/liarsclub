@@ -142,6 +142,25 @@
                         </div>
                     </li>
 
+                  <li routerLinkActive="active">
+                    <a data-toggle="collapse" href="#adminPanel">
+                      <i class="material-icons">grid_on</i>
+                      <p>Admin
+                        <b class="caret"></b>
+                      </p>
+                    </a>
+                    <div class="collapse" id="adminPanel">
+                      <ul class="nav">
+                        <li routerLinkActive="active">
+                          <a  [routerLink]="[menuItems[10].path]">
+                            <span class="sidebar-mini">MC</span>
+                            <span class="sidebar-normal">{{menuItems[10].title}}</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+
                 </ul>
             </div>
 

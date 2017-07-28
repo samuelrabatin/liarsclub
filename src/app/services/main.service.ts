@@ -7,8 +7,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MainService {
-  private apiUrl = 'https://liarsclubserver.herokuapp.com';
-  //private apiUrl = 'http://localhost:3000';
+  //private apiUrl = 'https://liarsclubserver.herokuapp.com';
+  private apiUrl = 'http://localhost:3000';
   public loading;
 
   public name = 'User';
@@ -92,6 +92,37 @@ export class MainService {
     const token = localStorage.getItem('liarsclubtoken');
     data.access_token = token;
     return this.http.post(this.apiUrl + '/clubs/add/', data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public tagClub(id, memberState, memberType) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    const data = {
+      access_token: token,
+      clubId: id,
+      memberState: memberState,
+      memberType: memberType
+    };
+
+    return this.http.post(this.apiUrl + '/clubs/tag/', data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public untagClub(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/clubs/untag/', {access_token: token, clubId: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public untagClubWithUsername(id, username) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/clubs/admin/untag/', {access_token: token, clubId: id, user: username})
       .map(this.extractData)
       .catch(this.handleError);
   }

@@ -23,7 +23,21 @@ export class ClubsComponent implements OnInit {
 
     public getClubs() {
       this.mainService.getClubs().subscribe(
-        d => { this.clubs = d.data; this.mainService.loading = false; },
+        d => {
+          this.clubs = d.data;
+          for (let i = 0; i < this.clubs.length; i++) {
+            const taggedUsers = this.clubs[i].taggedUsers.map((val, index) => { return val.user; });
+            const index = taggedUsers.indexOf(localStorage.getItem('username'));
+            if (index !== -1) {
+              this.clubs[i].tagged = true;
+              this.clubs[i].taggedIndex = index;
+            } else {
+              this.clubs[i].tagged = false;
+            }
+          }
+
+          this.mainService.loading = false;
+        },
         e => { console.log(e); this.mainService.loading = false; }
       );
     }

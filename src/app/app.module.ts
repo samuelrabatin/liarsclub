@@ -15,7 +15,6 @@ import { FooterModule } from './shared/footer/footer.module';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
 
-
 import { MainService } from './services/main.service';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';

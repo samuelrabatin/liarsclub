@@ -49,3 +49,11 @@
   height: 90px;
 }
 
+.edit {
+  display: block !important;
+  padding: 0 50px;
+}
+
+.edit > div {
+  display: block;
+}
