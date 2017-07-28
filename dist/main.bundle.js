@@ -28,8 +28,7 @@ var MainService = (function () {
     function MainService(http) {
         var _this = this;
         this.http = http;
-        //private apiUrl = 'https://liarsclubserver.herokuapp.com';
-        this.apiUrl = 'http://localhost:3000';
+        this.apiUrl = 'https://liarsclubserver.herokuapp.com';
         this.name = 'User';
         this.avatarPublicId = '';
         this.getProfileData().subscribe(function (d) {
