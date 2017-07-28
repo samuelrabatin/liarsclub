@@ -42,11 +42,10 @@ export class ManageClubsComponent implements OnInit {
     let line = '';
     for (let j = 0; j < this.clubs.length; j++) {
       const club = this.clubs[j];
-      line += '<tr>';
       for (let i = 0; i < club.taggedUsers.length; i++) {
         const item = club.taggedUsers[i];
         const taggedDate = new Date(item.taggedDate);
-        line += `
+        line += `<tr>
           <td class="text-left">${club.title}</td>
           <td class="text-center">${item.user}</td>
           <td class="text-center">${item.memberState}</td>
@@ -57,9 +56,8 @@ export class ManageClubsComponent implements OnInit {
               <i class="material-icons">close</i>
             </button>
           </td>
-        `;
+        </tr>`;
       }
-      line += '</tr>';
     }
     this.tblBody.nativeElement.innerHTML = line;
   }

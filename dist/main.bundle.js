@@ -1113,13 +1113,11 @@ var ManageClubsComponent = (function () {
         var line = '';
         for (var j = 0; j < this.clubs.length; j++) {
             var club = this.clubs[j];
-            line += '<tr>';
             for (var i = 0; i < club.taggedUsers.length; i++) {
                 var item = club.taggedUsers[i];
                 var taggedDate = new Date(item.taggedDate);
-                line += "\n          <td class=\"text-left\">" + club.title + "</td>\n          <td class=\"text-center\">" + item.user + "</td>\n          <td class=\"text-center\">" + item.memberState + "</td>\n          <td class=\"text-center\">" + item.memberType + "</td>\n          <td class=\"text-center\">" + taggedDate.getFullYear() + "-" + (taggedDate.getMonth() + 1) + "-" + taggedDate.getDay() + "</td>\n          <td class=\"text-center\">\n            <button type=\"button\" club-id=\"" + club._id + "\" username=\"" + item.user + "\" rel=\"tooltip\" class=\"btn btn-danger\">\n              <i class=\"material-icons\">close</i>\n            </button>\n          </td>\n        ";
+                line += "<tr>\n          <td class=\"text-left\">" + club.title + "</td>\n          <td class=\"text-center\">" + item.user + "</td>\n          <td class=\"text-center\">" + item.memberState + "</td>\n          <td class=\"text-center\">" + item.memberType + "</td>\n          <td class=\"text-center\">" + taggedDate.getFullYear() + "-" + (taggedDate.getMonth() + 1) + "-" + taggedDate.getDay() + "</td>\n          <td class=\"text-center\">\n            <button type=\"button\" club-id=\"" + club._id + "\" username=\"" + item.user + "\" rel=\"tooltip\" class=\"btn btn-danger\">\n              <i class=\"material-icons\">close</i>\n            </button>\n          </td>\n        </tr>";
             }
-            line += '</tr>';
         }
         this.tblBody.nativeElement.innerHTML = line;
     };

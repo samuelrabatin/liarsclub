@@ -11,7 +11,7 @@ exports.getClubs = function (req, res) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
     } else {
-      Club.find(function(err, clubs) {
+      Club.find({}, null, {created_date: -1}, function(err, clubs) {
         if (err) {
           return res.json({
             type: false,
