@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { MainService } from '../../../../services/main.service';
 
+import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
+
 import initDateTimePicker = require('../../../../../assets/js/init/initDatetimepickers');
 
 declare var $: any;
@@ -27,9 +29,49 @@ export class AddClubComponent implements OnInit {
   @ViewChild('websiteLink') websiteLink;
   @ViewChild('facebookLink') facebookLink;
 
+  private imgUrl;
+  private imgChanged = false;
+
+  private uploader: CloudinaryUploader;
+
   @Output() clubAdded: EventEmitter<string> = new EventEmitter();
 
-  constructor(private mainService: MainService) { window.addClubComponent = this; }
+  constructor(private mainService: MainService) {
+    window.addClubComponent = this;
+
+    this.uploader = new CloudinaryUploader(
+      new CloudinaryOptions({
+        cloudName: this.mainService.cloudName,
+        uploadPreset: this.mainService.cloudinaryUploadPresets.clubs
+      })
+    );
+
+    this.uploader.onSuccessItem = ( item, response, status, headers) => {
+      const img = JSON.parse(response);
+
+      this.imgUrl = img.public_id;
+
+      return {item, response, status, headers};
+    };
+
+    this.uploader.onCompleteAll = () => {
+      this.save();
+    };
+
+    this.uploader.onErrorItem = ( item, response, status, headers) => {
+      $.notify({
+        icon: 'notifications',
+        message: 'Image Upload Failed'
+      }, {
+        type: 'success',
+        timer: 3000,
+        placement: {
+          from: 'top',
+          align: 'right'
+        }
+      });
+    };
+  }
 
   ngOnInit() {
     const myLatlng = new google.maps.LatLng(40.748817, -73.985428);
@@ -72,8 +114,8 @@ export class AddClubComponent implements OnInit {
             scrollwheel: true
           };
 
-          $('#physicalLocation').val(results[1].formatted_address);
-          $('#physicalLocation').parent().removeClass('is-empty');
+          $('#clubAddress').val(results[1].formatted_address);
+          $('#clubAddress').parent().removeClass('is-empty');
 
           const map = new google.maps.Map(document.getElementById('regularMap'), mapOptions);
           map.addListener('click', window.addClubComponent.mapLocationChange);
@@ -88,12 +130,12 @@ export class AddClubComponent implements OnInit {
     });
   }
 
-  addClub(evt) {
+  private save() {
     const club = {
       title: this.clubName.nativeElement.value,
       address: this.clubAddress.nativeElement.value,
       type: this.regularly.nativeElement.checked ? 'Regularly' : 'Irreglarly',
-      imgUrl: this.clubImg.nativeElement.src,
+      imgUrl: this.imgUrl,
       regularType: this.repeatType.nativeElement.value,
       regularPeriod: this.repeatPeriod.nativeElement.value,
       dayOfWeek: this.dayOfWeek.nativeElement.value,
@@ -125,6 +167,18 @@ export class AddClubComponent implements OnInit {
     return false;
   }
 
+  addClub(evt) {
+    if (this.imgChanged) {
+      console.log('ch');
+      this.uploader.uploadAll();
+    } else {
+      console.log('unch')
+      this.save();
+    }
+
+    return false;
+  }
+
   locationChange(evt) {
     const geocoder =  new google.maps.Geocoder();
     geocoder.geocode( { 'address': evt.target.value }, function(results, status) {
@@ -142,6 +196,8 @@ export class AddClubComponent implements OnInit {
         };
 
         const map = new google.maps.Map(document.getElementById('regularMap'), mapOptions);
+        map.addListener('click', window.addClubComponent.mapLocationChange);
+
         marker.setMap(map);
       } else {
       }

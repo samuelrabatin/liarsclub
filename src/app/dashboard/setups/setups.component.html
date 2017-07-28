@@ -9,7 +9,7 @@
             <div class="card-image" data-header-animation="true">
               <a href="#pablo">
                 <img class="img" src="../../../../../assets/img/image_placeholder.jpg" *ngIf="!setup.imgId">
-                <cl-image data-u="image" public-id="{{setup.imgId}}" *ngIf="setup.imgId" cloud-name="da2w1aszs" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
+                <cl-image data-u="image" public-id="{{setup.imgId}}" *ngIf="setup.imgId" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
                 </cl-image>
               </a>
             </div>

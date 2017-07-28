@@ -13,6 +13,7 @@ import { MODULE_ROUTES, MODULE_COMPONENTS } from './dashboard.routes';
 import { ProfileComponent } from './users/profile/profile.component';
 import { AddEditComponent } from './setups/add-edit/add-edit.component';
 import { ClubDetailLineComponent } from './admin/manage-clubs/club-detail-line/club-detail-line.component';
+import { UploaderComponent } from './setups/uploader/uploader.component';
 
 @NgModule({
     imports: [
@@ -25,7 +26,7 @@ import { ClubDetailLineComponent } from './admin/manage-clubs/club-detail-line/c
         Ng2CloudinaryModule,
         FileUploadModule,
     ],
-    declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent ]
+    declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent ]
 })
 
 export class DashboardModule {}

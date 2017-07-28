@@ -10,6 +10,13 @@ export class MainService {
   private apiUrl = 'https://liarsclubserver.herokuapp.com';
   //private apiUrl = 'http://localhost:3000';
   public loading;
+  public cloudinaryUploadPresets = {
+    profile: 'hhfktgrl',
+    clubs: 'mpahsbqu',
+    setups: 'w5wu0ytu'
+  };
+  public cloudName = 'da2w1aszs';
+
 
   public name = 'User';
   public avatarPublicId = '';
@@ -92,6 +99,18 @@ export class MainService {
     const token = localStorage.getItem('liarsclubtoken');
     data.access_token = token;
     return this.http.post(this.apiUrl + '/clubs/add/', data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public removeClub(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    const data = {
+      access_token: token,
+      id: id
+    };
+    return this.http.post(this.apiUrl + '/clubs/remove/', data)
       .map(this.extractData)
       .catch(this.handleError);
   }

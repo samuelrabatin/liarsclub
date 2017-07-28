@@ -24,13 +24,15 @@ export class ProfileComponent implements OnInit {
   private uploader: CloudinaryUploader;
   private imgChanged = false;
 
+  private clubs = [];
+
   @ViewChild('avatar') private avatar;
 
   constructor( private mainService: MainService ) {
     this.uploader = new CloudinaryUploader(
       new CloudinaryOptions({
-        cloudName: 'da2w1aszs',
-        uploadPreset: 'hhfktgrl'
+        cloudName: this.mainService.cloudName,
+        uploadPreset: this.mainService.cloudinaryUploadPresets.profile
       })
     );
 
@@ -62,6 +64,10 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getProfileData();
+  }
+
+  private getProfileData() {
     this.mainService.getProfileData().subscribe(
       d => {
         this.mainService.loading = false;
@@ -74,7 +80,30 @@ export class ProfileComponent implements OnInit {
           this.lastName = d.profile.lastname;
           this.email = d.profile.email;
           this.imgId = d.profile.imgId;
+
+          this.getClubsData();
         }
+      }
+    );
+  }
+
+  private getClubsData() {
+    this.mainService.getClubs().subscribe(
+      d => {
+        this.mainService.loading = false;
+        if (d.data.length) {
+          d.data.map((val, idx) => {
+            const taggedUsers = val.taggedUsers.map((val1, index) => { return val1.user; });
+            const index = taggedUsers.indexOf(localStorage.getItem('username'));
+            if (index > -1) {
+              this.clubs.push(val);
+            }
+          });
+          console.log(this.clubs);
+        }
+      },
+      e => {
+        console.log(e);
       }
     );
   }

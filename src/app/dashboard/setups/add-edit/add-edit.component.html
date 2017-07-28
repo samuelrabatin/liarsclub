@@ -23,21 +23,7 @@
               </div>
             </div>
             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 setup-image">
-              <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                <div class="fileinput-new thumbnail">
-                  <img src="../../../../../assets/img/image_placeholder.jpg" alt="..." *ngIf="imgChanged || !imgId">
-                  <cl-image data-u="image" public-id="{{imgId}}" *ngIf="!imgChanged && imgId" cloud-name="da2w1aszs" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
-                  </cl-image>
-                </div>
-                <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                <div>
-                  <span class="btn btn-rose btn-round btn-file btn-sm">
-                      <span class="fileinput-new">Select image</span>
-                      <span class="fileinput-exists">Select image</span>
-                      <input type="file" name="..." #avatar class="btn btn-file" ng2FileSelect [uploader]="uploader" (change)="imgChanged = true"/>
-                  </span>
-                </div>
-              </div>
+              <app-uploader [imgId]="imgId" (changed)="uploading = true;" (uploaded)="mainImgUploaded($event)" #mainUploader></app-uploader>
             </div>
           </div>
 
@@ -116,21 +102,7 @@
             </div>
             <div class="roles-list">
               <div class="row" *ngFor="let role of roles; let ii = index;">
-                <div class="fileinput fileinput-new text-center col-md-2 col-lg-2 col-sm-2" data-provides="fileinput">
-                  <div class="fileinput-new thumbnail">
-                    <img src="../../../../../assets/img/image_placeholder.jpg" alt="..." *ngIf="roleImgChanged[ii]">
-                    <cl-image data-u="image" public-id="{{role.imgId}}" *ngIf="!roleImgChanged[ii]" cloud-name="da2w1aszs" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
-                    </cl-image>
-                  </div>
-                  <div class="fileinput-preview fileinput-exists thumbnail"></div>
-                  <div>
-                    <span class="btn btn-rose btn-round btn-file btn-sm">
-                        <span class="fileinput-new">Select</span>
-                        <span class="fileinput-exists">Select</span>
-                        <input type="file" name="..." #avatar class="btn btn-file" ng2FileSelect [uploader]="uploader" (change)="imgChanged = true"/>
-                    </span>
-                  </div>
-                </div>
+                <app-uploader class="col-md-2 col-lg-2 col-sm-2" [imgId]="role.imgId" (changed)="uploaders[ii] = true" (uploaded)="roleImgUploaded(ii, $event);"></app-uploader>
                 <div class="col-md-10 col-lg-10 col-sm-10">
                   <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating">
                     <label class="control-label">Role Name</label>
@@ -254,7 +226,7 @@
         </form>
       </div>
       <div class="card-footer">
-        <button class="btn btn-primary" [disabled]="dataChanged()" (click)="saveDataWithImgs()">Save</button>
+        <button class="btn btn-primary" [disabled]="dataChanged()" (click)="save()">Save</button>
       </div>
     </div>
   </div>

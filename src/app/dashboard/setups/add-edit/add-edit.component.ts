@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewChecked, EventEmitter, Output, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { CloudinaryOptions, CloudinaryUploader } from 'ng2-cloudinary';
-
 import { MainService } from '../../../services/main.service';
 
 declare var $: any;
@@ -41,11 +39,13 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
   private numbers;
 
   @ViewChild('roleNameLists') private roleNameLists;
+  @ViewChild('mainUploader') private mainUploader;
+  private uploaders = [];
+  private saving = false;
 
   @Output() cancelled: EventEmitter<string> = new EventEmitter();
   @Output() saved: EventEmitter<string> = new EventEmitter();
 
-  private uploader: CloudinaryUploader;
   private isEdit: Boolean;
   private objectId;
 
@@ -68,43 +68,6 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
         name: '',
         description: ''
       }
-    };
-
-    ///////////////                 Main Image Uploader         ////////////////
-    this.uploader = new CloudinaryUploader(
-      new CloudinaryOptions({
-        cloudName: 'da2w1aszs',
-        uploadPreset: 'w5wu0ytu'
-      })
-    );
-
-    this.uploader.onSuccessItem = ( item, response, status, headers) => {
-      const img = JSON.parse(response);
-
-      const index = this.uploader.queue.indexOf(item);
-
-      index === 0 ? this.imgId = img.public_id
-        : this.roles[index - 1].imgId = img.public_id;
-
-      return {item, response, status, headers};
-    };
-
-    this.uploader.onCompleteAll = () => {
-      this.save();
-    }
-
-    this.uploader.onErrorItem = ( item, response, status, headers) => {
-      $.notify({
-        icon: 'notifications',
-        message: 'Image Upload Failed'
-      }, {
-        type: 'success',
-        timer: 3000,
-        placement: {
-          from: 'top',
-          align: 'right'
-        }
-      });
     };
   }
 
@@ -221,6 +184,14 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
   }
 
   save() {
+    this.saving = true;
+
+    for (let i = 0; i < this.uploaders.length; i++) {
+      if (this.uploaders[i]) {
+        return;
+      }
+    }
+
     const data = {
       name: this.name,
       createdUser: this.createdUser,
@@ -262,14 +233,6 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
           e => console.log(e)
         );
       }
-    }
-  }
-
-  saveDataWithImgs() {
-    if (this.imgChanged || this.isUpload) {
-      this.uploader.uploadAll();
-    } else {
-      this.save();
     }
   }
 
@@ -338,5 +301,18 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
 
   compareTwoArray(arr1, arr2) {
     return JSON.stringify(arr1) === JSON.stringify(arr2);
+  }
+
+  mainImgUploaded(evt) {
+    this.imgId = evt;
+    console.log(this.mainUploader);
+  }
+
+  roleImgUploaded(ii, evt) {
+    this.roles[ii].imgId = evt;
+    this.uploaders[ii] = false;
+    if (this.saving) {
+      this.save();
+    }
   }
 }

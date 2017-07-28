@@ -1,0 +1,15 @@
+<div class="fileinput fileinput-new text-center" data-provides="fileinput">
+  <div class="fileinput-new thumbnail">
+    <img src="../../../../../assets/img/image_placeholder.jpg" alt="..." *ngIf="isChanged || !imgId">
+    <cl-image data-u="image" public-id="{{imgId}}" *ngIf="!isChanged && imgId" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
+    </cl-image>
+  </div>
+  <div class="fileinput-preview fileinput-exists thumbnail"></div>
+  <div>
+    <span class="btn btn-rose btn-round btn-file btn-sm">
+        <span class="fileinput-new">Select image</span>
+        <span class="fileinput-exists">Select image</span>
+        <input type="file" name="..." #avatar class="btn btn-file" ng2FileSelect [uploader]="uploader" (change)="imgChanged()"/>
+    </span>
+  </div>
+</div>

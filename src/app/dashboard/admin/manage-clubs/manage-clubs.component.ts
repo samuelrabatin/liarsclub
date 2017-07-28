@@ -50,7 +50,9 @@ export class ManageClubsComponent implements OnInit {
           <td class="text-center">${item.user}</td>
           <td class="text-center">${item.memberState}</td>
           <td class="text-center">${item.memberType}</td>
-          <td class="text-center">${taggedDate.getFullYear()}-${taggedDate.getMonth() + 1}-${taggedDate.getDay()}</td>
+          <td class="text-center">${taggedDate.getFullYear()}-${taggedDate.getMonth() + 1 > 9 ?
+          taggedDate.getMonth() + 1 : '0' + (taggedDate.getMonth() + 1)}-${taggedDate.getDay() > 9
+          ? taggedDate.getDay() : '0' + taggedDate.getDay()}</td>
           <td class="text-center">
             <button type="button" club-id="${club._id}" username="${item.user}" rel="tooltip" class="btn btn-danger">
               <i class="material-icons">close</i>

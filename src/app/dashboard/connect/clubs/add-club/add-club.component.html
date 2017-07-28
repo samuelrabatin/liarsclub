@@ -3,7 +3,7 @@
     <legend>Add a Club</legend>
   </div>
   <div class="card-content">
-    <form (submit)="addClub($event)">
+    <form>
       <div class="row">
         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
           <div class="form-group label-floating">
@@ -12,7 +12,7 @@
           </div>
           <div class="form-group label-floating">
             <label class="control-label">Club Address</label>
-            <input class="form-control" required #clubAddress />
+            <input class="form-control" id="clubAddress" #clubAddress required (keyup)="locationChange($event)" />
           </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -24,10 +24,9 @@
             <div>
               <span class="btn btn-rose btn-round btn-file btn-sm">
                   <span class="fileinput-new">Select image</span>
-                  <span class="fileinput-exists">Change</span>
-                  <input type="file" name="..." />
+                  <span class="fileinput-exists">Select image</span>
+                  <input type="file" name="..." #clubImg ng2FileSelect [uploader]="uploader" (change)="imgChanged = true" />
               </span>
-              <a href="#pablo" class="btn btn-danger btn-round fileinput-exists btn-sm" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
             </div>
           </div>
         </div>
@@ -101,7 +100,7 @@
       <div class="row">
         <div class="form-group label-floating">
           <label class="control-label">Physical Location</label>
-          <input class="form-control" id="physicalLocation" (keyup)="locationChange($event)" required #phsicalLocation />
+          <input class="form-control" id="physicalLocation" required #phsicalLocation />
         </div>
         <div class="form-group label-floating">
           <label class="control-label">Email address</label>
@@ -117,7 +116,7 @@
         </div>
       </div>
 
-      <button type="submit" class="btn btn-fill btn-rose pull-right" >Submit</button>
+      <a (click)="addClub($event)" class="btn btn-fill btn-rose pull-right" >Submit</a>
     </form>
   </div>
 </div>

@@ -57,4 +57,17 @@ export class ClubComponent implements OnInit, AfterViewChecked {
       e => { console.log(e); }
     );
   }
+
+  private isMine(club) {
+    return club.username === localStorage.getItem('username');
+  }
+
+  private clubDelete() {
+    this.mainService.removeClub(this.club._id).subscribe(
+      d => {
+        this.tagChanged.emit('club removed');
+      },
+      e => { console.log(e); }
+    );
+  }
 }

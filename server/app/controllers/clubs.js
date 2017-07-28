@@ -57,6 +57,32 @@ exports.addClub = function (req, res) {
   });
 };
 
+exports.removeClub = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      Club.remove({_id: req.body.id}, function(err) {
+        if (err) {
+          res.json({
+            type: false,
+            msg: 'remove faild'
+          });
+        } else {
+          res.json({
+            type: true,
+            msg: 'removed'
+          })
+        }
+      });
+    }
+  });
+};
+
 exports.tagClub = function(req, res) {
   if (typeof req.body.access_token === 'undefined') {
     return res.status(400).send('Authentication is required');
