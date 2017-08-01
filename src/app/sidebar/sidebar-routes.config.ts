@@ -18,4 +18,6 @@ export const ROUTES: RouteInfo[] = [
     { path: 'profile', title: 'Profile', menuType: MenuType.LEFT, icon:'material-icons' },
 
     { path: 'admin/clubs', title: 'Manage Clubs', menuType: MenuType.LEFT, icon:'material-icons' },
+
+    { path: 'about', title: 'About Us', menuType: MenuType.LEFT, icon: 'material-icons' },
 ];

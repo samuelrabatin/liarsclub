@@ -96,6 +96,7 @@ export class ProfileComponent implements OnInit {
             const taggedUsers = val.taggedUsers.map((val1, index) => { return val1.user; });
             const index = taggedUsers.indexOf(localStorage.getItem('username'));
             if (index > -1) {
+              val.mytag = val.taggedUsers[index];
               this.clubs.push(val);
             }
           });

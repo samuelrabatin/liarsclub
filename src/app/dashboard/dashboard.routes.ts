@@ -24,6 +24,7 @@ import { AddClubComponent } from './connect/clubs/add-club/add-club.component';
 import { AddEditComponent } from './setups/add-edit/add-edit.component';
 
 import { ManageClubsComponent } from './admin/manage-clubs/manage-clubs.component';
+import { AboutComponent } from './about/about.component';
 
 //
 export const MODULE_ROUTES: Route[] = [
@@ -47,6 +48,7 @@ export const MODULE_ROUTES: Route[] = [
     { path: 'profile', component: ProfileComponent },
 
     { path: 'admin/clubs', component: ManageClubsComponent },
+    { path: 'about', component: AboutComponent },
 
     { path: '**', redirectTo: 'home' },
 ]
@@ -71,5 +73,6 @@ export const MODULE_COMPONENTS = [
     LoginComponent,
     RegisterComponent,
     ProfileComponent,
-    ManageClubsComponent
+    ManageClubsComponent,
+    AboutComponent
 ]

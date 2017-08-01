@@ -8,9 +8,6 @@
     <div class="{{!isUsers ? 'main-panel' : ''}}">
         <navbar-cmp class="{{!isUsers ? '' : 'hidden'}}"></navbar-cmp>
         <dashboard-cmp></dashboard-cmp>
-        <div *ngIf="!isMap()" class="{{!isUsers ? '' : 'hidden'}}">
-            <footer-cmp></footer-cmp>
-        </div>
     </div>
 </div>
 

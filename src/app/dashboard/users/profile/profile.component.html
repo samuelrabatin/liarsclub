@@ -47,9 +47,9 @@
                 </div>
               </div>
             <div class="row">
-              <h3><small>I tagged myslef as a member of these clubs</small></h3>
+              <h3><small>I tagged myself as a member of these clubs</small></h3>
               <div class="" *ngFor="let club of clubs">
-                {{club.title}}
+                <p>{{club.mytag.memberState}} {{club.mytag.memberType}} of {{club.title}}</p>
               </div>
             </div>
           </div>

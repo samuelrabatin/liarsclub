@@ -31,15 +31,15 @@
                         <ul class="nav">
                             <li>
                               <a [routerLink]="[menuItems[9].path]">
-                                    <span class="sidebar-mini">MP</span>
-                                    <span class="sidebar-normal">My Profile</span>
-                                </a>
+                                <i class="material-icons">person</i>
+                                <span class="sidebar-normal">My Profile</span>
+                              </a>
                             </li>
                             <li>
-                                <a href="" (click)="logout($event)">
-                                    <span class="sidebar-mini">L</span>
-                                    <span class="sidebar-normal">Logout</span>
-                                </a>
+                              <a href="" (click)="logout($event)">
+                                <i class="{{menuItems[0].icon}}">power_settings_new</i>
+                                <span class="sidebar-normal">Logout</span>
+                              </a>
                             </li>
                         </ul>
                     </div>
@@ -53,6 +53,14 @@
                             <p>{{menuItems[0].title}}</p>
                         </a>
                     </li>
+
+                    <li routerLinkActive="active">
+                      <a  [routerLink]="[menuItems[11].path]">
+                        <i class="{{menuItems[11].icon}}">info</i>
+                        <p>{{menuItems[11].title}}</p>
+                      </a>
+                    </li>
+
                     <li routerLinkActive="active">
                         <a data-toggle="collapse" href="#componentsExamples">
                             <i class="material-icons">public</i>
@@ -118,7 +126,7 @@
 
                     <li routerLinkActive="active">
                         <a data-toggle="collapse" href="#tablesExamples">
-                            <i class="material-icons">sentiment_very_satisfied</i>
+                            <i class="material-icons">help</i>
                             <p>Learn
                                 <b class="caret"></b>
                             </p>
@@ -127,7 +135,7 @@
                             <ul class="nav">
                                 <li routerLinkActive="active">
                                     <a  [routerLink]="[menuItems[7].path]">
-                                      <i class="{{menuItems[7].icon}}">book</i>
+                                      <i class="{{menuItems[7].icon}}">view_headline</i>
                                       <p>{{menuItems[7].title}}</p>
                                     </a>
                                 </li>
@@ -152,7 +160,7 @@
                       <ul class="nav">
                         <li routerLinkActive="active">
                           <a  [routerLink]="[menuItems[10].path]">
-                            <span class="sidebar-mini">MC</span>
+                            <i class="{{menuItems[10].icon}}">account_balance</i>
                             <span class="sidebar-normal">{{menuItems[10].title}}</span>
                           </a>
                         </li>

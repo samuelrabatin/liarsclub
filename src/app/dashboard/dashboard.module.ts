@@ -14,6 +14,7 @@ import { ProfileComponent } from './users/profile/profile.component';
 import { AddEditComponent } from './setups/add-edit/add-edit.component';
 import { ClubDetailLineComponent } from './admin/manage-clubs/club-detail-line/club-detail-line.component';
 import { UploaderComponent } from './setups/uploader/uploader.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
     imports: [
@@ -26,7 +27,7 @@ import { UploaderComponent } from './setups/uploader/uploader.component';
         Ng2CloudinaryModule,
         FileUploadModule,
     ],
-    declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent ]
+    declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent, AboutComponent ]
 })
 
 export class DashboardModule {}
