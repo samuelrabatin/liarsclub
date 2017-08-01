@@ -32,13 +32,13 @@
                             <li>
                               <a [routerLink]="[menuItems[9].path]">
                                 <i class="material-icons">person</i>
-                                <span class="sidebar-normal">My Profile</span>
+                                <p>My Profile</p>
                               </a>
                             </li>
                             <li>
                               <a href="" (click)="logout($event)">
                                 <i class="{{menuItems[0].icon}}">power_settings_new</i>
-                                <span class="sidebar-normal">Logout</span>
+                                <p>Logout</p>
                               </a>
                             </li>
                         </ul>
@@ -161,7 +161,7 @@
                         <li routerLinkActive="active">
                           <a  [routerLink]="[menuItems[10].path]">
                             <i class="{{menuItems[10].icon}}">account_balance</i>
-                            <span class="sidebar-normal">{{menuItems[10].title}}</span>
+                            <p>{{menuItems[10].title}}</p>
                           </a>
                         </li>
                       </ul>
