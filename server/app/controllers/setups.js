@@ -144,6 +144,7 @@ exports.updateSetup = function (req, res) {
           setup.playTime = req.body.playTime;
           setup.narrationText = req.body.narrationText;
           setup.narrations = req.body.narrations;
+          setup.additionalRules = req.body.additionalRules;
           setup.missingRules = req.body.missingRules;
           setup.teams = req.body.teams;
           setup.roleFrequencies = req.body.roleFrequencies;

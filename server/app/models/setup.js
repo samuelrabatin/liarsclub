@@ -27,6 +27,7 @@ var SetupsSchema = new Schema(
     imgId: { type: String },
     narrations: { type: Array },
     intersections: { type: Array },
+    additionalRules: { type: Array },
     teams: { type: Array },
     roles: { type: Array },
     voting: { type: Object, default: {name: '', description: ''} },

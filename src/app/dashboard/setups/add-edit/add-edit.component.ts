@@ -20,6 +20,7 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
   private narrations = [];
   private voting;
   private intersections = [];
+  private additionalRules = [];
 
   private orgData: any;
   private imgChanged: Boolean = false;
@@ -73,6 +74,7 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
       narrations: [],
       roles: [],
       teams: [],
+      additionalRules: [],
       voting: {
         name: '',
         description: ''
@@ -91,7 +93,7 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     this.selectSettings = {
       checkedStyle: 'fontawesome',
       buttonClasses: 'btn-group select-with-transition',
-      dynamicTitleMaxItems: 5,
+      dynamicTitleMaxItems: 3,
     };
 
     this.mainService.getAllRoles().subscribe(
@@ -146,6 +148,7 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
                 this.teams = this.cloneArray(this.orgData.teams);
                 this.narrations = this.cloneArray(this.orgData.narrations);
                 this.intersections = this.cloneArray(this.orgData.intersections);
+                this.additionalRules = this.cloneArray(this.orgData.additionalRules);
                 this.fillNumbers();
                 $('.is-empty').removeClass('is-empty');
               }
@@ -206,6 +209,15 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     this.intersections.push(newIntersections);
   }
 
+  addNewAdditionalRule() {
+    const newRule = {
+      roles: [],
+      description: ''
+    };
+
+    this.additionalRules.push(newRule);
+  }
+
   removeRole(idx) {
     this.roles.splice(idx, 1);
   }
@@ -220,6 +232,10 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
 
   removeIntersection(idx) {
     this.intersections.splice(idx, 1);
+  }
+
+  removeAdditionalRule(idx) {
+    this.additionalRules.splice(idx, 1);
   }
 
   roleNameChanged(evt) {
@@ -268,6 +284,7 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
       teams: this.teams,
       narrations: this.narrations,
       intersections: this.intersections,
+      additionalRules: this.additionalRules,
       tblVal: this.tblVal
     };
 
@@ -314,6 +331,7 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
               && this.compareTwoArray(this.orgData.narrations, this.narrations)
               && this.compareTwoArray(this.orgData.teams, this.teams)
               && this.compareTwoArray(this.orgData.intersections, this.intersections)
+              && this.compareTwoArray(this.orgData.additionalRules, this.additionalRules)
               && this.orgData.roleFrequencies === this.roleFrequencies && !this.imgChanged && !this.isUpload);
   }
 

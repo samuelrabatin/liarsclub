@@ -111,7 +111,7 @@
                   <input class="colorpicker" [(colorPicker)]="team.color" [style.background]="team.color" readonly/>
                 </div>
                 <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
-                  <label class="control-label">Description</label>
+                  <label class="control-label">Win Condition</label>
                   <textarea class="form-control" [(ngModel)]="team.description" required name="{{'teamdescription' + idx}}" ></textarea>
                 </div>
               </div>
@@ -132,11 +132,12 @@
                 <div class="col-md-10 col-lg-10 col-sm-10">
                   <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group">
                     <label class="control-label">Role Name</label>
-                    <select class="form-control" [(ngModel)]="role.name" name="{{'rolename' + ii}}" required readonly>
-                      <option *ngFor="let role1 of defaultRoles; let i = index" [attr.value]="role1.name">
+                    <input class="form-control" list="defalutRolesLists" [(ngModel)]="role.name" name="{{'rolename' + ii}}" [attr.index]="ii" required (blur)="roleNameChanged($event)" />
+                    <datalist id="defalutRolesLists" [attr.index]="ii">
+                      <option *ngFor="let role1 of defaultRoles; let i = index" [attr.id]="role1._id" [attr.value]="role1.name" [attr.roleIndex]="i" selected="{{ role._id == role1._id ? 'selected' : '' }}" >
                         {{role1.name}}
                       </option>
-                    </select>
+                    </datalist>
                   </div>
                   <div class="form-group col-lg-6 col-md-6 col-sm-6">
                     <label class="control-label">Team</label>
@@ -158,7 +159,7 @@
           <div class="row intersection">
             <div class="cheader">
               <h3>
-                Intersection
+                Interactions
                 <i class="material-icons" (click)="addNewIntersection()">add_circle</i>
               </h3>
             </div>
@@ -166,7 +167,7 @@
               <div class="row team" *ngFor="let intersection of intersections; let idx = index;">
                 <i class="material-icons pull-right" (click)="removeIntersection(idx)">delete</i>
                 <div class="form-group multiselection">
-                  <label class="control-label">Roles</label>
+                  <label class="control-label">Roles/Teams</label>
                   <ss-multiselect-dropdown [options]="getIntersectionSelectOptions()" [settings]="selectSettings" [(ngModel)]="intersection.roles" name="{{'intersection' + idx}}"></ss-multiselect-dropdown>
                   <i class="material-icons pull-right">up</i>
                 </div>
@@ -181,7 +182,7 @@
           <div class="row narration">
             <div class="cheader">
               <h3>
-                Narration <span class="description">Does the order in which roles are woken up matter? What is announced when people die? How are day phases moderated? etc.</span>
+                Narrations <span class="description">Does the order in which roles are woken up matter? What is announced when people die? How are day phases moderated? etc.</span>
                 <i class="material-icons" (click)="addNewNarration()">add_circle</i>
               </h3>
             </div>
@@ -190,13 +191,13 @@
                 <i class="material-icons pull-right" (click)="removeNarration(idx)">delete</i>
                 <i class="material-icons pull-right" (click)="narrationDown(idx)" *ngIf="idx != narrations.length - 1">arrow_downward</i>
                 <i class="material-icons pull-right" (click)="narrationUp(idx)" *ngIf="idx != 0">arrow_upward</i>
-                <div class="form-group multiselection">
-                  <label class="control-label">Roles</label>
-                  <ss-multiselect-dropdown [options]="getRolesSelectOptions()" [settings]="selectSettings" [(ngModel)]="narration.roles" name="{{'narration' + idx}}"></ss-multiselect-dropdown>
-                  <i class="material-icons pull-right">up</i>
+                <div class="">
+                  <div class="">
+                    <ss-multiselect-dropdown [options]="getRolesSelectOptions()" [texts]="selectedTexts" [settings]="selectSettings" [(ngModel)]="narration.roles" name="{{'narration' + idx}}"></ss-multiselect-dropdown>
+                  </div>
                 </div>
                 <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
-                  <label class="control-label">Description</label>
+                  <label class="control-label">Narration</label>
                   <textarea class="form-control" [(ngModel)]="narration.description" required name="{{'narrdescription' + idx}}" ></textarea>
                 </div>
               </div>
@@ -207,7 +208,7 @@
           <div class="row voting-roles">
             <div class="cheader">
               <h3>
-                Voting Roles <span class="description">How does voting work? Are ties possible? etc.</span>
+                Voting Rules <span class="description">How does voting work? Are ties possible? etc.</span>
               </h3>
             </div>
             <div class="roles-list">
@@ -234,10 +235,22 @@
             <div class="cheader">
               <h3>
                 Additional Rules and Corner Cases <span class="description">What rules have you missed</span>
+                <i class="material-icons" (click)="addNewAdditionalRule()">add_circle</i>
               </h3>
             </div>
-            <div class="col-md-12 col-lg-12">
-              <textarea class="form-control bigger-textarea" required [(ngModel)]="missingRules" name="missingRules" ></textarea>
+            <div class="additonal-rules-list">
+              <div class="row" *ngFor="let additionalRule of additionalRules; let idx = index;">
+                <i class="material-icons pull-right" (click)="removeAdditionalRule(idx)">delete</i>
+                <div class="form-group multiselection">
+                  <label class="control-label">Roles/Teams</label>
+                  <ss-multiselect-dropdown [options]="getIntersectionSelectOptions()" [settings]="selectSettings" [(ngModel)]="additionalRule.roles" name="{{'intersection' + idx}}"></ss-multiselect-dropdown>
+                  <i class="material-icons pull-right">up</i>
+                </div>
+                <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
+                  <label class="control-label">Description</label>
+                  <textarea class="form-control" [(ngModel)]="additionalRule.description" required name="{{'additionalRule' + idx}}" ></textarea>
+                </div>
+              </div>
             </div>
           </div>
 
