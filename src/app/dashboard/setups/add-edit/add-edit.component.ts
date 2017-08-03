@@ -354,6 +354,20 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     for (let i = this.minimumMember; i <= this.maximumMember; i++) {
       this.numbers.push(i);
     }
+
+    for (let i = 0; i < this.roles.length; i++) {
+      for (let j = 0; j < this.minimumMember; j++) {
+        this.tblVal[i][j] = 0;
+      }
+      for (let j = this.minimumMember; j <= this.maximumMember; j++) {
+        if (this.tblVal[i][j] === 0) {
+          this.tblVal[i][j] = 1;
+        }
+      }
+      for (let j = this.maximumMember + 1; j < this.tblVal[i].length; j++) {
+        this.tblVal[i][j] = 0;
+      }
+    }
   }
 
   calcNumTotal() {
@@ -422,5 +436,14 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     if (idx !== 0) {
       [this.narrations[idx], this.narrations[idx - 1]] = [this.narrations[idx - 1], this.narrations[idx]];
     }
+  }
+
+  calcSum(num) {
+    let sum = 0;
+    for (let i = 0; i < this.roles.length; i++) {
+      sum += this.tblVal[i][num];
+    }
+
+    return sum;
   }
 }

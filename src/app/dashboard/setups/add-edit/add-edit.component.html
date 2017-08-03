@@ -49,12 +49,12 @@
             <div class="col-md-4 col-lg-4">
               <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating">
                 <label class="control-label">Difficulty level</label>
-                <input class="form-control" list="difficultyLists" [(ngModel)]="difficulty" name="difficulty"/>
-                <datalist id="difficultyLists" [attr.index]="ii">
-                  <option>Easy</option>
-                  <option>Medium</option>
-                  <option>Difficult</option>
-                </datalist>
+                <select class="form-control" [(ngModel)]="difficulty" name="difficulty">
+                  <option>Beginner</option>
+                  <option>Intermediate</option>
+                  <option>Advanced</option>
+                  <option>Expert</option>
+                </select>
               </div>
             </div>
           </div>
@@ -62,7 +62,7 @@
           <div class="row member-count">
             <div class="cheader">
               <h3>
-                Ideal Number of Players
+                Recommended Number of Players
               </h3>
             </div>
             <div class="col-md-12 col-lg-12">
@@ -107,7 +107,7 @@
                   <label class="control-label">Name</label>
                   <input class="form-control" [(ngModel)]="team.name" required name="{{'teamname' + idx}}"/>
                 </div>
-                <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
+                <div class="form-group label-floating col-lg-3 col-md-3 col-sm-3">
                   <input class="colorpicker" [(colorPicker)]="team.color" [style.background]="team.color" readonly/>
                 </div>
                 <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
@@ -142,6 +142,7 @@
                   <div class="form-group col-lg-6 col-md-6 col-sm-6">
                     <label class="control-label">Team</label>
                     <select class="form-control" [(ngModel)]="role.team" name="{{'roleteam' + ii}}">
+                      <option value="N/A">N/A</option>
                       <option *ngFor="let team of teams; let i = index" [attr.value]="team.name">
                         {{team.name}}
                       </option>
@@ -182,7 +183,7 @@
           <div class="row narration">
             <div class="cheader">
               <h3>
-                Narrations <span class="description">Does the order in which roles are woken up matter? What is announced when people die? How are day phases moderated? etc.</span>
+                Narration <span class="description">Does the order in which roles are woken up matter? What is announced when people die? etc.</span>
                 <i class="material-icons" (click)="addNewNarration()">add_circle</i>
               </h3>
             </div>
@@ -282,14 +283,14 @@
                       <tr *ngFor="let role of roles; let roleIdx = index;">
                         <td>{{role.name}}</td>
                         <td *ngFor="let val of numbers; let valIdx = index;">
-                          <input class="form-control" type="number" (change)="tblValChange($event, roleIdx, valIdx)" [attr.value]="tblVal[roleIdx][valIdx]" name="{{'tblVal-' + 'roleIdx' + '-' + 'valIdx'}}">
+                          <input class="form-control" type="number" [(ngModel)]="tblVal[roleIdx][val]" name="{{'tblVal' + valIdx}}" />
                         </td>
                       </tr>
                       </tbody>
                       <tfoot>
                       <tr>
                         <td>Total</td>
-                        <td *ngFor="let val of calcNumTotal();">{{val}}</td>
+                        <td *ngFor="let val of numbers">{{calcSum(val)}}</td>
                       </tr>
                       </tfoot>
                     </table>
