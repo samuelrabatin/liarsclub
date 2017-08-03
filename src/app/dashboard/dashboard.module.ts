@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { Ng2CloudinaryModule } from 'ng2-cloudinary';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 import { FooterModule } from '../shared/footer/footer.module';
 import { SidebarModule } from '../sidebar/sidebar.module';
 import { NavbarModule} from '../shared/navbar/navbar.module';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 import { MODULE_ROUTES, MODULE_COMPONENTS } from './dashboard.routes';
 import { ProfileComponent } from './users/profile/profile.component';
@@ -25,7 +27,9 @@ import { AboutComponent } from './about/about.component';
         FooterModule,
         FormsModule,
         Ng2CloudinaryModule,
+        ColorPickerModule,
         FileUploadModule,
+        MultiselectDropdownModule,
     ],
     declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent, AboutComponent ]
 })

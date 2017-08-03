@@ -21,11 +21,11 @@ li .users-option::before {
   margin-left: 10px;
 }
 
-.roles .cheader i:hover {
+i:hover {
   cursor: pointer;
 }
 
-.roles .cheader i {
+i {
   position: relative;
   top: 5px;
   left: 10px;
@@ -52,3 +52,14 @@ li .users-option::before {
   height: 150px;
 }
 
+.colorpicker {
+  width: 30px;
+}
+
+.narrations-list .multiselection label {
+  margin-right: 30px;
+}
+
+.row .row {
+  padding-bottom: 0;
+}

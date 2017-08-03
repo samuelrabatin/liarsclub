@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewChecked, EventEmitter, Output, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 
 import { MainService } from '../../../services/main.service';
 
@@ -15,7 +16,10 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
   private users = [];
   private defaultRoles = [];
   private defaultVotings = [];
+  private teams = [];
+  private narrations = [];
   private voting;
+  private intersections = [];
 
   private orgData: any;
   private imgChanged: Boolean = false;
@@ -37,6 +41,9 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
   private roleFrequencies = '';
   private imgId = '';
   private numbers;
+
+  private rolesSelectOptions: IMultiSelectOption[];
+  private selectSettings: IMultiSelectSettings;
 
   @ViewChild('roleNameLists') private roleNameLists;
   @ViewChild('mainUploader') private mainUploader;
@@ -63,11 +70,14 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
       narrationText: '',
       missingRules: '',
       roleFrequencies: '',
+      narrations: [],
       roles: [],
+      teams: [],
       voting: {
         name: '',
         description: ''
-      }
+      },
+      intersections: []
     };
   }
 
@@ -76,6 +86,12 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     this.voting = {
       name: '',
       description: ''
+    };
+
+    this.selectSettings = {
+      checkedStyle: 'fontawesome',
+      buttonClasses: 'btn-group select-with-transition',
+      dynamicTitleMaxItems: 5,
     };
 
     this.mainService.getAllRoles().subscribe(
@@ -127,6 +143,9 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
                 this.roles = this.cloneArray(this.orgData.roles);
                 this.voting = this.orgData.voting;
                 this.tblVal = this.cloneArray(this.orgData.tblVal);
+                this.teams = this.cloneArray(this.orgData.teams);
+                this.narrations = this.cloneArray(this.orgData.narrations);
+                this.intersections = this.cloneArray(this.orgData.intersections);
                 this.fillNumbers();
                 $('.is-empty').removeClass('is-empty');
               }
@@ -140,7 +159,6 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    $('.selectpicker').selectpicker();
   }
 
   addNewRole() {
@@ -159,8 +177,49 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     this.roles.push(newRole);
   }
 
+  addNewTeam() {
+    const newTeam = {
+      color: '#000000',
+      name: '',
+      description: ''
+    };
+
+    this.teams.push(newTeam);
+  }
+
+  addNewNarration() {
+    const newNarration = {
+      roles: [],
+      team: '',
+      description: ''
+    };
+
+    this.narrations.push(newNarration);
+  }
+
+  addNewIntersection() {
+    const newIntersections = {
+      roles: [],
+      description: ''
+    };
+
+    this.intersections.push(newIntersections);
+  }
+
   removeRole(idx) {
     this.roles.splice(idx, 1);
+  }
+
+  removeTeam(idx) {
+    this.teams.splice(idx, 1);
+  }
+
+  removeNarration(idx) {
+    this.narrations.splice(idx, 1);
+  }
+
+  removeIntersection(idx) {
+    this.intersections.splice(idx, 1);
   }
 
   roleNameChanged(evt) {
@@ -206,6 +265,9 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
       imgId: this.imgId,
       roles: this.roles,
       voting: this.voting,
+      teams: this.teams,
+      narrations: this.narrations,
+      intersections: this.intersections,
       tblVal: this.tblVal
     };
 
@@ -249,6 +311,9 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
               && this.orgData.voting === this.voting
               && this.compareTwoArray(this.orgData.roles, this.roles)
               && this.compareTwoArray(this.orgData.tblVal, this.tblVal)
+              && this.compareTwoArray(this.orgData.narrations, this.narrations)
+              && this.compareTwoArray(this.orgData.teams, this.teams)
+              && this.compareTwoArray(this.orgData.intersections, this.intersections)
               && this.orgData.roleFrequencies === this.roleFrequencies && !this.imgChanged && !this.isUpload);
   }
 
@@ -313,6 +378,31 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     this.uploaders[ii] = false;
     if (this.saving) {
       this.save();
+    }
+  }
+
+  getRolesSelectOptions() {
+    this.rolesSelectOptions = this.roles.map((val, index) => { return {id: index, name: val.name}; });
+    return this.rolesSelectOptions;
+  }
+
+  getIntersectionSelectOptions() {
+    let rolesAndTeams = this.roles.map((val, index) => { return {id: index, name: val.name}; });
+    const teams = this.teams.map((val, index) => { return {id: index + this.roles.length, name: val.name}; });
+    rolesAndTeams = rolesAndTeams.concat(teams);
+
+    return rolesAndTeams;
+  }
+
+  narrationDown(idx) {
+    if (idx !== this.narrations.length - 1) {
+      [this.narrations[idx], this.narrations[idx + 1]] = [this.narrations[idx + 1], this.narrations[idx]];
+    }
+  }
+
+  narrationUp(idx) {
+    if (idx !== 0) {
+      [this.narrations[idx], this.narrations[idx - 1]] = [this.narrations[idx - 1], this.narrations[idx]];
     }
   }
 }

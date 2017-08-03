@@ -7,11 +7,11 @@ webpackJsonp([3,4],[
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_merge__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_operator_share__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Class", function() { return Class; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPlatform", function() { return createPlatform; });
@@ -5850,7 +5850,7 @@ var SystemJsNgModuleLoader = (function () {
         if (exportName === undefined) {
             exportName = 'default';
         }
-        return __webpack_require__(109)(module)
+        return __webpack_require__(117)(module)
             .then(function (module) { return module[exportName]; })
             .then(function (type) { return checkNotEmpty(type, module, exportName); })
             .then(function (type) { return _this._compiler.compileModuleAsync(type); });
@@ -5866,7 +5866,7 @@ var SystemJsNgModuleLoader = (function () {
             exportName = 'default';
             factoryClassSuffix = '';
         }
-        return __webpack_require__(109)(this._config.factoryPathPrefix + module + this._config.factoryPathSuffix)
+        return __webpack_require__(117)(this._config.factoryPathPrefix + module + this._config.factoryPathSuffix)
             .then(function (module) { return module[exportName + factoryClassSuffix]; })
             .then(function (factory) { return checkNotEmpty(factory, module, exportName); });
     };
@@ -14941,7 +14941,7 @@ function transition$$1(stateChangeExpr, steps) {
 
 //# sourceMappingURL=core.es5.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(37)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(39)))
 
 /***/ }),
 /* 1 */,
@@ -14951,8 +14951,8 @@ function transition$$1(stateChangeExpr, steps) {
 "use strict";
 
 var root_1 = __webpack_require__(19);
-var toSubscriber_1 = __webpack_require__(263);
-var observable_1 = __webpack_require__(67);
+var toSubscriber_1 = __webpack_require__(277);
+var observable_1 = __webpack_require__(72);
 /**
  * A representation of any set of values over any amount of time. This the most basic building block
  * of RxJS.
@@ -15264,9 +15264,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 5 */,
-/* 6 */,
-/* 7 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -19278,6 +19276,8 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.2.6'
 
 
 /***/ }),
+/* 6 */,
+/* 7 */,
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19288,10 +19288,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isFunction_1 = __webpack_require__(105);
-var Subscription_1 = __webpack_require__(35);
-var Observer_1 = __webpack_require__(95);
-var rxSubscriber_1 = __webpack_require__(68);
+var isFunction_1 = __webpack_require__(113);
+var Subscription_1 = __webpack_require__(38);
+var Observer_1 = __webpack_require__(102);
+var rxSubscriber_1 = __webpack_require__(73);
 /**
  * Implements the {@link Observer} interface and extends the
  * {@link Subscription} class. While the {@link Observer} is the public API for
@@ -19555,44 +19555,44 @@ var SafeSubscriber = (function (_super) {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__ = __webpack_require__(250);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_BehaviorSubject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__ = __webpack_require__(261);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_observable_from__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__ = __webpack_require__(263);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_observable_of__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_operator_concatMap__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_operator_concatMap__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rxjs_operator_concatMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_rxjs_operator_concatMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_operator_every__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first__ = __webpack_require__(268);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_rxjs_operator_first__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10_rxjs_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11_rxjs_operator_mergeMap__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_reduce__ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_reduce__ = __webpack_require__(273);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12_rxjs_operator_reduce___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_12_rxjs_operator_reduce__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Observable__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14_rxjs_operator_catch__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_concatAll__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_concatAll__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15_rxjs_operator_concatAll___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15_rxjs_operator_concatAll__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_util_EmptyError__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_util_EmptyError__ = __webpack_require__(74);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16_rxjs_util_EmptyError___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_16_rxjs_util_EmptyError__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_rxjs_observable_fromPromise__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_rxjs_observable_fromPromise__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_17_rxjs_observable_fromPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_rxjs_operator_last__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_rxjs_operator_last__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18_rxjs_operator_last___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_18_rxjs_operator_last__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_rxjs_operator_mergeAll__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_rxjs_operator_mergeAll__ = __webpack_require__(70);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19_rxjs_operator_mergeAll___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_19_rxjs_operator_mergeAll__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_platform_browser__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter__ = __webpack_require__(267);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_21_rxjs_operator_filter__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RouterLink", function() { return RouterLink; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RouterLinkWithHref", function() { return RouterLinkWithHref; });
@@ -25986,7 +25986,7 @@ exports.root = _root;
     }
 })();
 //# sourceMappingURL=root.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(37)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(39)))
 
 /***/ }),
 /* 20 */
@@ -25995,7 +25995,7 @@ exports.root = _root;
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BrowserModule", function() { return BrowserModule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "platformBrowser", function() { return platformBrowser; });
@@ -30496,38 +30496,7 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_2__angular_core__["Version"]('4.2.6'
 
 
 /***/ }),
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloudinary_module__ = __webpack_require__(210);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Ng2CloudinaryModule", function() { return __WEBPACK_IMPORTED_MODULE_0__cloudinary_module__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cloudinary_options_class__ = __webpack_require__(208);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CloudinaryOptions", function() { return __WEBPACK_IMPORTED_MODULE_1__cloudinary_options_class__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cloudinary_transforms_class__ = __webpack_require__(91);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CloudinaryTransforms", function() { return __WEBPACK_IMPORTED_MODULE_2__cloudinary_transforms_class__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cloudinary_uploader_service__ = __webpack_require__(209);
-/* harmony reexport (binding) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_3__cloudinary_uploader_service__, "CloudinaryUploader")) __webpack_require__.d(__webpack_exports__, "CloudinaryUploader", function() { return __WEBPACK_IMPORTED_MODULE_3__cloudinary_uploader_service__["CloudinaryUploader"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cloudinary_image_service__ = __webpack_require__(59);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CloudinaryImageService", function() { return __WEBPACK_IMPORTED_MODULE_4__cloudinary_image_service__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cloudinary_image_component__ = __webpack_require__(90);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CloudinaryImageComponent", function() { return __WEBPACK_IMPORTED_MODULE_5__cloudinary_image_component__["a"]; });
-
-
-
-
-
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 27 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30539,10 +30508,10 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var Observable_1 = __webpack_require__(2);
 var Subscriber_1 = __webpack_require__(8);
-var Subscription_1 = __webpack_require__(35);
-var ObjectUnsubscribedError_1 = __webpack_require__(102);
-var SubjectSubscription_1 = __webpack_require__(240);
-var rxSubscriber_1 = __webpack_require__(68);
+var Subscription_1 = __webpack_require__(38);
+var ObjectUnsubscribedError_1 = __webpack_require__(110);
+var SubjectSubscription_1 = __webpack_require__(253);
+var rxSubscriber_1 = __webpack_require__(73);
 /**
  * @class SubjectSubscriber<T>
  */
@@ -30701,387 +30670,18 @@ exports.AnonymousSubject = AnonymousSubject;
 //# sourceMappingURL=Subject.js.map
 
 /***/ }),
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__export(__webpack_require__(94));
-__export(__webpack_require__(92));
-__export(__webpack_require__(61));
-__export(__webpack_require__(93));
-__export(__webpack_require__(60));
-var file_upload_module_1 = __webpack_require__(212);
-exports.FileUploadModule = file_upload_module_1.FileUploadModule;
-
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var Subscriber_1 = __webpack_require__(8);
-/**
- * We need this JSDoc comment for affecting ESDoc.
- * @ignore
- * @extends {Ignored}
- */
-var OuterSubscriber = (function (_super) {
-    __extends(OuterSubscriber, _super);
-    function OuterSubscriber() {
-        _super.apply(this, arguments);
-    }
-    OuterSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
-        this.destination.next(innerValue);
-    };
-    OuterSubscriber.prototype.notifyError = function (error, innerSub) {
-        this.destination.error(error);
-    };
-    OuterSubscriber.prototype.notifyComplete = function (innerSub) {
-        this.destination.complete();
-    };
-    return OuterSubscriber;
-}(Subscriber_1.Subscriber));
-exports.OuterSubscriber = OuterSubscriber;
-//# sourceMappingURL=OuterSubscriber.js.map
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var isArray_1 = __webpack_require__(70);
-var isObject_1 = __webpack_require__(106);
-var isFunction_1 = __webpack_require__(105);
-var tryCatch_1 = __webpack_require__(264);
-var errorObject_1 = __webpack_require__(103);
-var UnsubscriptionError_1 = __webpack_require__(262);
-/**
- * Represents a disposable resource, such as the execution of an Observable. A
- * Subscription has one important method, `unsubscribe`, that takes no argument
- * and just disposes the resource held by the subscription.
- *
- * Additionally, subscriptions may be grouped together through the `add()`
- * method, which will attach a child Subscription to the current Subscription.
- * When a Subscription is unsubscribed, all its children (and its grandchildren)
- * will be unsubscribed as well.
- *
- * @class Subscription
- */
-var Subscription = (function () {
-    /**
-     * @param {function(): void} [unsubscribe] A function describing how to
-     * perform the disposal of resources when the `unsubscribe` method is called.
-     */
-    function Subscription(unsubscribe) {
-        /**
-         * A flag to indicate whether this Subscription has already been unsubscribed.
-         * @type {boolean}
-         */
-        this.closed = false;
-        this._parent = null;
-        this._parents = null;
-        this._subscriptions = null;
-        if (unsubscribe) {
-            this._unsubscribe = unsubscribe;
-        }
-    }
-    /**
-     * Disposes the resources held by the subscription. May, for instance, cancel
-     * an ongoing Observable execution or cancel any other type of work that
-     * started when the Subscription was created.
-     * @return {void}
-     */
-    Subscription.prototype.unsubscribe = function () {
-        var hasErrors = false;
-        var errors;
-        if (this.closed) {
-            return;
-        }
-        var _a = this, _parent = _a._parent, _parents = _a._parents, _unsubscribe = _a._unsubscribe, _subscriptions = _a._subscriptions;
-        this.closed = true;
-        this._parent = null;
-        this._parents = null;
-        // null out _subscriptions first so any child subscriptions that attempt
-        // to remove themselves from this subscription will noop
-        this._subscriptions = null;
-        var index = -1;
-        var len = _parents ? _parents.length : 0;
-        // if this._parent is null, then so is this._parents, and we
-        // don't have to remove ourselves from any parent subscriptions.
-        while (_parent) {
-            _parent.remove(this);
-            // if this._parents is null or index >= len,
-            // then _parent is set to null, and the loop exits
-            _parent = ++index < len && _parents[index] || null;
-        }
-        if (isFunction_1.isFunction(_unsubscribe)) {
-            var trial = tryCatch_1.tryCatch(_unsubscribe).call(this);
-            if (trial === errorObject_1.errorObject) {
-                hasErrors = true;
-                errors = errors || (errorObject_1.errorObject.e instanceof UnsubscriptionError_1.UnsubscriptionError ?
-                    flattenUnsubscriptionErrors(errorObject_1.errorObject.e.errors) : [errorObject_1.errorObject.e]);
-            }
-        }
-        if (isArray_1.isArray(_subscriptions)) {
-            index = -1;
-            len = _subscriptions.length;
-            while (++index < len) {
-                var sub = _subscriptions[index];
-                if (isObject_1.isObject(sub)) {
-                    var trial = tryCatch_1.tryCatch(sub.unsubscribe).call(sub);
-                    if (trial === errorObject_1.errorObject) {
-                        hasErrors = true;
-                        errors = errors || [];
-                        var err = errorObject_1.errorObject.e;
-                        if (err instanceof UnsubscriptionError_1.UnsubscriptionError) {
-                            errors = errors.concat(flattenUnsubscriptionErrors(err.errors));
-                        }
-                        else {
-                            errors.push(err);
-                        }
-                    }
-                }
-            }
-        }
-        if (hasErrors) {
-            throw new UnsubscriptionError_1.UnsubscriptionError(errors);
-        }
-    };
-    /**
-     * Adds a tear down to be called during the unsubscribe() of this
-     * Subscription.
-     *
-     * If the tear down being added is a subscription that is already
-     * unsubscribed, is the same reference `add` is being called on, or is
-     * `Subscription.EMPTY`, it will not be added.
-     *
-     * If this subscription is already in an `closed` state, the passed
-     * tear down logic will be executed immediately.
-     *
-     * @param {TeardownLogic} teardown The additional logic to execute on
-     * teardown.
-     * @return {Subscription} Returns the Subscription used or created to be
-     * added to the inner subscriptions list. This Subscription can be used with
-     * `remove()` to remove the passed teardown logic from the inner subscriptions
-     * list.
-     */
-    Subscription.prototype.add = function (teardown) {
-        if (!teardown || (teardown === Subscription.EMPTY)) {
-            return Subscription.EMPTY;
-        }
-        if (teardown === this) {
-            return this;
-        }
-        var subscription = teardown;
-        switch (typeof teardown) {
-            case 'function':
-                subscription = new Subscription(teardown);
-            case 'object':
-                if (subscription.closed || typeof subscription.unsubscribe !== 'function') {
-                    return subscription;
-                }
-                else if (this.closed) {
-                    subscription.unsubscribe();
-                    return subscription;
-                }
-                else if (typeof subscription._addParent !== 'function' /* quack quack */) {
-                    var tmp = subscription;
-                    subscription = new Subscription();
-                    subscription._subscriptions = [tmp];
-                }
-                break;
-            default:
-                throw new Error('unrecognized teardown ' + teardown + ' added to Subscription.');
-        }
-        var subscriptions = this._subscriptions || (this._subscriptions = []);
-        subscriptions.push(subscription);
-        subscription._addParent(this);
-        return subscription;
-    };
-    /**
-     * Removes a Subscription from the internal list of subscriptions that will
-     * unsubscribe during the unsubscribe process of this Subscription.
-     * @param {Subscription} subscription The subscription to remove.
-     * @return {void}
-     */
-    Subscription.prototype.remove = function (subscription) {
-        var subscriptions = this._subscriptions;
-        if (subscriptions) {
-            var subscriptionIndex = subscriptions.indexOf(subscription);
-            if (subscriptionIndex !== -1) {
-                subscriptions.splice(subscriptionIndex, 1);
-            }
-        }
-    };
-    Subscription.prototype._addParent = function (parent) {
-        var _a = this, _parent = _a._parent, _parents = _a._parents;
-        if (!_parent || _parent === parent) {
-            // If we don't have a parent, or the new parent is the same as the
-            // current parent, then set this._parent to the new parent.
-            this._parent = parent;
-        }
-        else if (!_parents) {
-            // If there's already one parent, but not multiple, allocate an Array to
-            // store the rest of the parent Subscriptions.
-            this._parents = [parent];
-        }
-        else if (_parents.indexOf(parent) === -1) {
-            // Only add the new parent to the _parents list if it's not already there.
-            _parents.push(parent);
-        }
-    };
-    Subscription.EMPTY = (function (empty) {
-        empty.closed = true;
-        return empty;
-    }(new Subscription()));
-    return Subscription;
-}());
-exports.Subscription = Subscription;
-function flattenUnsubscriptionErrors(errors) {
-    return errors.reduce(function (errs, err) { return errs.concat((err instanceof UnsubscriptionError_1.UnsubscriptionError) ? err.errors : err); }, []);
-}
-//# sourceMappingURL=Subscription.js.map
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var root_1 = __webpack_require__(19);
-var isArrayLike_1 = __webpack_require__(104);
-var isPromise_1 = __webpack_require__(107);
-var isObject_1 = __webpack_require__(106);
-var Observable_1 = __webpack_require__(2);
-var iterator_1 = __webpack_require__(66);
-var InnerSubscriber_1 = __webpack_require__(238);
-var observable_1 = __webpack_require__(67);
-function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
-    var destination = new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex);
-    if (destination.closed) {
-        return null;
-    }
-    if (result instanceof Observable_1.Observable) {
-        if (result._isScalar) {
-            destination.next(result.value);
-            destination.complete();
-            return null;
-        }
-        else {
-            return result.subscribe(destination);
-        }
-    }
-    else if (isArrayLike_1.isArrayLike(result)) {
-        for (var i = 0, len = result.length; i < len && !destination.closed; i++) {
-            destination.next(result[i]);
-        }
-        if (!destination.closed) {
-            destination.complete();
-        }
-    }
-    else if (isPromise_1.isPromise(result)) {
-        result.then(function (value) {
-            if (!destination.closed) {
-                destination.next(value);
-                destination.complete();
-            }
-        }, function (err) { return destination.error(err); })
-            .then(null, function (err) {
-            // Escaping the Promise trap: globally throw unhandled errors
-            root_1.root.setTimeout(function () { throw err; });
-        });
-        return destination;
-    }
-    else if (result && typeof result[iterator_1.iterator] === 'function') {
-        var iterator = result[iterator_1.iterator]();
-        do {
-            var item = iterator.next();
-            if (item.done) {
-                destination.complete();
-                break;
-            }
-            destination.next(item.value);
-            if (destination.closed) {
-                break;
-            }
-        } while (true);
-    }
-    else if (result && typeof result[observable_1.observable] === 'function') {
-        var obs = result[observable_1.observable]();
-        if (typeof obs.subscribe !== 'function') {
-            destination.error(new TypeError('Provided object does not correctly implement Symbol.observable'));
-        }
-        else {
-            return obs.subscribe(new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex));
-        }
-    }
-    else {
-        var value = isObject_1.isObject(result) ? 'an invalid object' : "'" + result + "'";
-        var msg = ("You provided " + value + " where a stream was expected.")
-            + ' You can provide an Observable, Promise, Array, or Iterable.';
-        destination.error(new TypeError(msg));
-    }
-    return null;
-}
-exports.subscribeToResult = subscribeToResult;
-//# sourceMappingURL=subscribeToResult.js.map
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 38 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_forkJoin__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_fromPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_rxjs_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_platform_browser__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractControlDirective", function() { return AbstractControlDirective; });
@@ -37174,7 +36774,599 @@ ReactiveFormsModule.ctorParameters = function () { return []; };
 
 
 /***/ }),
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__cloudinary_module__ = __webpack_require__(220);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Ng2CloudinaryModule", function() { return __WEBPACK_IMPORTED_MODULE_0__cloudinary_module__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cloudinary_options_class__ = __webpack_require__(218);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CloudinaryOptions", function() { return __WEBPACK_IMPORTED_MODULE_1__cloudinary_options_class__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cloudinary_transforms_class__ = __webpack_require__(97);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CloudinaryTransforms", function() { return __WEBPACK_IMPORTED_MODULE_2__cloudinary_transforms_class__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cloudinary_uploader_service__ = __webpack_require__(219);
+/* harmony reexport (binding) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_3__cloudinary_uploader_service__, "CloudinaryUploader")) __webpack_require__.d(__webpack_exports__, "CloudinaryUploader", function() { return __WEBPACK_IMPORTED_MODULE_3__cloudinary_uploader_service__["CloudinaryUploader"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cloudinary_image_service__ = __webpack_require__(61);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CloudinaryImageService", function() { return __WEBPACK_IMPORTED_MODULE_4__cloudinary_image_service__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__cloudinary_image_component__ = __webpack_require__(96);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CloudinaryImageComponent", function() { return __WEBPACK_IMPORTED_MODULE_5__cloudinary_image_component__["a"]; });
+
+
+
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var Subscriber_1 = __webpack_require__(8);
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @ignore
+ * @extends {Ignored}
+ */
+var OuterSubscriber = (function (_super) {
+    __extends(OuterSubscriber, _super);
+    function OuterSubscriber() {
+        _super.apply(this, arguments);
+    }
+    OuterSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+        this.destination.next(innerValue);
+    };
+    OuterSubscriber.prototype.notifyError = function (error, innerSub) {
+        this.destination.error(error);
+    };
+    OuterSubscriber.prototype.notifyComplete = function (innerSub) {
+        this.destination.complete();
+    };
+    return OuterSubscriber;
+}(Subscriber_1.Subscriber));
+exports.OuterSubscriber = OuterSubscriber;
+//# sourceMappingURL=OuterSubscriber.js.map
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var root_1 = __webpack_require__(19);
+var isArrayLike_1 = __webpack_require__(112);
+var isPromise_1 = __webpack_require__(115);
+var isObject_1 = __webpack_require__(114);
+var Observable_1 = __webpack_require__(2);
+var iterator_1 = __webpack_require__(71);
+var InnerSubscriber_1 = __webpack_require__(251);
+var observable_1 = __webpack_require__(72);
+function subscribeToResult(outerSubscriber, result, outerValue, outerIndex) {
+    var destination = new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex);
+    if (destination.closed) {
+        return null;
+    }
+    if (result instanceof Observable_1.Observable) {
+        if (result._isScalar) {
+            destination.next(result.value);
+            destination.complete();
+            return null;
+        }
+        else {
+            return result.subscribe(destination);
+        }
+    }
+    else if (isArrayLike_1.isArrayLike(result)) {
+        for (var i = 0, len = result.length; i < len && !destination.closed; i++) {
+            destination.next(result[i]);
+        }
+        if (!destination.closed) {
+            destination.complete();
+        }
+    }
+    else if (isPromise_1.isPromise(result)) {
+        result.then(function (value) {
+            if (!destination.closed) {
+                destination.next(value);
+                destination.complete();
+            }
+        }, function (err) { return destination.error(err); })
+            .then(null, function (err) {
+            // Escaping the Promise trap: globally throw unhandled errors
+            root_1.root.setTimeout(function () { throw err; });
+        });
+        return destination;
+    }
+    else if (result && typeof result[iterator_1.iterator] === 'function') {
+        var iterator = result[iterator_1.iterator]();
+        do {
+            var item = iterator.next();
+            if (item.done) {
+                destination.complete();
+                break;
+            }
+            destination.next(item.value);
+            if (destination.closed) {
+                break;
+            }
+        } while (true);
+    }
+    else if (result && typeof result[observable_1.observable] === 'function') {
+        var obs = result[observable_1.observable]();
+        if (typeof obs.subscribe !== 'function') {
+            destination.error(new TypeError('Provided object does not correctly implement Symbol.observable'));
+        }
+        else {
+            return obs.subscribe(new InnerSubscriber_1.InnerSubscriber(outerSubscriber, outerValue, outerIndex));
+        }
+    }
+    else {
+        var value = isObject_1.isObject(result) ? 'an invalid object' : "'" + result + "'";
+        var msg = ("You provided " + value + " where a stream was expected.")
+            + ' You can provide an Observable, Promise, Array, or Iterable.';
+        destination.error(new TypeError(msg));
+    }
+    return null;
+}
+exports.subscribeToResult = subscribeToResult;
+//# sourceMappingURL=subscribeToResult.js.map
+
+/***/ }),
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__(100));
+__export(__webpack_require__(98));
+__export(__webpack_require__(63));
+__export(__webpack_require__(99));
+__export(__webpack_require__(62));
+var file_upload_module_1 = __webpack_require__(222);
+exports.FileUploadModule = file_upload_module_1.FileUploadModule;
+
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var core_1 = __webpack_require__(0);
+var formats_1 = __webpack_require__(65);
+var ColorPickerService = (function () {
+    function ColorPickerService() {
+    }
+    ColorPickerService.prototype.hsla2hsva = function (hsla) {
+        var h = Math.min(hsla.h, 1), s = Math.min(hsla.s, 1), l = Math.min(hsla.l, 1), a = Math.min(hsla.a, 1);
+        if (l === 0) {
+            return new formats_1.Hsva(h, 0, 0, a);
+        }
+        else {
+            var v = l + s * (1 - Math.abs(2 * l - 1)) / 2;
+            return new formats_1.Hsva(h, 2 * (v - l) / v, v, a);
+        }
+    };
+    ColorPickerService.prototype.hsva2hsla = function (hsva) {
+        var h = hsva.h, s = hsva.s, v = hsva.v, a = hsva.a;
+        if (v === 0) {
+            return new formats_1.Hsla(h, 0, 0, a);
+        }
+        else if (s === 0 && v === 1) {
+            return new formats_1.Hsla(h, 1, 1, a);
+        }
+        else {
+            var l = v * (2 - s) / 2;
+            return new formats_1.Hsla(h, v * s / (1 - Math.abs(2 * l - 1)), l, a);
+        }
+    };
+    ColorPickerService.prototype.rgbaToHsva = function (rgba) {
+        var r = Math.min(rgba.r, 1), g = Math.min(rgba.g, 1), b = Math.min(rgba.b, 1), a = Math.min(rgba.a, 1);
+        var max = Math.max(r, g, b), min = Math.min(r, g, b);
+        var h, s, v = max;
+        var d = max - min;
+        s = max === 0 ? 0 : d / max;
+        if (max === min) {
+            h = 0;
+        }
+        else {
+            switch (max) {
+                case r:
+                    h = (g - b) / d + (g < b ? 6 : 0);
+                    break;
+                case g:
+                    h = (b - r) / d + 2;
+                    break;
+                case b:
+                    h = (r - g) / d + 4;
+                    break;
+            }
+            h /= 6;
+        }
+        return new formats_1.Hsva(h, s, v, a);
+    };
+    ColorPickerService.prototype.hsvaToRgba = function (hsva) {
+        var h = hsva.h, s = hsva.s, v = hsva.v, a = hsva.a;
+        var r, g, b;
+        var i = Math.floor(h * 6);
+        var f = h * 6 - i;
+        var p = v * (1 - s);
+        var q = v * (1 - f * s);
+        var t = v * (1 - (1 - f) * s);
+        switch (i % 6) {
+            case 0:
+                r = v, g = t, b = p;
+                break;
+            case 1:
+                r = q, g = v, b = p;
+                break;
+            case 2:
+                r = p, g = v, b = t;
+                break;
+            case 3:
+                r = p, g = q, b = v;
+                break;
+            case 4:
+                r = t, g = p, b = v;
+                break;
+            case 5:
+                r = v, g = p, b = q;
+                break;
+        }
+        return new formats_1.Rgba(r, g, b, a);
+    };
+    ColorPickerService.prototype.stringToHsva = function (colorString, allowHex8) {
+        if (colorString === void 0) { colorString = ''; }
+        if (allowHex8 === void 0) { allowHex8 = false; }
+        var stringParsers = [
+            {
+                re: /(rgb)a?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*%?,\s*(\d{1,3})\s*%?(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+                parse: function (execResult) {
+                    return new formats_1.Rgba(parseInt(execResult[2]) / 255, parseInt(execResult[3]) / 255, parseInt(execResult[4]) / 255, isNaN(parseFloat(execResult[5])) ? 1 : parseFloat(execResult[5]));
+                }
+            },
+            {
+                re: /(hsl)a?\(\s*(\d{1,3})\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*(?:,\s*(\d+(?:\.\d+)?)\s*)?\)/,
+                parse: function (execResult) {
+                    return new formats_1.Hsla(parseInt(execResult[2]) / 360, parseInt(execResult[3]) / 100, parseInt(execResult[4]) / 100, isNaN(parseFloat(execResult[5])) ? 1 : parseFloat(execResult[5]));
+                }
+            }
+        ];
+        if (allowHex8) {
+            stringParsers.push({
+                re: /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})$/,
+                parse: function (execResult) {
+                    return new formats_1.Rgba(parseInt(execResult[1], 16) / 255, parseInt(execResult[2], 16) / 255, parseInt(execResult[3], 16) / 255, parseInt(execResult[4], 16) / 255);
+                }
+            });
+        }
+        else {
+            stringParsers.push({
+                re: /#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})$/,
+                parse: function (execResult) {
+                    return new formats_1.Rgba(parseInt(execResult[1], 16) / 255, parseInt(execResult[2], 16) / 255, parseInt(execResult[3], 16) / 255, 1);
+                }
+            }, {
+                re: /#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])$/,
+                parse: function (execResult) {
+                    return new formats_1.Rgba(parseInt(execResult[1] + execResult[1], 16) / 255, parseInt(execResult[2] + execResult[2], 16) / 255, parseInt(execResult[3] + execResult[3], 16) / 255, 1);
+                }
+            });
+        }
+        colorString = (colorString || '').toLowerCase();
+        var hsva = null;
+        for (var key in stringParsers) {
+            if (stringParsers.hasOwnProperty(key)) {
+                var parser = stringParsers[key];
+                var match = parser.re.exec(colorString), color = match && parser.parse(match);
+                if (color) {
+                    if (color instanceof formats_1.Rgba) {
+                        hsva = this.rgbaToHsva(color);
+                    }
+                    else if (color instanceof formats_1.Hsla) {
+                        hsva = this.hsla2hsva(color);
+                    }
+                    return hsva;
+                }
+            }
+        }
+        return hsva;
+    };
+    ColorPickerService.prototype.outputFormat = function (hsva, outputFormat, alphaChannel) {
+        switch (outputFormat) {
+            case 'hsla':
+                var hsla = this.hsva2hsla(hsva);
+                var hslaText = new formats_1.Hsla(Math.round((hsla.h) * 360), Math.round(hsla.s * 100), Math.round(hsla.l * 100), Math.round(hsla.a * 100) / 100);
+                if (hsva.a < 1 || alphaChannel === 'always') {
+                    return 'hsla(' + hslaText.h + ',' + hslaText.s + '%,' + hslaText.l + '%,' + hslaText.a + ')';
+                }
+                else {
+                    return 'hsl(' + hslaText.h + ',' + hslaText.s + '%,' + hslaText.l + '%)';
+                }
+            case 'rgba':
+                var rgba = this.denormalizeRGBA(this.hsvaToRgba(hsva));
+                if (hsva.a < 1 || alphaChannel === 'always') {
+                    return 'rgba(' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + Math.round(rgba.a * 100) / 100 + ')';
+                }
+                else {
+                    return 'rgb(' + rgba.r + ',' + rgba.g + ',' + rgba.b + ')';
+                }
+            default:
+                return this.hexText(this.denormalizeRGBA(this.hsvaToRgba(hsva)), alphaChannel === 'always' || alphaChannel === 'hex8');
+        }
+    };
+    ColorPickerService.prototype.hexText = function (rgba, allowHex8) {
+        var hexText = '#' + ((1 << 24) | (rgba.r << 16) | (rgba.g << 8) | rgba.b).toString(16).substr(1);
+        if (hexText[1] === hexText[2] && hexText[3] === hexText[4] && hexText[5] === hexText[6] && !allowHex8) {
+            hexText = '#' + hexText[1] + hexText[3] + hexText[5];
+        }
+        if (allowHex8) {
+            hexText += ((1 << 8) | Math.round(rgba.a * 255)).toString(16).substr(1);
+        }
+        return hexText;
+    };
+    ColorPickerService.prototype.denormalizeRGBA = function (rgba) {
+        return new formats_1.Rgba(Math.round(rgba.r * 255), Math.round(rgba.g * 255), Math.round(rgba.b * 255), rgba.a);
+    };
+    return ColorPickerService;
+}());
+ColorPickerService.decorators = [
+    { type: core_1.Injectable },
+];
+/** @nocollapse */
+ColorPickerService.ctorParameters = function () { return []; };
+exports.ColorPickerService = ColorPickerService;
+//# sourceMappingURL=color-picker.service.js.map
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var isArray_1 = __webpack_require__(75);
+var isObject_1 = __webpack_require__(114);
+var isFunction_1 = __webpack_require__(113);
+var tryCatch_1 = __webpack_require__(278);
+var errorObject_1 = __webpack_require__(111);
+var UnsubscriptionError_1 = __webpack_require__(276);
+/**
+ * Represents a disposable resource, such as the execution of an Observable. A
+ * Subscription has one important method, `unsubscribe`, that takes no argument
+ * and just disposes the resource held by the subscription.
+ *
+ * Additionally, subscriptions may be grouped together through the `add()`
+ * method, which will attach a child Subscription to the current Subscription.
+ * When a Subscription is unsubscribed, all its children (and its grandchildren)
+ * will be unsubscribed as well.
+ *
+ * @class Subscription
+ */
+var Subscription = (function () {
+    /**
+     * @param {function(): void} [unsubscribe] A function describing how to
+     * perform the disposal of resources when the `unsubscribe` method is called.
+     */
+    function Subscription(unsubscribe) {
+        /**
+         * A flag to indicate whether this Subscription has already been unsubscribed.
+         * @type {boolean}
+         */
+        this.closed = false;
+        this._parent = null;
+        this._parents = null;
+        this._subscriptions = null;
+        if (unsubscribe) {
+            this._unsubscribe = unsubscribe;
+        }
+    }
+    /**
+     * Disposes the resources held by the subscription. May, for instance, cancel
+     * an ongoing Observable execution or cancel any other type of work that
+     * started when the Subscription was created.
+     * @return {void}
+     */
+    Subscription.prototype.unsubscribe = function () {
+        var hasErrors = false;
+        var errors;
+        if (this.closed) {
+            return;
+        }
+        var _a = this, _parent = _a._parent, _parents = _a._parents, _unsubscribe = _a._unsubscribe, _subscriptions = _a._subscriptions;
+        this.closed = true;
+        this._parent = null;
+        this._parents = null;
+        // null out _subscriptions first so any child subscriptions that attempt
+        // to remove themselves from this subscription will noop
+        this._subscriptions = null;
+        var index = -1;
+        var len = _parents ? _parents.length : 0;
+        // if this._parent is null, then so is this._parents, and we
+        // don't have to remove ourselves from any parent subscriptions.
+        while (_parent) {
+            _parent.remove(this);
+            // if this._parents is null or index >= len,
+            // then _parent is set to null, and the loop exits
+            _parent = ++index < len && _parents[index] || null;
+        }
+        if (isFunction_1.isFunction(_unsubscribe)) {
+            var trial = tryCatch_1.tryCatch(_unsubscribe).call(this);
+            if (trial === errorObject_1.errorObject) {
+                hasErrors = true;
+                errors = errors || (errorObject_1.errorObject.e instanceof UnsubscriptionError_1.UnsubscriptionError ?
+                    flattenUnsubscriptionErrors(errorObject_1.errorObject.e.errors) : [errorObject_1.errorObject.e]);
+            }
+        }
+        if (isArray_1.isArray(_subscriptions)) {
+            index = -1;
+            len = _subscriptions.length;
+            while (++index < len) {
+                var sub = _subscriptions[index];
+                if (isObject_1.isObject(sub)) {
+                    var trial = tryCatch_1.tryCatch(sub.unsubscribe).call(sub);
+                    if (trial === errorObject_1.errorObject) {
+                        hasErrors = true;
+                        errors = errors || [];
+                        var err = errorObject_1.errorObject.e;
+                        if (err instanceof UnsubscriptionError_1.UnsubscriptionError) {
+                            errors = errors.concat(flattenUnsubscriptionErrors(err.errors));
+                        }
+                        else {
+                            errors.push(err);
+                        }
+                    }
+                }
+            }
+        }
+        if (hasErrors) {
+            throw new UnsubscriptionError_1.UnsubscriptionError(errors);
+        }
+    };
+    /**
+     * Adds a tear down to be called during the unsubscribe() of this
+     * Subscription.
+     *
+     * If the tear down being added is a subscription that is already
+     * unsubscribed, is the same reference `add` is being called on, or is
+     * `Subscription.EMPTY`, it will not be added.
+     *
+     * If this subscription is already in an `closed` state, the passed
+     * tear down logic will be executed immediately.
+     *
+     * @param {TeardownLogic} teardown The additional logic to execute on
+     * teardown.
+     * @return {Subscription} Returns the Subscription used or created to be
+     * added to the inner subscriptions list. This Subscription can be used with
+     * `remove()` to remove the passed teardown logic from the inner subscriptions
+     * list.
+     */
+    Subscription.prototype.add = function (teardown) {
+        if (!teardown || (teardown === Subscription.EMPTY)) {
+            return Subscription.EMPTY;
+        }
+        if (teardown === this) {
+            return this;
+        }
+        var subscription = teardown;
+        switch (typeof teardown) {
+            case 'function':
+                subscription = new Subscription(teardown);
+            case 'object':
+                if (subscription.closed || typeof subscription.unsubscribe !== 'function') {
+                    return subscription;
+                }
+                else if (this.closed) {
+                    subscription.unsubscribe();
+                    return subscription;
+                }
+                else if (typeof subscription._addParent !== 'function' /* quack quack */) {
+                    var tmp = subscription;
+                    subscription = new Subscription();
+                    subscription._subscriptions = [tmp];
+                }
+                break;
+            default:
+                throw new Error('unrecognized teardown ' + teardown + ' added to Subscription.');
+        }
+        var subscriptions = this._subscriptions || (this._subscriptions = []);
+        subscriptions.push(subscription);
+        subscription._addParent(this);
+        return subscription;
+    };
+    /**
+     * Removes a Subscription from the internal list of subscriptions that will
+     * unsubscribe during the unsubscribe process of this Subscription.
+     * @param {Subscription} subscription The subscription to remove.
+     * @return {void}
+     */
+    Subscription.prototype.remove = function (subscription) {
+        var subscriptions = this._subscriptions;
+        if (subscriptions) {
+            var subscriptionIndex = subscriptions.indexOf(subscription);
+            if (subscriptionIndex !== -1) {
+                subscriptions.splice(subscriptionIndex, 1);
+            }
+        }
+    };
+    Subscription.prototype._addParent = function (parent) {
+        var _a = this, _parent = _a._parent, _parents = _a._parents;
+        if (!_parent || _parent === parent) {
+            // If we don't have a parent, or the new parent is the same as the
+            // current parent, then set this._parent to the new parent.
+            this._parent = parent;
+        }
+        else if (!_parents) {
+            // If there's already one parent, but not multiple, allocate an Array to
+            // store the rest of the parent Subscriptions.
+            this._parents = [parent];
+        }
+        else if (_parents.indexOf(parent) === -1) {
+            // Only add the new parent to the _parents list if it's not already there.
+            _parents.push(parent);
+        }
+    };
+    Subscription.EMPTY = (function (empty) {
+        empty.closed = true;
+        return empty;
+    }(new Subscription()));
+    return Subscription;
+}());
+exports.Subscription = Subscription;
+function flattenUnsubscriptionErrors(errors) {
+    return errors.reduce(function (errs, err) { return errs.concat((err instanceof UnsubscriptionError_1.UnsubscriptionError) ? err.errors : err); }, []);
+}
+//# sourceMappingURL=Subscription.js.map
+
+/***/ }),
 /* 39 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39403,9 +39595,100 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.2.6'
 
 
 /***/ }),
-/* 40 */,
 /* 41 */,
-/* 42 */,
+/* 42 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MultiSelectSearchFilter; });
+
+var MultiSelectSearchFilter = (function () {
+    function MultiSelectSearchFilter() {
+        this._searchCache = {};
+        this._searchCacheInclusive = {};
+    }
+    MultiSelectSearchFilter.prototype.transform = function (options, str, limit, renderLimit) {
+        if (limit === void 0) { limit = 0; }
+        if (renderLimit === void 0) { renderLimit = 0; }
+        str = (str || '').toLowerCase();
+        // Drop cache because options were updated
+        if (options !== this._lastOptions) {
+            this._lastOptions = options;
+            this._searchCache = {};
+            this._searchCacheInclusive = {};
+        }
+        var isUnderLimit = options.length <= limit;
+        if (this._searchCache[str]) {
+            return isUnderLimit ? this._searchCache[str] : this._limitRenderedItems(this._searchCache[str], renderLimit);
+        }
+        var prevStr = str.slice(0, -1);
+        var prevResults = this._searchCache[prevStr];
+        if (prevResults) {
+            var prevInclusiveOrIdx = this._searchCacheInclusive[prevStr];
+            if (prevInclusiveOrIdx === true) {
+                // If have previous results and it was inclusive, do only subsearch
+                options = prevResults;
+            }
+            else if (typeof prevInclusiveOrIdx === 'number') {
+                // Or reuse prev results with unchecked ones
+                options = prevResults.concat(options.slice(prevInclusiveOrIdx));
+            }
+        }
+        var optsLength = options.length;
+        var maxFound = limit > 0 ? Math.min(limit, optsLength) : optsLength;
+        var filteredOpts = [];
+        var regexp = new RegExp(this._escapeRegExp(str), 'i');
+        var matchPredicate = function (option) { return regexp.test(option.name); }, getChildren = function (option) { return options.filter(function (child) { return child.parentId === option.id; }); }, getParent = function (option) { return options.find(function (parent) { return option.parentId === parent.id; }); };
+        var i = 0, founded = 0;
+        for (; i < optsLength && founded < maxFound; ++i) {
+            var option = options[i];
+            var directMatch = regexp.test(option.name);
+            if (directMatch) {
+                filteredOpts.push(option);
+                founded++;
+                continue;
+            }
+            if (typeof (option.parentId) === 'undefined') {
+                var childrenMatch = getChildren(option).some(matchPredicate);
+                if (childrenMatch) {
+                    filteredOpts.push(option);
+                    founded++;
+                    continue;
+                }
+            }
+            if (typeof (option.parentId) !== 'undefined') {
+                var parentMatch = matchPredicate(getParent(option));
+                if (parentMatch) {
+                    filteredOpts.push(option);
+                    founded++;
+                    continue;
+                }
+            }
+        }
+        this._searchCache[str] = filteredOpts;
+        this._searchCacheInclusive[str] = i === optsLength || i + 1;
+        return isUnderLimit ? filteredOpts : this._limitRenderedItems(filteredOpts, renderLimit);
+    };
+    MultiSelectSearchFilter.prototype._limitRenderedItems = function (items, limit) {
+        return items.length > limit && limit > 0 ? items.slice(0, limit) : items;
+    };
+    MultiSelectSearchFilter.prototype._escapeRegExp = function (str) {
+        return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+    };
+    return MultiSelectSearchFilter;
+}());
+
+MultiSelectSearchFilter.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Pipe"], args: [{
+                name: 'searchFilter'
+            },] },
+];
+/** @nocollapse */
+MultiSelectSearchFilter.ctorParameters = function () { return []; };
+//# sourceMappingURL=search-filter.pipe.js.map
+
+/***/ }),
 /* 43 */,
 /* 44 */,
 /* 45 */,
@@ -39420,13 +39703,15 @@ var VERSION = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["Version"]('4.2.6'
 /* 54 */,
 /* 55 */,
 /* 56 */,
-/* 57 */
+/* 57 */,
+/* 58 */,
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var core_1 = __webpack_require__(0);
-var ng2_auto_complete_1 = __webpack_require__(58);
+var ng2_auto_complete_1 = __webpack_require__(60);
 /**
  * show a selected date in monthly calendar
  * Each filteredList item has the following property in addition to data itself
@@ -39621,14 +39906,14 @@ exports.Ng2AutoCompleteComponent = Ng2AutoCompleteComponent;
 //# sourceMappingURL=ng2-auto-complete.component.js.map
 
 /***/ }),
-/* 58 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(39);
-__webpack_require__(96);
+var http_1 = __webpack_require__(40);
+__webpack_require__(103);
 /**
  * provides auto-complete related utility functions
  */
@@ -39708,7 +39993,7 @@ exports.Ng2AutoComplete = Ng2AutoComplete;
 //# sourceMappingURL=ng2-auto-complete.js.map
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39737,7 +40022,7 @@ var CloudinaryImageService = (function () {
 //# sourceMappingURL=cloudinary-image.service.js.map
 
 /***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39771,14 +40056,14 @@ exports.FileLikeObject = FileLikeObject;
 
 
 /***/ }),
-/* 61 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var file_like_object_class_1 = __webpack_require__(60);
-var file_item_class_1 = __webpack_require__(93);
-var file_type_class_1 = __webpack_require__(211);
+var file_like_object_class_1 = __webpack_require__(62);
+var file_item_class_1 = __webpack_require__(99);
+var file_type_class_1 = __webpack_require__(221);
 function isFile(value) {
     return (File && value instanceof File);
 }
@@ -40183,7 +40468,522 @@ exports.FileUploader = FileUploader;
 
 
 /***/ }),
-/* 62 */
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var core_1 = __webpack_require__(0);
+var color_picker_service_1 = __webpack_require__(37);
+var formats_1 = __webpack_require__(65);
+var helpers_1 = __webpack_require__(66);
+var ColorPickerComponent = (function () {
+    function ColorPickerComponent(el, cdr, service) {
+        this.el = el;
+        this.cdr = cdr;
+        this.service = service;
+        this.dialogArrowSize = 10;
+        this.dialogArrowOffset = 15;
+        this.useRootViewContainer = false;
+    }
+    ColorPickerComponent.prototype.setDialog = function (instance, elementRef, color, cpPosition, cpPositionOffset, cpPositionRelativeToArrow, cpOutputFormat, cpPresetLabel, cpPresetColors, cpCancelButton, cpCancelButtonClass, cpCancelButtonText, cpOKButton, cpOKButtonClass, cpOKButtonText, cpHeight, cpWidth, cpIgnoredElements, cpDialogDisplay, cpSaveClickOutside, cpAlphaChannel, cpUseRootViewContainer) {
+        this.directiveInstance = instance;
+        this.initialColor = color;
+        this.directiveElementRef = elementRef;
+        this.cpPosition = cpPosition;
+        this.cpPositionOffset = parseInt(cpPositionOffset);
+        if (!cpPositionRelativeToArrow) {
+            this.dialogArrowOffset = 0;
+        }
+        this.cpOutputFormat = cpOutputFormat;
+        this.cpPresetLabel = cpPresetLabel;
+        this.cpPresetColors = cpPresetColors;
+        this.cpCancelButton = cpCancelButton;
+        this.cpCancelButtonClass = cpCancelButtonClass;
+        this.cpCancelButtonText = cpCancelButtonText;
+        this.cpOKButton = cpOKButton;
+        this.cpOKButtonClass = cpOKButtonClass;
+        this.cpOKButtonText = cpOKButtonText;
+        this.cpHeight = parseInt(cpHeight);
+        this.cpWidth = parseInt(cpWidth);
+        if (!this.cpWidth) {
+            this.cpWidth = elementRef.nativeElement.offsetWidth;
+        }
+        this.cpIgnoredElements = cpIgnoredElements;
+        this.cpDialogDisplay = cpDialogDisplay;
+        if (this.cpDialogDisplay === 'inline') {
+            this.dialogArrowOffset = 0;
+            this.dialogArrowSize = 0;
+        }
+        this.cpSaveClickOutside = cpSaveClickOutside;
+        this.cpAlphaChannel = cpAlphaChannel;
+        this.useRootViewContainer = cpUseRootViewContainer;
+        if (cpOutputFormat === 'hex' && cpAlphaChannel !== 'always' && cpAlphaChannel !== 'hex8') {
+            this.cpAlphaChannel = 'disabled';
+        }
+    };
+    ColorPickerComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var alphaWidth = this.alphaSlider.nativeElement.offsetWidth;
+        var hueWidth = this.hueSlider.nativeElement.offsetWidth;
+        this.sliderDimMax = new helpers_1.SliderDimension(hueWidth, this.cpWidth, 130, alphaWidth);
+        this.slider = new helpers_1.SliderPosition(0, 0, 0, 0);
+        if (this.cpOutputFormat === 'rgba') {
+            this.format = 1;
+        }
+        else if (this.cpOutputFormat === 'hsla') {
+            this.format = 2;
+        }
+        else {
+            this.format = 0;
+        }
+        this.listenerMouseDown = function (event) { _this.onMouseDown(event); };
+        this.listenerResize = function () { _this.onResize(); };
+        this.openDialog(this.initialColor, false);
+    };
+    ColorPickerComponent.prototype.ngAfterViewInit = function () {
+        if (this.cpWidth != 230) {
+            var alphaWidth = this.alphaSlider.nativeElement.offsetWidth;
+            var hueWidth = this.hueSlider.nativeElement.offsetWidth;
+            this.sliderDimMax = new helpers_1.SliderDimension(hueWidth, this.cpWidth, 130, alphaWidth);
+            this.update(false);
+            this.cdr.detectChanges();
+        }
+    };
+    ColorPickerComponent.prototype.setInitialColor = function (color) {
+        this.initialColor = color;
+    };
+    ColorPickerComponent.prototype.setPresetConfig = function (cpPresetLabel, cpPresetColors) {
+        this.cpPresetLabel = cpPresetLabel;
+        this.cpPresetColors = cpPresetColors;
+    };
+    ColorPickerComponent.prototype.openDialog = function (color, emit) {
+        if (emit === void 0) { emit = true; }
+        this.setInitialColor(color);
+        this.setColorFromString(color, emit);
+        this.openColorPicker();
+    };
+    ColorPickerComponent.prototype.cancelColor = function () {
+        this.setColorFromString(this.initialColor, true);
+        if (this.cpDialogDisplay === 'popup') {
+            this.directiveInstance.colorChanged(this.initialColor, true);
+            this.closeColorPicker();
+        }
+    };
+    ColorPickerComponent.prototype.oKColor = function () {
+        if (this.cpDialogDisplay === 'popup') {
+            this.closeColorPicker();
+        }
+        if (this.outputColor) {
+            this.directiveInstance.colorSelected(this.outputColor);
+        }
+    };
+    ColorPickerComponent.prototype.setColorFromString = function (value, emit) {
+        if (emit === void 0) { emit = true; }
+        var hsva;
+        if (this.cpAlphaChannel === 'always' || this.cpAlphaChannel === 'hex8') {
+            hsva = this.service.stringToHsva(value, true);
+            if (!hsva && !this.hsva) {
+                hsva = this.service.stringToHsva(value, false);
+            }
+        }
+        else {
+            hsva = this.service.stringToHsva(value, false);
+        }
+        if (hsva) {
+            this.hsva = hsva;
+            this.update(emit);
+        }
+    };
+    ColorPickerComponent.prototype.onMouseDown = function (event) {
+        if ((!this.isDescendant(this.el.nativeElement, event.target)
+            && event.target != this.directiveElementRef.nativeElement &&
+            this.cpIgnoredElements.filter(function (item) { return item === event.target; }).length === 0) && this.cpDialogDisplay === 'popup') {
+            if (!this.cpSaveClickOutside) {
+                this.setColorFromString(this.initialColor, false);
+                this.directiveInstance.colorChanged(this.initialColor);
+            }
+            this.closeColorPicker();
+        }
+    };
+    ColorPickerComponent.prototype.openColorPicker = function () {
+        var _this = this;
+        if (!this.show) {
+            this.show = true;
+            this.hidden = true;
+            setTimeout(function () {
+                _this.setDialogPosition();
+                _this.hidden = false;
+                _this.cdr.detectChanges();
+            }, 0);
+            this.directiveInstance.toggle(true);
+            document.addEventListener('mousedown', this.listenerMouseDown);
+            window.addEventListener('resize', this.listenerResize);
+        }
+    };
+    ColorPickerComponent.prototype.closeColorPicker = function () {
+        if (this.show) {
+            this.show = false;
+            this.directiveInstance.toggle(false);
+            document.removeEventListener('mousedown', this.listenerMouseDown);
+            window.removeEventListener('resize', this.listenerResize);
+            this.cdr.detectChanges();
+        }
+    };
+    ColorPickerComponent.prototype.onResize = function () {
+        if (this.position === 'fixed') {
+            this.setDialogPosition();
+        }
+    };
+    ColorPickerComponent.prototype.setDialogPosition = function () {
+        var dialogHeight = this.dialogElement.nativeElement.offsetHeight;
+        var node = this.directiveElementRef.nativeElement, position = 'static', transform = '';
+        var parentNode = null, transformNode = null, style = null;
+        while (node !== null && node.tagName !== 'HTML') {
+            style = window.getComputedStyle(node);
+            position = style.getPropertyValue("position");
+            transform = style.getPropertyValue("transform");
+            if (position !== 'static' && parentNode === null) {
+                parentNode = node;
+            }
+            if (transform && transform !== 'none' && transformNode === null) {
+                transformNode = node;
+            }
+            if (position === 'fixed') {
+                parentNode = transformNode;
+                break;
+            }
+            node = node.parentNode;
+        }
+        var boxDirective = this.createBox(this.directiveElementRef.nativeElement, (position !== 'fixed'));
+        if ((position !== 'fixed' || parentNode) && !this.useRootViewContainer) {
+            if (parentNode === null) {
+                parentNode = node;
+            }
+            var boxParent = this.createBox(parentNode, true);
+            this.top = boxDirective.top - boxParent.top;
+            this.left = boxDirective.left - boxParent.left;
+        }
+        else {
+            this.top = boxDirective.top;
+            this.left = boxDirective.left;
+        }
+        if (position === 'fixed') {
+            this.position = 'fixed';
+        }
+        if (this.cpPosition === 'left') {
+            this.top += boxDirective.height * this.cpPositionOffset / 100 - this.dialogArrowOffset;
+            this.left -= this.cpWidth + this.dialogArrowSize - 2;
+        }
+        else if (this.cpPosition === 'top') {
+            this.top -= dialogHeight + this.dialogArrowSize;
+            this.left += this.cpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset;
+            this.arrowTop = dialogHeight - 1;
+        }
+        else if (this.cpPosition === 'bottom') {
+            this.top += boxDirective.height + this.dialogArrowSize;
+            this.left += this.cpPositionOffset / 100 * boxDirective.width - this.dialogArrowOffset;
+        }
+        else {
+            this.top += boxDirective.height * this.cpPositionOffset / 100 - this.dialogArrowOffset;
+            this.left += boxDirective.width + this.dialogArrowSize - 2;
+        }
+    };
+    ColorPickerComponent.prototype.setSaturation = function (val) {
+        var hsla = this.service.hsva2hsla(this.hsva);
+        hsla.s = val.v / val.rg;
+        this.hsva = this.service.hsla2hsva(hsla);
+        this.update();
+        this.directiveInstance.inputChanged({ input: 'saturation', value: val });
+    };
+    ColorPickerComponent.prototype.setLightness = function (val) {
+        var hsla = this.service.hsva2hsla(this.hsva);
+        hsla.l = val.v / val.rg;
+        this.hsva = this.service.hsla2hsva(hsla);
+        this.update();
+        this.directiveInstance.inputChanged({ input: 'lightness', value: val });
+    };
+    ColorPickerComponent.prototype.setHue = function (val) {
+        this.hsva.h = val.v / val.rg;
+        this.update();
+        this.directiveInstance.sliderChanged({ slider: 'hue', value: val });
+    };
+    ColorPickerComponent.prototype.setAlpha = function (val) {
+        this.hsva.a = val.v / val.rg;
+        this.update();
+        this.directiveInstance.sliderChanged({ slider: 'alpha', value: val });
+    };
+    ColorPickerComponent.prototype.setR = function (val) {
+        var rgba = this.service.hsvaToRgba(this.hsva);
+        rgba.r = val.v / val.rg;
+        this.hsva = this.service.rgbaToHsva(rgba);
+        this.update();
+        this.directiveInstance.inputChanged({ input: 'red', value: val });
+    };
+    ColorPickerComponent.prototype.setG = function (val) {
+        var rgba = this.service.hsvaToRgba(this.hsva);
+        rgba.g = val.v / val.rg;
+        this.hsva = this.service.rgbaToHsva(rgba);
+        this.update();
+        this.directiveInstance.inputChanged({ input: 'green', value: val });
+    };
+    ColorPickerComponent.prototype.setB = function (val) {
+        var rgba = this.service.hsvaToRgba(this.hsva);
+        rgba.b = val.v / val.rg;
+        this.hsva = this.service.rgbaToHsva(rgba);
+        this.update();
+        this.directiveInstance.inputChanged({ input: 'blue', value: val });
+    };
+    ColorPickerComponent.prototype.setA = function (val) {
+        this.hsva.a = val.v / val.rg;
+        this.update();
+        this.directiveInstance.inputChanged({ input: 'alpha', value: val });
+    };
+    ColorPickerComponent.prototype.setHex = function (val) {
+        this.setColorFromString(val);
+        this.directiveInstance.inputChanged({ input: 'hex', value: val });
+    };
+    ColorPickerComponent.prototype.setSaturationAndBrightness = function (val) {
+        this.hsva.s = val.s / val.rgX;
+        this.hsva.v = val.v / val.rgY;
+        this.update();
+        this.directiveInstance.sliderChanged({ slider: 'saturation-lightness', value: val });
+    };
+    ColorPickerComponent.prototype.formatPolicy = function () {
+        this.format = (this.format + 1) % 3;
+        return this.format;
+    };
+    ColorPickerComponent.prototype.update = function (emit) {
+        if (emit === void 0) { emit = true; }
+        if (this.sliderDimMax) {
+            var hsla = this.service.hsva2hsla(this.hsva);
+            var rgba = this.service.denormalizeRGBA(this.service.hsvaToRgba(this.hsva));
+            var hueRgba = this.service.denormalizeRGBA(this.service.hsvaToRgba(new formats_1.Hsva(this.hsva.h, 1, 1, 1)));
+            this.hslaText = new formats_1.Hsla(Math.round((hsla.h) * 360), Math.round(hsla.s * 100), Math.round(hsla.l * 100), Math.round(hsla.a * 100) / 100);
+            this.rgbaText = new formats_1.Rgba(rgba.r, rgba.g, rgba.b, Math.round(rgba.a * 100) / 100);
+            this.hexText = this.service.hexText(rgba, this.cpAlphaChannel === 'always' || this.cpAlphaChannel === 'hex8');
+            this.alphaSliderColor = 'rgb(' + rgba.r + ',' + rgba.g + ',' + rgba.b + ')';
+            this.hueSliderColor = 'rgb(' + hueRgba.r + ',' + hueRgba.g + ',' + hueRgba.b + ')';
+            var lastOutput = this.outputColor;
+            this.outputColor = this.service.outputFormat(this.hsva, this.cpOutputFormat, this.cpAlphaChannel);
+            this.selectedColor = this.service.outputFormat(this.hsva, 'rgba', null);
+            this.slider = new helpers_1.SliderPosition((this.hsva.h) * this.sliderDimMax.h - 8, this.hsva.s * this.sliderDimMax.s - 8, (1 - this.hsva.v) * this.sliderDimMax.v - 8, this.hsva.a * this.sliderDimMax.a - 8);
+            if (emit && lastOutput !== this.outputColor) {
+                this.directiveInstance.colorChanged(this.outputColor);
+            }
+        }
+    };
+    ColorPickerComponent.prototype.isDescendant = function (parent, child) {
+        var node = child.parentNode;
+        while (node !== null) {
+            if (node === parent) {
+                return true;
+            }
+            node = node.parentNode;
+        }
+        return false;
+    };
+    ColorPickerComponent.prototype.createBox = function (element, offset) {
+        return {
+            top: element.getBoundingClientRect().top + (offset ? window.pageYOffset : 0),
+            left: element.getBoundingClientRect().left + (offset ? window.pageXOffset : 0),
+            width: element.offsetWidth,
+            height: element.offsetHeight
+        };
+    };
+    return ColorPickerComponent;
+}());
+ColorPickerComponent.decorators = [
+    { type: core_1.Component, args: [{
+                selector: 'color-picker',
+                template: '<div class="color-picker" [hidden]="!show" [style.visibility]="this.hidden ? \'hidden\' : \'visible\'" [style.height.px]="cpHeight" [style.width.px]="cpWidth" [style.top.px]="top" [style.left.px]="left" [style.position]="position" #dialogPopup><div *ngIf="cpDialogDisplay==\'popup\'" class="arrow arrow-{{cpPosition}}" [style.top.px]="arrowTop"></div><div [slider] [style.background-color]="hueSliderColor" [rgX]="1" [rgY]="1" (newValue)="setSaturationAndBrightness($event)" class="saturation-lightness"><div [style.left.px]="slider.s" [style.top.px]="slider.v" class="cursor"></div></div><div class="box"><div class="left"><div class="selected-color-background"></div><div [style.background-color]="selectedColor" class="selected-color"></div></div><div class="right"><div *ngIf="cpAlphaChannel===\'disabled\'" style="height: 16px"></div><div [slider] [rgX]="1" (newValue)="setHue($event)" class="hue" #hueSlider><div [style.left.px]="slider.h" class="cursor"></div></div><div [hidden]="cpAlphaChannel===\'disabled\'" [slider] [style.background-color]="alphaSliderColor" [rgX]="1" (newValue)="setAlpha($event)" class="alpha" #alphaSlider><div [style.left.px]="slider.a" class="cursor"></div></div></div></div><div [hidden]="format!=2" class="hsla-text"><div class="box"><input [text] type="number" pattern="[0-9]*" min="0" max="360" [rg]="360" (newValue)="setHue($event)" [value]="hslaText.h"> <input [text] type="number" pattern="[0-9]*" min="0" max="100" [rg]="100" (newValue)="setSaturation($event)" [value]="hslaText.s"> <input [text] type="number" pattern="[0-9]*" min="0" max="100" [rg]="100" (newValue)="setLightness($event)" [value]="hslaText.l"> <input *ngIf="cpAlphaChannel!==\'disabled\'" [text] type="number" pattern="[0-9]+([\.,][0-9]{1,2})?" min="0" max="1" step="0.1" [rg]="1" (newValue)="setA($event)" [value]="hslaText.a"></div><div class="box"><div>H</div><div>S</div><div>L</div><div *ngIf="cpAlphaChannel!==\'disabled\'">A</div></div></div><div [hidden]="format!=1" class="rgba-text"><div class="box"><input [text] type="number" pattern="[0-9]*" min="0" max="255" [rg]="255" (newValue)="setR($event)" [value]="rgbaText.r"> <input [text] type="number" pattern="[0-9]*" min="0" max="255" [rg]="255" (newValue)="setG($event)" [value]="rgbaText.g"> <input [text] type="number" pattern="[0-9]*" min="0" max="255" [rg]="255" (newValue)="setB($event)" [value]="rgbaText.b"> <input *ngIf="cpAlphaChannel!==\'disabled\'" [text] type="number" pattern="[0-9]+([\.,][0-9]{1,2})?" min="0" max="1" step="0.1" [rg]="1" (newValue)="setA($event)" [value]="rgbaText.a"></div><div class="box"><div>R</div><div>G</div><div>B</div><div *ngIf="cpAlphaChannel!==\'disabled\'">A</div></div></div><div [hidden]="format!=0" class="hex-text"><div class="box"><input [text] (newValue)="setHex($event)" [value]="hexText"></div><div class="box"><div>Hex</div></div></div><div (click)="formatPolicy()" class="type-policy"></div><div *ngIf="cpPresetColors && cpPresetColors.length" class="preset-area"><hr><div class="preset-label">{{cpPresetLabel}}</div><div *ngFor="let color of cpPresetColors" class="preset-color" [style.backgroundColor]="color" (click)="setColorFromString(color)"></div></div><div *ngIf="cpOKButton || cpCancelButton" class="button-area"><button *ngIf="cpOKButton" type="button" class="{{cpOKButtonClass}}" (click)="oKColor()">{{cpOKButtonText}}</button> <button *ngIf="cpCancelButton" type="button" class="{{cpCancelButtonClass}}" (click)="cancelColor()">{{cpCancelButtonText}}</button></div></div>',
+                styles: ['.color-picker *{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;margin:0;font-size:11px}.color-picker{cursor:default;width:230px;height:auto;border:1px solid #777;left:30px;top:250px;position:absolute;z-index:100000;background-color:#fff;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.color-picker i{cursor:default;position:relative}.color-picker input{text-align:center;font-size:13px;height:26px;-moz-appearance:textfield}.color-picker input:invalid{box-shadow:none}.color-picker input:-moz-submit-invalid{box-shadow:none}.color-picker input:-moz-ui-invalid{box-shadow:none}.color-picker input::-webkit-inner-spin-button,.color-picker input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.color-picker .button-area{padding:0 16px 16px;text-align:right}.color-picker .preset-area{padding:4px 15px}.color-picker .preset-area .preset-label{width:100%;padding:4px;font-size:11px;text-align:left;color:#555}.color-picker .preset-area .preset-color{cursor:pointer;display:inline-block;width:18px;height:18px;margin:4px 6px 8px;-moz-border-radius:25%;-webkit-border-radius:25%;border-radius:25%;-khtml-border-radius:25%;border:1px solid #a9a9a9}.color-picker .arrow{height:0;width:0;border-style:solid;position:absolute;z-index:999999}.color-picker .arrow-right{border-width:5px 10px;border-color:transparent #777 transparent transparent;top:10px;left:-20px}.color-picker .arrow-left{border-width:5px 10px;border-color:transparent transparent transparent #777;top:10px;left:100%}.color-picker .arrow-bottom{border-width:10px 5px;border-color:transparent transparent #777;top:-20px;left:10px}.color-picker .arrow-top{border-width:10px 5px;border-color:#777 transparent transparent;left:10px}.color-picker div.cursor-sv{cursor:default;position:relative;-moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;-khtml-border-radius:50%;width:15px;height:15px;border:1px solid #ddd}.color-picker div.cursor{cursor:default;position:relative;-moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;-khtml-border-radius:50%;width:16px;height:16px;border:2px solid #222}.color-picker .saturation-lightness{cursor:pointer;width:100%;height:130px;border:none;background-size:100% 100%;background-image:url(data:image/png;base64,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)}.color-picker .alpha,.color-picker .hue{cursor:pointer;width:100%;height:16px;border:none;background-size:100% 100%}.color-picker .box{display:flex;padding:4px 8px}.color-picker .box .left{position:relative;padding:16px 8px}.color-picker .box .right{flex:1 1 auto;padding:12px 8px}.color-picker .hue{margin-bottom:16px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAAAQCAYAAAD06IYnAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AIWDwkUFWbCCAAAAFxJREFUaN7t0kEKg0AQAME2x83/n2qu5qCgD1iDhCoYdpnbQC9bbY1qVO/jvc6k3ad91s7/7F1/csgPrujuQ17BDYSFsBAWwgJhISyEBcJCWAgLhIWwEBYIi2f7Ar/1TCgFH2X9AAAAAElFTkSuQmCC)}.color-picker .alpha{background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJYAAAAQCAYAAAD06IYnAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4AIWDwYQlZMa3gAAAWVJREFUaN7tmEGO6jAQRCsOArHgBpyAJYGjcGocxAm4A2IHpmoWE0eBH+ezmFlNvU06shJ3W6VEelWMUQAIIF9f6qZpimsA1LYtS2uF51/u27YVAFZVRUkEoGHdPV/sIcbIEIIkUdI/9Xa7neyv61+SWFUVAVCSct00TWn2fv6u3+Ecfd3tXzy/0+nEUu+SPjo/kqzrmiQpScN6v98XewfA8/lMkiLJ2WxGSUopcT6fM6U0NX9/frfbjev1WtfrlZfLhYfDQQHG/AIOlnGwjINlHCxjHCzjYJm/TJWdCwquJXseFFzGwDNNeiKMOJTO8xQdDQaeB29+K9efeLaBo9J7vdvtJj1RjFFjfiv7qv95tjx/7leSQgh93e1ffMeIp6O+YQjho/N791t1XVOSSI7N//K+4/GoxWLBx+PB5/Op5XLJ+/3OlJJWqxU3m83ovv5iGf8KjYNlHCxjHCzjYBkHy5gf5gusvQU7U37jTAAAAABJRU5ErkJggg==)}.color-picker .selected-color{width:40px;height:40px;top:16px;left:8px;position:absolute;-moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;-khtml-border-radius:50%}.color-picker .selected-color-background{width:40px;height:40px;-moz-border-radius:50%;-webkit-border-radius:50%;border-radius:50%;-khtml-border-radius:50%;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAh0lEQVRYR+2W0QlAMQgD60zdfwOdqa8TmI/wQMr5K0I5bZLIzLOa2nt37VVVbd+dDx5obgCC3KBLwJ2ff4PnVidkf+ucIhw80HQaCLo3DMH3CRK3iFsmAWVl6hPNDwt8EvNE5q+YuEXcMgkonVM6SdyCoEvAnZ8v1Hjx817MilmxSUB5rdLJDycZgUAZUch/AAAAAElFTkSuQmCC)}.color-picker .type-policy{position:absolute;top:215px;right:12px;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAgCAYAAAAffCjxAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAACewAAAnsB01CO3AAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAIASURBVEiJ7ZY9axRRFIafsxMStrLQJpAgpBFhi+C9w1YSo00I6RZ/g9vZpBf/QOr4GyRgkSKNSrAadsZqQGwCkuAWyRZJsySwvhZ7N/vhzrgbLH3Ld8597jlzz50zJokyxXH8DqDVar0qi6v8BbItqSGpEcfxdlmsFWXkvX8AfAVWg3UKPEnT9GKujMzsAFgZsVaCN1VTQd77XUnrgE1kv+6935268WRpzrnHZvYRWC7YvC3pRZZl3wozqtVqiyH9IgjAspkd1Gq1xUJQtVrdB9ZKIAOthdg/Qc65LUk7wNIMoCVJO865rYFhkqjX6/d7vV4GPJwBMqofURS5JEk6FYBer/eeYb/Mo9WwFnPOvQbeAvfuAAK4BN4sAJtAG/gJIElmNuiJyba3EGNmZiPeZuEVmVell/Y/6N+CzDn3AXhEOOo7Hv/3BeAz8IzQkMPnJbuPx1wC+yYJ7/0nYIP5S/0FHKdp+rwCEEXRS/rf5Hl1Gtb2M0iSpCOpCZzPATmX1EySpHMLAsiy7MjMDoHrGSDXZnaYZdnRwBh7J91utwmczAA6CbG3GgPleX4jqUH/a1CktqRGnuc3hSCAMB32gKspkCtgb3KCQMmkjeP4WNJThrNNZval1WptTIsv7JtQ4tmIdRa8qSoEpWl6YWZNoAN0zKxZNPehpLSBZv2t+Q0CJ9lLnARQLAAAAABJRU5ErkJggg==);background-repeat:no-repeat;background-position:center;background-size:8px 16px;-moz-background-size:8px 16px;-webkit-background-size:8px 16px;-o-background-size:8px 16px;width:16px;height:24px}.color-picker .hsla-text,.color-picker .rgba-text{width:100%;font-size:11px;padding:4px 8px}.color-picker .hsla-text .box,.color-picker .rgba-text .box{padding:0 24px 8px 8px}.color-picker .hsla-text .box input,.color-picker .rgba-text .box input{min-width:0;flex:1;margin:0 8px 0 0;float:left;border:1px solid #a9a9a9;padding:1px}.color-picker .hsla-text .box input:last-child,.color-picker .rgba-text .box input:last-child{margin-right:0}.color-picker .hsla-text .box div,.color-picker .rgba-text .box div{flex:1 1 auto;text-align:center;color:#555;margin-right:8px}.color-picker .hsla-text .box div:last-child,.color-picker .rgba-text .box div:last-child{margin-right:0}.color-picker .hex-text{width:100%;font-size:11px;padding:4px 8px}.color-picker .hex-text .box{padding:0 24px 8px 8px}.color-picker .hex-text .box input{flex:1 1 auto;border:1px solid #a9a9a9;padding:1px}.color-picker .hex-text .box div{flex:1 1 auto;text-align:center;color:#555;float:left;clear:left}']
+            },] },
+];
+/** @nocollapse */
+ColorPickerComponent.ctorParameters = function () { return [
+    { type: core_1.ElementRef, },
+    { type: core_1.ChangeDetectorRef, },
+    { type: color_picker_service_1.ColorPickerService, },
+]; };
+ColorPickerComponent.propDecorators = {
+    'hueSlider': [{ type: core_1.ViewChild, args: ['hueSlider',] },],
+    'alphaSlider': [{ type: core_1.ViewChild, args: ['alphaSlider',] },],
+    'dialogElement': [{ type: core_1.ViewChild, args: ['dialogPopup',] },],
+};
+exports.ColorPickerComponent = ColorPickerComponent;
+//# sourceMappingURL=color-picker.component.js.map
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Hsva = (function () {
+    function Hsva(h, s, v, a) {
+        this.h = h;
+        this.s = s;
+        this.v = v;
+        this.a = a;
+    }
+    return Hsva;
+}());
+exports.Hsva = Hsva;
+var Hsla = (function () {
+    function Hsla(h, s, l, a) {
+        this.h = h;
+        this.s = s;
+        this.l = l;
+        this.a = a;
+    }
+    return Hsla;
+}());
+exports.Hsla = Hsla;
+var Rgba = (function () {
+    function Rgba(r, g, b, a) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+        this.a = a;
+    }
+    return Rgba;
+}());
+exports.Rgba = Rgba;
+//# sourceMappingURL=formats.js.map
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var core_1 = __webpack_require__(0);
+var TextDirective = (function () {
+    function TextDirective() {
+        this.newValue = new core_1.EventEmitter();
+    }
+    TextDirective.prototype.changeInput = function (value) {
+        if (this.rg === undefined) {
+            this.newValue.emit(value);
+        }
+        else {
+            var numeric = parseFloat(value);
+            if (!isNaN(numeric) && numeric >= 0 && numeric <= this.rg) {
+                this.newValue.emit({ v: numeric, rg: this.rg });
+            }
+        }
+    };
+    return TextDirective;
+}());
+TextDirective.decorators = [
+    { type: core_1.Directive, args: [{
+                selector: '[text]',
+                host: {
+                    '(input)': 'changeInput($event.target.value)'
+                }
+            },] },
+];
+/** @nocollapse */
+TextDirective.ctorParameters = function () { return []; };
+TextDirective.propDecorators = {
+    'newValue': [{ type: core_1.Output, args: ['newValue',] },],
+    'text': [{ type: core_1.Input, args: ['text',] },],
+    'rg': [{ type: core_1.Input, args: ['rg',] },],
+};
+exports.TextDirective = TextDirective;
+var SliderDirective = (function () {
+    function SliderDirective(el) {
+        var _this = this;
+        this.el = el;
+        this.newValue = new core_1.EventEmitter();
+        this.listenerMove = function (event) { _this.move(event); };
+        this.listenerStop = function () { _this.stop(); };
+    }
+    SliderDirective.prototype.setCursor = function (event) {
+        var height = this.el.nativeElement.offsetHeight;
+        var width = this.el.nativeElement.offsetWidth;
+        var x = Math.max(0, Math.min(this.getX(event), width));
+        var y = Math.max(0, Math.min(this.getY(event), height));
+        if (this.rgX !== undefined && this.rgY !== undefined) {
+            this.newValue.emit({ s: x / width, v: (1 - y / height), rgX: this.rgX, rgY: this.rgY });
+        }
+        else if (this.rgX === undefined && this.rgY !== undefined) {
+            this.newValue.emit({ v: y / height, rg: this.rgY });
+        }
+        else {
+            this.newValue.emit({ v: x / width, rg: this.rgX });
+        }
+    };
+    SliderDirective.prototype.move = function (event) {
+        event.preventDefault();
+        this.setCursor(event);
+    };
+    SliderDirective.prototype.start = function (event) {
+        this.setCursor(event);
+        document.addEventListener('mousemove', this.listenerMove);
+        document.addEventListener('touchmove', this.listenerMove);
+        document.addEventListener('mouseup', this.listenerStop);
+        document.addEventListener('touchend', this.listenerStop);
+    };
+    SliderDirective.prototype.stop = function () {
+        document.removeEventListener('mousemove', this.listenerMove);
+        document.removeEventListener('touchmove', this.listenerMove);
+        document.removeEventListener('mouseup', this.listenerStop);
+        document.removeEventListener('touchend', this.listenerStop);
+    };
+    SliderDirective.prototype.getX = function (event) {
+        return (event.pageX !== undefined ? event.pageX : event.touches[0].pageX) - this.el.nativeElement.getBoundingClientRect().left - window.pageXOffset;
+    };
+    SliderDirective.prototype.getY = function (event) {
+        return (event.pageY !== undefined ? event.pageY : event.touches[0].pageY) - this.el.nativeElement.getBoundingClientRect().top - window.pageYOffset;
+    };
+    return SliderDirective;
+}());
+SliderDirective.decorators = [
+    { type: core_1.Directive, args: [{
+                selector: '[slider]',
+                host: {
+                    '(mousedown)': 'start($event)',
+                    '(touchstart)': 'start($event)'
+                }
+            },] },
+];
+/** @nocollapse */
+SliderDirective.ctorParameters = function () { return [
+    { type: core_1.ElementRef, },
+]; };
+SliderDirective.propDecorators = {
+    'newValue': [{ type: core_1.Output, args: ['newValue',] },],
+    'slider': [{ type: core_1.Input, args: ['slider',] },],
+    'rgX': [{ type: core_1.Input, args: ['rgX',] },],
+    'rgY': [{ type: core_1.Input, args: ['rgY',] },],
+};
+exports.SliderDirective = SliderDirective;
+var SliderPosition = (function () {
+    function SliderPosition(h, s, v, a) {
+        this.h = h;
+        this.s = s;
+        this.v = v;
+        this.a = a;
+    }
+    return SliderPosition;
+}());
+exports.SliderPosition = SliderPosition;
+var SliderDimension = (function () {
+    function SliderDimension(h, s, v, a) {
+        this.h = h;
+        this.s = s;
+        this.v = v;
+        this.a = a;
+    }
+    return SliderDimension;
+}());
+exports.SliderDimension = SliderDimension;
+//# sourceMappingURL=helpers.js.map
+
+/***/ }),
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40194,9 +40994,9 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(2);
-var ScalarObservable_1 = __webpack_require__(98);
-var EmptyObservable_1 = __webpack_require__(63);
-var isScheduler_1 = __webpack_require__(108);
+var ScalarObservable_1 = __webpack_require__(106);
+var EmptyObservable_1 = __webpack_require__(68);
+var isScheduler_1 = __webpack_require__(116);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -40311,7 +41111,7 @@ exports.ArrayObservable = ArrayObservable;
 //# sourceMappingURL=ArrayObservable.js.map
 
 /***/ }),
-/* 63 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40398,7 +41198,7 @@ exports.EmptyObservable = EmptyObservable;
 //# sourceMappingURL=EmptyObservable.js.map
 
 /***/ }),
-/* 64 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40491,7 +41291,7 @@ var MapSubscriber = (function (_super) {
 //# sourceMappingURL=map.js.map
 
 /***/ }),
-/* 65 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40501,8 +41301,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(34);
-var subscribeToResult_1 = __webpack_require__(36);
+var OuterSubscriber_1 = __webpack_require__(29);
+var subscribeToResult_1 = __webpack_require__(30);
 /**
  * Converts a higher-order Observable into a first-order Observable which
  * concurrently delivers all values that are emitted on the inner Observables.
@@ -40608,7 +41408,7 @@ exports.MergeAllSubscriber = MergeAllSubscriber;
 //# sourceMappingURL=mergeAll.js.map
 
 /***/ }),
-/* 66 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40652,7 +41452,7 @@ exports.$$iterator = exports.iterator;
 //# sourceMappingURL=iterator.js.map
 
 /***/ }),
-/* 67 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40684,7 +41484,7 @@ exports.$$observable = exports.observable;
 //# sourceMappingURL=observable.js.map
 
 /***/ }),
-/* 68 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40700,7 +41500,7 @@ exports.$$rxSubscriber = exports.rxSubscriber;
 //# sourceMappingURL=rxSubscriber.js.map
 
 /***/ }),
-/* 69 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40734,7 +41534,7 @@ exports.EmptyError = EmptyError;
 //# sourceMappingURL=EmptyError.js.map
 
 /***/ }),
-/* 70 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40743,11 +41543,6 @@ exports.isArray = Array.isArray || (function (x) { return x && typeof x.length =
 //# sourceMappingURL=isArray.js.map
 
 /***/ }),
-/* 71 */,
-/* 72 */,
-/* 73 */,
-/* 74 */,
-/* 75 */,
 /* 76 */,
 /* 77 */,
 /* 78 */,
@@ -40755,20 +41550,459 @@ exports.isArray = Array.isArray || (function (x) { return x && typeof x.length =
 /* 80 */,
 /* 81 */,
 /* 82 */,
-/* 83 */,
+/* 83 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_takeUntil__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_takeUntil___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_add_operator_takeUntil__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__search_filter_pipe__ = __webpack_require__(42);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MultiselectDropdown; });
+
+
+
+
+
+
+/*
+ * Angular 2 Dropdown Multiselect for Bootstrap
+ *
+ * Simon Lindh
+ * https://github.com/softsimon/angular-2-dropdown-multiselect
+ */
+var MULTISELECT_VALUE_ACCESSOR = {
+    provide: __WEBPACK_IMPORTED_MODULE_2__angular_forms__["NG_VALUE_ACCESSOR"],
+    useExisting: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__angular_core__["forwardRef"])(function () { return MultiselectDropdown; }),
+    multi: true
+};
+var MultiselectDropdown = (function () {
+    function MultiselectDropdown(element, fb, searchFilter, differs) {
+        this.element = element;
+        this.fb = fb;
+        this.searchFilter = searchFilter;
+        this.filterControl = this.fb.control('');
+        this.disabled = false;
+        this.selectionLimitReached = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["EventEmitter"]();
+        this.dropdownClosed = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["EventEmitter"]();
+        this.dropdownOpened = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["EventEmitter"]();
+        this.onAdded = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["EventEmitter"]();
+        this.onRemoved = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["EventEmitter"]();
+        this.onLazyLoad = new __WEBPACK_IMPORTED_MODULE_1__angular_core__["EventEmitter"]();
+        this.onFilter = this.filterControl.valueChanges;
+        this.destroyed$ = new __WEBPACK_IMPORTED_MODULE_3_rxjs_Subject__["Subject"]();
+        this.filteredOptions = [];
+        this.renderFilteredOptions = [];
+        this.model = [];
+        this.numSelected = 0;
+        this.renderItems = true;
+        this.defaultSettings = {
+            closeOnClickOutside: true,
+            pullRight: false,
+            enableSearch: false,
+            searchRenderLimit: 0,
+            searchRenderAfter: 1,
+            searchMaxLimit: 0,
+            searchMaxRenderedItems: 0,
+            checkedStyle: 'checkboxes',
+            buttonClasses: 'btn btn-default btn-secondary',
+            containerClasses: 'dropdown-inline',
+            selectionLimit: 0,
+            minSelectionLimit: 0,
+            closeOnSelect: false,
+            autoUnselect: false,
+            showCheckAll: false,
+            showUncheckAll: false,
+            fixedTitle: false,
+            dynamicTitleMaxItems: 3,
+            maxHeight: '300px',
+            isLazyLoad: false,
+            stopScrollPropagation: false,
+            loadViewDistance: 1
+        };
+        this.defaultTexts = {
+            checkAll: 'Check all',
+            uncheckAll: 'Uncheck all',
+            checked: 'checked',
+            checkedPlural: 'checked',
+            searchPlaceholder: 'Search...',
+            searchEmptyResult: 'Nothing found...',
+            searchNoRenderText: 'Type in search box to see results...',
+            defaultTitle: 'Select',
+            allSelected: 'All selected',
+        };
+        this._isVisible = false;
+        this._workerDocClicked = false;
+        this.onModelChange = function (_) { };
+        this.onModelTouched = function () { };
+        this.differ = differs.find([]).create(null);
+        this.settings = this.defaultSettings;
+        this.texts = this.defaultTexts;
+    }
+    MultiselectDropdown.prototype.onClick = function (target) {
+        if (!this.isVisible || !this.settings.closeOnClickOutside)
+            return;
+        var parentFound = false;
+        while (target != null && !parentFound) {
+            if (target === this.element.nativeElement) {
+                parentFound = true;
+            }
+            target = target.parentElement;
+        }
+        if (!parentFound) {
+            this.isVisible = false;
+            this.dropdownClosed.emit();
+        }
+    };
+    Object.defineProperty(MultiselectDropdown.prototype, "isVisible", {
+        get: function () {
+            return this._isVisible;
+        },
+        set: function (val) {
+            this._isVisible = val;
+            this._workerDocClicked = val ? false : this._workerDocClicked;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MultiselectDropdown.prototype, "searchLimit", {
+        get: function () {
+            return this.settings.searchRenderLimit;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MultiselectDropdown.prototype, "searchRenderAfter", {
+        get: function () {
+            return this.settings.searchRenderAfter;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(MultiselectDropdown.prototype, "searchLimitApplied", {
+        get: function () {
+            return this.searchLimit > 0 && this.options.length > this.searchLimit;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    MultiselectDropdown.prototype.getItemStyle = function (option) {
+        if (!option.isLabel) {
+            return { 'cursor': 'pointer' };
+        }
+    };
+    MultiselectDropdown.prototype.getItemStyleSelectionDisabled = function () {
+        if (this.disabledSelection) {
+            return { 'cursor': 'default' };
+        }
+    };
+    MultiselectDropdown.prototype.ngOnInit = function () {
+        this.settings = Object.assign(this.defaultSettings, this.settings);
+        this.texts = Object.assign(this.defaultTexts, this.texts);
+        this.title = this.texts.defaultTitle || '';
+        this.filterControl.valueChanges
+            .takeUntil(this.destroyed$)
+            .subscribe(function () {
+            this.updateRenderItems();
+            if (this.settings.isLazyLoad) {
+                this.load();
+            }
+        }.bind(this));
+    };
+    MultiselectDropdown.prototype.ngOnChanges = function (changes) {
+        if (changes['options']) {
+            this.options = this.options || [];
+            this.parents = this.options
+                .filter(function (option) { return typeof option.parentId === 'number'; })
+                .map(function (option) { return option.parentId; });
+            this.updateRenderItems();
+            if (this.texts) {
+                this.updateTitle();
+            }
+        }
+        if (changes['texts'] && !changes['texts'].isFirstChange()) {
+            this.updateTitle();
+        }
+    };
+    MultiselectDropdown.prototype.ngOnDestroy = function () {
+        this.destroyed$.next();
+    };
+    MultiselectDropdown.prototype.updateRenderItems = function () {
+        this.renderItems = !this.searchLimitApplied || this.filterControl.value.length >= this.searchRenderAfter;
+        this.filteredOptions = this.searchFilter.transform(this.options, this.settings.isLazyLoad ? '' : this.filterControl.value, this.settings.searchMaxLimit, this.settings.searchMaxRenderedItems);
+        this.renderFilteredOptions = this.renderItems ? this.filteredOptions : [];
+    };
+    MultiselectDropdown.prototype.writeValue = function (value) {
+        if (value !== undefined && value !== null) {
+            this.model = Array.isArray(value) ? value : [value];
+        }
+        else {
+            this.model = [];
+        }
+    };
+    MultiselectDropdown.prototype.registerOnChange = function (fn) {
+        this.onModelChange = fn;
+    };
+    MultiselectDropdown.prototype.registerOnTouched = function (fn) {
+        this.onModelTouched = fn;
+    };
+    MultiselectDropdown.prototype.setDisabledState = function (isDisabled) {
+        this.disabled = isDisabled;
+    };
+    MultiselectDropdown.prototype.ngDoCheck = function () {
+        var changes = this.differ.diff(this.model);
+        if (changes) {
+            this.updateNumSelected();
+            this.updateTitle();
+        }
+    };
+    MultiselectDropdown.prototype.validate = function (_c) {
+        return (this.model && this.model.length) ? null : {
+            required: {
+                valid: false,
+            },
+        };
+    };
+    MultiselectDropdown.prototype.registerOnValidatorChange = function (_fn) {
+        throw new Error('Method not implemented.');
+    };
+    MultiselectDropdown.prototype.clearSearch = function (event) {
+        if (event.stopPropagation) {
+            event.stopPropagation();
+        }
+        this.filterControl.setValue('');
+    };
+    MultiselectDropdown.prototype.toggleDropdown = function () {
+        this.isVisible = !this.isVisible;
+        this.isVisible ? this.dropdownOpened.emit() : this.dropdownClosed.emit();
+    };
+    MultiselectDropdown.prototype.isSelected = function (option) {
+        return this.model && this.model.indexOf(option.id) > -1;
+    };
+    MultiselectDropdown.prototype.setSelected = function (_event, option) {
+        var _this = this;
+        if (option.isLabel) {
+            return;
+        }
+        if (!this.disabledSelection) {
+            if (_event.stopPropagation) {
+                _event.stopPropagation();
+            }
+            var index = this.model.indexOf(option.id);
+            if (index > -1) {
+                if ((this.settings.minSelectionLimit === undefined) || (this.numSelected > this.settings.minSelectionLimit)) {
+                    this.model.splice(index, 1);
+                    this.onRemoved.emit(option.id);
+                }
+                var parentIndex = option.parentId && this.model.indexOf(option.parentId);
+                if (parentIndex >= 0) {
+                    this.model.splice(parentIndex, 1);
+                    this.onRemoved.emit(option.parentId);
+                }
+                else if (this.parents.indexOf(option.id) > -1) {
+                    var childIds_1 = this.options.filter(function (child) { return _this.model.indexOf(child.id) > -1 && child.parentId == option.id; }).map(function (child) { return child.id; });
+                    this.model = this.model.filter(function (id) { return childIds_1.indexOf(id) < 0; });
+                    childIds_1.forEach(function (childId) { return _this.onRemoved.emit(childId); });
+                }
+            }
+            else {
+                if (this.settings.selectionLimit === 0 || (this.settings.selectionLimit && this.model.length < this.settings.selectionLimit)) {
+                    this.model.push(option.id);
+                    this.onAdded.emit(option.id);
+                    if (option.parentId) {
+                        var children = this.options.filter(function (child) { return child.id !== option.id && child.parentId == option.parentId; });
+                        if (children.every(function (child) { return _this.model.indexOf(child.id) > -1; })) {
+                            this.model.push(option.parentId);
+                            this.onAdded.emit(option.parentId);
+                        }
+                    }
+                    else if (this.parents.indexOf(option.id) > -1) {
+                        var children = this.options.filter(function (child) { return _this.model.indexOf(child.id) < 0 && child.parentId == option.id; });
+                        children.forEach(function (child) {
+                            _this.model.push(child.id);
+                            _this.onAdded.emit(child.id);
+                        });
+                    }
+                }
+                else {
+                    if (this.settings.autoUnselect) {
+                        this.model.push(option.id);
+                        this.onAdded.emit(option.id);
+                        var removedOption = this.model.shift();
+                        this.onRemoved.emit(removedOption);
+                    }
+                    else {
+                        this.selectionLimitReached.emit(this.model.length);
+                        return;
+                    }
+                }
+            }
+            if (this.settings.closeOnSelect) {
+                this.toggleDropdown();
+            }
+            this.model = this.model.slice();
+            this.onModelChange(this.model);
+            this.onModelTouched();
+        }
+    };
+    MultiselectDropdown.prototype.updateNumSelected = function () {
+        var _this = this;
+        this.numSelected = this.model.filter(function (id) { return _this.parents.indexOf(id) < 0; }).length || 0;
+    };
+    MultiselectDropdown.prototype.updateTitle = function () {
+        var _this = this;
+        if (this.numSelected === 0 || this.settings.fixedTitle) {
+            this.title = (this.texts) ? this.texts.defaultTitle : '';
+        }
+        else if (this.settings.displayAllSelectedText && this.model.length === this.options.length) {
+            this.title = (this.texts) ? this.texts.allSelected : '';
+        }
+        else if (this.settings.dynamicTitleMaxItems && this.settings.dynamicTitleMaxItems >= this.numSelected) {
+            this.title = this.options
+                .filter(function (option) {
+                return _this.model.indexOf(option.id) > -1;
+            })
+                .map(function (option) { return option.name; })
+                .join(', ');
+        }
+        else {
+            this.title = this.numSelected
+                + ' '
+                + (this.numSelected === 1 ? this.texts.checked : this.texts.checkedPlural);
+        }
+    };
+    MultiselectDropdown.prototype.searchFilterApplied = function () {
+        return this.settings.enableSearch && this.filterControl.value && this.filterControl.value.length > 0;
+    };
+    MultiselectDropdown.prototype.checkAll = function () {
+        var _this = this;
+        if (!this.disabledSelection) {
+            var checkedOptions = (!this.searchFilterApplied() ? this.options : this.filteredOptions)
+                .filter(function (option) {
+                if (_this.model.indexOf(option.id) === -1) {
+                    _this.onAdded.emit(option.id);
+                    return true;
+                }
+                return false;
+            }).map(function (option) { return option.id; });
+            this.model = this.model.concat(checkedOptions);
+            this.onModelChange(this.model);
+            this.onModelTouched();
+        }
+    };
+    MultiselectDropdown.prototype.uncheckAll = function () {
+        var _this = this;
+        if (!this.disabledSelection) {
+            var unCheckedOptions_1 = (!this.searchFilterApplied() ? this.model
+                : this.filteredOptions.map(function (option) { return option.id; }));
+            this.model = this.model.filter(function (id) {
+                if (((unCheckedOptions_1.indexOf(id) < 0) && (_this.settings.minSelectionLimit === undefined)) || ((unCheckedOptions_1.indexOf(id) < _this.settings.minSelectionLimit))) {
+                    return true;
+                }
+                else {
+                    _this.onRemoved.emit(id);
+                    return false;
+                }
+            });
+            this.onModelChange(this.model);
+            this.onModelTouched();
+        }
+    };
+    MultiselectDropdown.prototype.preventCheckboxCheck = function (event, option) {
+        if (this.settings.selectionLimit && !this.settings.autoUnselect &&
+            this.model.length >= this.settings.selectionLimit &&
+            this.model.indexOf(option.id) === -1 &&
+            event.preventDefault) {
+            event.preventDefault();
+        }
+    };
+    MultiselectDropdown.prototype.isCheckboxDisabled = function () {
+        return this.disabledSelection;
+    };
+    MultiselectDropdown.prototype.checkScrollPosition = function (ev) {
+        var scrollTop = ev.target.scrollTop;
+        var scrollHeight = ev.target.scrollHeight;
+        var scrollElementHeight = ev.target.clientHeight;
+        var roundingPixel = 1;
+        var gutterPixel = 1;
+        if (scrollTop >= scrollHeight - (1 + this.settings.loadViewDistance) * scrollElementHeight - roundingPixel - gutterPixel) {
+            this.load();
+        }
+    };
+    MultiselectDropdown.prototype.checkScrollPropagation = function (ev, element) {
+        var scrollTop = element.scrollTop;
+        var scrollHeight = element.scrollHeight;
+        var scrollElementHeight = element.clientHeight;
+        if ((ev.deltaY > 0 && scrollTop + scrollElementHeight >= scrollHeight) || (ev.deltaY < 0 && scrollTop <= 0)) {
+            ev = ev || window.event;
+            ev.preventDefault && ev.preventDefault();
+            ev.returnValue = false;
+        }
+    };
+    MultiselectDropdown.prototype.load = function () {
+        this.onLazyLoad.emit({
+            length: this.options.length,
+            filter: this.filterControl.value
+        });
+    };
+    return MultiselectDropdown;
+}());
+
+MultiselectDropdown.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"], args: [{
+                selector: 'ss-multiselect-dropdown',
+                template: '<div class="dropdown" [ngClass]="settings.containerClasses" [class.open]="isVisible"><button type="button" class="dropdown-toggle" [ngClass]="settings.buttonClasses" (click)="toggleDropdown()" [disabled]="disabled">{{ title }}<span class="caret"></span></button><ul #scroller *ngIf="isVisible" class="dropdown-menu" (scroll)="settings.isLazyLoad ? checkScrollPosition($event) : null" (wheel)="settings.stopScrollPropagation ? checkScrollPropagation($event, scroller) : null" [class.pull-right]="settings.pullRight" [class.dropdown-menu-right]="settings.pullRight" [style.max-height]="settings.maxHeight" style="display: block; height: auto; overflow-y: auto"><li class="dropdown-item search" *ngIf="settings.enableSearch"><div class="input-group input-group-sm"><span class="input-group-addon" id="sizing-addon3"><i class="fa fa-search"></i></span> <input type="text" class="form-control" placeholder="{{ texts.searchPlaceholder }}" aria-describedby="sizing-addon3" [formControl]="filterControl" autofocus> <span class="input-group-btn" *ngIf="filterControl.value.length > 0"><button class="btn btn-default btn-secondary" type="button" (click)="clearSearch($event)"><i class="fa fa-times"></i></button></span></div></li><li class="dropdown-divider divider" *ngIf="settings.enableSearch"></li><li class="dropdown-item check-control check-control-check" *ngIf="settings.showCheckAll && !disabledSelection"><a href="javascript:;" role="menuitem" tabindex="-1" (click)="checkAll()"><span style="width: 16px" [ngClass]="{\'glyphicon glyphicon-ok\': settings.checkedStyle !== \'fontawesome\',\'fa fa-check\': settings.checkedStyle === \'fontawesome\'}"></span> {{ texts.checkAll }}</a></li><li class="dropdown-item check-control check-control-uncheck" *ngIf="settings.showUncheckAll && !disabledSelection"><a href="javascript:;" role="menuitem" tabindex="-1" (click)="uncheckAll()"><span style="width: 16px" [ngClass]="{\'glyphicon glyphicon-remove\': settings.checkedStyle !== \'fontawesome\',\'fa fa-times\': settings.checkedStyle === \'fontawesome\'}"></span> {{ texts.uncheckAll }}</a></li><li *ngIf="settings.showCheckAll || settings.showUncheckAll" class="dropdown-divider divider"></li><li *ngIf="!renderItems" class="dropdown-item empty">{{ texts.searchNoRenderText }}</li><li *ngIf="renderItems && !renderFilteredOptions.length" class="dropdown-item empty">{{ texts.searchEmptyResult }}</li><li class="dropdown-item" *ngFor="let option of renderFilteredOptions" (click)="setSelected($event, option)" [ngStyle]="getItemStyle(option)" [ngClass]="option.classes" [class.dropdown-header]="option.isLabel"><div><a *ngIf="!option.isLabel; else label" href="javascript:;" role="menuitem" tabindex="-1" [style.padding-left]="this.parents.length>0&&this.parents.indexOf(option.id)<0&&\'30px\'" [ngStyle]="getItemStyleSelectionDisabled()"><ng-container [ngSwitch]="settings.checkedStyle"><input *ngSwitchCase="\'checkboxes\'" type="checkbox" [checked]="isSelected(option)" (click)="preventCheckboxCheck($event, option)" [disabled]="isCheckboxDisabled()" [ngStyle]="getItemStyleSelectionDisabled()" > <span *ngSwitchCase="\'glyphicon\'" style="width: 16px" class="glyphicon" [class.glyphicon-ok]="isSelected(option)"></span> <span *ngSwitchCase="\'fontawesome\'" style="width: 16px;display: inline-block"><i *ngIf="isSelected(option)" class="fa fa-check" aria-hidden="true"></i></span></ng-container><span [ngClass]="settings.itemClasses" [style.font-weight]="this.parents.indexOf(option.id)>=0?\'bold\':\'normal\'">{{ option.name }}</span></a><ng-template #label>{{ option.name }}</ng-template></div></li></ul></div>',
+                styles: ['a {  outline: none !important;}.dropdown-inline {  display: inline-block;}.dropdown-toggle .caret {  margin-left: 4px;  white-space: nowrap;  display: inline-block;}'],
+                providers: [MULTISELECT_VALUE_ACCESSOR, __WEBPACK_IMPORTED_MODULE_4__search_filter_pipe__["a" /* MultiSelectSearchFilter */]]
+            },] },
+];
+/** @nocollapse */
+MultiselectDropdown.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["ElementRef"], },
+    { type: __WEBPACK_IMPORTED_MODULE_2__angular_forms__["FormBuilder"], },
+    { type: __WEBPACK_IMPORTED_MODULE_4__search_filter_pipe__["a" /* MultiSelectSearchFilter */], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["IterableDiffers"], },
+]; };
+MultiselectDropdown.propDecorators = {
+    'options': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"] },],
+    'settings': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"] },],
+    'texts': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"] },],
+    'disabled': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"] },],
+    'disabledSelection': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Input"] },],
+    'selectionLimitReached': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Output"] },],
+    'dropdownClosed': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Output"] },],
+    'dropdownOpened': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Output"] },],
+    'onAdded': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Output"] },],
+    'onRemoved': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Output"] },],
+    'onLazyLoad': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Output"] },],
+    'onFilter': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Output"] },],
+    'onClick': [{ type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["HostListener"], args: ['document: click', ['$event.target'],] },],
+};
+//# sourceMappingURL=dropdown.component.js.map
+
+/***/ }),
 /* 84 */,
 /* 85 */,
 /* 86 */,
 /* 87 */,
 /* 88 */,
-/* 89 */
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var core_1 = __webpack_require__(0);
-var ng2_auto_complete_component_1 = __webpack_require__(57);
-var forms_1 = __webpack_require__(38);
+var ng2_auto_complete_component_1 = __webpack_require__(59);
+var forms_1 = __webpack_require__(22);
 /**
  * display auto-complete section with input and dropdown list when it is clicked
  */
@@ -41012,13 +42246,13 @@ exports.Ng2AutoCompleteDirective = Ng2AutoCompleteDirective;
 //# sourceMappingURL=ng2-auto-complete.directive.js.map
 
 /***/ }),
-/* 90 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cloudinary_transforms_class__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cloudinary_image_service__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__cloudinary_transforms_class__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__cloudinary_image_service__ = __webpack_require__(61);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CloudinaryImageComponent; });
 
 
@@ -41269,7 +42503,7 @@ var CloudinaryImageComponent = (function () {
 //# sourceMappingURL=cloudinary-image.component.js.map
 
 /***/ }),
-/* 91 */
+/* 97 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41332,7 +42566,7 @@ var CloudinaryTransforms = (function () {
 //# sourceMappingURL=cloudinary-transforms.class.js.map
 
 /***/ }),
-/* 92 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41347,7 +42581,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var file_uploader_class_1 = __webpack_require__(61);
+var file_uploader_class_1 = __webpack_require__(63);
 var FileDropDirective = (function () {
     function FileDropDirective(element) {
         this.fileOver = new core_1.EventEmitter();
@@ -41451,12 +42685,12 @@ exports.FileDropDirective = FileDropDirective;
 
 
 /***/ }),
-/* 93 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var file_like_object_class_1 = __webpack_require__(60);
+var file_like_object_class_1 = __webpack_require__(62);
 var FileItem = (function () {
     function FileItem(uploader, some, options) {
         this.url = '/';
@@ -41584,7 +42818,7 @@ exports.FileItem = FileItem;
 
 
 /***/ }),
-/* 94 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41599,7 +42833,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var file_uploader_class_1 = __webpack_require__(61);
+var file_uploader_class_1 = __webpack_require__(63);
 // todo: filters
 var FileSelectDirective = (function () {
     function FileSelectDirective(element) {
@@ -41646,7 +42880,194 @@ exports.FileSelectDirective = FileSelectDirective;
 
 
 /***/ }),
-/* 95 */
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var core_1 = __webpack_require__(0);
+var color_picker_service_1 = __webpack_require__(37);
+var color_picker_component_1 = __webpack_require__(64);
+var ColorPickerDirective = (function () {
+    function ColorPickerDirective(appRef, vcRef, el, injector, service, cfr, cdr) {
+        this.appRef = appRef;
+        this.vcRef = vcRef;
+        this.el = el;
+        this.injector = injector;
+        this.service = service;
+        this.cfr = cfr;
+        this.cdr = cdr;
+        this.colorPickerSelect = new core_1.EventEmitter(true);
+        this.colorPickerChange = new core_1.EventEmitter(false);
+        this.cpInputChange = new core_1.EventEmitter(true);
+        this.cpSliderChange = new core_1.EventEmitter(true);
+        this.cpToggleChange = new core_1.EventEmitter(true);
+        this.cpPosition = 'right';
+        this.cpPositionOffset = '0%';
+        this.cpPositionRelativeToArrow = false;
+        this.cpOutputFormat = 'hex';
+        this.cpPresetLabel = 'Preset colors';
+        this.cpCancelButton = false;
+        this.cpCancelButtonClass = 'cp-cancel-button-class';
+        this.cpCancelButtonText = 'Cancel';
+        this.cpOKButton = false;
+        this.cpOKButtonClass = 'cp-ok-button-class';
+        this.cpOKButtonText = 'OK';
+        this.cpFallbackColor = '#000';
+        this.cpHeight = 'auto';
+        this.cpWidth = '230px';
+        this.cpIgnoredElements = [];
+        this.cpDialogDisplay = 'popup';
+        this.cpSaveClickOutside = true;
+        this.cpAlphaChannel = 'enabled';
+        this.cpUseRootViewContainer = false;
+        this.ignoreChanges = false;
+        this.created = false;
+    }
+    ColorPickerDirective.prototype.ngOnChanges = function (changes) {
+        if (changes.cpToggle) {
+            if (changes.cpToggle.currentValue)
+                this.openDialog();
+            if (!changes.cpToggle.currentValue && this.dialog)
+                this.dialog.closeColorPicker();
+        }
+        if (changes.colorPicker) {
+            if (this.dialog && !this.ignoreChanges) {
+                if (this.cpDialogDisplay === 'inline') {
+                    this.dialog.setInitialColor(changes.colorPicker.currentValue);
+                }
+                this.dialog.setColorFromString(changes.colorPicker.currentValue, false);
+            }
+            this.ignoreChanges = false;
+        }
+        if (changes.cpPresetLabel || changes.cpPresetColors) {
+            if (this.dialog) {
+                this.dialog.setPresetConfig(this.cpPresetLabel, this.cpPresetColors);
+            }
+        }
+    };
+    ColorPickerDirective.prototype.ngOnInit = function () {
+        this.colorPicker = this.colorPicker || this.cpFallbackColor || 'rgba(0, 0, 0, 1)';
+        /*let hsva = this.service.stringToHsva(this.colorPicker);
+        if (hsva === null) hsva = this.service.stringToHsva(this.colorPicker, true);
+        if (hsva == null) {
+            hsva = this.service.stringToHsva(this.cpFallbackColor);
+        }
+        let color = this.service.outputFormat(hsva, this.cpOutputFormat, this.cpAlphaChannel);
+        if (color !== this.colorPicker) {
+            //setTimeout(() => {
+              this.colorPickerChange.emit(color);
+              this.cdr.detectChanges();
+            //}, 0);
+        }*/
+    };
+    ColorPickerDirective.prototype.onClick = function () {
+        var _this = this;
+        if (this.cpIgnoredElements.filter(function (item) { return item === _this.el.nativeElement; }).length === 0) {
+            this.openDialog();
+        }
+    };
+    ColorPickerDirective.prototype.openDialog = function () {
+        if (!this.created) {
+            this.created = true;
+            var vcRef = this.vcRef;
+            if (this.cpUseRootViewContainer && this.cpDialogDisplay !== 'inline') {
+                var classOfRootComponent = this.appRef.componentTypes[0];
+                var appInstance = this.injector.get(classOfRootComponent);
+                vcRef = appInstance.vcRef || appInstance.viewContainerRef || this.vcRef;
+                if (vcRef === this.vcRef) {
+                    console.warn("You are using cpUseRootViewContainer, but the root component is not exposing viewContainerRef!" +
+                        "Please expose it by adding 'public vcRef: ViewContainerRef' to the constructor.");
+                }
+            }
+            var compFactory = this.cfr.resolveComponentFactory(color_picker_component_1.ColorPickerComponent);
+            var injector = core_1.ReflectiveInjector.fromResolvedProviders([], vcRef.parentInjector);
+            var cmpRef = vcRef.createComponent(compFactory, 0, injector, []);
+            cmpRef.instance.setDialog(this, this.el, this.colorPicker, this.cpPosition, this.cpPositionOffset, this.cpPositionRelativeToArrow, this.cpOutputFormat, this.cpPresetLabel, this.cpPresetColors, this.cpCancelButton, this.cpCancelButtonClass, this.cpCancelButtonText, this.cpOKButton, this.cpOKButtonClass, this.cpOKButtonText, this.cpHeight, this.cpWidth, this.cpIgnoredElements, this.cpDialogDisplay, this.cpSaveClickOutside, this.cpAlphaChannel, this.cpUseRootViewContainer);
+            this.dialog = cmpRef.instance;
+            if (this.vcRef !== vcRef) {
+                cmpRef.changeDetectorRef.detectChanges();
+            }
+        }
+        else if (this.dialog) {
+            this.dialog.openDialog(this.colorPicker);
+        }
+    };
+    ColorPickerDirective.prototype.colorChanged = function (value, ignore) {
+        if (ignore === void 0) { ignore = true; }
+        this.ignoreChanges = ignore;
+        this.colorPickerChange.emit(value);
+    };
+    ColorPickerDirective.prototype.colorSelected = function (value) {
+        this.colorPickerSelect.emit(value);
+    };
+    ColorPickerDirective.prototype.inputChanged = function (event) {
+        this.cpInputChange.emit(event);
+    };
+    ColorPickerDirective.prototype.sliderChanged = function (event) {
+        this.cpSliderChange.emit(event);
+    };
+    ColorPickerDirective.prototype.changeInput = function (value) {
+        this.dialog.setColorFromString(value, true);
+    };
+    ColorPickerDirective.prototype.toggle = function (value) {
+        this.cpToggleChange.emit(value);
+    };
+    return ColorPickerDirective;
+}());
+ColorPickerDirective.decorators = [
+    { type: core_1.Directive, args: [{
+                selector: '[colorPicker]',
+                host: {
+                    '(input)': 'changeInput($event.target.value)',
+                    '(click)': 'onClick()'
+                }
+            },] },
+];
+/** @nocollapse */
+ColorPickerDirective.ctorParameters = function () { return [
+    { type: core_1.ApplicationRef, },
+    { type: core_1.ViewContainerRef, },
+    { type: core_1.ElementRef, },
+    { type: core_1.Injector, },
+    { type: color_picker_service_1.ColorPickerService, },
+    { type: core_1.ComponentFactoryResolver, },
+    { type: core_1.ChangeDetectorRef, },
+]; };
+ColorPickerDirective.propDecorators = {
+    'colorPicker': [{ type: core_1.Input, args: ['colorPicker',] },],
+    'colorPickerSelect': [{ type: core_1.Output, args: ['colorPickerSelect',] },],
+    'colorPickerChange': [{ type: core_1.Output, args: ['colorPickerChange',] },],
+    'cpToggle': [{ type: core_1.Input, args: ['cpToggle',] },],
+    'cpInputChange': [{ type: core_1.Output, args: ['cpInputChange',] },],
+    'cpSliderChange': [{ type: core_1.Output, args: ['cpSliderChange',] },],
+    'cpToggleChange': [{ type: core_1.Output, args: ['cpToggleChange',] },],
+    'cpPosition': [{ type: core_1.Input, args: ['cpPosition',] },],
+    'cpPositionOffset': [{ type: core_1.Input, args: ['cpPositionOffset',] },],
+    'cpPositionRelativeToArrow': [{ type: core_1.Input, args: ['cpPositionRelativeToArrow',] },],
+    'cpOutputFormat': [{ type: core_1.Input, args: ['cpOutputFormat',] },],
+    'cpPresetLabel': [{ type: core_1.Input, args: ['cpPresetLabel',] },],
+    'cpPresetColors': [{ type: core_1.Input, args: ['cpPresetColors',] },],
+    'cpCancelButton': [{ type: core_1.Input, args: ['cpCancelButton',] },],
+    'cpCancelButtonClass': [{ type: core_1.Input, args: ['cpCancelButtonClass',] },],
+    'cpCancelButtonText': [{ type: core_1.Input, args: ['cpCancelButtonText',] },],
+    'cpOKButton': [{ type: core_1.Input, args: ['cpOKButton',] },],
+    'cpOKButtonClass': [{ type: core_1.Input, args: ['cpOKButtonClass',] },],
+    'cpOKButtonText': [{ type: core_1.Input, args: ['cpOKButtonText',] },],
+    'cpFallbackColor': [{ type: core_1.Input, args: ['cpFallbackColor',] },],
+    'cpHeight': [{ type: core_1.Input, args: ['cpHeight',] },],
+    'cpWidth': [{ type: core_1.Input, args: ['cpWidth',] },],
+    'cpIgnoredElements': [{ type: core_1.Input, args: ['cpIgnoredElements',] },],
+    'cpDialogDisplay': [{ type: core_1.Input, args: ['cpDialogDisplay',] },],
+    'cpSaveClickOutside': [{ type: core_1.Input, args: ['cpSaveClickOutside',] },],
+    'cpAlphaChannel': [{ type: core_1.Input, args: ['cpAlphaChannel',] },],
+    'cpUseRootViewContainer': [{ type: core_1.Input, args: ['cpUseRootViewContainer',] },],
+};
+exports.ColorPickerDirective = ColorPickerDirective;
+//# sourceMappingURL=color-picker.directive.js.map
+
+/***/ }),
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41660,18 +43081,29 @@ exports.empty = {
 //# sourceMappingURL=Observer.js.map
 
 /***/ }),
-/* 96 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(2);
-var map_1 = __webpack_require__(64);
+var map_1 = __webpack_require__(69);
 Observable_1.Observable.prototype.map = map_1.map;
 //# sourceMappingURL=map.js.map
 
 /***/ }),
-/* 97 */
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(2);
+var takeUntil_1 = __webpack_require__(275);
+Observable_1.Observable.prototype.takeUntil = takeUntil_1.takeUntil;
+//# sourceMappingURL=takeUntil.js.map
+
+/***/ }),
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41798,7 +43230,7 @@ function dispatchError(arg) {
 //# sourceMappingURL=PromiseObservable.js.map
 
 /***/ }),
-/* 98 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41862,17 +43294,17 @@ exports.ScalarObservable = ScalarObservable;
 //# sourceMappingURL=ScalarObservable.js.map
 
 /***/ }),
-/* 99 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var PromiseObservable_1 = __webpack_require__(97);
+var PromiseObservable_1 = __webpack_require__(105);
 exports.fromPromise = PromiseObservable_1.PromiseObservable.create;
 //# sourceMappingURL=fromPromise.js.map
 
 /***/ }),
-/* 100 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41882,8 +43314,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(34);
-var subscribeToResult_1 = __webpack_require__(36);
+var OuterSubscriber_1 = __webpack_require__(29);
+var subscribeToResult_1 = __webpack_require__(30);
 /**
  * Catches errors on the observable to be handled by returning a new observable or throwing an error.
  *
@@ -41994,7 +43426,7 @@ var CatchSubscriber = (function (_super) {
 //# sourceMappingURL=catch.js.map
 
 /***/ }),
-/* 101 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42004,8 +43436,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var subscribeToResult_1 = __webpack_require__(36);
-var OuterSubscriber_1 = __webpack_require__(34);
+var subscribeToResult_1 = __webpack_require__(30);
+var OuterSubscriber_1 = __webpack_require__(29);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -42171,7 +43603,7 @@ exports.MergeMapSubscriber = MergeMapSubscriber;
 //# sourceMappingURL=mergeMap.js.map
 
 /***/ }),
-/* 102 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42204,7 +43636,7 @@ exports.ObjectUnsubscribedError = ObjectUnsubscribedError;
 //# sourceMappingURL=ObjectUnsubscribedError.js.map
 
 /***/ }),
-/* 103 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42214,7 +43646,7 @@ exports.errorObject = { e: {} };
 //# sourceMappingURL=errorObject.js.map
 
 /***/ }),
-/* 104 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42223,7 +43655,7 @@ exports.isArrayLike = (function (x) { return x && typeof x.length === 'number'; 
 //# sourceMappingURL=isArrayLike.js.map
 
 /***/ }),
-/* 105 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42235,7 +43667,7 @@ exports.isFunction = isFunction;
 //# sourceMappingURL=isFunction.js.map
 
 /***/ }),
-/* 106 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42247,7 +43679,7 @@ exports.isObject = isObject;
 //# sourceMappingURL=isObject.js.map
 
 /***/ }),
-/* 107 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42259,7 +43691,7 @@ exports.isPromise = isPromise;
 //# sourceMappingURL=isPromise.js.map
 
 /***/ }),
-/* 108 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42271,11 +43703,11 @@ exports.isScheduler = isScheduler;
 //# sourceMappingURL=isScheduler.js.map
 
 /***/ }),
-/* 109 */,
-/* 110 */,
-/* 111 */,
-/* 112 */,
-/* 113 */
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70036,15 +71468,15 @@ function _mergeArrays(parts) {
 //# sourceMappingURL=compiler.es5.js.map
 
 /***/ }),
-/* 114 */
+/* 122 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_tslib__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_compiler__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_compiler__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_platform_browser__ = __webpack_require__(20);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RESOURCE_CACHE_PROVIDER", function() { return RESOURCE_CACHE_PROVIDER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "platformBrowserDynamic", function() { return platformBrowserDynamic; });
@@ -70220,14 +71652,6 @@ var platformBrowserDynamic = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__
 
 
 /***/ }),
-/* 115 */,
-/* 116 */,
-/* 117 */,
-/* 118 */,
-/* 119 */,
-/* 120 */,
-/* 121 */,
-/* 122 */,
 /* 123 */,
 /* 124 */,
 /* 125 */,
@@ -70253,8 +71677,56 @@ var platformBrowserDynamic = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__
 /* 145 */,
 /* 146 */,
 /* 147 */,
-/* 148 */,
-/* 149 */,
+/* 148 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dropdown_component__ = __webpack_require__(83);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__search_filter_pipe__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__(22);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MultiselectDropdownModule; });
+
+
+
+
+
+var MultiselectDropdownModule = (function () {
+    function MultiselectDropdownModule() {
+    }
+    return MultiselectDropdownModule;
+}());
+
+MultiselectDropdownModule.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_3__angular_core__["NgModule"], args: [{
+                imports: [__WEBPACK_IMPORTED_MODULE_2__angular_common__["CommonModule"], __WEBPACK_IMPORTED_MODULE_4__angular_forms__["ReactiveFormsModule"]],
+                exports: [__WEBPACK_IMPORTED_MODULE_0__dropdown_component__["a" /* MultiselectDropdown */], __WEBPACK_IMPORTED_MODULE_1__search_filter_pipe__["a" /* MultiSelectSearchFilter */]],
+                declarations: [__WEBPACK_IMPORTED_MODULE_0__dropdown_component__["a" /* MultiselectDropdown */], __WEBPACK_IMPORTED_MODULE_1__search_filter_pipe__["a" /* MultiSelectSearchFilter */]],
+            },] },
+];
+/** @nocollapse */
+MultiselectDropdownModule.ctorParameters = function () { return []; };
+//# sourceMappingURL=dropdown.module.js.map
+
+/***/ }),
+/* 149 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dropdown_search_filter_pipe__ = __webpack_require__(42);
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MultiSelectSearchFilter", function() { return __WEBPACK_IMPORTED_MODULE_0__dropdown_search_filter_pipe__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__dropdown_dropdown_module__ = __webpack_require__(148);
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MultiselectDropdownModule", function() { return __WEBPACK_IMPORTED_MODULE_1__dropdown_dropdown_module__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__dropdown_dropdown_component__ = __webpack_require__(83);
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MultiselectDropdown", function() { return __WEBPACK_IMPORTED_MODULE_2__dropdown_dropdown_component__["a"]; });
+
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
 /* 150 */,
 /* 151 */,
 /* 152 */,
@@ -70311,33 +71783,43 @@ var platformBrowserDynamic = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__
 /* 203 */,
 /* 204 */,
 /* 205 */,
-/* 206 */
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ng2_auto_complete_1 = __webpack_require__(58);
+var ng2_auto_complete_1 = __webpack_require__(60);
 exports.Ng2AutoComplete = ng2_auto_complete_1.Ng2AutoComplete;
-var ng2_auto_complete_module_1 = __webpack_require__(207);
+var ng2_auto_complete_module_1 = __webpack_require__(217);
 exports.Ng2AutoCompleteModule = ng2_auto_complete_module_1.Ng2AutoCompleteModule;
-var ng2_auto_complete_component_1 = __webpack_require__(57);
+var ng2_auto_complete_component_1 = __webpack_require__(59);
 exports.Ng2AutoCompleteComponent = ng2_auto_complete_component_1.Ng2AutoCompleteComponent;
-var ng2_auto_complete_directive_1 = __webpack_require__(89);
+var ng2_auto_complete_directive_1 = __webpack_require__(95);
 exports.Ng2AutoCompleteDirective = ng2_auto_complete_directive_1.Ng2AutoCompleteDirective;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 207 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(7);
-var forms_1 = __webpack_require__(38);
-var ng2_auto_complete_component_1 = __webpack_require__(57);
-var ng2_auto_complete_directive_1 = __webpack_require__(89);
-var ng2_auto_complete_1 = __webpack_require__(58);
+var common_1 = __webpack_require__(5);
+var forms_1 = __webpack_require__(22);
+var ng2_auto_complete_component_1 = __webpack_require__(59);
+var ng2_auto_complete_directive_1 = __webpack_require__(95);
+var ng2_auto_complete_1 = __webpack_require__(60);
 var Ng2AutoCompleteModule = (function () {
     function Ng2AutoCompleteModule() {
     }
@@ -70363,7 +71845,7 @@ exports.Ng2AutoCompleteModule = Ng2AutoCompleteModule;
 //# sourceMappingURL=ng2-auto-complete.module.js.map
 
 /***/ }),
-/* 208 */
+/* 218 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -70381,11 +71863,11 @@ var CloudinaryOptions = (function () {
 //# sourceMappingURL=cloudinary-options.class.js.map
 
 /***/ }),
-/* 209 */
+/* 219 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ng2_file_upload__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ng2_file_upload__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_ng2_file_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_ng2_file_upload__);
 /* unused harmony namespace reexport */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CloudinaryUploader", function() { return CloudinaryUploader; });
@@ -70455,16 +71937,16 @@ var CloudinaryUploader = (function (_super) {
 //# sourceMappingURL=cloudinary-uploader.service.js.map
 
 /***/ }),
-/* 210 */
+/* 220 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ng2_file_upload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_ng2_file_upload__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cloudinary_image_component__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cloudinary_image_service__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__cloudinary_image_component__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__cloudinary_image_service__ = __webpack_require__(61);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Ng2CloudinaryModule; });
 
 
@@ -70498,7 +71980,7 @@ var Ng2CloudinaryModule = (function () {
 //# sourceMappingURL=cloudinary.module.js.map
 
 /***/ }),
-/* 211 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70667,7 +72149,7 @@ exports.FileType = FileType;
 
 
 /***/ }),
-/* 212 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70678,10 +72160,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var common_1 = __webpack_require__(7);
+var common_1 = __webpack_require__(5);
 var core_1 = __webpack_require__(0);
-var file_drop_directive_1 = __webpack_require__(92);
-var file_select_directive_1 = __webpack_require__(94);
+var file_drop_directive_1 = __webpack_require__(98);
+var file_select_directive_1 = __webpack_require__(100);
 var FileUploadModule = (function () {
     function FileUploadModule() {
     }
@@ -70698,19 +72180,66 @@ exports.FileUploadModule = FileUploadModule;
 
 
 /***/ }),
-/* 213 */,
-/* 214 */,
-/* 215 */,
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
+/* 223 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__(225));
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(5);
+var helpers_1 = __webpack_require__(66);
+var color_picker_service_1 = __webpack_require__(37);
+var color_picker_component_1 = __webpack_require__(64);
+var color_picker_directive_1 = __webpack_require__(101);
+var ColorPickerModule = (function () {
+    function ColorPickerModule() {
+    }
+    return ColorPickerModule;
+}());
+ColorPickerModule.decorators = [
+    { type: core_1.NgModule, args: [{
+                imports: [common_1.CommonModule],
+                providers: [color_picker_service_1.ColorPickerService],
+                declarations: [color_picker_component_1.ColorPickerComponent, color_picker_directive_1.ColorPickerDirective, helpers_1.TextDirective, helpers_1.SliderDirective],
+                exports: [color_picker_directive_1.ColorPickerDirective],
+                entryComponents: [color_picker_component_1.ColorPickerComponent]
+            },] },
+];
+/** @nocollapse */
+ColorPickerModule.ctorParameters = function () { return []; };
+exports.ColorPickerModule = ColorPickerModule;
+//# sourceMappingURL=color-picker.module.js.map
+
+/***/ }),
+/* 225 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__(64));
+__export(__webpack_require__(101));
+__export(__webpack_require__(224));
+__export(__webpack_require__(37));
+__export(__webpack_require__(65));
+__export(__webpack_require__(66));
+//# sourceMappingURL=index.js.map
+
+/***/ }),
 /* 226 */,
 /* 227 */,
 /* 228 */,
@@ -70722,7 +72251,20 @@ exports.FileUploadModule = FileUploadModule;
 /* 234 */,
 /* 235 */,
 /* 236 */,
-/* 237 */
+/* 237 */,
+/* 238 */,
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70732,8 +72274,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(27);
-var ObjectUnsubscribedError_1 = __webpack_require__(102);
+var Subject_1 = __webpack_require__(21);
+var ObjectUnsubscribedError_1 = __webpack_require__(110);
 /**
  * @class BehaviorSubject<T>
  */
@@ -70777,7 +72319,7 @@ exports.BehaviorSubject = BehaviorSubject;
 //# sourceMappingURL=BehaviorSubject.js.map
 
 /***/ }),
-/* 238 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70819,7 +72361,7 @@ exports.InnerSubscriber = InnerSubscriber;
 //# sourceMappingURL=InnerSubscriber.js.map
 
 /***/ }),
-/* 239 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70952,7 +72494,7 @@ exports.Notification = Notification;
 //# sourceMappingURL=Notification.js.map
 
 /***/ }),
-/* 240 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70962,7 +72504,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscription_1 = __webpack_require__(35);
+var Subscription_1 = __webpack_require__(38);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @ignore
@@ -70998,19 +72540,19 @@ exports.SubjectSubscription = SubjectSubscription;
 //# sourceMappingURL=SubjectSubscription.js.map
 
 /***/ }),
-/* 241 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(2);
-var catch_1 = __webpack_require__(100);
+var catch_1 = __webpack_require__(108);
 Observable_1.Observable.prototype.catch = catch_1._catch;
 Observable_1.Observable.prototype._catch = catch_1._catch;
 //# sourceMappingURL=catch.js.map
 
 /***/ }),
-/* 242 */
+/* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71021,8 +72563,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(2);
-var ScalarObservable_1 = __webpack_require__(98);
-var EmptyObservable_1 = __webpack_require__(63);
+var ScalarObservable_1 = __webpack_require__(106);
+var EmptyObservable_1 = __webpack_require__(68);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -71086,7 +72628,7 @@ exports.ArrayLikeObservable = ArrayLikeObservable;
 //# sourceMappingURL=ArrayLikeObservable.js.map
 
 /***/ }),
-/* 243 */
+/* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71096,10 +72638,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subject_1 = __webpack_require__(27);
+var Subject_1 = __webpack_require__(21);
 var Observable_1 = __webpack_require__(2);
 var Subscriber_1 = __webpack_require__(8);
-var Subscription_1 = __webpack_require__(35);
+var Subscription_1 = __webpack_require__(38);
 /**
  * @class ConnectableObservable<T>
  */
@@ -71261,7 +72803,7 @@ var RefCountSubscriber = (function (_super) {
 //# sourceMappingURL=ConnectableObservable.js.map
 
 /***/ }),
-/* 244 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71272,10 +72814,10 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Observable_1 = __webpack_require__(2);
-var EmptyObservable_1 = __webpack_require__(63);
-var isArray_1 = __webpack_require__(70);
-var subscribeToResult_1 = __webpack_require__(36);
-var OuterSubscriber_1 = __webpack_require__(34);
+var EmptyObservable_1 = __webpack_require__(68);
+var isArray_1 = __webpack_require__(75);
+var subscribeToResult_1 = __webpack_require__(30);
+var OuterSubscriber_1 = __webpack_require__(29);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -71379,7 +72921,7 @@ var ForkJoinSubscriber = (function (_super) {
 //# sourceMappingURL=ForkJoinObservable.js.map
 
 /***/ }),
-/* 245 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71389,17 +72931,17 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var isArray_1 = __webpack_require__(70);
-var isArrayLike_1 = __webpack_require__(104);
-var isPromise_1 = __webpack_require__(107);
-var PromiseObservable_1 = __webpack_require__(97);
-var IteratorObservable_1 = __webpack_require__(246);
-var ArrayObservable_1 = __webpack_require__(62);
-var ArrayLikeObservable_1 = __webpack_require__(242);
-var iterator_1 = __webpack_require__(66);
+var isArray_1 = __webpack_require__(75);
+var isArrayLike_1 = __webpack_require__(112);
+var isPromise_1 = __webpack_require__(115);
+var PromiseObservable_1 = __webpack_require__(105);
+var IteratorObservable_1 = __webpack_require__(259);
+var ArrayObservable_1 = __webpack_require__(67);
+var ArrayLikeObservable_1 = __webpack_require__(255);
+var iterator_1 = __webpack_require__(71);
 var Observable_1 = __webpack_require__(2);
-var observeOn_1 = __webpack_require__(259);
-var observable_1 = __webpack_require__(67);
+var observeOn_1 = __webpack_require__(272);
+var observable_1 = __webpack_require__(72);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -71507,7 +73049,7 @@ exports.FromObservable = FromObservable;
 //# sourceMappingURL=FromObservable.js.map
 
 /***/ }),
-/* 246 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71519,7 +73061,7 @@ var __extends = (this && this.__extends) || function (d, b) {
 };
 var root_1 = __webpack_require__(19);
 var Observable_1 = __webpack_require__(2);
-var iterator_1 = __webpack_require__(66);
+var iterator_1 = __webpack_require__(71);
 /**
  * We need this JSDoc comment for affecting ESDoc.
  * @extends {Ignored}
@@ -71676,52 +73218,52 @@ function sign(value) {
 //# sourceMappingURL=IteratorObservable.js.map
 
 /***/ }),
-/* 247 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ForkJoinObservable_1 = __webpack_require__(244);
+var ForkJoinObservable_1 = __webpack_require__(257);
 exports.forkJoin = ForkJoinObservable_1.ForkJoinObservable.create;
 //# sourceMappingURL=forkJoin.js.map
 
 /***/ }),
-/* 248 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var FromObservable_1 = __webpack_require__(245);
+var FromObservable_1 = __webpack_require__(258);
 exports.from = FromObservable_1.FromObservable.create;
 //# sourceMappingURL=from.js.map
 
 /***/ }),
-/* 249 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var merge_1 = __webpack_require__(257);
+var merge_1 = __webpack_require__(270);
 exports.merge = merge_1.mergeStatic;
 //# sourceMappingURL=merge.js.map
 
 /***/ }),
-/* 250 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ArrayObservable_1 = __webpack_require__(62);
+var ArrayObservable_1 = __webpack_require__(67);
 exports.of = ArrayObservable_1.ArrayObservable.of;
 //# sourceMappingURL=of.js.map
 
 /***/ }),
-/* 251 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var mergeAll_1 = __webpack_require__(65);
+var mergeAll_1 = __webpack_require__(70);
 /* tslint:enable:max-line-length */
 /**
  * Converts a higher-order Observable into a first-order Observable by
@@ -71778,12 +73320,12 @@ exports.concatAll = concatAll;
 //# sourceMappingURL=concatAll.js.map
 
 /***/ }),
-/* 252 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var mergeMap_1 = __webpack_require__(101);
+var mergeMap_1 = __webpack_require__(109);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -71851,7 +73393,7 @@ exports.concatMap = concatMap;
 //# sourceMappingURL=concatMap.js.map
 
 /***/ }),
-/* 253 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71931,7 +73473,7 @@ var EverySubscriber = (function (_super) {
 //# sourceMappingURL=every.js.map
 
 /***/ }),
-/* 254 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72030,7 +73572,7 @@ var FilterSubscriber = (function (_super) {
 //# sourceMappingURL=filter.js.map
 
 /***/ }),
-/* 255 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72041,7 +73583,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(8);
-var EmptyError_1 = __webpack_require__(69);
+var EmptyError_1 = __webpack_require__(74);
 /**
  * Emits only the first value (or the first value that meets some condition)
  * emitted by the source Observable.
@@ -72188,7 +73730,7 @@ var FirstSubscriber = (function (_super) {
 //# sourceMappingURL=first.js.map
 
 /***/ }),
-/* 256 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72199,7 +73741,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(8);
-var EmptyError_1 = __webpack_require__(69);
+var EmptyError_1 = __webpack_require__(74);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits only the last item emitted by the source Observable.
@@ -72313,15 +73855,15 @@ var LastSubscriber = (function (_super) {
 //# sourceMappingURL=last.js.map
 
 /***/ }),
-/* 257 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(2);
-var ArrayObservable_1 = __webpack_require__(62);
-var mergeAll_1 = __webpack_require__(65);
-var isScheduler_1 = __webpack_require__(108);
+var ArrayObservable_1 = __webpack_require__(67);
+var mergeAll_1 = __webpack_require__(70);
+var isScheduler_1 = __webpack_require__(116);
 /* tslint:enable:max-line-length */
 /**
  * Creates an output Observable which concurrently emits all values from every
@@ -72464,12 +74006,12 @@ exports.mergeStatic = mergeStatic;
 //# sourceMappingURL=merge.js.map
 
 /***/ }),
-/* 258 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ConnectableObservable_1 = __webpack_require__(243);
+var ConnectableObservable_1 = __webpack_require__(256);
 /* tslint:enable:max-line-length */
 /**
  * Returns an Observable that emits the results of invoking a specified selector on items
@@ -72527,7 +74069,7 @@ exports.MulticastOperator = MulticastOperator;
 //# sourceMappingURL=multicast.js.map
 
 /***/ }),
-/* 259 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72538,7 +74080,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var Subscriber_1 = __webpack_require__(8);
-var Notification_1 = __webpack_require__(239);
+var Notification_1 = __webpack_require__(252);
 /**
  *
  * Re-emits all notifications from source Observable with specified scheduler.
@@ -72646,7 +74188,7 @@ exports.ObserveOnMessage = ObserveOnMessage;
 //# sourceMappingURL=observeOn.js.map
 
 /***/ }),
-/* 260 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72778,13 +74320,13 @@ exports.ReduceSubscriber = ReduceSubscriber;
 //# sourceMappingURL=reduce.js.map
 
 /***/ }),
-/* 261 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var multicast_1 = __webpack_require__(258);
-var Subject_1 = __webpack_require__(27);
+var multicast_1 = __webpack_require__(271);
+var Subject_1 = __webpack_require__(21);
 function shareSubjectFactory() {
     return new Subject_1.Subject();
 }
@@ -72808,7 +74350,88 @@ exports.share = share;
 //# sourceMappingURL=share.js.map
 
 /***/ }),
-/* 262 */
+/* 275 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
+var OuterSubscriber_1 = __webpack_require__(29);
+var subscribeToResult_1 = __webpack_require__(30);
+/**
+ * Emits the values emitted by the source Observable until a `notifier`
+ * Observable emits a value.
+ *
+ * <span class="informal">Lets values pass until a second Observable,
+ * `notifier`, emits something. Then, it completes.</span>
+ *
+ * <img src="./img/takeUntil.png" width="100%">
+ *
+ * `takeUntil` subscribes and begins mirroring the source Observable. It also
+ * monitors a second Observable, `notifier` that you provide. If the `notifier`
+ * emits a value or a complete notification, the output Observable stops
+ * mirroring the source Observable and completes.
+ *
+ * @example <caption>Tick every second until the first click happens</caption>
+ * var interval = Rx.Observable.interval(1000);
+ * var clicks = Rx.Observable.fromEvent(document, 'click');
+ * var result = interval.takeUntil(clicks);
+ * result.subscribe(x => console.log(x));
+ *
+ * @see {@link take}
+ * @see {@link takeLast}
+ * @see {@link takeWhile}
+ * @see {@link skip}
+ *
+ * @param {Observable} notifier The Observable whose first emitted value will
+ * cause the output Observable of `takeUntil` to stop emitting values from the
+ * source Observable.
+ * @return {Observable<T>} An Observable that emits the values from the source
+ * Observable until such time as `notifier` emits its first value.
+ * @method takeUntil
+ * @owner Observable
+ */
+function takeUntil(notifier) {
+    return this.lift(new TakeUntilOperator(notifier));
+}
+exports.takeUntil = takeUntil;
+var TakeUntilOperator = (function () {
+    function TakeUntilOperator(notifier) {
+        this.notifier = notifier;
+    }
+    TakeUntilOperator.prototype.call = function (subscriber, source) {
+        return source.subscribe(new TakeUntilSubscriber(subscriber, this.notifier));
+    };
+    return TakeUntilOperator;
+}());
+/**
+ * We need this JSDoc comment for affecting ESDoc.
+ * @ignore
+ * @extends {Ignored}
+ */
+var TakeUntilSubscriber = (function (_super) {
+    __extends(TakeUntilSubscriber, _super);
+    function TakeUntilSubscriber(destination, notifier) {
+        _super.call(this, destination);
+        this.notifier = notifier;
+        this.add(subscribeToResult_1.subscribeToResult(this, notifier));
+    }
+    TakeUntilSubscriber.prototype.notifyNext = function (outerValue, innerValue, outerIndex, innerIndex, innerSub) {
+        this.complete();
+    };
+    TakeUntilSubscriber.prototype.notifyComplete = function () {
+        // noop
+    };
+    return TakeUntilSubscriber;
+}(OuterSubscriber_1.OuterSubscriber));
+//# sourceMappingURL=takeUntil.js.map
+
+/***/ }),
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72839,14 +74462,14 @@ exports.UnsubscriptionError = UnsubscriptionError;
 //# sourceMappingURL=UnsubscriptionError.js.map
 
 /***/ }),
-/* 263 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Subscriber_1 = __webpack_require__(8);
-var rxSubscriber_1 = __webpack_require__(68);
-var Observer_1 = __webpack_require__(95);
+var rxSubscriber_1 = __webpack_require__(73);
+var Observer_1 = __webpack_require__(102);
 function toSubscriber(nextOrObserver, error, complete) {
     if (nextOrObserver) {
         if (nextOrObserver instanceof Subscriber_1.Subscriber) {
@@ -72865,12 +74488,12 @@ exports.toSubscriber = toSubscriber;
 //# sourceMappingURL=toSubscriber.js.map
 
 /***/ }),
-/* 264 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var errorObject_1 = __webpack_require__(103);
+var errorObject_1 = __webpack_require__(111);
 var tryCatchTarget;
 function tryCatcher() {
     try {

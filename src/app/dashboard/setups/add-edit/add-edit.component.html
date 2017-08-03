@@ -93,6 +93,31 @@
             </div>
           </div>
 
+          <div class="row teams">
+            <div class="cheader">
+              <h3>
+                Teams
+                <i class="material-icons" (click)="addNewTeam()">add_circle</i>
+              </h3>
+            </div>
+            <div class="teams-list">
+              <div class="row team" *ngFor="let team of teams; let idx = index;">
+                <i class="material-icons pull-right" (click)="removeTeam(idx)">delete</i>
+                <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
+                  <label class="control-label">Name</label>
+                  <input class="form-control" [(ngModel)]="team.name" required name="{{'teamname' + idx}}"/>
+                </div>
+                <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
+                  <input class="colorpicker" [(colorPicker)]="team.color" [style.background]="team.color" readonly/>
+                </div>
+                <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
+                  <label class="control-label">Description</label>
+                  <textarea class="form-control" [(ngModel)]="team.description" required name="{{'teamdescription' + idx}}" ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="row roles">
             <div class="cheader">
               <h3>
@@ -102,42 +127,79 @@
             </div>
             <div class="roles-list">
               <div class="row" *ngFor="let role of roles; let ii = index;">
+                <i class="material-icons pull-right" (click)="removeRole(idx)">delete</i>
                 <app-uploader class="col-md-2 col-lg-2 col-sm-2" [imgId]="role.imgId" (changed)="uploaders[ii] = true" (uploaded)="roleImgUploaded(ii, $event);"></app-uploader>
                 <div class="col-md-10 col-lg-10 col-sm-10">
-                  <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating">
+                  <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group">
                     <label class="control-label">Role Name</label>
-                    <input class="form-control" list="defalutRolesLists" [(ngModel)]="role.name" name="{{'rolename' + ii}}" [attr.index]="ii" required (blur)="roleNameChanged($event)" />
-                    <datalist id="defalutRolesLists" [attr.index]="ii">
-                      <option *ngFor="let role1 of defaultRoles; let i = index" [attr.id]="role1._id" [attr.roleIndex]="i" selected="{{ role._id == role1._id ? 'selected' : '' }}" >
+                    <select class="form-control" [(ngModel)]="role.name" name="{{'rolename' + ii}}" required readonly>
+                      <option *ngFor="let role1 of defaultRoles; let i = index" [attr.value]="role1.name">
                         {{role1.name}}
                       </option>
-                    </datalist>
+                    </select>
                   </div>
-                  <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
+                  <div class="form-group col-lg-6 col-md-6 col-sm-6">
                     <label class="control-label">Team</label>
-                    <input class="form-control" [(ngModel)]="role.team" required name="{{'roleteam' + ii}}" />
+                    <select class="form-control" [(ngModel)]="role.team" name="{{'roleteam' + ii}}">
+                      <option *ngFor="let team of teams; let i = index" [attr.value]="team.name">
+                        {{team.name}}
+                      </option>
+                    </select>
                   </div>
                   <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
                     <label class="control-label">Description</label>
                     <textarea class="form-control" required [(ngModel)]="role.description" name="{{'roledescription' + ii}}"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <span class="btn btn-round btn-danger pull-right" (click)="removeRole(ii)">Remove Role</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
+          <div class="row intersection">
+            <div class="cheader">
+              <h3>
+                Intersection
+                <i class="material-icons" (click)="addNewIntersection()">add_circle</i>
+              </h3>
+            </div>
+            <div class="narrations-list">
+              <div class="row team" *ngFor="let intersection of intersections; let idx = index;">
+                <i class="material-icons pull-right" (click)="removeIntersection(idx)">delete</i>
+                <div class="form-group multiselection">
+                  <label class="control-label">Roles</label>
+                  <ss-multiselect-dropdown [options]="getIntersectionSelectOptions()" [settings]="selectSettings" [(ngModel)]="intersection.roles" name="{{'intersection' + idx}}"></ss-multiselect-dropdown>
+                  <i class="material-icons pull-right">up</i>
+                </div>
+                <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
+                  <label class="control-label">Description</label>
+                  <textarea class="form-control" [(ngModel)]="intersection.description" required name="{{'narrdescription' + idx}}" ></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="row narration">
             <div class="cheader">
               <h3>
                 Narration <span class="description">Does the order in which roles are woken up matter? What is announced when people die? How are day phases moderated? etc.</span>
+                <i class="material-icons" (click)="addNewNarration()">add_circle</i>
               </h3>
             </div>
-            <div class="col-md-12 col-lg-12">
-              <textarea class="form-control bigger-textarea" required [(ngModel)]="narrationText" name="narrationText" ></textarea>
+            <div class="narrations-list">
+              <div class="row team" *ngFor="let narration of narrations; let idx = index;">
+                <i class="material-icons pull-right" (click)="removeNarration(idx)">delete</i>
+                <i class="material-icons pull-right" (click)="narrationDown(idx)" *ngIf="idx != narrations.length - 1">arrow_downward</i>
+                <i class="material-icons pull-right" (click)="narrationUp(idx)" *ngIf="idx != 0">arrow_upward</i>
+                <div class="form-group multiselection">
+                  <label class="control-label">Roles</label>
+                  <ss-multiselect-dropdown [options]="getRolesSelectOptions()" [settings]="selectSettings" [(ngModel)]="narration.roles" name="{{'narration' + idx}}"></ss-multiselect-dropdown>
+                  <i class="material-icons pull-right">up</i>
+                </div>
+                <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
+                  <label class="control-label">Description</label>
+                  <textarea class="form-control" [(ngModel)]="narration.description" required name="{{'narrdescription' + idx}}" ></textarea>
+                </div>
+              </div>
             </div>
           </div>
 
