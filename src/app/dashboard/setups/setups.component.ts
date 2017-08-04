@@ -12,6 +12,9 @@ export class SetupsComponent implements OnInit, AfterViewChecked {
   private isAddsetup: Boolean = false;
   private isEditsetup: Boolean = false;
 
+  private viewDetails: Boolean = false;
+  private viewSetup;
+
   private setups;
 
   private currentSetup;
@@ -22,6 +25,8 @@ export class SetupsComponent implements OnInit, AfterViewChecked {
 
   ngOnInit() {
     this.getSetups();
+    this.viewDetails = false;
+    this.viewSetup = {};
   }
 
   ngAfterViewChecked() {
@@ -56,6 +61,11 @@ export class SetupsComponent implements OnInit, AfterViewChecked {
   }
 
   editSetup(evt) {
+  }
+
+  viewDetailsClick(setup) {
+    this.currentSetup = setup;
+    this.viewDetails = true;
   }
 }
 

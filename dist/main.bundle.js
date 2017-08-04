@@ -4,8 +4,7 @@ webpackJsonp([1,4],[
 /* 2 */,
 /* 3 */,
 /* 4 */,
-/* 5 */,
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23,8 +22,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(40);
 var Observable_1 = __webpack_require__(2);
-__webpack_require__(254);
-__webpack_require__(103);
+__webpack_require__(257);
+__webpack_require__(104);
 var MainService = (function () {
     function MainService(http) {
         var _this = this;
@@ -222,6 +221,7 @@ var _a;
 //# sourceMappingURL=main.service.js.map
 
 /***/ }),
+/* 6 */,
 /* 7 */,
 /* 8 */,
 /* 9 */,
@@ -331,8 +331,8 @@ var AboutComponent = (function () {
 AboutComponent = __decorate([
     core_1.Component({
         selector: 'app-about',
-        template: __webpack_require__(227),
-        styles: [__webpack_require__(204)]
+        template: __webpack_require__(229),
+        styles: [__webpack_require__(205)]
     }),
     __metadata("design:paramtypes", [])
 ], AboutComponent);
@@ -357,7 +357,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(10);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var AddEditComponent = (function () {
     function AddEditComponent(mainService, route, router) {
         this.mainService = mainService;
@@ -732,8 +732,8 @@ __decorate([
 AddEditComponent = __decorate([
     core_1.Component({
         selector: 'app-add-edit',
-        template: __webpack_require__(241),
-        styles: [__webpack_require__(210)]
+        template: __webpack_require__(243),
+        styles: [__webpack_require__(211)]
     }),
     __metadata("design:paramtypes", [typeof (_c = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _c || Object, typeof (_d = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _d || Object, typeof (_e = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _e || Object])
 ], AddEditComponent);
@@ -758,8 +758,79 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
+var main_service_1 = __webpack_require__(5);
+var SetupDetailComponent = (function () {
+    function SetupDetailComponent(mainService) {
+        this.mainService = mainService;
+    }
+    SetupDetailComponent.prototype.ngOnInit = function () {
+        console.log(this.setup);
+        this.selectSettings = {
+            checkedStyle: 'fontawesome',
+            buttonClasses: 'btn-group select-with-transition',
+            dynamicTitleMaxItems: 3,
+        };
+    };
+    SetupDetailComponent.prototype.getRolesSelectOptions = function (narration) {
+        var _this = this;
+        var str = '';
+        narration.roles.map(function (val, index) { str += index === narration.roles.length - 1 ? _this.setup.roles[val].name : _this.setup.roles[val].name + ', '; });
+        return str;
+    };
+    SetupDetailComponent.prototype.getIntersectionSelectOptions = function () {
+        var _this = this;
+        var str = '';
+        this.setup.roles.map(function (val, index) { str += val.name + ', '; });
+        this.setup.teams.map(function (val, index) { str += index === _this.setup.teams.length - 1 ? val.name : val.name + ', '; });
+        return str;
+    };
+    SetupDetailComponent.prototype.getRolesTeams = function (rule) {
+        var str = '';
+        var rolesTeams = this.setup.roles.concat(this.setup.teams);
+        rule.roles.map(function (val, index) { str += index === rule.roles.length - 1 ? rolesTeams[val].name : rolesTeams[val].name + ', '; });
+        return str;
+    };
+    SetupDetailComponent.prototype.collapseExpand = function (evt) {
+        var card = evt.target.parentElement.parentElement.parentElement;
+        card.className = card.className.includes('expanded') ? card.className.replace(' expanded', '') : card.className + ' expanded';
+    };
+    return SetupDetailComponent;
+}());
+__decorate([
+    core_1.Input('setup'),
+    __metadata("design:type", Object)
+], SetupDetailComponent.prototype, "setup", void 0);
+SetupDetailComponent = __decorate([
+    core_1.Component({
+        selector: 'app-setup-detail',
+        template: __webpack_require__(244),
+        styles: [__webpack_require__(212)]
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object])
+], SetupDetailComponent);
+exports.SetupDetailComponent = SetupDetailComponent;
+var _a;
+//# sourceMappingURL=setup-detail.component.js.map
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
 var ng2_cloudinary_1 = __webpack_require__(28);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var ProfileComponent = (function () {
     function ProfileComponent(mainService) {
         var _this = this;
@@ -881,8 +952,8 @@ __decorate([
 ProfileComponent = __decorate([
     core_1.Component({
         selector: 'app-profile',
-        template: __webpack_require__(245),
-        styles: [__webpack_require__(214)]
+        template: __webpack_require__(248),
+        styles: [__webpack_require__(216)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object])
 ], ProfileComponent);
@@ -891,7 +962,7 @@ var _a;
 //# sourceMappingURL=profile.component.js.map
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -904,9 +975,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(5);
+var common_1 = __webpack_require__(6);
 var router_1 = __webpack_require__(10);
-var footer_component_1 = __webpack_require__(144);
+var footer_component_1 = __webpack_require__(145);
 var FooterModule = (function () {
     function FooterModule() {
     }
@@ -923,7 +994,7 @@ exports.FooterModule = FooterModule;
 //# sourceMappingURL=footer.module.js.map
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -936,9 +1007,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(5);
+var common_1 = __webpack_require__(6);
 var router_1 = __webpack_require__(10);
-var navbar_component_1 = __webpack_require__(145);
+var navbar_component_1 = __webpack_require__(146);
 var NavbarModule = (function () {
     function NavbarModule() {
     }
@@ -955,7 +1026,7 @@ exports.NavbarModule = NavbarModule;
 //# sourceMappingURL=navbar.module.js.map
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -979,7 +1050,7 @@ exports.ROUTES = [
 //# sourceMappingURL=sidebar-routes.config.js.map
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -992,9 +1063,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(5);
+var common_1 = __webpack_require__(6);
 var router_1 = __webpack_require__(10);
-var sidebar_component_1 = __webpack_require__(146);
+var sidebar_component_1 = __webpack_require__(147);
 var ng2_cloudinary_1 = __webpack_require__(28);
 var SidebarModule = (function () {
     function SidebarModule() {
@@ -1012,7 +1083,6 @@ exports.SidebarModule = SidebarModule;
 //# sourceMappingURL=sidebar.module.js.map
 
 /***/ }),
-/* 83 */,
 /* 84 */,
 /* 85 */,
 /* 86 */,
@@ -1046,7 +1116,8 @@ exports.SidebarModule = SidebarModule;
 /* 114 */,
 /* 115 */,
 /* 116 */,
-/* 117 */
+/* 117 */,
+/* 118 */
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -1055,20 +1126,20 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 117;
+webpackEmptyContext.id = 118;
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var platform_browser_dynamic_1 = __webpack_require__(122);
-var app_module_1 = __webpack_require__(124);
-var environment_1 = __webpack_require__(147);
+var platform_browser_dynamic_1 = __webpack_require__(123);
+var app_module_1 = __webpack_require__(125);
+var environment_1 = __webpack_require__(148);
 if (environment_1.environment.production) {
     core_1.enableProdMode();
 }
@@ -1076,11 +1147,11 @@ platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(app_module_1
 //# sourceMappingURL=main.js.map
 
 /***/ }),
-/* 119 */,
 /* 120 */,
 /* 121 */,
 /* 122 */,
-/* 123 */
+/* 123 */,
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1097,8 +1168,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(10);
-var common_1 = __webpack_require__(5);
-var main_service_1 = __webpack_require__(6);
+var common_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var AppComponent = (function () {
     function AppComponent(location, mainService, router) {
         var _this = this;
@@ -1140,8 +1211,8 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: __webpack_require__(226),
-        styles: [__webpack_require__(203)]
+        template: __webpack_require__(228),
+        styles: [__webpack_require__(204)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof common_1.Location !== "undefined" && common_1.Location) === "function" && _a || Object, typeof (_b = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _b || Object, typeof (_c = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _c || Object])
 ], AppComponent);
@@ -1150,7 +1221,7 @@ var _a, _b, _c;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1166,16 +1237,16 @@ var core_1 = __webpack_require__(0);
 var platform_browser_1 = __webpack_require__(20);
 var router_1 = __webpack_require__(10);
 var http_1 = __webpack_require__(40);
-var ng2_auto_complete_1 = __webpack_require__(216);
+var ng2_auto_complete_1 = __webpack_require__(218);
 // import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
-var app_component_1 = __webpack_require__(123);
-var dashboard_component_1 = __webpack_require__(132);
-var dashboard_module_1 = __webpack_require__(133);
-var footer_module_1 = __webpack_require__(79);
-var sidebar_module_1 = __webpack_require__(82);
-var navbar_module_1 = __webpack_require__(80);
-var main_service_1 = __webpack_require__(6);
-var common_1 = __webpack_require__(5);
+var app_component_1 = __webpack_require__(124);
+var dashboard_component_1 = __webpack_require__(133);
+var dashboard_module_1 = __webpack_require__(134);
+var footer_module_1 = __webpack_require__(80);
+var sidebar_module_1 = __webpack_require__(83);
+var navbar_module_1 = __webpack_require__(81);
+var main_service_1 = __webpack_require__(5);
+var common_1 = __webpack_require__(6);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -1205,7 +1276,7 @@ exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1235,8 +1306,8 @@ __decorate([
 ClubDetailLineComponent = __decorate([
     core_1.Component({
         selector: 'app-club-detail-line',
-        template: __webpack_require__(228),
-        styles: [__webpack_require__(205)]
+        template: __webpack_require__(230),
+        styles: [__webpack_require__(206)]
     }),
     __metadata("design:paramtypes", [])
 ], ClubDetailLineComponent);
@@ -1244,7 +1315,7 @@ exports.ClubDetailLineComponent = ClubDetailLineComponent;
 //# sourceMappingURL=club-detail-line.component.js.map
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1260,7 +1331,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var ManageClubsComponent = (function () {
     function ManageClubsComponent(mainService) {
         this.mainService = mainService;
@@ -1319,8 +1390,8 @@ __decorate([
 ManageClubsComponent = __decorate([
     core_1.Component({
         selector: 'app-manage-clubs',
-        template: __webpack_require__(229),
-        styles: [__webpack_require__(206)]
+        template: __webpack_require__(231),
+        styles: [__webpack_require__(207)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object])
 ], ManageClubsComponent);
@@ -1329,7 +1400,7 @@ var _a;
 //# sourceMappingURL=manage-clubs.component.js.map
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1345,9 +1416,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var ng2_cloudinary_1 = __webpack_require__(28);
-var initDateTimePicker = __webpack_require__(279);
+var initDateTimePicker = __webpack_require__(282);
 var AddClubComponent = (function () {
     function AddClubComponent(mainService) {
         var _this = this;
@@ -1553,8 +1624,8 @@ __decorate([
 AddClubComponent = __decorate([
     core_1.Component({
         selector: 'app-add-club',
-        template: __webpack_require__(230),
-        styles: [__webpack_require__(207)]
+        template: __webpack_require__(232),
+        styles: [__webpack_require__(208)]
     }),
     __metadata("design:paramtypes", [typeof (_b = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _b || Object])
 ], AddClubComponent);
@@ -1563,7 +1634,7 @@ var _a, _b;
 //# sourceMappingURL=add-club.component.js.map
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1579,7 +1650,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var ClubComponent = (function () {
     function ClubComponent(mainService) {
         this.mainService = mainService;
@@ -1639,8 +1710,8 @@ __decorate([
 ClubComponent = __decorate([
     core_1.Component({
         selector: 'app-club',
-        template: __webpack_require__(231),
-        styles: [__webpack_require__(208)]
+        template: __webpack_require__(233),
+        styles: [__webpack_require__(209)]
     }),
     __metadata("design:paramtypes", [typeof (_b = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _b || Object])
 ], ClubComponent);
@@ -1649,7 +1720,7 @@ var _a, _b;
 //# sourceMappingURL=club.component.js.map
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1665,7 +1736,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var ClubsComponent = (function () {
     function ClubsComponent(mainService) {
         this.mainService = mainService;
@@ -1696,8 +1767,8 @@ var ClubsComponent = (function () {
 ClubsComponent = __decorate([
     core_1.Component({
         selector: 'clubs-cmp ',
-        template: __webpack_require__(232),
-        styles: [__webpack_require__(209)]
+        template: __webpack_require__(234),
+        styles: [__webpack_require__(210)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object])
 ], ClubsComponent);
@@ -1706,7 +1777,7 @@ var _a;
 //# sourceMappingURL=clubs.component.js.map
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1729,14 +1800,14 @@ var MeetingsComponent = (function () {
 MeetingsComponent = __decorate([
     core_1.Component({
         selector: ' meetings-cmp ',
-        template: __webpack_require__(233)
+        template: __webpack_require__(235)
     })
 ], MeetingsComponent);
 exports.MeetingsComponent = MeetingsComponent;
 //# sourceMappingURL=meetings.component.js.map
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1759,14 +1830,14 @@ var PeopleComponent = (function () {
 PeopleComponent = __decorate([
     core_1.Component({
         selector: ' people-cmp ',
-        template: __webpack_require__(234)
+        template: __webpack_require__(236)
     })
 ], PeopleComponent);
 exports.PeopleComponent = PeopleComponent;
 //# sourceMappingURL=people.component.js.map
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1790,7 +1861,7 @@ var DashboardComponent = (function () {
 DashboardComponent = __decorate([
     core_1.Component({
         selector: 'dashboard-cmp',
-        template: __webpack_require__(235)
+        template: __webpack_require__(237)
     }),
     __metadata("design:paramtypes", [])
 ], DashboardComponent);
@@ -1798,7 +1869,7 @@ exports.DashboardComponent = DashboardComponent;
 //# sourceMappingURL=dashboard.component.js.map
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1816,17 +1887,18 @@ var platform_browser_1 = __webpack_require__(20);
 var forms_1 = __webpack_require__(22);
 var ng2_cloudinary_1 = __webpack_require__(28);
 var ng2_file_upload_1 = __webpack_require__(36);
-var ngx_color_picker_1 = __webpack_require__(223);
-var footer_module_1 = __webpack_require__(79);
-var sidebar_module_1 = __webpack_require__(82);
-var navbar_module_1 = __webpack_require__(80);
-var angular_2_dropdown_multiselect_1 = __webpack_require__(149);
-var dashboard_routes_1 = __webpack_require__(134);
-var profile_component_1 = __webpack_require__(78);
+var ngx_color_picker_1 = __webpack_require__(225);
+var footer_module_1 = __webpack_require__(80);
+var sidebar_module_1 = __webpack_require__(83);
+var navbar_module_1 = __webpack_require__(81);
+var angular_2_dropdown_multiselect_1 = __webpack_require__(150);
+var dashboard_routes_1 = __webpack_require__(135);
+var profile_component_1 = __webpack_require__(79);
 var add_edit_component_1 = __webpack_require__(77);
-var club_detail_line_component_1 = __webpack_require__(125);
-var uploader_component_1 = __webpack_require__(141);
+var club_detail_line_component_1 = __webpack_require__(126);
+var uploader_component_1 = __webpack_require__(142);
 var about_component_1 = __webpack_require__(76);
+var setup_detail_component_1 = __webpack_require__(78);
 var DashboardModule = (function () {
     function DashboardModule() {
     }
@@ -1846,36 +1918,37 @@ DashboardModule = __decorate([
             ng2_file_upload_1.FileUploadModule,
             angular_2_dropdown_multiselect_1.MultiselectDropdownModule,
         ],
-        declarations: [dashboard_routes_1.MODULE_COMPONENTS, profile_component_1.ProfileComponent, add_edit_component_1.AddEditComponent, club_detail_line_component_1.ClubDetailLineComponent, uploader_component_1.UploaderComponent, about_component_1.AboutComponent]
+        declarations: [dashboard_routes_1.MODULE_COMPONENTS, profile_component_1.ProfileComponent, add_edit_component_1.AddEditComponent, club_detail_line_component_1.ClubDetailLineComponent, uploader_component_1.UploaderComponent, about_component_1.AboutComponent, setup_detail_component_1.SetupDetailComponent]
     })
 ], DashboardModule);
 exports.DashboardModule = DashboardModule;
 //# sourceMappingURL=dashboard.module.js.map
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 // import { DashboardComponent } from './dashboard.component';
-var home_component_1 = __webpack_require__(137);
-var clubs_component_1 = __webpack_require__(129);
-var meetings_component_1 = __webpack_require__(130);
-var people_component_1 = __webpack_require__(131);
-var setups_component_1 = __webpack_require__(140);
-var forums_component_1 = __webpack_require__(136);
-var blogs_component_1 = __webpack_require__(135);
-var articles_component_1 = __webpack_require__(138);
-var videos_component_1 = __webpack_require__(139);
-var login_component_1 = __webpack_require__(142);
-var register_component_1 = __webpack_require__(143);
-var profile_component_1 = __webpack_require__(78);
-var club_component_1 = __webpack_require__(128);
-var add_club_component_1 = __webpack_require__(127);
+var home_component_1 = __webpack_require__(138);
+var clubs_component_1 = __webpack_require__(130);
+var meetings_component_1 = __webpack_require__(131);
+var people_component_1 = __webpack_require__(132);
+var setups_component_1 = __webpack_require__(141);
+var forums_component_1 = __webpack_require__(137);
+var blogs_component_1 = __webpack_require__(136);
+var articles_component_1 = __webpack_require__(139);
+var videos_component_1 = __webpack_require__(140);
+var login_component_1 = __webpack_require__(143);
+var register_component_1 = __webpack_require__(144);
+var profile_component_1 = __webpack_require__(79);
+var club_component_1 = __webpack_require__(129);
+var add_club_component_1 = __webpack_require__(128);
 var add_edit_component_1 = __webpack_require__(77);
-var manage_clubs_component_1 = __webpack_require__(126);
+var setup_detail_component_1 = __webpack_require__(78);
+var manage_clubs_component_1 = __webpack_require__(127);
 var about_component_1 = __webpack_require__(76);
 //
 exports.MODULE_ROUTES = [
@@ -1885,6 +1958,7 @@ exports.MODULE_ROUTES = [
     { path: 'connect/people', component: people_component_1.PeopleComponent },
     { path: 'setups', component: setups_component_1.SetupsComponent },
     { path: 'setups/add/:index', component: add_edit_component_1.AddEditComponent },
+    { path: 'setups/view', component: setup_detail_component_1.SetupDetailComponent },
     { path: 'discuss/forums', component: forums_component_1.ForumsComponent },
     { path: 'discuss/blogs', component: blogs_component_1.BlogsComponent },
     { path: 'learn/articles', component: articles_component_1.ArticlesComponent },
@@ -1918,7 +1992,7 @@ exports.MODULE_COMPONENTS = [
 //# sourceMappingURL=dashboard.routes.js.map
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1941,14 +2015,14 @@ var BlogsComponent = (function () {
 BlogsComponent = __decorate([
     core_1.Component({
         selector: ' blogs-cmp ',
-        template: __webpack_require__(236)
+        template: __webpack_require__(238)
     })
 ], BlogsComponent);
 exports.BlogsComponent = BlogsComponent;
 //# sourceMappingURL=blogs.component.js.map
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1971,14 +2045,14 @@ var ForumsComponent = (function () {
 ForumsComponent = __decorate([
     core_1.Component({
         selector: ' forums-cmp ',
-        template: __webpack_require__(237)
+        template: __webpack_require__(239)
     })
 ], ForumsComponent);
 exports.ForumsComponent = ForumsComponent;
 //# sourceMappingURL=forums.component.js.map
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1994,7 +2068,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var HomeComponent = (function () {
     function HomeComponent(mainService) {
         this.mainService = mainService;
@@ -2007,7 +2081,7 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     core_1.Component({
         selector: ' home-cmp ',
-        template: __webpack_require__(238)
+        template: __webpack_require__(240)
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object])
 ], HomeComponent);
@@ -2016,7 +2090,7 @@ var _a;
 //# sourceMappingURL=home.component.js.map
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2039,14 +2113,14 @@ var ArticlesComponent = (function () {
 ArticlesComponent = __decorate([
     core_1.Component({
         selector: ' articles-cmp ',
-        template: __webpack_require__(239)
+        template: __webpack_require__(241)
     })
 ], ArticlesComponent);
 exports.ArticlesComponent = ArticlesComponent;
 //# sourceMappingURL=articles.component.js.map
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2069,14 +2143,14 @@ var VideosComponent = (function () {
 VideosComponent = __decorate([
     core_1.Component({
         selector: ' videos-cmp ',
-        template: __webpack_require__(240)
+        template: __webpack_require__(242)
     })
 ], VideosComponent);
 exports.VideosComponent = VideosComponent;
 //# sourceMappingURL=videos.component.js.map
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2092,15 +2166,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var SetupsComponent = (function () {
     function SetupsComponent(mainService) {
         this.mainService = mainService;
         this.isAddsetup = false;
         this.isEditsetup = false;
+        this.viewDetails = false;
     }
     SetupsComponent.prototype.ngOnInit = function () {
         this.getSetups();
+        this.viewDetails = false;
+        this.viewSetup = {};
     };
     SetupsComponent.prototype.ngAfterViewChecked = function () {
         if (this.isEditsetup) {
@@ -2128,6 +2205,10 @@ var SetupsComponent = (function () {
     };
     SetupsComponent.prototype.editSetup = function (evt) {
     };
+    SetupsComponent.prototype.viewDetailsClick = function (setup) {
+        this.currentSetup = setup;
+        this.viewDetails = true;
+    };
     return SetupsComponent;
 }());
 __decorate([
@@ -2137,8 +2218,8 @@ __decorate([
 SetupsComponent = __decorate([
     core_1.Component({
         selector: ' setups-cmp ',
-        template: __webpack_require__(242),
-        styles: [__webpack_require__(211)]
+        template: __webpack_require__(245),
+        styles: [__webpack_require__(213)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object])
 ], SetupsComponent);
@@ -2147,7 +2228,7 @@ var _a;
 //# sourceMappingURL=setups.component.js.map
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2164,7 +2245,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var ng2_cloudinary_1 = __webpack_require__(28);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var UploaderComponent = (function () {
     function UploaderComponent(mainService) {
         var _this = this;
@@ -2215,8 +2296,8 @@ __decorate([
 UploaderComponent = __decorate([
     core_1.Component({
         selector: 'app-uploader',
-        template: __webpack_require__(243),
-        styles: [__webpack_require__(212)]
+        template: __webpack_require__(246),
+        styles: [__webpack_require__(214)]
     }),
     __metadata("design:paramtypes", [typeof (_c = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _c || Object])
 ], UploaderComponent);
@@ -2225,7 +2306,7 @@ var _a, _b, _c;
 //# sourceMappingURL=uploader.component.js.map
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2242,7 +2323,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(10);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var LoginComponent = (function () {
     function LoginComponent(mainService, router) {
         this.mainService = mainService;
@@ -2296,8 +2377,8 @@ __decorate([
 LoginComponent = __decorate([
     core_1.Component({
         selector: 'app-login',
-        template: __webpack_require__(244),
-        styles: [__webpack_require__(213)]
+        template: __webpack_require__(247),
+        styles: [__webpack_require__(215)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object])
 ], LoginComponent);
@@ -2306,7 +2387,7 @@ var _a, _b;
 //# sourceMappingURL=login.component.js.map
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2323,7 +2404,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(10);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var RegisterComponent = (function () {
     function RegisterComponent(mainService, router) {
         this.mainService = mainService;
@@ -2373,8 +2454,8 @@ __decorate([
 RegisterComponent = __decorate([
     core_1.Component({
         selector: 'app-register',
-        template: __webpack_require__(246),
-        styles: [__webpack_require__(215)]
+        template: __webpack_require__(249),
+        styles: [__webpack_require__(217)]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object])
 ], RegisterComponent);
@@ -2383,7 +2464,7 @@ var _a, _b;
 //# sourceMappingURL=register.component.js.map
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2405,14 +2486,14 @@ var FooterComponent = (function () {
 FooterComponent = __decorate([
     core_1.Component({
         selector: 'footer-cmp',
-        template: __webpack_require__(247)
+        template: __webpack_require__(250)
     })
 ], FooterComponent);
 exports.FooterComponent = FooterComponent;
 //# sourceMappingURL=footer.component.js.map
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2428,9 +2509,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var sidebar_routes_config_1 = __webpack_require__(81);
+var sidebar_routes_config_1 = __webpack_require__(82);
 var sidebar_metadata_1 = __webpack_require__(41);
-var common_1 = __webpack_require__(5);
+var common_1 = __webpack_require__(6);
 var NavbarComponent = (function () {
     function NavbarComponent(location) {
         this.location = location;
@@ -2459,7 +2540,7 @@ var NavbarComponent = (function () {
 NavbarComponent = __decorate([
     core_1.Component({
         selector: 'navbar-cmp',
-        template: __webpack_require__(248)
+        template: __webpack_require__(251)
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof common_1.Location !== "undefined" && common_1.Location) === "function" && _a || Object])
 ], NavbarComponent);
@@ -2468,7 +2549,7 @@ var _a;
 //# sourceMappingURL=navbar.component.js.map
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2484,10 +2565,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var sidebar_routes_config_1 = __webpack_require__(81);
+var sidebar_routes_config_1 = __webpack_require__(82);
 var sidebar_metadata_1 = __webpack_require__(41);
 var router_1 = __webpack_require__(10);
-var main_service_1 = __webpack_require__(6);
+var main_service_1 = __webpack_require__(5);
 var SidebarComponent = (function () {
     function SidebarComponent(mainService, router) {
         this.mainService = mainService;
@@ -2515,7 +2596,7 @@ var SidebarComponent = (function () {
 SidebarComponent = __decorate([
     core_1.Component({
         selector: 'sidebar-cmp',
-        template: __webpack_require__(249),
+        template: __webpack_require__(252),
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object, typeof (_b = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _b || Object])
 ], SidebarComponent);
@@ -2524,7 +2605,7 @@ var _a, _b;
 //# sourceMappingURL=sidebar.component.js.map
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2540,7 +2621,6 @@ exports.environment = {
 //# sourceMappingURL=environment.js.map
 
 /***/ }),
-/* 148 */,
 /* 149 */,
 /* 150 */,
 /* 151 */,
@@ -2595,7 +2675,8 @@ exports.environment = {
 /* 200 */,
 /* 201 */,
 /* 202 */,
-/* 203 */
+/* 203 */,
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
@@ -2612,23 +2693,6 @@ exports.push([module.i, ".sidebar-background {\n  display: none;\n}\n\n.sidebar 
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 204 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)();
-// imports
-
-
-// module
-exports.push([module.i, "textarea {\n  height: 200px;\n}\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
-
-/***/ }),
 /* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2637,7 +2701,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "textarea {\n  height: 200px;\n}\n", ""]);
 
 // exports
 
@@ -2671,7 +2735,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, ".panel .panel-body {\n  padding: 10px 0px;\n}\n\n.panel .panel-body .checkbox {\n  margin-top: 0px;\n}\n\n.repeat {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.row {\n  padding: 0 20px;\n}\n\n.m-t-m-15 {\n  margin-top: -15px;\n}\n\n.m-t-m-10 {\n  margin-top: -10px;\n}\n\n.m-l-15 {\n  margin-left: 15px;\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -2688,7 +2752,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, ".card .card-content {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  padding: 15px 40px;\n}\n\n.card .card-content > span {\n  width: calc(100% - 50px);\n  padding: 0 30px;\n}\n\n.card .card-content > span .club-title {\n  font-size: 18px;\n  font-weight: 500;\n}\n\n.card .card-content > span > span {\n  display: block;\n}\n\n.hover {\n  cursor: pointer;\n}\n\n.editDiag {\n  position: fixed;\n  left: calc(50% - 300px);\n  top: calc(50% - 200px);\n  width: 500px;\n  z-index: 101;\n}\n\n.editDiag > .card-content {\n  display: block;\n}\n\n.transparent-panel {\n  width: 100%;\n  height: 100%;\n  background: rgba(250, 0, 0, 0.1);\n  position: fixed;\n  top: 70px;\n  left: 0;\n  z-index: 100;\n}\n\n.select-member {\n  margin-top: 30px;\n  height: 90px;\n}\n\n.edit {\n  display: block !important;\n  padding: 0 50px;\n}\n\n.edit > div {\n  display: block;\n}\n\n.md-card-image {\n  max-width: 250px;\n}\n\ni.delete-icon {\n  margin-left: 7px;\n}\n", ""]);
+exports.push([module.i, ".panel .panel-body {\n  padding: 10px 0px;\n}\n\n.panel .panel-body .checkbox {\n  margin-top: 0px;\n}\n\n.repeat {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n\n.row {\n  padding: 0 20px;\n}\n\n.m-t-m-15 {\n  margin-top: -15px;\n}\n\n.m-t-m-10 {\n  margin-top: -10px;\n}\n\n.m-l-15 {\n  margin-left: 15px;\n}\n", ""]);
 
 // exports
 
@@ -2705,7 +2769,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".card .card-content {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  padding: 15px 40px;\n}\n\n.card .card-content > span {\n  width: calc(100% - 50px);\n  padding: 0 30px;\n}\n\n.card .card-content > span .club-title {\n  font-size: 18px;\n  font-weight: 500;\n}\n\n.card .card-content > span > span {\n  display: block;\n}\n\n.hover {\n  cursor: pointer;\n}\n\n.editDiag {\n  position: fixed;\n  left: calc(50% - 300px);\n  top: calc(50% - 200px);\n  width: 500px;\n  z-index: 101;\n}\n\n.editDiag > .card-content {\n  display: block;\n}\n\n.transparent-panel {\n  width: 100%;\n  height: 100%;\n  background: rgba(250, 0, 0, 0.1);\n  position: fixed;\n  top: 70px;\n  left: 0;\n  z-index: 100;\n}\n\n.select-member {\n  margin-top: 30px;\n  height: 90px;\n}\n\n.edit {\n  display: block !important;\n  padding: 0 50px;\n}\n\n.edit > div {\n  display: block;\n}\n\n.md-card-image {\n  max-width: 250px;\n}\n\ni.delete-icon {\n  margin-left: 7px;\n}\n", ""]);
 
 // exports
 
@@ -2722,7 +2786,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "li .users-option::before {\n  content: '\\E87C';\n}\n\n.setup-image {\n  text-align: center;\n}\n\n.setup-image > div {\n  max-width: 150px;\n}\n\n.row {\n  padding-left: 40px;\n  padding-right: 40px;\n}\n\n.description {\n  font-style: italic;\n  font-size: 16px;\n  margin-left: 10px;\n}\n\ni:hover {\n  cursor: pointer;\n}\n\ni {\n  position: relative;\n  top: 5px;\n  left: 10px;\n}\n\n.row {\n  padding-bottom: 40px;\n}\n\n.mins-text {\n  position: relative;\n  top: 25px;\n}\n\n.card-footer {\n  text-align: center;\n}\n\n.card-footer button {\n  width: 250px;\n}\n\n.bigger-textarea {\n  height: 150px;\n}\n\n.colorpicker {\n  width: 30px;\n}\n\n.narrations-list .multiselection label {\n  margin-right: 30px;\n}\n\n.row .row {\n  padding-bottom: 0;\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -2739,7 +2803,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, ".row {\n  padding-left: 30px;\n  padding-right: 30px;\n}\n\n\n.row.add-button {\n  margin-bottom: 50px;\n}\n", ""]);
+exports.push([module.i, "li .users-option::before {\n  content: '\\E87C';\n}\n\n.setup-image {\n  text-align: center;\n}\n\n.setup-image > div {\n  max-width: 150px;\n}\n\n.row {\n  padding-left: 40px;\n  padding-right: 40px;\n}\n\n.description {\n  font-style: italic;\n  font-size: 16px;\n  margin-left: 10px;\n}\n\ni:hover {\n  cursor: pointer;\n}\n\ni {\n  position: relative;\n  top: 5px;\n  left: 10px;\n}\n\n.row {\n  padding-bottom: 40px;\n}\n\n.mins-text {\n  position: relative;\n  top: 25px;\n}\n\n.card-footer {\n  text-align: center;\n}\n\n.card-footer button {\n  width: 250px;\n}\n\n.bigger-textarea {\n  height: 150px;\n}\n\n.colorpicker {\n  width: 30px;\n}\n\n.narrations-list .multiselection label {\n  margin-right: 30px;\n}\n\n.row .row {\n  padding-bottom: 0;\n}\n", ""]);
 
 // exports
 
@@ -2756,7 +2820,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".row {\n  padding: 20px;\n}\n\n.color {\n  width: 25px;\n  height: 25px;\n  margin: 5px;\n}\n\n.setup-image {\n  max-height: 150px;\n  width: auto;\n}\n\ntextarea {\n  min-height: 110px;\n}\n\nform .row.card .card-content {\n  display: none;\n}\n\nform .row.card.expanded .card-content {\n  display: block;\n}\n\ni {\n  cursor: pointer;\n}\n", ""]);
 
 // exports
 
@@ -2773,7 +2837,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".row {\n  padding-left: 30px;\n  padding-right: 30px;\n}\n\n\n.row.add-button {\n  margin-bottom: 50px;\n}\n", ""]);
 
 // exports
 
@@ -2790,7 +2854,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "form > .card > .card-content > .row {\n  padding: 0 20px;\n}\n\n.upload-avatar {\n  padding: 30px;\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -2807,6 +2871,40 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
+exports.push([module.i, "", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+/* 216 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "form > .card > .card-content > .row {\n  padding: 0 20px;\n}\n\n.upload-avatar {\n  padding: 30px;\n}\n", ""]);
+
+// exports
+
+
+/*** EXPORTS FROM exports-loader ***/
+module.exports = module.exports.toString();
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
 exports.push([module.i, ".errmsg {\n  color: red;\n}\n", ""]);
 
 // exports
@@ -2816,8 +2914,6 @@ exports.push([module.i, ".errmsg {\n  color: red;\n}\n", ""]);
 module.exports = module.exports.toString();
 
 /***/ }),
-/* 216 */,
-/* 217 */,
 /* 218 */,
 /* 219 */,
 /* 220 */,
@@ -2826,64 +2922,54 @@ module.exports = module.exports.toString();
 /* 223 */,
 /* 224 */,
 /* 225 */,
-/* 226 */
+/* 226 */,
+/* 227 */,
+/* 228 */
 /***/ (function(module, exports) {
 
 module.exports = "\n<div class=\"wrapper\">\n    <div class=\"sidebar\" *ngIf=\"!isUsers\" data-active-color=\"white\" data-background-color=\"red\">\n    <!-- <div class=\"sidebar\" data-color=\"red\" data-image=\"\"> -->\n        <sidebar-cmp></sidebar-cmp>\n        <div class=\"sidebar-background\" style=\"background-image: url(assets/img/sidebar-1.jpg);\"></div>\n    </div>\n    <div class=\"{{!isUsers ? 'main-panel' : ''}}\">\n        <navbar-cmp class=\"{{!isUsers ? '' : 'hidden'}}\"></navbar-cmp>\n        <dashboard-cmp></dashboard-cmp>\n    </div>\n</div>\n\n"
 
 /***/ }),
-/* 227 */
+/* 229 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h2>What is a Liars Club</h2>\n        </div>\n        <div class=\"card-content\">\n          <textarea class=\"form-control\"></textarea>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h2>What is Mafia</h2>\n        </div>\n        <div class=\"card-content\">\n          <textarea class=\"form-control\"></textarea>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"card\">\n        <div class=\"card-header\">\n          <h2>How should I use this website</h2>\n        </div>\n        <div class=\"card-content\">\n          <textarea class=\"form-control\"></textarea>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
-/* 228 */
+/* 230 */
 /***/ (function(module, exports) {
 
 module.exports = "\n"
 
 /***/ }),
-/* 229 */
+/* 231 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"card\">\n        <div class=\"card-content\">\n          <div class=\"table-responsive\">\n            <table class=\"table\">\n              <thead class=\"text-primary\">\n                <tr>\n                  <th class=\"text-left\">Club Name</th>\n                  <th class=\"text-center\">Tagged Username</th>\n                  <th class=\"text-center\">Tagged User Type</th>\n                  <th class=\"text-center\">Tagged User State</th>\n                  <th class=\"text-center\">Tagged Date</th>\n                  <th class=\"text-center\">Action</th>\n                </tr>\n              </thead>\n              <tbody #tblBody (click)=\"tblClicked($event)\">\n              </tbody>\n            </table>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
-/* 230 */
+/* 232 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"card\">\n  <div class=\"card-header\">\n    <legend>Add a Club</legend>\n  </div>\n  <div class=\"card-content\">\n    <form>\n      <div class=\"row\">\n        <div class=\"col-lg-7 col-md-7 col-sm-12 col-xs-12\">\n          <div class=\"form-group label-floating\">\n            <label class=\"control-label\">Club Name</label>\n            <input class=\"form-control\" required #clubName />\n          </div>\n          <div class=\"form-group label-floating\">\n            <label class=\"control-label\">Club Address</label>\n            <input class=\"form-control\" id=\"clubAddress\" #clubAddress required (keyup)=\"locationChange($event)\" />\n          </div>\n        </div>\n        <div class=\"col-lg-5 col-md-5 col-sm-12 col-xs-12\">\n          <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n            <div class=\"fileinput-new thumbnail\">\n              <img src=\"../../../../../assets/img/image_placeholder.jpg\" alt=\"...\" #clubImg>\n            </div>\n            <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n            <div>\n              <span class=\"btn btn-rose btn-round btn-file btn-sm\">\n                  <span class=\"fileinput-new\">Select image</span>\n                  <span class=\"fileinput-exists\">Select image</span>\n                  <input type=\"file\" name=\"...\" #clubImg ng2FileSelect [uploader]=\"uploader\" (change)=\"imgChanged = true\" />\n              </span>\n            </div>\n          </div>\n        </div>\n      </div>\n\n      <div class=\"row\">\n        <div id=\"regularMap\" class=\"map\"></div>\n      </div>\n\n      <div class=\"row\">\n          <div class=\"panel panel-default\">\n            <div class=\"panel-heading\" role=\"tab\" id=\"headingOne\">\n              <a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">\n                <h4 class=\"panel-title\">\n                  Meets up...\n                  <i class=\"material-icons\">keyboard_arrow_down</i>\n                </h4>\n              </a>\n            </div>\n            <div id=\"collapseOne\" class=\"panel-collapse collapse in\" role=\"tabpanel\" aria-labelledby=\"headingOne\">\n              <div class=\"panel-body\">\n                <div class=\"row\">\n                  <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 checkbox\">\n                    <label>\n                      <input type=\"checkbox\" #irregulary>  Irregularly\n                    </label>\n                  </div>\n                  <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6 checkbox\">\n                    <label>\n                      <input type=\"checkbox\" #regularly>  Regularly\n                    </label>\n                  </div>\n                </div>\n                <div class=\"row repeat\">\n                  <label class=\"col-sm-2 label-on-left\">Every</label>\n                  <div class=\"col-lg-2 col-md-2 col-sm-4 col-xs-4 m-t-m-15\">\n                    <input type=\"number\" min=\"1\" class=\"form-control\" value=\"1\" #repeatPeriod required>\n                  </div>\n                  <div class=\"col-lg-8 col-md-8 col-sm-6 col-xs-6 m-t-m-10\">\n                    <select class=\"selectpicker\" data-style=\"select-with-transition\" required #repeatType>\n                      <option>weeks</option>\n                      <option>months</option>\n                    </select>\n                  </div>\n                </div>\n                <div class=\"row repeat\">\n                  <label class=\"col-sm-2 label-on-left\">On</label>\n                  <div class=\"col-lg-10\">\n                    <select class=\"selectpicker\" multiple data-style=\"select-with-transition\" required #dayOfWeek>\n                      <option>Sunday</option>\n                      <option>Monday</option>\n                      <option>Tuesday</option>\n                      <option>Wednesday</option>\n                      <option>Thursday</option>\n                      <option>Friday</option>\n                      <option>Saturday</option>\n                    </select>\n                  </div>\n                </div>\n                <div class=\"row repeat\">\n                  <label class=\"col-sm-2 label-on-left\">At</label>\n                  <div class=\"col-md-10 m-t-m-15\">\n                    <input type=\"text\"class=\"form-control timepicker\" #time>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n      </div>\n\n      <div class=\"row\">\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Physical Location</label>\n          <input class=\"form-control\" id=\"physicalLocation\" required #phsicalLocation />\n        </div>\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Email address</label>\n          <input class=\"form-control\" type=\"email\" required #email />\n        </div>\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Link to website</label>\n          <input class=\"form-control\" #websiteLink />\n        </div>\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Link to Facebook page</label>\n          <input class=\"form-control\" #facebookLink />\n        </div>\n      </div>\n\n      <a (click)=\"addClub($event)\" class=\"btn btn-fill btn-rose pull-right\" >Submit</a>\n    </form>\n  </div>\n</div>\n"
 
 /***/ }),
-/* 231 */
+/* 233 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"card\">\n  <div class=\"card-content\">\n    <cl-image data-u=\"image\" public-id=\"{{club.imgUrl}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"560\" width=\"860\" format=\"jpg\">\n    </cl-image>\n    <span>\n        <span class=\"club-title\">\n          {{club.title}}\n          <small>{{club.tagged ? '   -- You tagged yourself as ' + (club.taggedUsers[club.taggedIndex].memberState === 'active' ? 'an ' : 'a ')\n            +  club.taggedUsers[club.taggedIndex].memberState + ' ' + club.taggedUsers[club.taggedIndex].memberType + ' of this club' : ''}}</small>\n        </span>\n        <span class=\"club-desciption\">{{club.dayOfWeek}}s at {{club.time}}, {{club.activeMembers + club.pastMembers}} members</span>\n    </span>\n    <i class=\"material-icons hover\" (click)=\"showEditDiag = !showEditDiag\">info</i>\n    <i class=\"material-icons hover delete-icon\" (click)=\"clubDelete()\" *ngIf=\"isMine(club)\">cancel</i>\n  </div>\n  <div class=\"card-footer\" *ngIf=\"showEditDiag\">\n    <div class=\"edit\">\n      <p>Location: {{club.location}}</p>\n      <p>{{club.activeMembers}} active members, {{club.pastMembers}} past members</p>\n      <p>Meets on {{club.dayOfWeek}}s at {{club.time}}</p>\n      <div class=\"select-member\" *ngIf=\"!club.tagged\">\n        <p>I am a ...</p>\n        <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n          <select class=\"selectpicker\" data-style=\"select-with-transition\" data-size=\"7\" [(ngModel)]=\"memberState\" name=\"memberState\">\n            <option value=\"active\">Active</option>\n            <option value=\"past\">Past</option>\n          </select>\n        </div>\n        <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n          <select class=\"selectpicker\" data-style=\"select-with-transition\" data-size=\"7\" [(ngModel)]=\"memberType\" name=\"memberType\">\n            <option value=\"member\">Member</option>\n            <option value=\"admin\">Admin</option>\n          </select>\n        </div>\n      </div>\n      <div class=\"\">\n        <button class=\"btn btn-success pull-right\" (click)=\"tag()\" *ngIf=\"!club.tagged\">Tag myself with this club</button>\n        <button class=\"btn btn-danger pull-right\" (click)=\"unTag()\" *ngIf=\"club.tagged\">Untag this club</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div class=\"transparent-panel\" *ngIf=\"showDiag\" (click)=\"cancel()\">\n</div>\n\n\n<div class=' {{ showDiag ? \"card editDiag\" : \"card editDiag hidden\" }} ' #editDiag>\n  <div class=\"card-content\">\n    <h2>{{club.title}}</h2>\n    <p>{{club.location}}</p>\n    <p>{{club.activeMembers}} active members, {{club.pastMembers}} past members</p>\n    <p>Meets on {{club.dayOfWeek}}s at {{club.time}}</p>\n    <div class=\"select-member\">\n      <p>I am a ...</p>\n      <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n        <select class=\"selectpicker\" data-style=\"select-with-transition\" data-size=\"7\" [(ngModel)]=\"memberState\" name=\"memberState\">\n          <option value=\"active\">Active</option>\n          <option value=\"past\">Past</option>\n        </select>\n      </div>\n      <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">\n        <select class=\"selectpicker\" data-style=\"select-with-transition\" data-size=\"7\" [(ngModel)]=\"memberType\" name=\"memberType\">\n          <option value=\"member\">Member</option>\n          <option value=\"admin\">Admin</option>\n        </select>\n      </div>\n    </div>\n  </div>\n  <div class=\"card-footer\">\n    <button class=\"btn btn-success pull-right\" (click)=\"tag()\" *ngIf=\"!club.tagged\">Tag myself with this club</button>\n    <button class=\"btn btn-danger pull-right\" (click)=\"unTag()\" *ngIf=\"club.tagged\">Untag myself with this club</button>\n  </div>\n</div>\n"
 
 /***/ }),
-/* 232 */
+/* 234 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n      <div class=\"row\">\n        <div class=\"col-lg-7 col-md-7 col-sm-12 col-xs-12\">\n            <app-club *ngFor=\"let club of clubs\" [club] = \"club\" (tagChanged)=\"getClubs()\" ></app-club>\n        </div>\n        <div class=\"col-lg-5 col-md-5 col-sm-12 col-xs-12\">\n            <app-add-club (clubAdded)=\"getClubs()\" ></app-add-club>\n        </div>\n      </div>\n    </div>\n</div>\n"
 
 /***/ }),
-/* 233 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <h1>Coming Soon!</h1>\n    </div>\n</div>\n"
-
-/***/ }),
-/* 234 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <h1>Coming Soon!</h1>\n    </div>\n</div>\n"
-
-/***/ }),
 /* 235 */
 /***/ (function(module, exports) {
 
-module.exports = "<router-outlet></router-outlet>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <h1>Coming Soon!</h1>\n    </div>\n</div>\n"
 
 /***/ }),
 /* 236 */
@@ -2895,13 +2981,13 @@ module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid
 /* 237 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <h1>Coming Soon!</h1>\n    </div>\n</div>\n"
+module.exports = "<router-outlet></router-outlet>\n"
 
 /***/ }),
 /* 238 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngIf=\"userLoggedIn\">\n            <div class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\">\n                <div class=\"card\">\n                    <div class=\"card-header\">\n                    </div>\n                    <div class=\"card-content\">\n                        <div class=\"row\">\n                            <div class=\"col-md-2\">\n                                <ul class=\"nav nav-pills nav-pills-icons nav-pills-rose nav-stacked\" role=\"tablist\">\n                                    <li class=\"active\">\n                                        <a href=\"#dashboard-2\" role=\"tab\" data-toggle=\"tab\">\n                                            <i class=\"material-icons\">dashboard</i> Updates\n                                        </a>\n                                    </li>\n                                    <li>\n                                        <a href=\"#schedule-2\" role=\"tab\" data-toggle=\"tab\">\n                                            <i class=\"material-icons\">schedule</i> Social\n                                        </a>\n                                    </li>\n                                </ul>\n                            </div>\n                            <div class=\"col-md-10\">\n                                <div class=\"tab-content\">\n                                    <div class=\"tab-pane active\" id=\"dashboard-2\">\n                                        <div>\n                                            <i class=\"material-icons btn-lg\">event</i>\n                                            <span>The Stanford Liars Club is meeting on <strong>Sunday at 8pm</strong></span>\n                                        </div>\n                                        <div>\n                                            <i class=\"material-icons btn-lg\">receipt</i>\n                                            <span><strong>activatedalien</strong> has uploaded a new article, <strong>\"Ax Endgames\"</strong></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"tab-pane\" id=\"schedule-2\">\n                                        <div>\n                                            <i class=\"material-icons\">straighten</i>\n                                            <span><strong>2 meetings</strong> near you this week</span>\n                                        </div>\n                                        <button class=\"btn btn-success btn-large\"> Review Your Games </button>\n                                        <button class=\"btn btn-success btn-large\"> Manage Your Groups </button>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\" *ngIf=\"userLoggedIn\">\n            <div class=\"col-md-7 col-lg-7 col-xs-12 col-sm-12\">\n                <div class=\"card\">\n                    <div class=\"card-content\">\n                        <div class=\"card\">\n                            <div class=\"card-content\">\n                                <img src=\"../../../assets/img/image_placeholder.jpg\" class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\" alt=\"\" >\n                                <h4>Main Article</h4>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"card-content col-lg-6 col-md-6 col-sm-12 col-xs-6\">\n                        <div class=\"card\">\n                            <div class=\"card-content\">\n                                <img src=\"../../../assets/img/image_placeholder.jpg\" class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\">\n                                <h4>Article 1</h4>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"card-content col-lg-6 col-md-6 col-sm-12 col-xs-6\">\n                        <div class=\"card\">\n                            <div class=\"card-content\">\n                                <img src=\"/../../../assets/img/image_placeholder.jpg\" class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\">\n                                <h4>Article 2</h4>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-5 col-lg-5 col-xs-12 col-sm-12\">\n                <div class=\"card\">\n                    <div class=\"card-content\">\n                        <img src=\"../../../assets/img/image_placeholder.jpg\" class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\">\n                        <h4>Main Forum/Blog Post</h4>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"coming-soon\" *ngIf=\"!userLoggedIn\">\n            <h1>Signup Form here, coming soon</h1>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <h1>Coming Soon!</h1>\n    </div>\n</div>\n"
 
 /***/ }),
 /* 239 */
@@ -2913,66 +2999,81 @@ module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid
 /* 240 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <h1>Coming Soon!</h1>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngIf=\"userLoggedIn\">\n            <div class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\">\n                <div class=\"card\">\n                    <div class=\"card-header\">\n                    </div>\n                    <div class=\"card-content\">\n                        <div class=\"row\">\n                            <div class=\"col-md-2\">\n                                <ul class=\"nav nav-pills nav-pills-icons nav-pills-rose nav-stacked\" role=\"tablist\">\n                                    <li class=\"active\">\n                                        <a href=\"#dashboard-2\" role=\"tab\" data-toggle=\"tab\">\n                                            <i class=\"material-icons\">dashboard</i> Updates\n                                        </a>\n                                    </li>\n                                    <li>\n                                        <a href=\"#schedule-2\" role=\"tab\" data-toggle=\"tab\">\n                                            <i class=\"material-icons\">schedule</i> Social\n                                        </a>\n                                    </li>\n                                </ul>\n                            </div>\n                            <div class=\"col-md-10\">\n                                <div class=\"tab-content\">\n                                    <div class=\"tab-pane active\" id=\"dashboard-2\">\n                                        <div>\n                                            <i class=\"material-icons btn-lg\">event</i>\n                                            <span>The Stanford Liars Club is meeting on <strong>Sunday at 8pm</strong></span>\n                                        </div>\n                                        <div>\n                                            <i class=\"material-icons btn-lg\">receipt</i>\n                                            <span><strong>activatedalien</strong> has uploaded a new article, <strong>\"Ax Endgames\"</strong></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"tab-pane\" id=\"schedule-2\">\n                                        <div>\n                                            <i class=\"material-icons\">straighten</i>\n                                            <span><strong>2 meetings</strong> near you this week</span>\n                                        </div>\n                                        <button class=\"btn btn-success btn-large\"> Review Your Games </button>\n                                        <button class=\"btn btn-success btn-large\"> Manage Your Groups </button>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\" *ngIf=\"userLoggedIn\">\n            <div class=\"col-md-7 col-lg-7 col-xs-12 col-sm-12\">\n                <div class=\"card\">\n                    <div class=\"card-content\">\n                        <div class=\"card\">\n                            <div class=\"card-content\">\n                                <img src=\"../../../assets/img/image_placeholder.jpg\" class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\" alt=\"\" >\n                                <h4>Main Article</h4>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"card-content col-lg-6 col-md-6 col-sm-12 col-xs-6\">\n                        <div class=\"card\">\n                            <div class=\"card-content\">\n                                <img src=\"../../../assets/img/image_placeholder.jpg\" class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\">\n                                <h4>Article 1</h4>\n                            </div>\n                        </div>\n                    </div>\n                    <div class=\"card-content col-lg-6 col-md-6 col-sm-12 col-xs-6\">\n                        <div class=\"card\">\n                            <div class=\"card-content\">\n                                <img src=\"/../../../assets/img/image_placeholder.jpg\" class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\">\n                                <h4>Article 2</h4>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n            <div class=\"col-md-5 col-lg-5 col-xs-12 col-sm-12\">\n                <div class=\"card\">\n                    <div class=\"card-content\">\n                        <img src=\"../../../assets/img/image_placeholder.jpg\" class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\">\n                        <h4>Main Forum/Blog Post</h4>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"coming-soon\" *ngIf=\"!userLoggedIn\">\n            <h1>Signup Form here, coming soon</h1>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 /* 241 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h3>{{isEdit ? 'Edit Setup' : 'Add Setup'}}</h3>\n      </div>\n      <div class=\"card-content\">\n        <form (submit)=\"saveSetup()\">\n          <div class=\"row\">\n            <div class=\"col-lg-7 col-md-7 col-sm-12 col-xs-12\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">Setup Name</label>\n                <input class=\"form-control\" [(ngModel)]=\"name\" name=\"name\" required />\n              </div>\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">Created by:</label>\n                <input class=\"form-control\" list=\"usernames\" [(ngModel)]=\"createdUser\" name=\"createdUser\" required>\n                <datalist id=\"usernames\"  multiple data-style=\"select-with-transition\" required>\n                  <option *ngFor=\"let user of users\">\n                    {{user.name}}\n                  </option>\n                </datalist>\n              </div>\n            </div>\n            <div class=\"col-lg-5 col-md-5 col-sm-12 col-xs-12 setup-image\">\n              <app-uploader [imgId]=\"imgId\" (changed)=\"uploading = true;\" (uploaded)=\"mainImgUploaded($event)\" #mainUploader></app-uploader>\n            </div>\n          </div>\n\n\n          <div class=\"row setup-description\">\n            <div class=\"cheader\">\n              <h3>\n                Description\n              </h3>\n            </div>\n            <div class=\"col-md-12 col-lg-12\">\n              <textarea class=\"form-control\" required [(ngModel)]=\"setupDescription\" name=\"setupDescription\" ></textarea>\n            </div>\n          </div>\n\n\n          <div class=\"row difficulty\">\n            <div class=\"cheader\">\n              <h3>\n                Difficulty\n              </h3>\n            </div>\n            <div class=\"col-md-4 col-lg-4\">\n              <div class=\"col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating\">\n                <label class=\"control-label\">Difficulty level</label>\n                <select class=\"form-control\" [(ngModel)]=\"difficulty\" name=\"difficulty\">\n                  <option>Beginner</option>\n                  <option>Intermediate</option>\n                  <option>Advanced</option>\n                  <option>Expert</option>\n                </select>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row member-count\">\n            <div class=\"cheader\">\n              <h3>\n                Recommended Number of Players\n              </h3>\n            </div>\n            <div class=\"col-md-12 col-lg-12\">\n              <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                <label class=\"control-label\">Minimum</label>\n                <input class=\"form-control\" required type=\"number\" [(ngModel)]=\"minimumMember\" (change)=\"minChange()\" name=\"minimumMember\" min=\"1\" />\n              </div>\n              <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                <label class=\"control-label\">Maximum</label>\n                <input class=\"form-control\" type=\"number\" [(ngModel)]=\"maximumMember\" (change)=\"maxChange()\" name=\"maximumMember\" min=\"1\" required />\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row playTime\">\n            <div class=\"cheader\">\n              <h3>\n                Expected Play Time\n              </h3>\n            </div>\n            <div class=\"col-md-12 col-lg-12\">\n              <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                <label class=\"control-label\"></label>\n                <input class=\"form-control\" required type=\"number\" min=\"1\" [(ngModel)]=\"playTime\" name=\"playTime\"/>\n              </div>\n              <span class=\"mins-text\">mins</span>\n            </div>\n          </div>\n\n          <div class=\"row teams\">\n            <div class=\"cheader\">\n              <h3>\n                Teams\n                <i class=\"material-icons\" (click)=\"addNewTeam()\">add_circle</i>\n              </h3>\n            </div>\n            <div class=\"teams-list\">\n              <div class=\"row team\" *ngFor=\"let team of teams; let idx = index;\">\n                <i class=\"material-icons pull-right\" (click)=\"removeTeam(idx)\">delete</i>\n                <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                  <label class=\"control-label\">Name</label>\n                  <input class=\"form-control\" [(ngModel)]=\"team.name\" required name=\"{{'teamname' + idx}}\"/>\n                </div>\n                <div class=\"form-group label-floating col-lg-3 col-md-3 col-sm-3\">\n                  <input class=\"colorpicker\" [(colorPicker)]=\"team.color\" [style.background]=\"team.color\" readonly/>\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Win Condition</label>\n                  <textarea class=\"form-control\" [(ngModel)]=\"team.description\" required name=\"{{'teamdescription' + idx}}\" ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row roles\">\n            <div class=\"cheader\">\n              <h3>\n                Roles <span class=\"description\">What roles are in the game and how do they work?</span>\n                <i class=\"material-icons\" (click)=\"addNewRole()\">add_circle</i>\n              </h3>\n            </div>\n            <div class=\"roles-list\">\n              <div class=\"row\" *ngFor=\"let role of roles; let ii = index;\">\n                <i class=\"material-icons pull-right\" (click)=\"removeRole(idx)\">delete</i>\n                <app-uploader class=\"col-md-2 col-lg-2 col-sm-2\" [imgId]=\"role.imgId\" (changed)=\"uploaders[ii] = true\" (uploaded)=\"roleImgUploaded(ii, $event);\"></app-uploader>\n                <div class=\"col-md-10 col-lg-10 col-sm-10\">\n                  <div class=\"col-lg-6 col-md-6 col-sm-6 roles-names form-group\">\n                    <label class=\"control-label\">Role Name</label>\n                    <input class=\"form-control\" list=\"defalutRolesLists\" [(ngModel)]=\"role.name\" name=\"{{'rolename' + ii}}\" [attr.index]=\"ii\" required (blur)=\"roleNameChanged($event)\" />\n                    <datalist id=\"defalutRolesLists\" [attr.index]=\"ii\">\n                      <option *ngFor=\"let role1 of defaultRoles; let i = index\" [attr.id]=\"role1._id\" [attr.value]=\"role1.name\" [attr.roleIndex]=\"i\" selected=\"{{ role._id == role1._id ? 'selected' : '' }}\" >\n                        {{role1.name}}\n                      </option>\n                    </datalist>\n                  </div>\n                  <div class=\"form-group col-lg-6 col-md-6 col-sm-6\">\n                    <label class=\"control-label\">Team</label>\n                    <select class=\"form-control\" [(ngModel)]=\"role.team\" name=\"{{'roleteam' + ii}}\">\n                      <option value=\"N/A\">N/A</option>\n                      <option *ngFor=\"let team of teams; let i = index\" [attr.value]=\"team.name\">\n                        {{team.name}}\n                      </option>\n                    </select>\n                  </div>\n                  <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                    <label class=\"control-label\">Description</label>\n                    <textarea class=\"form-control\" required [(ngModel)]=\"role.description\" name=\"{{'roledescription' + ii}}\"></textarea>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row intersection\">\n            <div class=\"cheader\">\n              <h3>\n                Interactions\n                <i class=\"material-icons\" (click)=\"addNewIntersection()\">add_circle</i>\n              </h3>\n            </div>\n            <div class=\"narrations-list\">\n              <div class=\"row team\" *ngFor=\"let intersection of intersections; let idx = index;\">\n                <i class=\"material-icons pull-right\" (click)=\"removeIntersection(idx)\">delete</i>\n                <div class=\"form-group multiselection\">\n                  <label class=\"control-label\">Roles/Teams</label>\n                  <ss-multiselect-dropdown [options]=\"getIntersectionSelectOptions()\" [settings]=\"selectSettings\" [(ngModel)]=\"intersection.roles\" name=\"{{'intersection' + idx}}\"></ss-multiselect-dropdown>\n                  <i class=\"material-icons pull-right\">up</i>\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Description</label>\n                  <textarea class=\"form-control\" [(ngModel)]=\"intersection.description\" required name=\"{{'narrdescription' + idx}}\" ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row narration\">\n            <div class=\"cheader\">\n              <h3>\n                Narration <span class=\"description\">Does the order in which roles are woken up matter? What is announced when people die? etc.</span>\n                <i class=\"material-icons\" (click)=\"addNewNarration()\">add_circle</i>\n              </h3>\n            </div>\n            <div class=\"narrations-list\">\n              <div class=\"row team\" *ngFor=\"let narration of narrations; let idx = index;\">\n                <i class=\"material-icons pull-right\" (click)=\"removeNarration(idx)\">delete</i>\n                <i class=\"material-icons pull-right\" (click)=\"narrationDown(idx)\" *ngIf=\"idx != narrations.length - 1\">arrow_downward</i>\n                <i class=\"material-icons pull-right\" (click)=\"narrationUp(idx)\" *ngIf=\"idx != 0\">arrow_upward</i>\n                <div class=\"\">\n                  <div class=\"\">\n                    <ss-multiselect-dropdown [options]=\"getRolesSelectOptions()\" [texts]=\"selectedTexts\" [settings]=\"selectSettings\" [(ngModel)]=\"narration.roles\" name=\"{{'narration' + idx}}\"></ss-multiselect-dropdown>\n                  </div>\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Narration</label>\n                  <textarea class=\"form-control\" [(ngModel)]=\"narration.description\" required name=\"{{'narrdescription' + idx}}\" ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row voting-roles\">\n            <div class=\"cheader\">\n              <h3>\n                Voting Rules <span class=\"description\">How does voting work? Are ties possible? etc.</span>\n              </h3>\n            </div>\n            <div class=\"roles-list\">\n              <div class=\"col-md-10 col-lg-10 col-sm-10\">\n                <div class=\"col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating\">\n                  <label class=\"control-label\">Voting Name</label>\n                  <input class=\"form-control\" list=\"defalutVotingsLists\" value=\"{{voting.name}}\" (blur)=\"votingNameChanged($event)\" required/>\n                  <datalist id=\"defalutVotingsLists\">\n                    <option *ngFor=\"let cvoting of defaultVotings\">\n                      {{cvoting.name}}\n                    </option>\n                  </datalist>\n                </div>\n                <div class=\"{{voting.description ? 'form-group label-floating col-lg-12 col-md-12 col-sm-12' : 'form-group label-floating col-lg-12 col-md-12 col-sm-12 is-empty'}}\">\n                  <label class=\"control-label\">Description</label>\n                  <textarea class=\"form-control\" value=\"{{voting.description}}\" required ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row missing-rules\">\n            <div class=\"cheader\">\n              <h3>\n                Additional Rules and Corner Cases <span class=\"description\">What rules have you missed</span>\n                <i class=\"material-icons\" (click)=\"addNewAdditionalRule()\">add_circle</i>\n              </h3>\n            </div>\n            <div class=\"additonal-rules-list\">\n              <div class=\"row\" *ngFor=\"let additionalRule of additionalRules; let idx = index;\">\n                <i class=\"material-icons pull-right\" (click)=\"removeAdditionalRule(idx)\">delete</i>\n                <div class=\"form-group multiselection\">\n                  <label class=\"control-label\">Roles/Teams</label>\n                  <ss-multiselect-dropdown [options]=\"getIntersectionSelectOptions()\" [settings]=\"selectSettings\" [(ngModel)]=\"additionalRule.roles\" name=\"{{'intersection' + idx}}\"></ss-multiselect-dropdown>\n                  <i class=\"material-icons pull-right\">up</i>\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Description</label>\n                  <textarea class=\"form-control\" [(ngModel)]=\"additionalRule.description\" required name=\"{{'additionalRule' + idx}}\" ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row role-frequecies\">\n            <div class=\"cheader\">\n              <h3>\n                Role Frequencies\n              </h3>\n              <h5>\n                Do you use randomization to generate your set of roles? If so, how?\n              </h5>\n            </div>\n            <div class=\"col-md-12 col-lg-12\">\n              <textarea class=\"form-control\" required [(ngModel)]=\"roleFrequencies\" name=\"roleFrequencies\" ></textarea>\n            </div>\n            <div class=\"col-md-12 col-lg-12\">\n              <div class=\"card\">\n                <div class=\"card-content\">\n                  <div class=\"table-responsive\">\n                    <table class=\"table table-striped\">\n                      <thead class=\"text-primary\">\n                      <tr>\n                        <th>Number of players</th>\n                        <th *ngFor=\"let val of numbers\">{{val}}</th>\n                      </tr>\n                      </thead>\n                      <tbody>\n                      <tr *ngFor=\"let role of roles; let roleIdx = index;\">\n                        <td>{{role.name}}</td>\n                        <td *ngFor=\"let val of numbers; let valIdx = index;\">\n                          <input class=\"form-control\" type=\"number\" [(ngModel)]=\"tblVal[roleIdx][val]\" name=\"{{'tblVal' + valIdx}}\" />\n                        </td>\n                      </tr>\n                      </tbody>\n                      <tfoot>\n                      <tr>\n                        <td>Total</td>\n                        <td *ngFor=\"let val of numbers\">{{calcSum(val)}}</td>\n                      </tr>\n                      </tfoot>\n                    </table>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </form>\n      </div>\n      <div class=\"card-footer\">\n        <button class=\"btn btn-primary\" [disabled]=\"dataChanged()\" (click)=\"save()\">Save</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <h1>Coming Soon!</h1>\n    </div>\n</div>\n"
 
 /***/ }),
 /* 242 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n      <div class=\"row add-button\">\n        <a [routerLink]=\"['/setups/add', -1]\" class=\"btn btn-primary\">Add Setup</a>\n      </div>\n      <div class=\"row fadeOutUp\">\n        <div class=\"col-lg-6 col-md-6\" *ngFor=\"let setup of setups; let idx = index\">\n          <div class=\"card card-product\">\n            <div class=\"card-image\" data-header-animation=\"true\">\n              <a href=\"#pablo\">\n                <img class=\"img\" src=\"../../../../../assets/img/image_placeholder.jpg\" *ngIf=\"!setup.imgId\">\n                <cl-image data-u=\"image\" public-id=\"{{setup.imgId}}\" *ngIf=\"setup.imgId\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"560\" width=\"860\" format=\"jpg\">\n                </cl-image>\n              </a>\n            </div>\n            <div class=\"card-content\">\n              <div class=\"card-actions\" [attr.idx]=\"idx\">\n                <a type=\"button\" class=\"btn btn-success btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Edit\" [routerLink]=\"['/setups/add', setup._id]\">\n                  <i class=\"material-icons\">edit</i>\n                  Edit Setup\n                </a>\n              </div>\n              <h4 class=\"card-title\">\n                <a href=\"#pablo\">{{setup.name}}</a>\n              </h4>\n              <div class=\"card-description\">\n                {{setup.setupDescription}}\n              </div>\n            </div>\n            <div class=\"card-footer\">\n              <div class=\"players-count\">\n                <p>Ideal for {{setup.minimumMember}}~{{setup.maximumMember}} members</p>\n                <p>Difficulty: {{setup.difficulty}} Level</p>\n              </div>\n              <div class=\"stats pull-right\">\n                <p class=\"category\"><i class=\"material-icons\">access_time</i> {{setup.playTime}} mins</p>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <h1>Coming Soon!</h1>\n    </div>\n</div>\n"
 
 /***/ }),
 /* 243 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n  <div class=\"fileinput-new thumbnail\">\n    <img src=\"../../../../../assets/img/image_placeholder.jpg\" alt=\"...\" *ngIf=\"isChanged || !imgId\">\n    <cl-image data-u=\"image\" public-id=\"{{imgId}}\" *ngIf=\"!isChanged && imgId\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"560\" width=\"860\" format=\"jpg\">\n    </cl-image>\n  </div>\n  <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n  <div>\n    <span class=\"btn btn-rose btn-round btn-file btn-sm\">\n        <span class=\"fileinput-new\">Select image</span>\n        <span class=\"fileinput-exists\">Select image</span>\n        <input type=\"file\" name=\"...\" #avatar class=\"btn btn-file\" ng2FileSelect [uploader]=\"uploader\" (change)=\"imgChanged()\"/>\n    </span>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h3>{{isEdit ? 'Edit Setup' : 'Add Setup'}}</h3>\n      </div>\n      <div class=\"card-content\">\n        <form (submit)=\"saveSetup()\">\n          <div class=\"row\">\n            <div class=\"col-lg-7 col-md-7 col-sm-12 col-xs-12\">\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">Setup Name</label>\n                <input class=\"form-control\" [(ngModel)]=\"name\" name=\"name\" required />\n              </div>\n              <div class=\"form-group label-floating\">\n                <label class=\"control-label\">Created by:</label>\n                <input class=\"form-control\" list=\"usernames\" [(ngModel)]=\"createdUser\" name=\"createdUser\" required>\n                <datalist id=\"usernames\"  multiple data-style=\"select-with-transition\" required>\n                  <option *ngFor=\"let user of users\">\n                    {{user.name}}\n                  </option>\n                </datalist>\n              </div>\n            </div>\n            <div class=\"col-lg-5 col-md-5 col-sm-12 col-xs-12 setup-image\">\n              <app-uploader [imgId]=\"imgId\" (changed)=\"uploading = true;\" (uploaded)=\"mainImgUploaded($event)\" #mainUploader></app-uploader>\n            </div>\n          </div>\n\n\n          <div class=\"row setup-description\">\n            <div class=\"cheader\">\n              <h3>\n                Description\n              </h3>\n            </div>\n            <div class=\"col-md-12 col-lg-12\">\n              <textarea class=\"form-control\" required [(ngModel)]=\"setupDescription\" name=\"setupDescription\" ></textarea>\n            </div>\n          </div>\n\n\n          <div class=\"row difficulty\">\n            <div class=\"cheader\">\n              <h3>\n                Difficulty\n              </h3>\n            </div>\n            <div class=\"col-md-4 col-lg-4\">\n              <div class=\"col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating\">\n                <label class=\"control-label\">Difficulty level</label>\n                <select class=\"form-control\" [(ngModel)]=\"difficulty\" name=\"difficulty\">\n                  <option>Beginner</option>\n                  <option>Intermediate</option>\n                  <option>Advanced</option>\n                  <option>Expert</option>\n                </select>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row member-count\">\n            <div class=\"cheader\">\n              <h3>\n                Recommended Number of Players\n              </h3>\n            </div>\n            <div class=\"col-md-12 col-lg-12\">\n              <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                <label class=\"control-label\">Minimum</label>\n                <input class=\"form-control\" required type=\"number\" [(ngModel)]=\"minimumMember\" (change)=\"minChange()\" name=\"minimumMember\" min=\"1\" />\n              </div>\n              <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                <label class=\"control-label\">Maximum</label>\n                <input class=\"form-control\" type=\"number\" [(ngModel)]=\"maximumMember\" (change)=\"maxChange()\" name=\"maximumMember\" min=\"1\" required />\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row playTime\">\n            <div class=\"cheader\">\n              <h3>\n                Expected Play Time\n              </h3>\n            </div>\n            <div class=\"col-md-12 col-lg-12\">\n              <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                <label class=\"control-label\"></label>\n                <input class=\"form-control\" required type=\"number\" min=\"1\" [(ngModel)]=\"playTime\" name=\"playTime\"/>\n              </div>\n              <span class=\"mins-text\">mins</span>\n            </div>\n          </div>\n\n          <div class=\"row teams\">\n            <div class=\"cheader\">\n              <h3>\n                Teams\n                <i class=\"material-icons\" (click)=\"addNewTeam()\">add_circle</i>\n              </h3>\n            </div>\n            <div class=\"teams-list\">\n              <div class=\"row team\" *ngFor=\"let team of teams; let idx = index;\">\n                <i class=\"material-icons pull-right\" (click)=\"removeTeam(idx)\">delete</i>\n                <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                  <label class=\"control-label\">Name</label>\n                  <input class=\"form-control\" [(ngModel)]=\"team.name\" required name=\"{{'teamname' + idx}}\"/>\n                </div>\n                <div class=\"form-group label-floating col-lg-3 col-md-3 col-sm-3\">\n                  <input class=\"colorpicker\" [(colorPicker)]=\"team.color\" [style.background]=\"team.color\" readonly/>\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Win Condition</label>\n                  <textarea class=\"form-control\" [(ngModel)]=\"team.description\" required name=\"{{'teamdescription' + idx}}\" ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row roles\">\n            <div class=\"cheader\">\n              <h3>\n                Roles <span class=\"description\">What roles are in the game and how do they work?</span>\n                <i class=\"material-icons\" (click)=\"addNewRole()\">add_circle</i>\n              </h3>\n            </div>\n            <div class=\"roles-list\">\n              <div class=\"row\" *ngFor=\"let role of roles; let ii = index;\">\n                <i class=\"material-icons pull-right\" (click)=\"removeRole(idx)\">delete</i>\n                <app-uploader class=\"col-md-2 col-lg-2 col-sm-2\" [imgId]=\"role.imgId\" (changed)=\"uploaders[ii] = true\" (uploaded)=\"roleImgUploaded(ii, $event);\"></app-uploader>\n                <div class=\"col-md-10 col-lg-10 col-sm-10\">\n                  <div class=\"col-lg-6 col-md-6 col-sm-6 roles-names form-group\">\n                    <label class=\"control-label\">Role Name</label>\n                    <input class=\"form-control\" list=\"defalutRolesLists\" [(ngModel)]=\"role.name\" name=\"{{'rolename' + ii}}\" [attr.index]=\"ii\" required (blur)=\"roleNameChanged($event)\" />\n                    <datalist id=\"defalutRolesLists\" [attr.index]=\"ii\">\n                      <option *ngFor=\"let role1 of defaultRoles; let i = index\" [attr.id]=\"role1._id\" [attr.value]=\"role1.name\" [attr.roleIndex]=\"i\" selected=\"{{ role._id == role1._id ? 'selected' : '' }}\" >\n                        {{role1.name}}\n                      </option>\n                    </datalist>\n                  </div>\n                  <div class=\"form-group col-lg-6 col-md-6 col-sm-6\">\n                    <label class=\"control-label\">Team</label>\n                    <select class=\"form-control\" [(ngModel)]=\"role.team\" name=\"{{'roleteam' + ii}}\">\n                      <option value=\"N/A\">N/A</option>\n                      <option *ngFor=\"let team of teams; let i = index\" [attr.value]=\"team.name\">\n                        {{team.name}}\n                      </option>\n                    </select>\n                  </div>\n                  <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                    <label class=\"control-label\">Description</label>\n                    <textarea class=\"form-control\" required [(ngModel)]=\"role.description\" name=\"{{'roledescription' + ii}}\"></textarea>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row intersection\">\n            <div class=\"cheader\">\n              <h3>\n                Interactions\n                <i class=\"material-icons\" (click)=\"addNewIntersection()\">add_circle</i>\n              </h3>\n            </div>\n            <div class=\"narrations-list\">\n              <div class=\"row team\" *ngFor=\"let intersection of intersections; let idx = index;\">\n                <i class=\"material-icons pull-right\" (click)=\"removeIntersection(idx)\">delete</i>\n                <div class=\"form-group multiselection\">\n                  <label class=\"control-label\">Roles/Teams</label>\n                  <ss-multiselect-dropdown [options]=\"getIntersectionSelectOptions()\" [settings]=\"selectSettings\" [(ngModel)]=\"intersection.roles\" name=\"{{'intersection' + idx}}\"></ss-multiselect-dropdown>\n                  <i class=\"material-icons pull-right\">up</i>\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Description</label>\n                  <textarea class=\"form-control\" [(ngModel)]=\"intersection.description\" required name=\"{{'narrdescription' + idx}}\" ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row narration\">\n            <div class=\"cheader\">\n              <h3>\n                Narration <span class=\"description\">Does the order in which roles are woken up matter? What is announced when people die? etc.</span>\n                <i class=\"material-icons\" (click)=\"addNewNarration()\">add_circle</i>\n              </h3>\n            </div>\n            <div class=\"narrations-list\">\n              <div class=\"row team\" *ngFor=\"let narration of narrations; let idx = index;\">\n                <i class=\"material-icons pull-right\" (click)=\"removeNarration(idx)\">delete</i>\n                <i class=\"material-icons pull-right\" (click)=\"narrationDown(idx)\" *ngIf=\"idx != narrations.length - 1\">arrow_downward</i>\n                <i class=\"material-icons pull-right\" (click)=\"narrationUp(idx)\" *ngIf=\"idx != 0\">arrow_upward</i>\n                <div class=\"\">\n                  <div class=\"\">\n                    <ss-multiselect-dropdown [options]=\"getRolesSelectOptions()\" [texts]=\"selectedTexts\" [settings]=\"selectSettings\" [(ngModel)]=\"narration.roles\" name=\"{{'narration' + idx}}\"></ss-multiselect-dropdown>\n                  </div>\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Narration</label>\n                  <textarea class=\"form-control\" [(ngModel)]=\"narration.description\" required name=\"{{'narrdescription' + idx}}\" ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row voting-roles\">\n            <div class=\"cheader\">\n              <h3>\n                Voting Rules <span class=\"description\">How does voting work? Are ties possible? etc.</span>\n              </h3>\n            </div>\n            <div class=\"roles-list\">\n              <div class=\"col-md-10 col-lg-10 col-sm-10\">\n                <div class=\"col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating\">\n                  <label class=\"control-label\">Voting Name</label>\n                  <input class=\"form-control\" list=\"defalutVotingsLists\" value=\"{{voting.name}}\" (blur)=\"votingNameChanged($event)\" required/>\n                  <datalist id=\"defalutVotingsLists\">\n                    <option *ngFor=\"let cvoting of defaultVotings\">\n                      {{cvoting.name}}\n                    </option>\n                  </datalist>\n                </div>\n                <div class=\"{{voting.description ? 'form-group label-floating col-lg-12 col-md-12 col-sm-12' : 'form-group label-floating col-lg-12 col-md-12 col-sm-12 is-empty'}}\">\n                  <label class=\"control-label\">Description</label>\n                  <textarea class=\"form-control\" value=\"{{voting.description}}\" required ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row missing-rules\">\n            <div class=\"cheader\">\n              <h3>\n                Additional Rules and Corner Cases <span class=\"description\">What rules have you missed</span>\n                <i class=\"material-icons\" (click)=\"addNewAdditionalRule()\">add_circle</i>\n              </h3>\n            </div>\n            <div class=\"additonal-rules-list\">\n              <div class=\"row\" *ngFor=\"let additionalRule of additionalRules; let idx = index;\">\n                <i class=\"material-icons pull-right\" (click)=\"removeAdditionalRule(idx)\">delete</i>\n                <div class=\"form-group multiselection\">\n                  <label class=\"control-label\">Roles/Teams</label>\n                  <ss-multiselect-dropdown [options]=\"getIntersectionSelectOptions()\" [settings]=\"selectSettings\" [(ngModel)]=\"additionalRule.roles\" name=\"{{'intersection' + idx}}\"></ss-multiselect-dropdown>\n                  <i class=\"material-icons pull-right\">up</i>\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Description</label>\n                  <textarea class=\"form-control\" [(ngModel)]=\"additionalRule.description\" required name=\"{{'additionalRule' + idx}}\" ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row role-frequecies\">\n            <div class=\"cheader\">\n              <h3>\n                Role Frequencies\n              </h3>\n              <h5>\n                Do you use randomization to generate your set of roles? If so, how?\n              </h5>\n            </div>\n            <div class=\"col-md-12 col-lg-12\">\n              <textarea class=\"form-control\" required [(ngModel)]=\"roleFrequencies\" name=\"roleFrequencies\" ></textarea>\n            </div>\n            <div class=\"col-md-12 col-lg-12\">\n              <div class=\"card\">\n                <div class=\"card-content\">\n                  <div class=\"table-responsive\">\n                    <table class=\"table table-striped\">\n                      <thead class=\"text-primary\">\n                      <tr>\n                        <th>Number of players</th>\n                        <th *ngFor=\"let val of numbers\">{{val}}</th>\n                      </tr>\n                      </thead>\n                      <tbody>\n                      <tr *ngFor=\"let role of roles; let roleIdx = index;\">\n                        <td>{{role.name}}</td>\n                        <td *ngFor=\"let val of numbers; let valIdx = index;\">\n                          <input class=\"form-control\" type=\"number\" [(ngModel)]=\"tblVal[roleIdx][val]\" name=\"{{'tblVal' + valIdx}}\" />\n                        </td>\n                      </tr>\n                      </tbody>\n                      <tfoot>\n                      <tr>\n                        <td>Total</td>\n                        <td *ngFor=\"let val of numbers\">{{calcSum(val)}}</td>\n                      </tr>\n                      </tfoot>\n                    </table>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </form>\n      </div>\n      <div class=\"card-footer\">\n        <button class=\"btn btn-primary\" [disabled]=\"dataChanged()\" (click)=\"save()\">Save</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 244 */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"/#/home\">Liars Club</a>\n    </div>\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a href=\"/#/home\">\n            <i class=\"material-icons\">dashboard</i> Dashboard\n          </a>\n        </li>\n        <li class=\"\">\n          <a href=\"/#/users/register\">\n            <i class=\"material-icons\">person_add</i> Register\n          </a>\n        </li>\n        <li class=\" active \">\n          <a href=\"/#/users/login\">\n            <i class=\"material-icons\">fingerprint</i> Login\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n  <div class=\"full-page login-page\" filter-color=\"black\" data-image=\"../assets/img/login.jpeg\">\n    <!--   you can change the color of the filter page using: data-color=\"blue | purple | green | orange | red | rose \" -->\n    <div class=\"content\">\n      <div class=\"container\">\n        <form (submit)=\"login()\">\n          <div class=\"row\">\n            <div class=\"col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3\">\n              <div class=\"card card-login card-hidden\">\n                <div class=\"card-header text-center\" data-background-color=\"rose\">\n                  <h4 class=\"card-title\">Login</h4>\n                </div>\n                <p class=\"category text-center\" *ngIf=\"loginFaildMsg\">\n                  {{loginFaildMsg}}\n                </p>\n                <div class=\"card-content\">\n                  <div class=\"input-group\">\n                    <span class=\"input-group-addon\">\n                        <i class=\"material-icons\">face</i>\n                    </span>\n                    <div class=\"form-group label-floating\">\n                      <label class=\"control-label\">Username</label>\n                      <input type=\"text\" class=\"form-control\" #username>\n                    </div>\n                  </div>\n                  <div class=\"input-group\">\n                    <span class=\"input-group-addon\">\n                        <i class=\"material-icons\">lock_outline</i>\n                    </span>\n                    <div class=\"form-group label-floating\">\n                      <label class=\"control-label\">Password</label>\n                      <input type=\"password\" class=\"form-control\" #password>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"footer text-center\">\n                  <button type=\"submit\" class=\"btn btn-rose btn-simple btn-wd btn-lg\">Login</button>\n                </div>\n              </div>\n            </div>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"card row\">\n      <div class=\"card-header\">\n        <h3>{{setup.name}}</h3>\n      </div>\n      <div class=\"card-content\">\n        <form>\n          <div class=\"row\">\n            <div class=\"\">\n              <div class=\"col-sm-12 col-xs-12 setup-image\">\n                <cl-image data-u=\"image\" public-id=\"{{setup.imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"150\" width=\"200\" format=\"jpg\">\n                </cl-image>\n              </div>\n              <div class=\"col-lg-7 col-md-7 col-sm-12 col-xs-12\">\n                <div class=\"form-group label-floating\">\n                  <label class=\"control-label\">Setup Name</label>\n                  <input class=\"form-control\" [value]=\"setup.name\" readonly />\n                </div>\n                <div class=\"form-group label-floating\">\n                  <label class=\"control-label\">Created by:</label>\n                  <input class=\"form-control\" [value]=\"setup.createdUser\" readonly>\n                </div>\n              </div>\n              <div class=\"col-md-12 col-lg-12\">\n                <textarea class=\"form-control\" [value]=\"setup.setupDescription\" readonly ></textarea>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row card difficulty expanded\">\n            <div class=\"cheader card-header\">\n              <h3>\n                Difficulty\n                <i class=\"material-icons pull-right\" (click)=\"collapseExpand($event)\">code</i>\n              </h3>\n            </div>\n            <div class=\"card-content\">\n              <div class=\"col-md-4 col-lg-4\">\n                <div class=\"col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating\">\n                  <label class=\"control-label\">Difficulty level</label>\n                  <input class=\"form-control\" [value]=\"setup.difficulty\" readonly />\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row card member-count expanded\">\n            <div class=\"cheader card-header\">\n              <h3>\n                Recommended Number of Players\n                <i class=\"material-icons pull-right\" (click)=\"collapseExpand($event)\">code</i>\n              </h3>\n            </div>\n            <div class=\"card-content\">\n              <div class=\"col-md-12 col-lg-12\">\n                <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                  <label class=\"control-label\">Minimum</label>\n                  <input class=\"form-control\" readonly type=\"number\" [value]=\"setup.minimumMember\" />\n                </div>\n                <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                  <label class=\"control-label\">Maximum</label>\n                  <input class=\"form-control\" readonly type=\"number\" [value]=\"setup.maximumMember\" />\n                </div>\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row card playTime expanded\">\n            <div class=\"cheader card-header\">\n              <h3>\n                Expected Play Time\n                <i class=\"material-icons pull-right\" (click)=\"collapseExpand($event)\">code</i>\n              </h3>\n            </div>\n            <div class=\"card-content\">\n              <div class=\"col-md-12 col-lg-12\">\n                <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                  <label class=\"control-label\"></label>\n                  <input class=\"form-control\" readonly [value]=\"setup.playTime + ' mins'\" />\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row teams card expanded\">\n            <div class=\"cheader card-header\">\n              <h3>\n                Teams\n                <i class=\"material-icons pull-right\" (click)=\"collapseExpand($event)\">code</i>\n              </h3>\n            </div>\n            <div class=\"teams-list card-content\">\n              <div class=\"team\" *ngFor=\"let team of setup.teams; let idx = index;\">\n                <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                  <label class=\"control-label\">Name</label>\n                  <input class=\"form-control\" readonly [value]=\"team.name\" />\n                </div>\n                <div class=\"form-group label-floating col-lg-3 col-md-3 col-sm-3\">\n                  <div class=\"color\" [style.background]=\"team.color\"></div>\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Win Condition</label>\n                  <textarea class=\"form-control\" [value]=\"team.description\" readonly></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row roles card expanded\">\n            <div class=\"cheader card-header\">\n              <h3>\n                Roles <small class=\"description\">What roles are in the game and how do they work?</small>\n                <i class=\"material-icons pull-right\" (click)=\"collapseExpand($event)\">code</i>\n              </h3>\n            </div>\n            <div class=\"roles-list card-content\">\n              <div class=\"\" *ngFor=\"let role of setup.roles; let ii = index;\">\n                <div class=\"col-md-2 col-lg-2 col-sm-2\">\n                  <cl-image data-u=\"image\" public-id=\"{{role.imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"560\" width=\"860\" format=\"jpg\">\n                  </cl-image>\n                </div>\n                <div class=\"col-md-10 col-lg-10 col-sm-10\">\n                  <div class=\"col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating\">\n                    <label class=\"control-label\">Role Name</label>\n                    <input class=\"form-control\" [value]=\"role.name\" readonly />\n                  </div>\n                  <div class=\"form-group label-floating col-lg-6 col-md-6 col-sm-6\">\n                    <label class=\"control-label\">Team</label>\n                    <input class=\"form-control\" [value]=\"role.team\" readonly />\n                  </div>\n                  <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                    <label class=\"control-label\">Description</label>\n                    <textarea class=\"form-control\" readonly [value]=\"role.description\"></textarea>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row intersection card expanded\">\n            <div class=\"cheader card-header\">\n              <h3>\n                Interactions\n                <i class=\"material-icons pull-right\" (click)=\"collapseExpand($event)\">code</i>\n              </h3>\n            </div>\n            <div class=\"narrations-list card-content\">\n              <div class=\"team\" *ngFor=\"let intersection of setup.intersections; let idx = index;\">\n                <div class=\"form-group label-floating multiselection\">\n                  <label class=\"control-label\">Roles/Teams</label>\n                  <input class=\"form-control\" [value]=\"getIntersectionSelectOptions()\" readonly />\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Description</label>\n                  <textarea class=\"form-control\" [value]=\"intersection.description\" readonly></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div class=\"row narration card expanded\">\n            <div class=\"cheader card-header\">\n              <h3>\n                Narration <small class=\"description\">Does the order in which roles are woken up matter? What is announced when people die? etc.</small>\n                <i class=\"material-icons pull-right\" (click)=\"collapseExpand($event)\">code</i>\n              </h3>\n            </div>\n            <div class=\"narrations-list card-content\">\n              <div class=\"team\" *ngFor=\"let narration of setup.narrations; let idx = index;\">\n                <div class=\"form-group label-floating col-lg-6 col-md-6\">\n                  <label class=\"control-label\">Teams</label>\n                  <input class=\"form-control\" [value]=\"getRolesSelectOptions(narration)\" readonly />\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Narration</label>\n                  <textarea class=\"form-control\" readonly [value]=\"narration.description\" ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row voting-roles card expanded\">\n            <div class=\"cheader card-header\">\n              <h3>\n                Voting Rules <small class=\"description\">How does voting work? Are ties possible? etc.</small>\n                <i class=\"material-icons pull-right\" (click)=\"collapseExpand($event)\">code</i>\n              </h3>\n            </div>\n            <div class=\"roles-list card-content\">\n              <div class=\"col-md-10 col-lg-10 col-sm-10\">\n                <div class=\"col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating\">\n                  <label class=\"control-label\">Voting Name</label>\n                  <input class=\"form-control\" [value]=\"setup.voting.name\" readonly />\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Description</label>\n                  <textarea class=\"form-control\" [value]=\"setup.voting.description\" readonly ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row missing-rules card expanded\">\n            <div class=\"cheader card-header\">\n              <h3>\n                Additional Rules and Corner Cases <small class=\"description\">What rules have you missed</small>\n                <i class=\"material-icons pull-right\" (click)=\"collapseExpand($event)\">code</i>\n              </h3>\n            </div>\n            <div class=\"additonal-rules-list card-content\">\n              <div class=\"\" *ngFor=\"let additionalRule of setup.additionalRules; let idx = index;\">\n                <div class=\"form-group label-floating\">\n                  <label class=\"control-label\">Roles/Teams</label>\n                  <input class=\"form-control\" [value]=\"getRolesTeams(additionalRule)\" readonly />\n                </div>\n                <div class=\"form-group label-floating col-lg-12 col-md-12 col-sm-12\">\n                  <label class=\"control-label\">Description</label>\n                  <textarea class=\"form-control\" [value]=\"additionalRule.description\" readonly ></textarea>\n                </div>\n              </div>\n            </div>\n          </div>\n\n\n          <div class=\"row role-frequecies card expanded\">\n            <div class=\"cheader card-header\">\n              <h3>\n                Role Frequencies\n                <small>Do you use randomization to generate your set of roles? If so, how?</small>\n                <i class=\"material-icons pull-right\" (click)=\"collapseExpand($event)\">code</i>\n              </h3>\n            </div>\n            <div class=\"card-content\">\n              <div class=\"col-md-12 col-lg-12\">\n                <textarea class=\"form-control\" readonly [value]=\"setup.roleFrequencies\" ></textarea>\n              </div>\n              <div class=\"col-md-12 col-lg-12\">\n                <div class=\"card\">\n                  <div class=\"card-content\">\n                    <div class=\"table-responsive\">\n                      <table class=\"table table-striped\">\n                        <thead class=\"text-primary\">\n                        <tr>\n                          <th>Number of players</th>\n                          <th *ngFor=\"let val of numbers\">{{val}}</th>\n                        </tr>\n                        </thead>\n                        <tbody>\n                        <tr *ngFor=\"let role of roles; let roleIdx = index;\">\n                          <td>{{role.name}}</td>\n                          <td *ngFor=\"let val of numbers; let valIdx = index;\">\n                            <input class=\"form-control\" type=\"number\" [(ngModel)]=\"tblVal[roleIdx][val]\" name=\"{{'tblVal' + valIdx}}\" />\n                          </td>\n                        </tr>\n                        </tbody>\n                        <tfoot>\n                        <tr>\n                          <td>Total</td>\n                          <td *ngFor=\"let val of numbers\">{{calcSum(val)}}</td>\n                        </tr>\n                        </tfoot>\n                      </table>\n                    </div>\n                  </div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </form>\n      </div>\n      <div class=\"card-footer\">\n\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 245 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2\">\n      <form (submit)=\"saveProfile()\">\n        <div class=\"card\">\n          <div class=\"card-header\">\n            <div class=\"card-header\" data-background-color=\"orange\">\n              <h3 class=\"text-center\">My Profile</h3>\n            </div>\n          </div>\n          <div class=\"card-content\">\n              <div class=\"row\">\n                <div class=\"col-md-5 pull-right upload-avatar\">\n                  <div class=\"col-lg-5 col-md-5 col-sm-12 col-xs-12\">\n                    <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                      <div class=\"fileinput-new thumbnail\">\n                        <img src=\"../../../../../assets/img/image_placeholder.jpg\" alt=\"...\" #clubImg *ngIf=\"imgChanged\">\n                        <cl-image data-u=\"image\" public-id=\"{{imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"560\" width=\"860\" format=\"jpg\">\n                        </cl-image>\n                      </div>\n                      <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                      <div>\n                        <span class=\"btn btn-rose btn-round btn-file btn-sm\">\n                            <span class=\"fileinput-new\">Select image</span>\n                            <span class=\"fileinput-exists\">Select image</span>\n                            <input type=\"file\" name=\"...\" #avatar class=\"btn btn-file\" ng2FileSelect [uploader]=\"uploader\" (change)=\"imgChanged = true\"/>\n                        </span>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"col-md-7\">\n                  <div class=\"form-group\">\n                    <label class=\"control-label\">First Name</label>\n                    <input class=\"form-control\" required [(ngModel)]=\"firstName\" name=\"firstName\"/>\n                  </div>\n                  <div class=\"form-group\">\n                    <label class=\"control-label\">Last Name</label>\n                    <input class=\"form-control\" required [(ngModel)]=\"lastName\" name=\"lastName\" />\n                  </div>\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"form-group\">\n                  <label class=\"control-label\">Email address</label>\n                  <input class=\"form-control\" type=\"email\" required [(ngModel)]=\"email\" name=\"email\" />\n                </div>\n              </div>\n            <div class=\"row\">\n              <h3><small>I tagged myself as a member of these clubs</small></h3>\n              <div class=\"\" *ngFor=\"let club of clubs\">\n                <p>{{club.mytag.memberState}} {{club.mytag.memberType}} of {{club.title}}</p>\n              </div>\n            </div>\n          </div>\n          <div class=\"card-footer\">\n            <button type=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"orgFirstname == firstName && orgLastname == lastName && orgEmail == email && !imgChanged\">Save</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-content\" *ngIf=\"!viewDetails\">\n  <div class=\"container-fluid\">\n    <div class=\"row add-button\">\n      <a [routerLink]=\"['/setups/add', -1]\" class=\"btn btn-primary\">Add Setup</a>\n    </div>\n    <div class=\"row fadeOutUp\">\n      <div class=\"col-lg-6 col-md-6\" *ngFor=\"let setup of setups; let idx = index\">\n        <div class=\"card card-product\">\n          <div class=\"card-image\" data-header-animation=\"true\">\n            <a>\n              <img class=\"img\" src=\"../../../../../assets/img/image_placeholder.jpg\" *ngIf=\"!setup.imgId\">\n              <cl-image data-u=\"image\" public-id=\"{{setup.imgId}}\" *ngIf=\"setup.imgId\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"560\" width=\"860\" format=\"jpg\">\n              </cl-image>\n            </a>\n          </div>\n          <div class=\"card-content\">\n            <div class=\"card-actions\" [attr.idx]=\"idx\">\n              <a type=\"button\" class=\"btn btn-success btn-simple\" rel=\"tooltip\" data-placement=\"bottom\" title=\"Edit\" [routerLink]=\"['/setups/add', setup._id]\">\n                <i class=\"material-icons\">edit</i>\n                Edit Setup\n              </a>\n            </div>\n            <h4 class=\"card-title\">\n              <a (click)=\"viewDetailsClick(setup)\">{{setup.name}}</a>\n            </h4>\n            <div class=\"card-description\">\n              {{setup.setupDescription}}\n            </div>\n          </div>\n          <div class=\"card-footer\">\n            <div class=\"players-count\">\n              <p>Ideal for {{setup.minimumMember}}~{{setup.maximumMember}} members</p>\n              <p>Difficulty: {{setup.difficulty}} Level</p>\n            </div>\n            <div class=\"stats pull-right\">\n              <p class=\"category\"><i class=\"material-icons\">access_time</i> {{setup.playTime}} mins</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<app-setup-detail [setup]=\"currentSetup\" *ngIf=\"viewDetails\"></app-setup-detail>\n"
 
 /***/ }),
 /* 246 */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"/#/home\">Liars Club</a>\n    </div>\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a href=\"/#/home\">\n            <i class=\"material-icons\">dashboard</i> Dashboard\n          </a>\n        </li>\n        <li class=\"active\">\n          <a href=\"/#/users/register\">\n            <i class=\"material-icons\">person_add</i> Register\n          </a>\n        </li>\n        <li class=\"\">\n          <a href=\"/#/users/login\">\n            <i class=\"material-icons\">fingerprint</i> Login\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n  <div class=\"full-page register-page\" filter-color=\"black\" data-image=\"../assets/img/register.jpeg\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-md-6 col-md-offset-3\">\n          <div class=\"card card-signup card-hidden\">\n            <h2 class=\"card-title text-center\">Register</h2>\n            <div class=\"row text-center\">\n              <div class=\"col-md-10 col-md-offset-1\">\n                <div class=\"card-content\">\n                  <div>\n                    <span *ngIf=\"errmsg\" class=\"errmsg\">{{errmsg}}</span>\n                  </div>\n                  <div class=\"input-group\">\n                    <span class=\"input-group-addon\">\n                        <i class=\"material-icons\">face</i>\n                    </span>\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Username...\" #username>\n                  </div>\n                  <div class=\"input-group\">\n                    <span class=\"input-group-addon\">\n                        <i class=\"material-icons\">email</i>\n                    </span>\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Email...\" #email>\n                  </div>\n                  <div class=\"input-group\">\n                    <span class=\"input-group-addon\">\n                        <i class=\"material-icons\">lock_outline</i>\n                    </span>\n                    <input type=\"password\" placeholder=\"Password...\" class=\"form-control\" #password/>\n                  </div>\n                  <div class=\"checkbox\">\n                    <label>\n                      <input type=\"checkbox\" name=\"optionsCheckboxes\" checked> I agree to the\n                      <a>terms and conditions</a>.\n                    </label>\n                  </div>\n                </div>\n                <div class=\"footer text-center\">\n                  <button class=\"btn btn-primary btn-round\" (click)=\"register()\" >Register</button>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n  <div class=\"fileinput-new thumbnail\">\n    <img src=\"../../../../../assets/img/image_placeholder.jpg\" alt=\"...\" *ngIf=\"isChanged || !imgId\">\n    <cl-image data-u=\"image\" public-id=\"{{imgId}}\" *ngIf=\"!isChanged && imgId\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"560\" width=\"860\" format=\"jpg\">\n    </cl-image>\n  </div>\n  <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n  <div>\n    <span class=\"btn btn-rose btn-round btn-file btn-sm\">\n        <span class=\"fileinput-new\">Select image</span>\n        <span class=\"fileinput-exists\">Select image</span>\n        <input type=\"file\" name=\"...\" #avatar class=\"btn btn-file\" ng2FileSelect [uploader]=\"uploader\" (change)=\"imgChanged()\"/>\n    </span>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 247 */
 /***/ (function(module, exports) {
 
-module.exports = "<footer class=\"footer\">\n    <div class=\"container-fluid\">\n        <nav class=\"pull-left\">\n            <ul>\n                <li>\n                    <a href=\"#\">\n                        Home\n                    </a>\n                </li>\n                <li>\n                    <a href=\"#\">\n                        Company\n                    </a>\n                </li>\n                <li>\n                    <a href=\"#\">\n                        Portfolio\n                    </a>\n                </li>\n                <li>\n                    <a href=\"#\">\n                        Blog\n                    </a>\n                </li>\n            </ul>\n        </nav>\n        <p class=\"copyright pull-right\">\n            &copy;\n            {{test | date: 'yyyy'}}\n            <a href=\"https://www.creative-tim.com\">Creative Tim</a>, made with love for a better web\n        </p>\n    </div>\n</footer>\n"
+module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"/#/home\">Liars Club</a>\n    </div>\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a href=\"/#/home\">\n            <i class=\"material-icons\">dashboard</i> Dashboard\n          </a>\n        </li>\n        <li class=\"\">\n          <a href=\"/#/users/register\">\n            <i class=\"material-icons\">person_add</i> Register\n          </a>\n        </li>\n        <li class=\" active \">\n          <a href=\"/#/users/login\">\n            <i class=\"material-icons\">fingerprint</i> Login\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n  <div class=\"full-page login-page\" filter-color=\"black\" data-image=\"../assets/img/login.jpeg\">\n    <!--   you can change the color of the filter page using: data-color=\"blue | purple | green | orange | red | rose \" -->\n    <div class=\"content\">\n      <div class=\"container\">\n        <form (submit)=\"login()\">\n          <div class=\"row\">\n            <div class=\"col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3\">\n              <div class=\"card card-login card-hidden\">\n                <div class=\"card-header text-center\" data-background-color=\"rose\">\n                  <h4 class=\"card-title\">Login</h4>\n                </div>\n                <p class=\"category text-center\" *ngIf=\"loginFaildMsg\">\n                  {{loginFaildMsg}}\n                </p>\n                <div class=\"card-content\">\n                  <div class=\"input-group\">\n                    <span class=\"input-group-addon\">\n                        <i class=\"material-icons\">face</i>\n                    </span>\n                    <div class=\"form-group label-floating\">\n                      <label class=\"control-label\">Username</label>\n                      <input type=\"text\" class=\"form-control\" #username>\n                    </div>\n                  </div>\n                  <div class=\"input-group\">\n                    <span class=\"input-group-addon\">\n                        <i class=\"material-icons\">lock_outline</i>\n                    </span>\n                    <div class=\"form-group label-floating\">\n                      <label class=\"control-label\">Password</label>\n                      <input type=\"password\" class=\"form-control\" #password>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"footer text-center\">\n                  <button type=\"submit\" class=\"btn btn-rose btn-simple btn-wd btn-lg\">Login</button>\n                </div>\n              </div>\n            </div>\n          </div>\n        </form>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 248 */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-transparent navbar-absolute\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-minimize\">\n            <button id=\"minimizeSidebar\" class=\"btn btn-round btn-white btn-fill btn-just-icon\">\n                <i class=\"material-icons visible-on-sidebar-regular\">more_vert</i>\n                <i class=\"material-icons visible-on-sidebar-mini\">view_list</i>\n            </button>\n        </div>\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}} </a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"dropdown\">\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p class=\"hidden-lg hidden-md\">\n                            Notifications\n                            <b class=\"caret\"></b>\n                        </p>\n                    </a>\n                    <ul class=\"dropdown-menu\">\n                        <li>\n                            <a href=\"#\">Mike John responded to your email</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">You have 5 new tasks</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">You're now friend with Andrew</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">Another Notification</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">Another One</a>\n                        </li>\n                    </ul>\n                </li>\n                <li>\n                    <a href=\"/profile\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">person</i>\n                        <p class=\"hidden-lg hidden-md\">Profile</p>\n                    </a>\n                </li>\n                <li class=\"separator hidden-lg hidden-md\"></li>\n            </ul>\n        </div>\n    </div>\n</nav>\n"
+module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2\">\n      <form (submit)=\"saveProfile()\">\n        <div class=\"card\">\n          <div class=\"card-header\">\n            <div class=\"card-header\" data-background-color=\"orange\">\n              <h3 class=\"text-center\">My Profile</h3>\n            </div>\n          </div>\n          <div class=\"card-content\">\n              <div class=\"row\">\n                <div class=\"col-md-5 pull-right upload-avatar\">\n                  <div class=\"col-lg-5 col-md-5 col-sm-12 col-xs-12\">\n                    <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                      <div class=\"fileinput-new thumbnail\">\n                        <img src=\"../../../../../assets/img/image_placeholder.jpg\" alt=\"...\" #clubImg *ngIf=\"imgChanged\">\n                        <cl-image data-u=\"image\" public-id=\"{{imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"560\" width=\"860\" format=\"jpg\">\n                        </cl-image>\n                      </div>\n                      <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                      <div>\n                        <span class=\"btn btn-rose btn-round btn-file btn-sm\">\n                            <span class=\"fileinput-new\">Select image</span>\n                            <span class=\"fileinput-exists\">Select image</span>\n                            <input type=\"file\" name=\"...\" #avatar class=\"btn btn-file\" ng2FileSelect [uploader]=\"uploader\" (change)=\"imgChanged = true\"/>\n                        </span>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"col-md-7\">\n                  <div class=\"form-group\">\n                    <label class=\"control-label\">First Name</label>\n                    <input class=\"form-control\" required [(ngModel)]=\"firstName\" name=\"firstName\"/>\n                  </div>\n                  <div class=\"form-group\">\n                    <label class=\"control-label\">Last Name</label>\n                    <input class=\"form-control\" required [(ngModel)]=\"lastName\" name=\"lastName\" />\n                  </div>\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"form-group\">\n                  <label class=\"control-label\">Email address</label>\n                  <input class=\"form-control\" type=\"email\" required [(ngModel)]=\"email\" name=\"email\" />\n                </div>\n              </div>\n            <div class=\"row\">\n              <h3><small>I tagged myself as a member of these clubs</small></h3>\n              <div class=\"\" *ngFor=\"let club of clubs\">\n                <p>{{club.mytag.memberState}} {{club.mytag.memberType}} of {{club.title}}</p>\n              </div>\n            </div>\n          </div>\n          <div class=\"card-footer\">\n            <button type=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"orgFirstname == firstName && orgLastname == lastName && orgEmail == email && !imgChanged\">Save</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 249 */
 /***/ (function(module, exports) {
 
+module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-absolute\">\n  <div class=\"container\">\n    <div class=\"navbar-header\">\n      <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#navigation-example-2\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"/#/home\">Liars Club</a>\n    </div>\n    <div class=\"collapse navbar-collapse\">\n      <ul class=\"nav navbar-nav navbar-right\">\n        <li>\n          <a href=\"/#/home\">\n            <i class=\"material-icons\">dashboard</i> Dashboard\n          </a>\n        </li>\n        <li class=\"active\">\n          <a href=\"/#/users/register\">\n            <i class=\"material-icons\">person_add</i> Register\n          </a>\n        </li>\n        <li class=\"\">\n          <a href=\"/#/users/login\">\n            <i class=\"material-icons\">fingerprint</i> Login\n          </a>\n        </li>\n      </ul>\n    </div>\n  </div>\n</nav>\n<div class=\"wrapper wrapper-full-page\">\n  <div class=\"full-page register-page\" filter-color=\"black\" data-image=\"../assets/img/register.jpeg\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-md-6 col-md-offset-3\">\n          <div class=\"card card-signup card-hidden\">\n            <h2 class=\"card-title text-center\">Register</h2>\n            <div class=\"row text-center\">\n              <div class=\"col-md-10 col-md-offset-1\">\n                <div class=\"card-content\">\n                  <div>\n                    <span *ngIf=\"errmsg\" class=\"errmsg\">{{errmsg}}</span>\n                  </div>\n                  <div class=\"input-group\">\n                    <span class=\"input-group-addon\">\n                        <i class=\"material-icons\">face</i>\n                    </span>\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Username...\" #username>\n                  </div>\n                  <div class=\"input-group\">\n                    <span class=\"input-group-addon\">\n                        <i class=\"material-icons\">email</i>\n                    </span>\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Email...\" #email>\n                  </div>\n                  <div class=\"input-group\">\n                    <span class=\"input-group-addon\">\n                        <i class=\"material-icons\">lock_outline</i>\n                    </span>\n                    <input type=\"password\" placeholder=\"Password...\" class=\"form-control\" #password/>\n                  </div>\n                  <div class=\"checkbox\">\n                    <label>\n                      <input type=\"checkbox\" name=\"optionsCheckboxes\" checked> I agree to the\n                      <a>terms and conditions</a>.\n                    </label>\n                  </div>\n                </div>\n                <div class=\"footer text-center\">\n                  <button class=\"btn btn-primary btn-round\" (click)=\"register()\" >Register</button>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports) {
+
+module.exports = "<footer class=\"footer\">\n    <div class=\"container-fluid\">\n        <nav class=\"pull-left\">\n            <ul>\n                <li>\n                    <a href=\"#\">\n                        Home\n                    </a>\n                </li>\n                <li>\n                    <a href=\"#\">\n                        Company\n                    </a>\n                </li>\n                <li>\n                    <a href=\"#\">\n                        Portfolio\n                    </a>\n                </li>\n                <li>\n                    <a href=\"#\">\n                        Blog\n                    </a>\n                </li>\n            </ul>\n        </nav>\n        <p class=\"copyright pull-right\">\n            &copy;\n            {{test | date: 'yyyy'}}\n            <a href=\"https://www.creative-tim.com\">Creative Tim</a>, made with love for a better web\n        </p>\n    </div>\n</footer>\n"
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports) {
+
+module.exports = "<nav class=\"navbar navbar-transparent navbar-absolute\">\n    <div class=\"container-fluid\">\n        <div class=\"navbar-minimize\">\n            <button id=\"minimizeSidebar\" class=\"btn btn-round btn-white btn-fill btn-just-icon\">\n                <i class=\"material-icons visible-on-sidebar-regular\">more_vert</i>\n                <i class=\"material-icons visible-on-sidebar-mini\">view_list</i>\n            </button>\n        </div>\n        <div class=\"navbar-header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\">\n                <span class=\"sr-only\">Toggle navigation</span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n                <span class=\"icon-bar\"></span>\n            </button>\n            <a class=\"navbar-brand\" href=\"{{getPath()}}\"> {{getTitle()}} </a>\n        </div>\n        <div class=\"collapse navbar-collapse\">\n            <ul class=\"nav navbar-nav navbar-right\">\n                <li class=\"dropdown\">\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">notifications</i>\n                        <span class=\"notification\">5</span>\n                        <p class=\"hidden-lg hidden-md\">\n                            Notifications\n                            <b class=\"caret\"></b>\n                        </p>\n                    </a>\n                    <ul class=\"dropdown-menu\">\n                        <li>\n                            <a href=\"#\">Mike John responded to your email</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">You have 5 new tasks</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">You're now friend with Andrew</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">Another Notification</a>\n                        </li>\n                        <li>\n                            <a href=\"#\">Another One</a>\n                        </li>\n                    </ul>\n                </li>\n                <li>\n                    <a href=\"/profile\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n                        <i class=\"material-icons\">person</i>\n                        <p class=\"hidden-lg hidden-md\">Profile</p>\n                    </a>\n                </li>\n                <li class=\"separator hidden-lg hidden-md\"></li>\n            </ul>\n        </div>\n    </div>\n</nav>\n"
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports) {
+
 module.exports = "\n\n        <div class=\"logo\">\n            <div class=\"logo-normal\">\n                <a href=\"\" class=\"simple-text\">\n                    Liars Club\n                </a>\n            </div>\n\n            <div class=\"logo-img\">\n                <img src=\"/assets/img/angular2-logo-white.png\"/>\n            </div>\n        </div>\n\n\n        <div class=\"sidebar-wrapper\">\n\n            <div class=\"user\">\n                <div class=\"photo\">\n                  <cl-image data-u=\"image\" public-id=\"{{mainService.avatarPublicId}}\" cloud-name=\"da2w1aszs\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"860\" width=\"860\" format=\"jpg\">\n                  </cl-image>\n                </div>\n                <div class=\"info\">\n                    <a data-toggle=\"collapse\" href=\"#collapseExample\" class=\"collapsed\">\n                        <span>\n                            {{ mainService.name }}\n                            <b class=\"caret\"></b>\n                        </span>\n                    </a>\n                    <div class=\"collapse\" id=\"collapseExample\">\n                        <ul class=\"nav\">\n                            <li>\n                              <a [routerLink]=\"[menuItems[9].path]\">\n                                <i class=\"material-icons\">person</i>\n                                <p>My Profile</p>\n                              </a>\n                            </li>\n                            <li>\n                              <a href=\"\" (click)=\"logout($event)\">\n                                <i class=\"{{menuItems[0].icon}}\">power_settings_new</i>\n                                <p>Logout</p>\n                              </a>\n                            </li>\n                        </ul>\n                    </div>\n                </div>\n            </div>\n            <div class=\"nav-container\">\n                <ul class=\"nav\">\n                    <li routerLinkActive=\"active\">\n                        <a  [routerLink]=\"[menuItems[0].path]\">\n                            <i class=\"{{menuItems[0].icon}}\">home</i>\n                            <p>{{menuItems[0].title}}</p>\n                        </a>\n                    </li>\n\n                    <li routerLinkActive=\"active\">\n                      <a  [routerLink]=\"[menuItems[11].path]\">\n                        <i class=\"{{menuItems[11].icon}}\">info</i>\n                        <p>{{menuItems[11].title}}</p>\n                      </a>\n                    </li>\n\n                    <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#componentsExamples\">\n                            <i class=\"material-icons\">public</i>\n                            <p>Connect\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"componentsExamples\">\n                            <ul class=\"nav\">\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[1].path]\">\n                                      <i class=\"{{menuItems[0].icon}}\">room</i>\n                                      <p>{{menuItems[1].title}}</p>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[2].path]\">\n                                      <i class=\"{{menuItems[0].icon}}\">date_range</i>\n                                      <p>{{menuItems[2].title}}</p>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[3].path]\">\n                                      <i class=\"{{menuItems[0].icon}}\">people</i>\n                                      <p>{{menuItems[3].title}}</p>\n                                    </a>\n                                </li>\n                            </ul>\n                        </div>\n                    </li>\n\n                    <li routerLinkActive=\"active\">\n                        <a  [routerLink]=\"[menuItems[4].path]\">\n                            <i class=\"{{menuItems[4].icon}}\">library_books</i>\n                            <p>{{menuItems[4].title}}</p>\n                        </a>\n                    </li>\n\n                    <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#formsExamples\">\n                            <i class=\"material-icons\">chat</i>\n                            <p>Discuss\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"formsExamples\">\n                            <ul class=\"nav\">\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[5].path]\">\n                                      <i class=\"{{menuItems[5].icon}}\">forum</i>\n                                      <p>{{menuItems[5].title}}</p>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[6].path]\">\n                                      <i class=\"{{menuItems[6].icon}}\">speaker_notes</i>\n                                      <p>{{menuItems[6].title}}</p>\n                                    </a>\n                                </li>\n                            </ul>\n                        </div>\n                    </li>\n\n                    <li routerLinkActive=\"active\">\n                        <a data-toggle=\"collapse\" href=\"#tablesExamples\">\n                            <i class=\"material-icons\">help</i>\n                            <p>Learn\n                                <b class=\"caret\"></b>\n                            </p>\n                        </a>\n                        <div class=\"collapse\" id=\"tablesExamples\">\n                            <ul class=\"nav\">\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[7].path]\">\n                                      <i class=\"{{menuItems[7].icon}}\">view_headline</i>\n                                      <p>{{menuItems[7].title}}</p>\n                                    </a>\n                                </li>\n                                <li routerLinkActive=\"active\">\n                                    <a  [routerLink]=\"[menuItems[8].path]\">\n                                      <i class=\"{{menuItems[8].icon}}\">videocam</i>\n                                      <p>{{menuItems[8].title}}</p>\n                                    </a>\n                                </li>\n                            </ul>\n                        </div>\n                    </li>\n\n                  <li routerLinkActive=\"active\">\n                    <a data-toggle=\"collapse\" href=\"#adminPanel\">\n                      <i class=\"material-icons\">account_box</i>\n                      <p>Admin\n                        <b class=\"caret\"></b>\n                      </p>\n                    </a>\n                    <div class=\"collapse\" id=\"adminPanel\">\n                      <ul class=\"nav\">\n                        <li routerLinkActive=\"active\">\n                          <a  [routerLink]=\"[menuItems[10].path]\">\n                            <i class=\"{{menuItems[10].icon}}\">account_balance</i>\n                            <p>{{menuItems[10].title}}</p>\n                          </a>\n                        </li>\n                      </ul>\n                    </div>\n                  </li>\n\n                </ul>\n            </div>\n\n        </div>\n"
 
 /***/ }),
-/* 250 */,
-/* 251 */,
-/* 252 */,
 /* 253 */,
 /* 254 */,
 /* 255 */,
@@ -2999,7 +3100,10 @@ module.exports = "\n\n        <div class=\"logo\">\n            <div class=\"log
 /* 276 */,
 /* 277 */,
 /* 278 */,
-/* 279 */
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 if (true) {
@@ -3058,14 +3162,14 @@ if (true) {
 
 
 /***/ }),
-/* 280 */,
-/* 281 */,
-/* 282 */
+/* 283 */,
+/* 284 */,
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(118);
+module.exports = __webpack_require__(119);
 
 
 /***/ })
-],[282]);
+],[285]);
 //# sourceMappingURL=main.bundle.js.map

@@ -17,6 +17,7 @@ import { AddEditComponent } from './setups/add-edit/add-edit.component';
 import { ClubDetailLineComponent } from './admin/manage-clubs/club-detail-line/club-detail-line.component';
 import { UploaderComponent } from './setups/uploader/uploader.component';
 import { AboutComponent } from './about/about.component';
+import { SetupDetailComponent } from './setups/setup-detail/setup-detail.component';
 
 @NgModule({
     imports: [
@@ -31,7 +32,7 @@ import { AboutComponent } from './about/about.component';
         FileUploadModule,
         MultiselectDropdownModule,
     ],
-    declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent, AboutComponent ]
+    declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent, AboutComponent, SetupDetailComponent ]
 })
 
 export class DashboardModule {}

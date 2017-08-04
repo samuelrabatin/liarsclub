@@ -21,6 +21,8 @@ export class MainService {
   public name = 'User';
   public avatarPublicId = '';
 
+  public currentViewSetup;
+
   constructor ( private http: Http ) {
     this.getProfileData().subscribe(
       d => {

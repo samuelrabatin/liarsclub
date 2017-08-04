@@ -1,43 +1,45 @@
-<div class="main-content">
-    <div class="container-fluid">
-      <div class="row add-button">
-        <a [routerLink]="['/setups/add', -1]" class="btn btn-primary">Add Setup</a>
-      </div>
-      <div class="row fadeOutUp">
-        <div class="col-lg-6 col-md-6" *ngFor="let setup of setups; let idx = index">
-          <div class="card card-product">
-            <div class="card-image" data-header-animation="true">
-              <a href="#pablo">
-                <img class="img" src="../../../../../assets/img/image_placeholder.jpg" *ngIf="!setup.imgId">
-                <cl-image data-u="image" public-id="{{setup.imgId}}" *ngIf="setup.imgId" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
-                </cl-image>
+<div class="main-content" *ngIf="!viewDetails">
+  <div class="container-fluid">
+    <div class="row add-button">
+      <a [routerLink]="['/setups/add', -1]" class="btn btn-primary">Add Setup</a>
+    </div>
+    <div class="row fadeOutUp">
+      <div class="col-lg-6 col-md-6" *ngFor="let setup of setups; let idx = index">
+        <div class="card card-product">
+          <div class="card-image" data-header-animation="true">
+            <a>
+              <img class="img" src="../../../../../assets/img/image_placeholder.jpg" *ngIf="!setup.imgId">
+              <cl-image data-u="image" public-id="{{setup.imgId}}" *ngIf="setup.imgId" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
+              </cl-image>
+            </a>
+          </div>
+          <div class="card-content">
+            <div class="card-actions" [attr.idx]="idx">
+              <a type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit" [routerLink]="['/setups/add', setup._id]">
+                <i class="material-icons">edit</i>
+                Edit Setup
               </a>
             </div>
-            <div class="card-content">
-              <div class="card-actions" [attr.idx]="idx">
-                <a type="button" class="btn btn-success btn-simple" rel="tooltip" data-placement="bottom" title="Edit" [routerLink]="['/setups/add', setup._id]">
-                  <i class="material-icons">edit</i>
-                  Edit Setup
-                </a>
-              </div>
-              <h4 class="card-title">
-                <a href="#pablo">{{setup.name}}</a>
-              </h4>
-              <div class="card-description">
-                {{setup.setupDescription}}
-              </div>
+            <h4 class="card-title">
+              <a (click)="viewDetailsClick(setup)">{{setup.name}}</a>
+            </h4>
+            <div class="card-description">
+              {{setup.setupDescription}}
             </div>
-            <div class="card-footer">
-              <div class="players-count">
-                <p>Ideal for {{setup.minimumMember}}~{{setup.maximumMember}} members</p>
-                <p>Difficulty: {{setup.difficulty}} Level</p>
-              </div>
-              <div class="stats pull-right">
-                <p class="category"><i class="material-icons">access_time</i> {{setup.playTime}} mins</p>
-              </div>
+          </div>
+          <div class="card-footer">
+            <div class="players-count">
+              <p>Ideal for {{setup.minimumMember}}~{{setup.maximumMember}} members</p>
+              <p>Difficulty: {{setup.difficulty}} Level</p>
+            </div>
+            <div class="stats pull-right">
+              <p class="category"><i class="material-icons">access_time</i> {{setup.playTime}} mins</p>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
 </div>
+
+<app-setup-detail [setup]="currentSetup" *ngIf="viewDetails"></app-setup-detail>

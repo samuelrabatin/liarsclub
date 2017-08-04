@@ -22,6 +22,7 @@ import { ClubComponent } from './connect/clubs/club/club.component';
 import { AddClubComponent } from './connect/clubs/add-club/add-club.component';
 
 import { AddEditComponent } from './setups/add-edit/add-edit.component';
+import { SetupDetailComponent } from './setups/setup-detail/setup-detail.component';
 
 import { ManageClubsComponent } from './admin/manage-clubs/manage-clubs.component';
 import { AboutComponent } from './about/about.component';
@@ -36,6 +37,7 @@ export const MODULE_ROUTES: Route[] = [
 
     { path: 'setups', component: SetupsComponent},
     { path: 'setups/add/:index', component: AddEditComponent},
+    { path: 'setups/view', component: SetupDetailComponent},
 
     { path: 'discuss/forums', component: ForumsComponent},
     { path: 'discuss/blogs', component: BlogsComponent},
