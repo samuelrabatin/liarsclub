@@ -11,7 +11,18 @@ import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'ang
 export class SetupDetailComponent implements OnInit {
   @Input('setup') private setup;
 
+  private playersFilter = [];
+  private teamFilter = [];
+  private rolesFilter = [];
+
   private selectSettings: IMultiSelectSettings;
+
+  private playerSelectSettings: IMultiSelectSettings;
+  private teamSelectSettings: IMultiSelectSettings;
+  private roleSelectSettings: IMultiSelectSettings;
+
+  private filteredRoles = [];
+  private filteredTeams = [];
 
   constructor( private mainService: MainService ) { }
 
@@ -19,10 +30,24 @@ export class SetupDetailComponent implements OnInit {
     console.log(this.setup);
 
     this.selectSettings = {
+      showCheckAll: true,
+      showUncheckAll: true,
       checkedStyle: 'fontawesome',
       buttonClasses: 'btn-group select-with-transition',
-      dynamicTitleMaxItems: 3,
+      dynamicTitleMaxItems: 5,
     };
+
+    this.roleSelectSettings = this.setup.roles.map((val, idx) => { this.rolesFilter.push(val.name); return { id: val.name, name: val.name}; });
+    this.teamSelectSettings = this.setup.teams.map((val, idx) => { this.teamFilter.push(val.name); return { id: val.name, name: val.name}; });
+
+    const tmpPlayerArray = [];
+    for (let i = this.setup.minimumMember; i <= this.setup.maximumMember; i++) {
+      tmpPlayerArray.push({id: i, name: i});
+      this.playersFilter.push(i);
+    }
+
+    this.playerSelectSettings = tmpPlayerArray;
+    this.playerFiltered();
   }
 
 
@@ -52,5 +77,40 @@ export class SetupDetailComponent implements OnInit {
   collapseExpand(evt) {
     const card = evt.target.parentElement.parentElement.parentElement;
     card.className = card.className.includes('expanded') ? card.className.replace(' expanded', '') : card.className + ' expanded';
+  }
+
+  teamFiltered(team) {
+    let filtered = false;
+
+    if (this.filteredTeams.indexOf(team.name) !== -1 && this.teamFilter.indexOf(team.name) !== -1) {
+      filtered = true;
+    }
+
+    return filtered;
+  }
+
+  roleFiltered(role) {
+    let filtered = false;
+
+    if (this.filteredRoles.indexOf(role) !== -1 && this.rolesFilter.indexOf(role.name) !== -1) {
+      filtered = true;
+    }
+
+    return filtered;
+  }
+
+  playerFiltered() {
+    this.filteredRoles = [];
+    this.setup.tblVal.map((val, idx) => {
+      for (let i = 0; i < this.playersFilter.length; i++) {
+        if (val[parseInt(this.playersFilter[i], 0)] > 0 && this.filteredRoles.indexOf(this.setup.roles[idx]) === -1) {
+          this.filteredRoles.push(this.setup.roles[idx]);
+        }
+      }
+    });
+
+    this.filteredTeams = this.filteredRoles.map((val, idx) => {
+      return val.team;
+    });
   }
 }
