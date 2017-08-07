@@ -7,3 +7,7 @@
 .row.add-button {
   margin-bottom: 50px;
 }
+
+a {
+  cursor: pointer;
+}

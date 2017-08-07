@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MainService } from '../../../services/main.service';
 
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
@@ -10,6 +10,8 @@ import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'ang
 })
 export class SetupDetailComponent implements OnInit {
   @Input('setup') private setup;
+
+  @Output() back: EventEmitter<string> = new EventEmitter();
 
   private playersFilter = [];
   private teamFilter = [];
@@ -99,9 +101,7 @@ export class SetupDetailComponent implements OnInit {
   }
 
   teamFiltered() {
-    if (this.teamFilter.length === 0) {
-      this.filteredTeams = this.setup.teams;
-    } else {
+    if (this.teamFilter.length !== 0) {
       this.filteredTeams = this.teamFilter.map((val, idx) => {
         return this.setup.teams[val];
       });
@@ -132,7 +132,7 @@ export class SetupDetailComponent implements OnInit {
   roleFiltered() {
     const teamNames = this.filteredTeams.map((val, idx) => { return val.name; });
     this.setup.roles.map((val, idx) => {
-      if (this.filteredRoles.length === 0 || this.filteredRoles.indexOf(idx) && teamNames.indexOf(val.team) > -1) {
+      if ((this.rolesFilter.length === 0 || this.filteredRoles.indexOf(idx)) && teamNames.indexOf(val.team) > -1) {
         this.setup.tblVal[idx].map((val1, idx1) => {
           if (val1 > 0 && this.filteredPlayers.indexOf(idx1) > -1) {
             if (this.filteredRoles.indexOf(val) === -1) {
@@ -166,9 +166,11 @@ export class SetupDetailComponent implements OnInit {
     });
 
     const tmpSetting = [];
+    this.filteredTeams = [];
     this.setup.teams.map((val, idx) => {
-      if (teamNames.indexOf(val.name) > -1 && this.teamFilter.indexOf(idx)) {
+      if (teamNames.indexOf(val.name) > -1) {
         tmpSetting.push({id: idx, name: val.name});
+        this.filteredTeams.push(val);
       }
     });
 
@@ -176,5 +178,37 @@ export class SetupDetailComponent implements OnInit {
 
     this.teamFilter = [];
     this.teamFiltered();
+  }
+
+  intersectionFiltered(intersection) {
+    const inRoles = [];
+    const inTeams = [];
+    for (let i = 0; i < intersection.roles.length; i++) {
+      if (intersection.roles[i] > this.setup.roles.length) {
+        inTeams.push(this.setup.teams[intersection.roles[i] - this.setup.roles.length]);
+      } else {
+        inRoles.push(this.setup.roles[intersection.roles[i]]);
+      }
+    }
+
+    for (let i = 0; i < inTeams.length; i++) {
+      const idx = this.filteredTeams.indexOf(inTeams[i]);
+      if (this.teamFilter.length !== 0 && (idx === -1 || this.teamFilter.indexOf(idx) === -1)) {
+        return false;
+      }
+    }
+
+    for (let i = 0; i < inRoles.length; i++) {
+      const idx = this.filteredRoles.indexOf(inRoles[i]);
+      if (this.rolesFilter.length !== 0 && (idx === -1 || this.rolesFilter.indexOf(idx) === -1)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  goBack() {
+    this.back.emit('go back');
   }
 }

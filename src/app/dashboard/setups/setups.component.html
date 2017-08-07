@@ -42,4 +42,4 @@
   </div>
 </div>
 
-<app-setup-detail [setup]="currentSetup" *ngIf="viewDetails"></app-setup-detail>
+<app-setup-detail [setup]="currentSetup" *ngIf="viewDetails" (back)="viewDetails = false"></app-setup-detail>
