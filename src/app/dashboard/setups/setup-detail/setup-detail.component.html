@@ -142,13 +142,15 @@
             </div>
             <div class="narrations-list card-content">
               <div class="team" *ngFor="let narration of setup.narrations; let idx = index;">
-                <div class="form-group label-floating col-lg-6 col-md-6">
-                  <label class="control-label">Teams</label>
-                  <input class="form-control" [value]="getRolesSelectOptions(narration)" readonly />
-                </div>
-                <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
-                  <label class="control-label">Narration</label>
-                  <textarea class="form-control" readonly [value]="narration.description" ></textarea>
+                <div *ngIf="intersectionFiltered(narration)">
+                  <div class="form-group label-floating col-lg-6 col-md-6">
+                    <label class="control-label">Teams</label>
+                    <input class="form-control" [value]="getRolesSelectOptions(narration)" readonly />
+                  </div>
+                  <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
+                    <label class="control-label">Narration</label>
+                    <textarea class="form-control" readonly [value]="narration.description" ></textarea>
+                  </div>
                 </div>
               </div>
             </div>
@@ -186,13 +188,15 @@
             </div>
             <div class="additonal-rules-list card-content">
               <div class="" *ngFor="let additionalRule of setup.additionalRules; let idx = index;">
-                <div class="form-group label-floating">
-                  <label class="control-label">Roles/Teams</label>
-                  <input class="form-control" [value]="getRolesTeams(additionalRule)" readonly />
-                </div>
-                <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
-                  <label class="control-label">Description</label>
-                  <textarea class="form-control" [value]="additionalRule.description" readonly ></textarea>
+                <div *ngIf="intersectionFiltered(additionalRule)">
+                  <div class="form-group label-floating">
+                    <label class="control-label">Roles/Teams</label>
+                    <input class="form-control" [value]="getRolesTeams(additionalRule)" readonly />
+                  </div>
+                  <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
+                    <label class="control-label">Description</label>
+                    <textarea class="form-control" [value]="additionalRule.description" readonly ></textarea>
+                  </div>
                 </div>
               </div>
             </div>
