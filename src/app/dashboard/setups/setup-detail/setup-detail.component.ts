@@ -21,6 +21,7 @@ export class SetupDetailComponent implements OnInit {
   private teamSelectSettings: IMultiSelectSettings;
   private roleSelectSettings: IMultiSelectSettings;
 
+  private filteredPlayers = [];
   private filteredRoles = [];
   private filteredTeams = [];
 
@@ -37,16 +38,21 @@ export class SetupDetailComponent implements OnInit {
       dynamicTitleMaxItems: 5,
     };
 
-    this.roleSelectSettings = this.setup.roles.map((val, idx) => { this.rolesFilter.push(val.name); return { id: val.name, name: val.name}; });
-    this.teamSelectSettings = this.setup.teams.map((val, idx) => { this.teamFilter.push(val.name); return { id: val.name, name: val.name}; });
+    this.roleSelectSettings = this.setup.roles.map((val, idx) => {
+      // this.rolesFilter.push(val.name);
+      return { id: idx, name: val.name};
+    });
+    this.teamSelectSettings = this.setup.teams.map((val, idx) => {
+      // this.teamFilter.push(val.name);
+      return { id: idx, name: val.name};
+    });
 
     const tmpPlayerArray = [];
     for (let i = parseInt(this.setup.minimumMember, 0); i <= parseInt(this.setup.maximumMember, 0); i++) {
       tmpPlayerArray.push({id: i, name: i});
-      this.playersFilter.push(i);
     }
-
     this.playerSelectSettings = tmpPlayerArray;
+
     this.playerFiltered();
   }
 
@@ -58,10 +64,18 @@ export class SetupDetailComponent implements OnInit {
     return str;
   }
 
-  getIntersectionSelectOptions() {
+  getIntersectionSelectOptions(intersection) {
     let str = '';
-    this.setup.roles.map((val, index) => { str += val.name + ', '; });
-    this.setup.teams.map((val, index) => { str += index === this.setup.teams.length - 1 ? val.name : val.name + ', ' ; });
+    intersection.roles.map((val, index) => {
+      if (index > this.setup.roles.length) {
+        str += this.setup.teams[val - this.setup.roles.length].name;
+      } else {
+        str += this.setup.roles[val].name;
+      }
+      if (index !== intersection.roles.length - 1) {
+        str += ', ';
+      }
+    });
 
     return str;
   }
@@ -79,38 +93,61 @@ export class SetupDetailComponent implements OnInit {
     card.className = card.className.includes('expanded') ? card.className.replace(' expanded', '') : card.className + ' expanded';
   }
 
-  teamFiltered(team) {
-    let filtered = false;
-
-    if (this.filteredTeams.indexOf(team.name) !== -1 && this.teamFilter.indexOf(team.name) !== -1) {
-      filtered = true;
+  teamFiltered() {
+    if (this.teamFilter.length === 0) {
+      this.filteredTeams = this.setup.teams;
+    } else {
+      this.filteredTeams = this.teamFilter.map((val, idx) => {
+        return this.setup.teams[val];
+      });
     }
 
-    return filtered;
+    const teamNames = this.filteredTeams.map((val, idx) => { return val.name; });
+
+    this.filteredRoles = [];
+    this.setup.roles.map((val, idx) => {
+      this.setup.tblVal[idx].map((val1, idx1) => {
+        if (val1 > 0 && this.filteredPlayers.indexOf(idx1) > -1 && teamNames.indexOf(val.team) > -1) {
+          if (this.filteredRoles.indexOf(val) === -1) {
+            this.filteredRoles.push(val);
+          }
+        }
+      });
+    });
+
+    this.roleSelectSettings = this.filteredRoles.map((val, idx) => {
+      // this.rolesFilter.push(val.name);
+      return { id: idx, name: val.name};
+    });
   }
 
-  roleFiltered(role) {
-    let filtered = false;
-
-    if (this.filteredRoles.indexOf(role) !== -1 && this.rolesFilter.indexOf(role.name) !== -1) {
-      filtered = true;
+  roleFiltered() {
+    if (this.rolesFilter.length === 0) {
+      this.filteredRoles = [];
+      this.setup.roles.map((val, idx) => {
+        this.setup.tblVal[idx].map((val1, idx1) => {
+          if (val1 > 0 && this.filteredPlayers.indexOf(idx1) > -1) {
+            if (this.filteredRoles.indexOf(val) === -1) {
+              this.filteredRoles.push(val);
+            }
+          }
+        });
+      });
     }
-
-    return filtered;
   }
 
   playerFiltered() {
-    this.filteredRoles = [];
-    this.setup.tblVal.map((val, idx) => {
-      for (let i = 0; i < this.playersFilter.length; i++) {
-        if (val[parseInt(this.playersFilter[i], 0)] > 0 && this.filteredRoles.indexOf(this.setup.roles[idx]) === -1) {
-          this.filteredRoles.push(this.setup.roles[idx]);
-        }
+    if (this.playersFilter.length === 0) {
+      this.filteredPlayers = [];
+      for (let i = parseInt(this.setup.minimumMember, 0); i <= parseInt(this.setup.maximumMember, 0); i++) {
+        this.filteredPlayers.push(i);
+        // this.playersFilter.push(i);
       }
-    });
+    } else {
+      this.filteredPlayers = this.playersFilter;
+    }
 
-    this.filteredTeams = this.filteredRoles.map((val, idx) => {
-      return val.team;
-    });
+    this.teamFilter = [];
+    this.teamFiltered();
   }
 }
