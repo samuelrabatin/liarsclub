@@ -781,7 +781,7 @@ var SetupDetailComponent = (function () {
         this.roleSelectSettings = this.setup.roles.map(function (val, idx) { _this.rolesFilter.push(val.name); return { id: val.name, name: val.name }; });
         this.teamSelectSettings = this.setup.teams.map(function (val, idx) { _this.teamFilter.push(val.name); return { id: val.name, name: val.name }; });
         var tmpPlayerArray = [];
-        for (var i = this.setup.minimumMember; i <= this.setup.maximumMember; i++) {
+        for (var i = parseInt(this.setup.minimumMember, 0); i <= parseInt(this.setup.maximumMember, 0); i++) {
             tmpPlayerArray.push({ id: i, name: i });
             this.playersFilter.push(i);
         }
