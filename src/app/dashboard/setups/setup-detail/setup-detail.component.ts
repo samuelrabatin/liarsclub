@@ -16,6 +16,7 @@ export class SetupDetailComponent implements OnInit {
   private rolesFilter = [];
 
   private selectSettings: IMultiSelectSettings;
+  private selectedText: IMultiSelectTexts;
 
   private playerSelectSettings: IMultiSelectSettings;
   private teamSelectSettings: IMultiSelectSettings;
@@ -31,11 +32,15 @@ export class SetupDetailComponent implements OnInit {
     console.log(this.setup);
 
     this.selectSettings = {
-      showCheckAll: true,
       showUncheckAll: true,
       checkedStyle: 'fontawesome',
       buttonClasses: 'btn-group select-with-transition',
       dynamicTitleMaxItems: 5,
+    };
+
+    this.selectedText = {
+      uncheckAll: 'Clear Filter',
+      defaultTitle: 'No Filters'
     };
 
     this.roleSelectSettings = this.setup.roles.map((val, idx) => {
@@ -119,12 +124,15 @@ export class SetupDetailComponent implements OnInit {
       // this.rolesFilter.push(val.name);
       return { id: idx, name: val.name};
     });
+
+    this.rolesFilter = [];
+    this.roleFiltered();
   }
 
   roleFiltered() {
-    if (this.rolesFilter.length === 0) {
-      this.filteredRoles = [];
-      this.setup.roles.map((val, idx) => {
+    const teamNames = this.filteredTeams.map((val, idx) => { return val.name; });
+    this.setup.roles.map((val, idx) => {
+      if (this.filteredRoles.length === 0 || this.filteredRoles.indexOf(idx) && teamNames.indexOf(val.team) > -1) {
         this.setup.tblVal[idx].map((val1, idx1) => {
           if (val1 > 0 && this.filteredPlayers.indexOf(idx1) > -1) {
             if (this.filteredRoles.indexOf(val) === -1) {
@@ -132,8 +140,8 @@ export class SetupDetailComponent implements OnInit {
             }
           }
         });
-      });
-    }
+      }
+    });
   }
 
   playerFiltered() {
@@ -146,6 +154,25 @@ export class SetupDetailComponent implements OnInit {
     } else {
       this.filteredPlayers = this.playersFilter;
     }
+
+    const teamNames = [];
+
+    this.setup.tblVal.map((val, idx) => {
+      val.map((val1, idx1) => {
+        if (val1 > 0 && this.filteredPlayers.indexOf(idx1) > -1 && teamNames.indexOf(this.setup.roles[idx].team)) {
+          teamNames.push(this.setup.roles[idx].team);
+        }
+      });
+    });
+
+    const tmpSetting = [];
+    this.setup.teams.map((val, idx) => {
+      if (teamNames.indexOf(val.name) > -1 && this.teamFilter.indexOf(idx)) {
+        tmpSetting.push({id: idx, name: val.name});
+      }
+    });
+
+    this.teamSelectSettings = tmpSetting;
 
     this.teamFilter = [];
     this.teamFiltered();

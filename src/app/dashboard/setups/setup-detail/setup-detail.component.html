@@ -39,15 +39,15 @@
           <div class="row filter-panel">
             <div class="form-group label-floating col-lg-4 col-md-4 col-sm-23">
               <label class="control-label">Number of Players</label>
-              <ss-multiselect-dropdown [(ngModel)]="playersFilter" name="playersFilter" [options]="playerSelectSettings" [settings]="selectSettings" (ngModelChange)="playerFiltered()"></ss-multiselect-dropdown>
+              <ss-multiselect-dropdown [(ngModel)]="playersFilter" name="playersFilter" [options]="playerSelectSettings" [settings]="selectSettings" [texts]="selectedText" (ngModelChange)="playerFiltered()"></ss-multiselect-dropdown>
             </div>
             <div class="form-group label-floating col-lg-4 col-md-4 col-sm-23">
               <label class="control-label">Teams</label>
-              <ss-multiselect-dropdown [(ngModel)]="teamFilter" name="teamFilter" [options]="teamSelectSettings" [settings]="selectSettings" (ngModelChange)="teamFiltered()"></ss-multiselect-dropdown>
+              <ss-multiselect-dropdown [(ngModel)]="teamFilter" name="teamFilter" [options]="teamSelectSettings" [settings]="selectSettings" [texts]="selectedText" (ngModelChange)="teamFiltered()"></ss-multiselect-dropdown>
             </div>
             <div class="form-group label-floating col-lg-4 col-md-4 col-sm-23">
               <label class="control-label">Roles</label>
-              <ss-multiselect-dropdown [(ngModel)]="rolesFilter" name="rolesFilter" [options]="roleSelectSettings" [settings]="selectSettings" (ngModelChange)="roleFiltered()"></ss-multiselect-dropdown>
+              <ss-multiselect-dropdown [(ngModel)]="rolesFilter" name="rolesFilter" [options]="roleSelectSettings" [settings]="selectSettings" [texts]="selectedText" (ngModelChange)="roleFiltered()"></ss-multiselect-dropdown>
             </div>
           </div>
 
