@@ -283,7 +283,7 @@
                       <tr *ngFor="let role of roles; let roleIdx = index;">
                         <td>{{role.name}}</td>
                         <td *ngFor="let val of numbers; let valIdx = index;">
-                          <input class="form-control" type="number" [(ngModel)]="tblVal[roleIdx][val]" name="{{'tblVal' + valIdx}}" />
+                          <input class="form-control" type="number" [(ngModel)]="tblVal[roleIdx][val]" name="{{'tblVal-' + valIdx + '-' + roleIdx}}" />
                         </td>
                       </tr>
                       </tbody>

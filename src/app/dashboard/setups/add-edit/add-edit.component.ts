@@ -351,7 +351,7 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
 
   fillNumbers() {
     this.numbers = [];
-    for (let i = this.minimumMember; i <= this.maximumMember; i++) {
+    for (let i = parseInt(this.minimumMember, 0); i <= parseInt(this.maximumMember, 0); i++) {
       this.numbers.push(i);
     }
 
