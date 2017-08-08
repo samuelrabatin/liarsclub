@@ -106,6 +106,8 @@ export class SetupDetailComponent implements OnInit {
       this.filteredTeams = this.teamFilter.map((val, idx) => {
         return this.setup.teams[val];
       });
+    } else {
+      this.filteredTeams = this.setup.teams.map((val, idx) => { return val; });
     }
 
     const teamNames = this.filteredTeams.map((val, idx) => { return val.name; });
@@ -169,7 +171,7 @@ export class SetupDetailComponent implements OnInit {
       });
     });
 
-    const tmpSetting = [];
+    let tmpSetting = [];
     this.filteredTeams = [];
     this.setup.teams.map((val, idx) => {
       if (teamNames.indexOf(val.name) > -1) {
@@ -177,6 +179,9 @@ export class SetupDetailComponent implements OnInit {
         this.filteredTeams.push(val);
       }
     });
+
+    this.filteredTeams = this.setup.teams.map((val, idx) => { return val; });
+    tmpSetting = this.setup.teams.map((val, idx) => { return {id: idx, name: val.name}; });
 
     tmpSetting.sort(this.sortFunction);
     this.teamSelectSettings = tmpSetting;
