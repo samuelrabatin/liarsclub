@@ -37,7 +37,7 @@ export class SetupDetailComponent implements OnInit {
       showUncheckAll: true,
       checkedStyle: 'fontawesome',
       buttonClasses: 'btn-group select-with-transition',
-      dynamicTitleMaxItems: 5,
+      dynamicTitleMaxItems: 5
     };
 
     this.selectedText = {
@@ -97,6 +97,7 @@ export class SetupDetailComponent implements OnInit {
 
   collapseExpand(evt) {
     const card = evt.target.parentElement.parentElement.parentElement;
+    evt.target.innerHTML = evt.target.innerHTML === 'expand_more' ? 'expand_less' : 'expand_more';
     card.className = card.className.includes('expanded') ? card.className.replace(' expanded', '') : card.className + ' expanded';
   }
 
@@ -120,10 +121,13 @@ export class SetupDetailComponent implements OnInit {
       });
     });
 
-    this.roleSelectSettings = this.filteredRoles.map((val, idx) => {
+    const tmpRolesSelection = this.filteredRoles.map((val, idx) => {
       // this.rolesFilter.push(val.name);
       return { id: idx, name: val.name};
     });
+
+    tmpRolesSelection.sort(this.sortFunction);
+    this.roleSelectSettings = tmpRolesSelection;
 
     this.rolesFilter = [];
     this.roleFiltered();
@@ -174,6 +178,7 @@ export class SetupDetailComponent implements OnInit {
       }
     });
 
+    tmpSetting.sort(this.sortFunction);
     this.teamSelectSettings = tmpSetting;
 
     this.teamFilter = [];
@@ -206,6 +211,10 @@ export class SetupDetailComponent implements OnInit {
     }
 
     return true;
+  }
+
+  sortFunction(v1, v2) {
+    return v1.name > v2.name ? 1 : v1.name === v2.name ? 0 : -1;
   }
 
   goBack() {

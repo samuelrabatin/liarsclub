@@ -97,6 +97,7 @@
             <div class="cheader">
               <h3>
                 Teams
+                <span class="description">What teams are in the game?</span>
                 <i class="material-icons" (click)="addNewTeam()">add_circle</i>
               </h3>
             </div>
@@ -114,6 +115,9 @@
                   <label class="control-label">Win Condition</label>
                   <textarea class="form-control" [(ngModel)]="team.description" required name="{{'teamdescription' + idx}}" ></textarea>
                 </div>
+              </div>
+              <div class="row">
+                <a (click)="addNewTeam()" class="btn btn-primary btn-sm pull-right">Add</a>
               </div>
             </div>
           </div>
@@ -154,6 +158,9 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <a (click)="addNewRole()" class="btn btn-primary btn-sm pull-right">Add</a>
+              </div>
             </div>
           </div>
 
@@ -176,6 +183,9 @@
                   <label class="control-label">Description</label>
                   <textarea class="form-control" [(ngModel)]="intersection.description" required name="{{'intersectiondescription' + idx}}" ></textarea>
                 </div>
+              </div>
+              <div class="row">
+                <a (click)="addNewIntersection()" class="btn btn-primary btn-sm pull-right">Add</a>
               </div>
             </div>
           </div>
@@ -201,6 +211,9 @@
                   <label class="control-label">Narration</label>
                   <textarea class="form-control" [(ngModel)]="narration.description" required name="{{'narrdescription' + idx}}" ></textarea>
                 </div>
+              </div>
+              <div class="row">
+                <a (click)="addNewNarration()" class="btn btn-primary btn-sm pull-right">Add</a>
               </div>
             </div>
           </div>
@@ -251,6 +264,9 @@
                   <label class="control-label">Description</label>
                   <textarea class="form-control" [(ngModel)]="additionalRule.description" required name="{{'additionalRule' + idx}}" ></textarea>
                 </div>
+              </div>
+              <div class="row">
+                <a (click)="addNewAdditionalRule()" class="btn btn-primary btn-sm pull-right">Add</a>
               </div>
             </div>
           </div>

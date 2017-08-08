@@ -27,4 +27,6 @@ form .row.card.expanded .card-content {
 
 i {
   cursor: pointer;
+  font-size: 40px;
+  font-weight: lighter;
 }

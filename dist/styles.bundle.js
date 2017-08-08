@@ -35,7 +35,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n  background-color: rgb(213, 236, 214);\n}\n\n.dropdown-menu li a {\n  display: block;\n  clear: both;\n  font-weight: 400;\n  line-height: 1.42857143;\n  color: #333;\n  white-space: nowrap;\n  font-size: 13px;\n  padding: 10px 20px;\n  margin: 0 5px;\n  border-radius: 2px;\n  transition: all 150ms linear;\n}\n", ""]);
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n  background-color: rgb(213, 236, 214);\n}\n\n.dropdown-menu li a {\n  display: block;\n  clear: both;\n  font-weight: 400;\n  line-height: 1.42857143;\n  color: #333;\n  white-space: nowrap;\n  font-size: 13px;\n  padding: 10px 20px;\n  margin: 0 5px;\n  border-radius: 2px;\n  transition: all 150ms linear;\n}\n\nul.dropdown-menu {\n  min-width: 320px;\n}\n\nul.dropdown-menu li.dropdown-item {\n  width: 50%;\n  display: inline-block;\n}\n\nsmall {\n  color: #999999 !important;\n}\n", ""]);
 
 // exports
 

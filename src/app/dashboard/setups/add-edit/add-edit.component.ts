@@ -415,6 +415,8 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
 
   getRolesSelectOptions() {
     this.rolesSelectOptions = this.roles.map((val, index) => { return {id: index, name: val.name}; });
+    this.rolesSelectOptions.sort(this.sortFunction);
+
     return this.rolesSelectOptions;
   }
 
@@ -423,7 +425,13 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     const teams = this.teams.map((val, index) => { return {id: index + this.roles.length, name: val.name}; });
     rolesAndTeams = rolesAndTeams.concat(teams);
 
+    rolesAndTeams.sort(this.sortFunction);
+
     return rolesAndTeams;
+  }
+
+  sortFunction(v1, v2) {
+    return v1.name > v2.name ? 1 : v1.name === v2.name ? 0 : -1;
   }
 
   narrationDown(idx) {

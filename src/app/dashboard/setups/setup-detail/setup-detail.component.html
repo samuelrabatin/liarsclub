@@ -53,11 +53,36 @@
             </div>
           </div>
 
+          <div class="row teams card expanded">
+            <div class="cheader card-header">
+              <h3>
+                Teams
+                <small>What teams are in the game?</small>
+                <i class="material-icons pull-right" (click)="collapseExpand($event)">expand_less</i>
+              </h3>
+            </div>
+            <div class="teams-list card-content">
+              <div class="team" *ngFor="let team of filteredTeams; let idx = index;">
+                <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
+                  <label class="control-label">Name</label>
+                  <input class="form-control" readonly [value]="team.name" />
+                </div>
+                <div class="form-group label-floating col-lg-3 col-md-3 col-sm-3">
+                  <div class="color" [style.background]="team.color"></div>
+                </div>
+                <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
+                  <label class="control-label">Win Condition</label>
+                  <textarea class="form-control" [value]="team.description" readonly></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="row roles card expanded">
             <div class="cheader card-header">
               <h3>
                 Roles <small class="description">What roles are in the game and how do they work?</small>
-                <i class="material-icons pull-right" (click)="collapseExpand($event)">code</i>
+                <i class="material-icons pull-right" (click)="collapseExpand($event)">expand_less</i>
               </h3>
             </div>
             <div class="roles-list card-content">
@@ -86,35 +111,12 @@
             </div>
           </div>
 
-          <div class="row teams card expanded">
-            <div class="cheader card-header">
-              <h3>
-                Teams
-                <i class="material-icons pull-right" (click)="collapseExpand($event)">code</i>
-              </h3>
-            </div>
-            <div class="teams-list card-content">
-              <div class="team" *ngFor="let team of filteredTeams; let idx = index;">
-                  <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
-                    <label class="control-label">Name</label>
-                    <input class="form-control" readonly [value]="team.name" />
-                  </div>
-                  <div class="form-group label-floating col-lg-3 col-md-3 col-sm-3">
-                    <div class="color" [style.background]="team.color"></div>
-                  </div>
-                  <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
-                    <label class="control-label">Win Condition</label>
-                    <textarea class="form-control" [value]="team.description" readonly></textarea>
-                  </div>
-                </div>
-            </div>
-          </div>
-
           <div class="row intersection card expanded">
             <div class="cheader card-header">
               <h3>
                 Interactions
-                <i class="material-icons pull-right" (click)="collapseExpand($event)">code</i>
+                <small>What rules come into play when certain roles perform actions on each other?</small>
+                <i class="material-icons pull-right" (click)="collapseExpand($event)">expand_less</i>
               </h3>
             </div>
             <div class="narrations-list card-content">
@@ -137,7 +139,7 @@
             <div class="cheader card-header">
               <h3>
                 Narration <small class="description">Does the order in which roles are woken up matter? What is announced when people die? etc.</small>
-                <i class="material-icons pull-right" (click)="collapseExpand($event)">code</i>
+                <i class="material-icons pull-right" (click)="collapseExpand($event)">expand_less</i>
               </h3>
             </div>
             <div class="narrations-list card-content">
@@ -161,7 +163,7 @@
             <div class="cheader card-header">
               <h3>
                 Voting Rules <small class="description">How does voting work? Are ties possible? etc.</small>
-                <i class="material-icons pull-right" (click)="collapseExpand($event)">code</i>
+                <i class="material-icons pull-right" (click)="collapseExpand($event)">expand_less</i>
               </h3>
             </div>
             <div class="roles-list card-content">
@@ -183,7 +185,7 @@
             <div class="cheader card-header">
               <h3>
                 Additional Rules and Corner Cases <small class="description">What rules have you missed</small>
-                <i class="material-icons pull-right" (click)="collapseExpand($event)">code</i>
+                <i class="material-icons pull-right" (click)="collapseExpand($event)">expand_less</i>
               </h3>
             </div>
             <div class="additonal-rules-list card-content">
