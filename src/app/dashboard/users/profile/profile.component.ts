@@ -83,6 +83,9 @@ export class ProfileComponent implements OnInit {
 
           this.getClubsData();
         }
+      },
+      e => {
+        console.log(e);
       }
     );
   }

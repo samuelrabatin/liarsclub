@@ -5,8 +5,22 @@
         <h3>{{setup.name}}
           <button class="btn btn-success pull-right" (click)="goBack()">Go Back</button>
         </h3>
+        <div class="row filter-panel">
+          <div class="form-group label-floating col-lg-4 col-md-4 col-sm-23">
+            <label class="control-label">Number of Players</label>
+            <ss-multiselect-dropdown [(ngModel)]="playersFilter" name="playersFilter" [options]="playerSelectSettings" [settings]="selectSettings" [texts]="selectedText" (ngModelChange)="playerFiltered()"></ss-multiselect-dropdown>
+          </div>
+          <div class="form-group label-floating col-lg-4 col-md-4 col-sm-23">
+            <label class="control-label">Teams</label>
+            <ss-multiselect-dropdown [(ngModel)]="teamFilter" name="teamFilter" [options]="teamSelectSettings" [settings]="selectSettings" [texts]="selectedText" (ngModelChange)="teamFiltered()"></ss-multiselect-dropdown>
+          </div>
+          <div class="form-group label-floating col-lg-4 col-md-4 col-sm-23">
+            <label class="control-label">Roles</label>
+            <ss-multiselect-dropdown [(ngModel)]="rolesFilter" name="rolesFilter" [options]="roleSelectSettings" [settings]="selectSettings" [texts]="selectedText" (ngModelChange)="roleFiltered()"></ss-multiselect-dropdown>
+          </div>
+        </div>
       </div>
-      <div class="card-content">
+      <div class="card-content main-card-content">
         <form>
           <div class="row">
             <div class="">
@@ -35,21 +49,6 @@
               <div class="col-md-12 col-lg-12">
                 <textarea class="form-control" [value]="setup.setupDescription" readonly ></textarea>
               </div>
-            </div>
-          </div>
-
-          <div class="row filter-panel">
-            <div class="form-group label-floating col-lg-4 col-md-4 col-sm-23">
-              <label class="control-label">Number of Players</label>
-              <ss-multiselect-dropdown [(ngModel)]="playersFilter" name="playersFilter" [options]="playerSelectSettings" [settings]="selectSettings" [texts]="selectedText" (ngModelChange)="playerFiltered()"></ss-multiselect-dropdown>
-            </div>
-            <div class="form-group label-floating col-lg-4 col-md-4 col-sm-23">
-              <label class="control-label">Teams</label>
-              <ss-multiselect-dropdown [(ngModel)]="teamFilter" name="teamFilter" [options]="teamSelectSettings" [settings]="selectSettings" [texts]="selectedText" (ngModelChange)="teamFiltered()"></ss-multiselect-dropdown>
-            </div>
-            <div class="form-group label-floating col-lg-4 col-md-4 col-sm-23">
-              <label class="control-label">Roles</label>
-              <ss-multiselect-dropdown [(ngModel)]="rolesFilter" name="rolesFilter" [options]="roleSelectSettings" [settings]="selectSettings" [texts]="selectedText" (ngModelChange)="roleFiltered()"></ss-multiselect-dropdown>
             </div>
           </div>
 

@@ -7,12 +7,15 @@
       <div class="card-content">
         <form (submit)="saveSetup()">
           <div class="row">
+            <div class="col-xs-12 setup-image">
+              <app-uploader [imgId]="imgId" (changed)="uploading = true;" (uploaded)="mainImgUploaded($event)" #mainUploader></app-uploader>
+            </div>
             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-              <div class="form-group label-floating">
+              <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
                 <label class="control-label">Setup Name</label>
                 <input class="form-control" [(ngModel)]="name" name="name" required />
               </div>
-              <div class="form-group label-floating">
+              <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
                 <label class="control-label">Created by:</label>
                 <input class="form-control" list="usernames" [(ngModel)]="createdUser" name="createdUser" required>
                 <datalist id="usernames"  multiple data-style="select-with-transition" required>
@@ -21,9 +24,19 @@
                   </option>
                 </datalist>
               </div>
-            </div>
-            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 setup-image">
-              <app-uploader [imgId]="imgId" (changed)="uploading = true;" (uploaded)="mainImgUploaded($event)" #mainUploader></app-uploader>
+              <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
+                  <label class="control-label">Expected Play Time (mins)</label>
+                  <input class="form-control" required type="number" min="1" [(ngModel)]="playTime" name="playTime"/>
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating">
+                  <label class="control-label">Difficulty level</label>
+                  <select class="form-control" [(ngModel)]="difficulty" name="difficulty">
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                    <option>Expert</option>
+                  </select>
+              </div>
             </div>
           </div>
 
@@ -36,26 +49,6 @@
             </div>
             <div class="col-md-12 col-lg-12">
               <textarea class="form-control" required [(ngModel)]="setupDescription" name="setupDescription" ></textarea>
-            </div>
-          </div>
-
-
-          <div class="row difficulty">
-            <div class="cheader">
-              <h3>
-                Difficulty
-              </h3>
-            </div>
-            <div class="col-md-4 col-lg-4">
-              <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating">
-                <label class="control-label">Difficulty level</label>
-                <select class="form-control" [(ngModel)]="difficulty" name="difficulty">
-                  <option>Beginner</option>
-                  <option>Intermediate</option>
-                  <option>Advanced</option>
-                  <option>Expert</option>
-                </select>
-              </div>
             </div>
           </div>
 
@@ -74,22 +67,6 @@
                 <label class="control-label">Maximum</label>
                 <input class="form-control" type="number" [(ngModel)]="maximumMember" (change)="maxChange()" name="maximumMember" min="1" required />
               </div>
-            </div>
-          </div>
-
-
-          <div class="row playTime">
-            <div class="cheader">
-              <h3>
-                Expected Play Time
-              </h3>
-            </div>
-            <div class="col-md-12 col-lg-12">
-              <div class="form-group label-floating col-lg-6 col-md-6 col-sm-6">
-                <label class="control-label"></label>
-                <input class="form-control" required type="number" min="1" [(ngModel)]="playTime" name="playTime"/>
-              </div>
-              <span class="mins-text">mins</span>
             </div>
           </div>
 

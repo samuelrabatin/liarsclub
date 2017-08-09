@@ -24,7 +24,7 @@
               <a (click)="viewDetailsClick(setup)">{{setup.name}}</a>
             </h4>
             <div class="card-description">
-              {{setup.setupDescription}}
+              {{setup.setupDescription.substr(0, 100)}}{{setup.setupDescription.length > 100 ? ' ...' : ''}}
             </div>
           </div>
           <div class="card-footer">

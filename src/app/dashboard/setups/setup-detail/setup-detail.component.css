@@ -30,3 +30,8 @@ i {
   font-size: 40px;
   font-weight: lighter;
 }
+
+.main-card-content {
+  height: calc(100vh - 429px);
+  overflow: auto;
+}

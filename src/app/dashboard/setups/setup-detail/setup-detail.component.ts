@@ -203,19 +203,19 @@ export class SetupDetailComponent implements OnInit {
 
     for (let i = 0; i < inTeams.length; i++) {
       const idx = this.filteredTeams.indexOf(inTeams[i]);
-      if (idx === -1 || (this.teamFilter.length !== 0 && this.teamFilter.indexOf(idx) === -1)) {
-        return false;
+      if ((this.teamFilter.length === 0 && idx > -1) || this.teamFilter.indexOf(idx) > -1) {
+        return true;
       }
     }
 
     for (let i = 0; i < inRoles.length; i++) {
       const idx = this.filteredRoles.indexOf(inRoles[i]);
-      if (idx === -1 || (this.rolesFilter.length !== 0 && this.rolesFilter.indexOf(idx) === -1)) {
-        return false;
+      if ((this.rolesFilter.length === 0 && idx > -1) || this.rolesFilter.indexOf(idx) > -1) {
+        return true;
       }
     }
 
-    return true;
+    return false;
   }
 
   sortFunction(v1, v2) {

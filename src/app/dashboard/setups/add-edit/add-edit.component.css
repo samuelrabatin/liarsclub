@@ -63,3 +63,17 @@ i {
 .row .row {
   padding-bottom: 0;
 }
+
+.container-fluid > .card > .card-content {
+  height: calc(100vh - 315px) !important;
+  overflow: auto !important;
+}
+
+textarea {
+  min-height: 120px;
+}
+
+.setup-image {
+  max-height: 250px;
+  width: auto;
+}

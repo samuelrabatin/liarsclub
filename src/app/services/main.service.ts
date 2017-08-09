@@ -31,6 +31,9 @@ export class MainService {
           this.name = `${d.profile.firstname} ${d.profile.lastname}`;
           this.avatarPublicId = d.profile.imgId;
         }
+      },
+      e => {
+        console.log(e);
       }
     );
   }
