@@ -1,0 +1,55 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card">
+        <div class="card-content">
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="text-primary">
+              <tr>
+                <th class="text-left">Setup Name</th>
+                <th class="left">User</th>
+                <th class="text-center">Created Date</th>
+                <th class="text-center">Updated Date</th>
+                <th class="text-center">Action</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let setup of setups;">
+                  <td class="text-left">
+                    <div class="image">
+                      <cl-image data-u="image" public-id="{{setup.imgId}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="80" width="100" format="jpg">
+                      </cl-image>
+                    </div>
+                    {{setup.name}}
+                  </td>
+                  <td class="left">{{setup.createdUser}}</td>
+                  <td class="text-center">{{getDateString(setup.created_date)}}</td>
+                  <td class="text-center">{{getDateString(setup.updated_date)}}</td>
+                  <td class="text-center">
+                    <button class="btn btn-danger btn-sm" (click)="removeSetup(setup._id)">Remove</button>
+                  </td>
+                </tr>
+                <tr *ngFor="let setup of hiddensetups;">
+                  <td class="text-left">
+                    <div class="image">
+                      <cl-image data-u="image" public-id="{{setup.imgId}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="80" width="100" format="jpg">
+                      </cl-image>
+                    </div>
+                    {{setup.name}}
+                  </td>
+                  <td class="left">{{setup.createdUser}}</td>
+                  <td class="text-center">{{getDateString(setup.created_date)}}</td>
+                  <td class="text-center">{{getDateString(setup.updated_date)}}</td>
+                  <td class="text-center">
+                    <button class="btn btn-success btn-sm" (click)="restoreSetup(setup._id)">Restore</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

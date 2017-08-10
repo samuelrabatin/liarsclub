@@ -1,0 +1,9 @@
+td {
+  max-height: 80px;
+}
+
+td .image {
+  max-width: 40px;
+  display: inline-block;
+  margin-right: 10px;
+}

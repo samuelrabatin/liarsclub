@@ -96,6 +96,7 @@ exports.addSetup = function (req, res) {
     } else {
       var item = req.body;
       item.created_date = new Date();
+      item.removed = false;
       var setup = new Setup(item);
       setup.save(function (err) {
         if (err) {
@@ -153,6 +154,7 @@ exports.updateSetup = function (req, res) {
           setup.votings = req.body.votings;
           setup.roles = req.body.roles;
           setup.tblVal = req.body.tblVal;
+          setup.updated_date = new Date();
 
           setup.save(function (err) {
             if (err) {
@@ -183,7 +185,7 @@ exports.getSetups = function (req, res) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
     } else {
-      Setup.find(function(err, setups) {
+      Setup.find({removed: false}, function(err, setups) {
         if (err) {
           return res.json({
             type: false,
@@ -192,6 +194,103 @@ exports.getSetups = function (req, res) {
         } else {
           return res.json({
             data: setups
+          });
+        }
+      });
+    }
+  });
+};
+
+exports.getRemovedSetups = function (req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      Setup.find({removed: true}, function(err, setups) {
+        if (err) {
+          return res.json({
+            type: false,
+            data: "Error occured: " + err
+          });
+        } else {
+          return res.json({
+            data: setups
+          });
+        }
+      });
+    }
+  });
+};
+
+exports.removeSetup = function (req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      Setup.findOne({_id: req.body.setupId}, function(err, setup) {
+        if (err || !setup) {
+          return res.json({
+            type: false,
+            data: "Error occured: " + err
+          });
+        } else {
+          setup.removed = true;
+          setup.save(function(err) {
+            if (err) {
+              return res.json({
+                type: false,
+                data: "Error occured: " + err
+              });
+            } else {
+              return res.json({
+                type: true,
+                data: "Setup Removed"
+              });
+            }
+          });
+        }
+      });
+    }
+  });
+};
+
+exports.restoreSetup = function (req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      Setup.findOne({_id: req.body.setupId}, function(err, setup) {
+        if (err || !setup) {
+          return res.json({
+            type: false,
+            data: "Error occured: " + err
+          });
+        } else {
+          setup.removed = false;
+          setup.save(function(err) {
+            if (err) {
+              return res.json({
+                type: false,
+                data: "Error occured: " + err
+              });
+            } else {
+              return res.json({
+                type: true,
+                data: "Setup Removed"
+              });
+            }
           });
         }
       });

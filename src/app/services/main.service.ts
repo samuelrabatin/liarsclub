@@ -195,6 +195,30 @@ export class MainService {
       .catch(this.handleError);
   }
 
+  public removeSetup(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/setups/removesetup/', {access_token: token, setupId: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public restoreSetup(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/setups/restoresetup/', {access_token: token, setupId: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public getRemovedSetups() {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/setups/getremovedsetups/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   /////////////////////////////////////////////////////////////////////
 
   public validateUsertoken() {

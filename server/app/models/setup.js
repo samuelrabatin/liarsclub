@@ -32,8 +32,9 @@ var SetupsSchema = new Schema(
     roles: { type: Array },
     voting: { type: Object, default: {name: '', description: ''} },
     tblVal: Array,
-    create_date: { type: Date },
-    updated_date: { type: Date }
+    created_date: { type: Date },
+    updated_date: { type: Date },
+    removed: { type: Boolean, default: false }
   },
   { collection : 'setups' }
 );
