@@ -20,6 +20,7 @@ var UserSchema = new Schema(
     hashed_password: { type: String, default: '' },
     created_date: { type: Date },
     updated_date: { type: Date },
+    active: { type: Date },
     last_login: { type: Date },
     token: String
   },

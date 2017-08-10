@@ -187,6 +187,13 @@ var MainService = (function () {
             .map(this.extractData)
             .catch(this.handleError);
     };
+    MainService.prototype.getSetupById = function (id) {
+        this.loading = true;
+        var token = localStorage.getItem('liarsclubtoken');
+        return this.http.post(this.apiUrl + '/setups/getsetupbyid/', { access_token: token, id: id })
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
     MainService.prototype.removeSetup = function (id) {
         this.loading = true;
         var token = localStorage.getItem('liarsclubtoken');
@@ -420,6 +427,8 @@ var ManageSetupsComponent = (function () {
             console.log(e);
         });
     };
+    ManageSetupsComponent.prototype.editSetup = function (id) {
+    };
     return ManageSetupsComponent;
 }());
 ManageSetupsComponent = __decorate([
@@ -535,33 +544,29 @@ var AddEditComponent = (function () {
             _this.objectId = id;
             if (id !== '-1') {
                 _this.isEdit = true;
-                _this.mainService.getSetups().subscribe(function (d) {
-                    var setups = d.data;
-                    for (var i = 0; i < setups.length; i++) {
-                        if (setups[i]._id === id) {
-                            _this.orgData = setups[i];
-                            _this.name = _this.orgData.name;
-                            _this.createdUser = _this.orgData.createdUser;
-                            _this.setupDescription = _this.orgData.setupDescription;
-                            _this.difficulty = _this.orgData.difficulty;
-                            _this.minimumMember = _this.orgData.minimumMember;
-                            _this.maximumMember = _this.orgData.maximumMember;
-                            _this.playTime = _this.orgData.playTime;
-                            _this.narrationText = _this.orgData.narrationText;
-                            _this.missingRules = _this.orgData.missingRules;
-                            _this.roleFrequencies = _this.orgData.roleFrequencies;
-                            _this.imgId = _this.orgData.imgId;
-                            _this.roles = _this.cloneArray(_this.orgData.roles);
-                            _this.voting = _this.orgData.voting;
-                            _this.tblVal = _this.cloneArray(_this.orgData.tblVal);
-                            _this.teams = _this.cloneArray(_this.orgData.teams);
-                            _this.narrations = _this.cloneArray(_this.orgData.narrations);
-                            _this.intersections = _this.cloneArray(_this.orgData.intersections);
-                            _this.additionalRules = _this.cloneArray(_this.orgData.additionalRules);
-                            _this.fillNumbers();
-                            $('.is-empty').removeClass('is-empty');
-                        }
-                    }
+                _this.mainService.getSetupById(id).subscribe(function (d) {
+                    var setup = d.data;
+                    _this.orgData = setup;
+                    _this.name = _this.orgData.name;
+                    _this.createdUser = _this.orgData.createdUser;
+                    _this.setupDescription = _this.orgData.setupDescription;
+                    _this.difficulty = _this.orgData.difficulty;
+                    _this.minimumMember = _this.orgData.minimumMember;
+                    _this.maximumMember = _this.orgData.maximumMember;
+                    _this.playTime = _this.orgData.playTime;
+                    _this.narrationText = _this.orgData.narrationText;
+                    _this.missingRules = _this.orgData.missingRules;
+                    _this.roleFrequencies = _this.orgData.roleFrequencies;
+                    _this.imgId = _this.orgData.imgId;
+                    _this.roles = _this.cloneArray(_this.orgData.roles);
+                    _this.voting = _this.orgData.voting;
+                    _this.tblVal = _this.cloneArray(_this.orgData.tblVal);
+                    _this.teams = _this.cloneArray(_this.orgData.teams);
+                    _this.narrations = _this.cloneArray(_this.orgData.narrations);
+                    _this.intersections = _this.cloneArray(_this.orgData.intersections);
+                    _this.additionalRules = _this.cloneArray(_this.orgData.additionalRules);
+                    _this.fillNumbers();
+                    $('.is-empty').removeClass('is-empty');
                 }, function (e) { return console.log(e); });
             }
             // In a real app: dispatch action to load the details here.
@@ -3225,7 +3230,7 @@ module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\"
 /* 234 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"card\">\n        <div class=\"card-content\">\n          <div class=\"table-responsive\">\n            <table class=\"table\">\n              <thead class=\"text-primary\">\n              <tr>\n                <th class=\"text-left\">Setup Name</th>\n                <th class=\"left\">User</th>\n                <th class=\"text-center\">Created Date</th>\n                <th class=\"text-center\">Updated Date</th>\n                <th class=\"text-center\">Action</th>\n              </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let setup of setups;\">\n                  <td class=\"text-left\">\n                    <div class=\"image\">\n                      <cl-image data-u=\"image\" public-id=\"{{setup.imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"80\" width=\"100\" format=\"jpg\">\n                      </cl-image>\n                    </div>\n                    {{setup.name}}\n                  </td>\n                  <td class=\"left\">{{setup.createdUser}}</td>\n                  <td class=\"text-center\">{{getDateString(setup.created_date)}}</td>\n                  <td class=\"text-center\">{{getDateString(setup.updated_date)}}</td>\n                  <td class=\"text-center\">\n                    <button class=\"btn btn-danger btn-sm\" (click)=\"removeSetup(setup._id)\">Remove</button>\n                  </td>\n                </tr>\n                <tr *ngFor=\"let setup of hiddensetups;\">\n                  <td class=\"text-left\">\n                    <div class=\"image\">\n                      <cl-image data-u=\"image\" public-id=\"{{setup.imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"80\" width=\"100\" format=\"jpg\">\n                      </cl-image>\n                    </div>\n                    {{setup.name}}\n                  </td>\n                  <td class=\"left\">{{setup.createdUser}}</td>\n                  <td class=\"text-center\">{{getDateString(setup.created_date)}}</td>\n                  <td class=\"text-center\">{{getDateString(setup.updated_date)}}</td>\n                  <td class=\"text-center\">\n                    <button class=\"btn btn-success btn-sm\" (click)=\"restoreSetup(setup._id)\">Restore</button>\n                  </td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row\">\n      <div class=\"card\">\n        <div class=\"card-content\">\n          <div class=\"table-responsive\">\n            <table class=\"table\">\n              <thead class=\"text-primary\">\n              <tr>\n                <th class=\"text-left\">Setup Name</th>\n                <th class=\"left\">User</th>\n                <th class=\"text-center\">Created Date</th>\n                <th class=\"text-center\">Updated Date</th>\n                <th class=\"text-center\">Action</th>\n              </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let setup of setups;\">\n                  <td class=\"text-left\">\n                    <div class=\"image\">\n                      <cl-image data-u=\"image\" public-id=\"{{setup.imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"80\" width=\"100\" format=\"jpg\">\n                      </cl-image>\n                    </div>\n                    {{setup.name}}\n                  </td>\n                  <td class=\"left\">{{setup.createdUser}}</td>\n                  <td class=\"text-center\">{{getDateString(setup.created_date)}}</td>\n                  <td class=\"text-center\">{{getDateString(setup.updated_date)}}</td>\n                  <td class=\"text-center\">\n                    <a class=\"btn btn-primary btn-sm\" [routerLink]=\"['/setups/add', setup._id]\">\n                      <i class=\"material-icons\">edit</i>\n                      Edit\n                    </a>\n                    <button class=\"btn btn-danger btn-sm\" (click)=\"removeSetup(setup._id)\">\n                      <i class=\"material-icons\">close</i>\n                      Hide\n                    </button>\n                  </td>\n                </tr>\n                <tr *ngFor=\"let setup of hiddensetups;\">\n                  <td class=\"text-left\">\n                    <div class=\"image\">\n                      <cl-image data-u=\"image\" public-id=\"{{setup.imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"80\" width=\"100\" format=\"jpg\">\n                      </cl-image>\n                    </div>\n                    {{setup.name}}\n                  </td>\n                  <td class=\"left\">{{setup.createdUser}}</td>\n                  <td class=\"text-center\">{{getDateString(setup.created_date)}}</td>\n                  <td class=\"text-center\">{{getDateString(setup.updated_date)}}</td>\n                  <td class=\"text-center\">\n                    <a class=\"btn btn-primary btn-sm\" [routerLink]=\"['/setups/add', setup._id]\">\n                      <i class=\"material-icons\">edit</i>\n                      Edit\n                    </a>\n                    <button class=\"btn btn-success btn-sm\" (click)=\"restoreSetup(setup._id)\">\n                      <i class=\"material-icons\">restore</i>\n                      Show\n                    </button>\n                  </td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 235 */

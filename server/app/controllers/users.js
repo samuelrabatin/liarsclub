@@ -110,7 +110,9 @@ exports.checkToken = function(req, res) {
     res.json({type: false});
   } else {
     User.findOne({name: req.body.name, token: req.body.token}, function (err, user) {
-      if (err || user === null) {
+      var date1 = new Date(user.active);
+      var date2 = new Date();
+      if (err || user === null || date2.getTime() - date1.getTime() > 60 * 1000 * 60 * 24) {
         res.json({type: false});
       } else {
         res.json({type: true});

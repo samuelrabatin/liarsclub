@@ -63,4 +63,8 @@ export class ManageSetupsComponent implements OnInit {
     );
   }
 
+  editSetup(id) {
+
+  }
+
 }

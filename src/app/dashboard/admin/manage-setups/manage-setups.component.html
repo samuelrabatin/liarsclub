@@ -27,7 +27,14 @@
                   <td class="text-center">{{getDateString(setup.created_date)}}</td>
                   <td class="text-center">{{getDateString(setup.updated_date)}}</td>
                   <td class="text-center">
-                    <button class="btn btn-danger btn-sm" (click)="removeSetup(setup._id)">Remove</button>
+                    <a class="btn btn-primary btn-sm" [routerLink]="['/setups/add', setup._id]">
+                      <i class="material-icons">edit</i>
+                      Edit
+                    </a>
+                    <button class="btn btn-danger btn-sm" (click)="removeSetup(setup._id)">
+                      <i class="material-icons">close</i>
+                      Hide
+                    </button>
                   </td>
                 </tr>
                 <tr *ngFor="let setup of hiddensetups;">
@@ -42,7 +49,14 @@
                   <td class="text-center">{{getDateString(setup.created_date)}}</td>
                   <td class="text-center">{{getDateString(setup.updated_date)}}</td>
                   <td class="text-center">
-                    <button class="btn btn-success btn-sm" (click)="restoreSetup(setup._id)">Restore</button>
+                    <a class="btn btn-primary btn-sm" [routerLink]="['/setups/add', setup._id]">
+                      <i class="material-icons">edit</i>
+                      Edit
+                    </a>
+                    <button class="btn btn-success btn-sm" (click)="restoreSetup(setup._id)">
+                      <i class="material-icons">restore</i>
+                      Show
+                    </button>
                   </td>
                 </tr>
               </tbody>

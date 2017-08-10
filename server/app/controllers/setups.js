@@ -201,6 +201,31 @@ exports.getSetups = function (req, res) {
   });
 };
 
+exports.getSetupById = function (req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      Setup.findOne({_id: req.body.id}, function(err, setup) {
+        if (err || !setup) {
+          return res.json({
+            type: false,
+            data: "Error occured: " + err
+          });
+        } else {
+          return res.json({
+            data: setup
+          });
+        }
+      });
+    }
+  });
+};
+
 exports.getRemovedSetups = function (req, res) {
   if (typeof req.body.access_token === 'undefined') {
     return res.status(400).send('Authentication is required');

@@ -125,34 +125,30 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
 
       if (id !== '-1') {
         this.isEdit = true;
-        this.mainService.getSetups().subscribe(
+        this.mainService.getSetupById(id).subscribe(
           d => {
-            const setups = d.data;
-            for (let i = 0; i < setups.length; i++) {
-              if (setups[i]._id === id) {
-                this.orgData = setups[i];
-                this.name = this.orgData.name;
-                this.createdUser = this.orgData.createdUser;
-                this.setupDescription = this.orgData.setupDescription;
-                this.difficulty = this.orgData.difficulty;
-                this.minimumMember = this.orgData.minimumMember;
-                this.maximumMember = this.orgData.maximumMember;
-                this.playTime = this.orgData.playTime;
-                this.narrationText = this.orgData.narrationText;
-                this.missingRules = this.orgData.missingRules;
-                this.roleFrequencies = this.orgData.roleFrequencies;
-                this.imgId = this.orgData.imgId;
-                this.roles = this.cloneArray(this.orgData.roles);
-                this.voting = this.orgData.voting;
-                this.tblVal = this.cloneArray(this.orgData.tblVal);
-                this.teams = this.cloneArray(this.orgData.teams);
-                this.narrations = this.cloneArray(this.orgData.narrations);
-                this.intersections = this.cloneArray(this.orgData.intersections);
-                this.additionalRules = this.cloneArray(this.orgData.additionalRules);
-                this.fillNumbers();
-                $('.is-empty').removeClass('is-empty');
-              }
-            }
+            const setup = d.data;
+            this.orgData = setup;
+            this.name = this.orgData.name;
+            this.createdUser = this.orgData.createdUser;
+            this.setupDescription = this.orgData.setupDescription;
+            this.difficulty = this.orgData.difficulty;
+            this.minimumMember = this.orgData.minimumMember;
+            this.maximumMember = this.orgData.maximumMember;
+            this.playTime = this.orgData.playTime;
+            this.narrationText = this.orgData.narrationText;
+            this.missingRules = this.orgData.missingRules;
+            this.roleFrequencies = this.orgData.roleFrequencies;
+            this.imgId = this.orgData.imgId;
+            this.roles = this.cloneArray(this.orgData.roles);
+            this.voting = this.orgData.voting;
+            this.tblVal = this.cloneArray(this.orgData.tblVal);
+            this.teams = this.cloneArray(this.orgData.teams);
+            this.narrations = this.cloneArray(this.orgData.narrations);
+            this.intersections = this.cloneArray(this.orgData.intersections);
+            this.additionalRules = this.cloneArray(this.orgData.additionalRules);
+            this.fillNumbers();
+            $('.is-empty').removeClass('is-empty');
           },
           e => console.log(e)
         );

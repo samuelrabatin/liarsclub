@@ -195,6 +195,14 @@ export class MainService {
       .catch(this.handleError);
   }
 
+  public getSetupById(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/setups/getsetupbyid/', {access_token: token, id: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   public removeSetup(id) {
     this.loading = true;
     const token = localStorage.getItem('liarsclubtoken');

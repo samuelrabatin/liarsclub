@@ -52,6 +52,8 @@ module.exports = function (app, passport) {
   app.post('/setups/addrole/', roles.addRole);
   app.post('/setups/addsetup/', roles.addSetup);
   app.post('/setups/updatesetup/', roles.updateSetup);
+
+  app.post('/setups/getsetupbyid/', roles.getSetupById);
   app.post('/setups/getallsetups/', roles.getSetups);
 
   app.post('/setups/removesetup/', roles.removeSetup);
