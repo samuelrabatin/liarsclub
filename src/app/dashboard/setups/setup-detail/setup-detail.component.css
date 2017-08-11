@@ -35,3 +35,12 @@ i {
   height: calc(100vh - 429px);
   overflow: auto;
 }
+
+.players {
+  margin-top: 9px;
+}
+
+.roles-list .row {
+  padding: 10px 20px;
+  margin: 15px 0;
+}

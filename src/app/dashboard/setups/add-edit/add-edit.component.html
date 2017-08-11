@@ -73,7 +73,7 @@
           <div class="row teams">
             <div class="cheader">
               <h3>
-                Teams
+                Teams and Win Conditions
                 <span class="description">What teams are in the game?</span>
                 <i class="material-icons" (click)="addNewTeam()">add_circle</i>
               </h3>
@@ -107,8 +107,10 @@
               </h3>
             </div>
             <div class="roles-list">
-              <div class="row" *ngFor="let role of roles; let ii = index;">
-                <i class="material-icons pull-right" (click)="removeRole(idx)">delete</i>
+              <div class="row" *ngFor="let role of roles; let ii = index;" [ngStyle]="getBorderColor(role)">
+                <i class="material-icons pull-right" (click)="removeRole(ii)">delete</i>
+                <i class="material-icons pull-right" (click)="roleDown(ii)" *ngIf="ii != roles.length - 1">arrow_downward</i>
+                <i class="material-icons pull-right" (click)="roleUp(ii)" *ngIf="ii != 0">arrow_upward</i>
                 <app-uploader class="col-md-2 col-lg-2 col-sm-2" [imgId]="role.imgId" (changed)="uploaders[ii] = true" (uploaded)="roleImgUploaded(ii, $event);"></app-uploader>
                 <div class="col-md-10 col-lg-10 col-sm-10">
                   <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group">
@@ -148,7 +150,7 @@
                 <i class="material-icons" (click)="addNewIntersection()">add_circle</i>
               </h3>
             </div>
-            <div class="narrations-list">
+            <div class="interactions-list">
               <div class="row team" *ngFor="let intersection of intersections; let idx = index;">
                 <i class="material-icons pull-right" (click)="removeIntersection(idx)">delete</i>
                 <div class="form-group multiselection">
@@ -202,7 +204,7 @@
                 Voting Rules <span class="description">How does voting work? Are ties possible? etc.</span>
               </h3>
             </div>
-            <div class="roles-list">
+            <div class="voting-rules-list">
               <div class="col-md-10 col-lg-10 col-sm-10">
                 <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group label-floating">
                   <label class="control-label">Voting Name</label>

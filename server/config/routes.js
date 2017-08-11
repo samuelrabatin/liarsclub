@@ -57,6 +57,7 @@ module.exports = function (app, passport) {
   app.post('/setups/getallsetups/', roles.getSetups);
 
   app.post('/setups/removesetup/', roles.removeSetup);
+  app.post('/setups/deletesetup/', roles.deleteSetup);
   app.post('/setups/restoresetup/', roles.restoreSetup);
   app.post('/setups/getremovedsetups/', roles.getRemovedSetups);
 

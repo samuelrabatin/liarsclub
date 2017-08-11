@@ -430,6 +430,20 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     return v1.name > v2.name ? 1 : v1.name === v2.name ? 0 : -1;
   }
 
+  roleDown(idx) {
+    if (idx !== this.roles.length - 1) {
+      [this.roles[idx], this.roles[idx + 1]] = [this.roles[idx + 1], this.roles[idx]];
+      [this.tblVal[idx], this.tblVal[idx + 1]] = [this.tblVal[idx + 1], this.tblVal[idx]];
+    }
+  }
+
+  roleUp(idx) {
+    if (idx !== 0) {
+      [this.roles[idx], this.roles[idx - 1]] = [this.roles[idx - 1], this.roles[idx]];
+      [this.tblVal[idx], this.tblVal[idx - 1]] = [this.tblVal[idx - 1], this.tblVal[idx]];
+    }
+  }
+
   narrationDown(idx) {
     if (idx !== this.narrations.length - 1) {
       [this.narrations[idx], this.narrations[idx + 1]] = [this.narrations[idx + 1], this.narrations[idx]];
@@ -449,5 +463,13 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
     }
 
     return sum;
+  }
+
+  getBorderColor(role) {
+    for (let i = 0; i < this.teams.length; i++) {
+      if (role.team === this.teams[i].name) {
+        return { border: '1px solid ' + this.teams[i].color };
+      }
+    }
   }
 }

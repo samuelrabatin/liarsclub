@@ -63,8 +63,15 @@ export class ManageSetupsComponent implements OnInit {
     );
   }
 
-  editSetup(id) {
-
+  deleteSetup(id) {
+    this.mainService.deleteSetup(id).subscribe(
+      d => {
+        this.updateData();
+      },
+      e => {
+        console.log(e);
+      }
+    );
   }
 
 }

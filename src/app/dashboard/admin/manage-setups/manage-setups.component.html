@@ -32,8 +32,12 @@
                       Edit
                     </a>
                     <button class="btn btn-danger btn-sm" (click)="removeSetup(setup._id)">
-                      <i class="material-icons">close</i>
+                      <i class="material-icons">block</i>
                       Hide
+                    </button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteSetup(setup._id)">
+                      <i class="material-icons">close</i>
+                      Delete
                     </button>
                   </td>
                 </tr>
@@ -56,6 +60,10 @@
                     <button class="btn btn-success btn-sm" (click)="restoreSetup(setup._id)">
                       <i class="material-icons">restore</i>
                       Show
+                    </button>
+                    <button class="btn btn-danger btn-sm" (click)="deleteSetup(setup._id)">
+                      <i class="material-icons">close</i>
+                      Delete
                     </button>
                   </td>
                 </tr>

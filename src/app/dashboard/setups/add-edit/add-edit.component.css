@@ -77,3 +77,8 @@ textarea {
   max-height: 250px;
   width: auto;
 }
+
+.roles-list .row {
+  padding: 10px 20px;
+  margin: 15px 0;
+}

@@ -28,10 +28,12 @@ export class SetupDetailComponent implements OnInit {
   private filteredRoles = [];
   private filteredTeams = [];
 
+  private players = 'All';
+
   constructor( private mainService: MainService ) { }
 
   ngOnInit() {
-    console.log(this.setup);
+    this.players = this.setup.maximumMember;
 
     this.selectSettings = {
       showUncheckAll: true,
@@ -41,8 +43,8 @@ export class SetupDetailComponent implements OnInit {
     };
 
     this.selectedText = {
-      uncheckAll: 'Clear Filter',
-      defaultTitle: 'No Filters'
+      uncheckAll: 'View All',
+      defaultTitle: 'All'
     };
 
     this.roleSelectSettings = this.setup.roles.map((val, idx) => {
@@ -104,10 +106,15 @@ export class SetupDetailComponent implements OnInit {
   teamFiltered() {
     if (this.teamFilter.length !== 0) {
       this.filteredTeams = this.teamFilter.map((val, idx) => {
-        return this.setup.teams[val];
+        return val === this.setup.teams.length ? {color: '#eee', name: 'N/A', description: 'N/A'} : this.setup.teams[val];
       });
     } else {
       this.filteredTeams = this.setup.teams.map((val, idx) => { return val; });
+      this.filteredTeams.push({
+        color: '#eee',
+        name: 'N/A',
+        description: 'N/A'
+      });
     }
 
     const teamNames = this.filteredTeams.map((val, idx) => { return val.name; });
@@ -115,7 +122,7 @@ export class SetupDetailComponent implements OnInit {
     this.filteredRoles = [];
     this.setup.roles.map((val, idx) => {
       this.setup.tblVal[idx].map((val1, idx1) => {
-        if (val1 > 0 && this.filteredPlayers.indexOf(idx1) > -1 && teamNames.indexOf(val.team) > -1) {
+        if (val1 > 0 && idx1 <= this.players && idx1 >= this.setup.minimumMember && teamNames.indexOf(val.team) > -1) {
           if (this.filteredRoles.indexOf(val) === -1) {
             this.filteredRoles.push(val);
           }
@@ -140,7 +147,7 @@ export class SetupDetailComponent implements OnInit {
     this.setup.roles.map((val, idx) => {
       if ((this.rolesFilter.length === 0 || this.filteredRoles.indexOf(idx)) && teamNames.indexOf(val.team) > -1) {
         this.setup.tblVal[idx].map((val1, idx1) => {
-          if (val1 > 0 && this.filteredPlayers.indexOf(idx1) > -1) {
+          if (val1 > 0 && idx1 <= this.players && idx1 >= this.setup.minimumMember) {
             if (this.filteredRoles.indexOf(val) === -1) {
               this.filteredRoles.push(val);
             }
@@ -161,11 +168,15 @@ export class SetupDetailComponent implements OnInit {
       this.filteredPlayers = this.playersFilter;
     }
 
+    if (!this.players) {
+      this.players = this.setup.maximumMember;
+    }
+
     const teamNames = [];
 
     this.setup.tblVal.map((val, idx) => {
       val.map((val1, idx1) => {
-        if (val1 > 0 && this.filteredPlayers.indexOf(idx1) > -1 && teamNames.indexOf(this.setup.roles[idx].team)) {
+        if (val1 > 0 && idx1 <= this.players && idx1 >= this.setup.minimumMember && teamNames.indexOf(this.setup.roles[idx].team)) {
           teamNames.push(this.setup.roles[idx].team);
         }
       });
@@ -181,9 +192,15 @@ export class SetupDetailComponent implements OnInit {
     });
 
     this.filteredTeams = this.setup.teams.map((val, idx) => { return val; });
+    this.filteredTeams.push({
+      color: '#eee',
+      name: 'N/A',
+      description: 'N/A'
+    });
     tmpSetting = this.setup.teams.map((val, idx) => { return {id: idx, name: val.name}; });
 
     tmpSetting.sort(this.sortFunction);
+    tmpSetting = tmpSetting.concat({id: this.setup.teams.length, name: 'N/A'});
     this.teamSelectSettings = tmpSetting;
 
     this.teamFilter = [];
@@ -218,11 +235,28 @@ export class SetupDetailComponent implements OnInit {
     return false;
   }
 
+  calcFrequency(roleFreq) {
+    let sum = 0;
+    roleFreq.map((val, idx) => {
+      sum += idx <= this.players && idx >= this.setup.minimumMember ? val : 0;
+    });
+
+    return sum;
+  }
+
   sortFunction(v1, v2) {
     return v1.name > v2.name ? 1 : v1.name === v2.name ? 0 : -1;
   }
 
   goBack() {
     this.back.emit('go back');
+  }
+
+  getBorderColor(role) {
+    for (let i = 0; i < this.setup.teams.length; i++) {
+      if (role.team === this.setup.teams[i].name) {
+        return { border: '1px solid ' + this.setup.teams[i].color };
+      }
+    }
   }
 }

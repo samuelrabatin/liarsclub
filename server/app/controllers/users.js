@@ -115,7 +115,9 @@ exports.checkToken = function(req, res) {
       if (err || user === null || date2.getTime() - date1.getTime() > 60 * 1000 * 60 * 24) {
         res.json({type: false});
       } else {
+        user.active = date2;
         res.json({type: true});
+        user.save();
       }
     });
   }

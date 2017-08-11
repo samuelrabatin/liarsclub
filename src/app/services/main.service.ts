@@ -227,6 +227,14 @@ export class MainService {
       .catch(this.handleError);
   }
 
+  public deleteSetup(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/setups/deletesetup/', {access_token: token, setupId: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   /////////////////////////////////////////////////////////////////////
 
   public validateUsertoken() {

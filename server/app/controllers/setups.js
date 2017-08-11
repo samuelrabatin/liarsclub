@@ -287,6 +287,32 @@ exports.removeSetup = function (req, res) {
   });
 };
 
+exports.deleteSetup = function (req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      Setup.findOneAndRemove({_id: req.body.setupId}, function(err, setup) {
+        if (err || !setup) {
+          return res.json({
+            type: false,
+            data: "Error occured: " + err
+          });
+        } else {
+          return res.json({
+            type: true,
+            data: "Setup Removed"
+          });
+        }
+      });
+    }
+  });
+};
+
 exports.restoreSetup = function (req, res) {
   if (typeof req.body.access_token === 'undefined') {
     return res.status(400).send('Authentication is required');
