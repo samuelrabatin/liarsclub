@@ -8,7 +8,7 @@
         <div class="row filter-panel">
           <div class="form-group label-floating col-lg-4 col-md-4 col-sm-23">
             <label class="control-label">Number of Players</label>
-            <input class="form-control players" min="0" [(ngModel)]="players" type="number" name="players" (change)="playerFiltered()" />
+            <input class="form-control players" min="0" [(ngModel)]="players" name="players" (change)="playerFiltered()" />
           </div>
           <div class="form-group label-floating col-lg-4 col-md-4 col-sm-23">
             <label class="control-label">Teams</label>
@@ -85,29 +85,27 @@
               </h3>
             </div>
             <div class="roles-list card-content">
-              <div class="row" *ngFor="let role of filteredRoles; let ii = index;" [ngStyle]="getBorderColor(role)">
-                <div *ngIf="rolesFilter.indexOf(ii) > -1 || rolesFilter.length == 0">
-                  <div class="col-md-2 col-lg-2 col-sm-2">
-                    <cl-image data-u="image" public-id="{{role.imgId}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
-                    </cl-image>
+              <div class="row" *ngFor="let role of filterIndividualRole(); let ii = index;" [ngStyle]="getBorderColor(role)">
+                <div class="col-md-2 col-lg-2 col-sm-2">
+                  <cl-image data-u="image" public-id="{{role.imgId}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
+                  </cl-image>
+                </div>
+                <div class="col-md-10 col-lg-10 col-sm-10">
+                  <div class="col-lg-4 col-md-4 col-sm-4 roles-names form-group label-floating">
+                    <label class="control-label">Role Name</label>
+                    <input class="form-control" [value]="role.name" readonly />
                   </div>
-                  <div class="col-md-10 col-lg-10 col-sm-10">
-                    <div class="col-lg-4 col-md-4 col-sm-4 roles-names form-group label-floating">
-                      <label class="control-label">Role Name</label>
-                      <input class="form-control" [value]="role.name" readonly />
-                    </div>
-                    <div class="form-group label-floating col-lg-4 col-md-4 col-sm-4">
-                      <label class="control-label">Team</label>
-                      <input class="form-control" [value]="role.team" readonly />
-                    </div>
-                    <div class="form-group label-floating col-lg-4 col-md-4 col-sm-4">
-                      <label class="control-label">Frequency</label>
-                      <input class="form-control" [value]="calcFrequency(setup.tblVal[setup.roles.indexOf(role)])" readonly />
-                    </div>
-                    <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
-                      <label class="control-label">Description</label>
-                      <textarea class="form-control" readonly [value]="role.description"></textarea>
-                    </div>
+                  <div class="form-group label-floating col-lg-4 col-md-4 col-sm-4">
+                    <label class="control-label">Team</label>
+                    <input class="form-control" [value]="role.team" readonly />
+                  </div>
+                  <div class="form-group label-floating col-lg-4 col-md-4 col-sm-4">
+                    <label class="control-label">Frequency</label>
+                    <input class="form-control" [value]="calcFrequency(setup.tblVal[setup.roles.indexOf(role)])" readonly />
+                  </div>
+                  <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
+                    <label class="control-label">Description</label>
+                    <textarea class="form-control" readonly [value]="role.description"></textarea>
                   </div>
                 </div>
               </div>

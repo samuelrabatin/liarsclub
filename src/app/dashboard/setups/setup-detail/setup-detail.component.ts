@@ -28,13 +28,11 @@ export class SetupDetailComponent implements OnInit {
   private filteredRoles = [];
   private filteredTeams = [];
 
-  private players = 'All';
+  private players: any = 'All';
 
   constructor( private mainService: MainService ) { }
 
   ngOnInit() {
-    this.players = this.setup.maximumMember;
-
     this.selectSettings = {
       showUncheckAll: true,
       checkedStyle: 'fontawesome',
@@ -122,7 +120,7 @@ export class SetupDetailComponent implements OnInit {
     this.filteredRoles = [];
     this.setup.roles.map((val, idx) => {
       this.setup.tblVal[idx].map((val1, idx1) => {
-        if (val1 > 0 && idx1 <= this.players && idx1 >= this.setup.minimumMember && teamNames.indexOf(val.team) > -1) {
+        if (val1 > 0 && (idx1 === this.players || this.players === 'All') && teamNames.indexOf(val.team) > -1) {
           if (this.filteredRoles.indexOf(val) === -1) {
             this.filteredRoles.push(val);
           }
@@ -147,7 +145,7 @@ export class SetupDetailComponent implements OnInit {
     this.setup.roles.map((val, idx) => {
       if ((this.rolesFilter.length === 0 || this.filteredRoles.indexOf(idx)) && teamNames.indexOf(val.team) > -1) {
         this.setup.tblVal[idx].map((val1, idx1) => {
-          if (val1 > 0 && idx1 <= this.players && idx1 >= this.setup.minimumMember) {
+          if (val1 > 0 && (idx1 === this.players || this.players === 'All')) {
             if (this.filteredRoles.indexOf(val) === -1) {
               this.filteredRoles.push(val);
             }
@@ -168,15 +166,13 @@ export class SetupDetailComponent implements OnInit {
       this.filteredPlayers = this.playersFilter;
     }
 
-    if (!this.players) {
-      this.players = this.setup.maximumMember;
-    }
+    this.players = parseInt(this.players, 0) || 'All';
 
     const teamNames = [];
 
     this.setup.tblVal.map((val, idx) => {
       val.map((val1, idx1) => {
-        if (val1 > 0 && idx1 <= this.players && idx1 >= this.setup.minimumMember && teamNames.indexOf(this.setup.roles[idx].team)) {
+        if (val1 > 0 && (idx1 === this.players || this.players === 'All') && teamNames.indexOf(this.setup.roles[idx].team)) {
           teamNames.push(this.setup.roles[idx].team);
         }
       });
@@ -238,7 +234,7 @@ export class SetupDetailComponent implements OnInit {
   calcFrequency(roleFreq) {
     let sum = 0;
     roleFreq.map((val, idx) => {
-      sum += idx <= this.players && idx >= this.setup.minimumMember ? val : 0;
+      sum += (idx === this.players || this.players === 'All') ? val : 0;
     });
 
     return sum;
@@ -255,7 +251,30 @@ export class SetupDetailComponent implements OnInit {
   getBorderColor(role) {
     for (let i = 0; i < this.setup.teams.length; i++) {
       if (role.team === this.setup.teams[i].name) {
-        return { border: '1px solid ' + this.setup.teams[i].color };
+        return { border: '3px solid ' + this.setup.teams[i].color };
+      }
+    }
+  }
+
+  filterIndividualRole() {
+    const roles = [];
+    for (let i = 0; i < this.filteredRoles.length; i++) {
+      if (this.rolesFilter.indexOf(i) > -1 || this.rolesFilter.length === 0) {
+        roles.push(this.filteredRoles[i]);
+      }
+    }
+
+    return roles;
+  }
+
+  filterIndividualTeam() {
+    const teams = [];
+
+    const filteredroles = this.filterIndividualRole().map((val, idx) => { return val.team });
+
+    for (let i = 0; i < this.filteredTeams.length; i++) {
+      if (filteredroles.indexOf(this.filteredTeams[i].name)) {
+        //teams.push()
       }
     }
   }

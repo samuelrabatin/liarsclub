@@ -31,11 +31,6 @@ i {
   font-weight: lighter;
 }
 
-.main-card-content {
-  height: calc(100vh - 429px);
-  overflow: auto;
-}
-
 .players {
   margin-top: 9px;
 }

@@ -27,6 +27,8 @@ export class SetupsComponent implements OnInit, AfterViewChecked {
     this.getSetups();
     this.viewDetails = false;
     this.viewSetup = {};
+
+    this.mainService.currentViewSetup = this;
   }
 
   ngAfterViewChecked() {

@@ -468,7 +468,7 @@ export class AddEditComponent implements OnInit, AfterViewChecked {
   getBorderColor(role) {
     for (let i = 0; i < this.teams.length; i++) {
       if (role.team === this.teams[i].name) {
-        return { border: '1px solid ' + this.teams[i].color };
+        return { border: '3px solid ' + this.teams[i].color };
       }
     }
   }
