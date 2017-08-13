@@ -42,4 +42,10 @@ export class SidebarComponent implements OnInit {
       );
     }
 
+    gotoSetup() {
+      if (this.mainService.currentViewSetup) {
+        this.mainService.currentViewSetup.viewDetails = false;
+      }
+      this.router.navigate(['setups']);
+    }
 }

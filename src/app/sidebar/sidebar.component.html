@@ -93,7 +93,7 @@
                     </li>
 
                     <li routerLinkActive="active">
-                        <a (click)="mainService.currentViewSetup.viewDetails = false" [routerLink]="[menuItems[4].path]">
+                        <a (click)="gotoSetup()" [routerLink]="[menuItems[4].path]">
                             <i class="{{menuItems[4].icon}}">library_books</i>
                             <p>{{menuItems[4].title}}</p>
                         </a>

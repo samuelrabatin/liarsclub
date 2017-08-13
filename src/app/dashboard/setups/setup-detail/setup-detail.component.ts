@@ -28,7 +28,7 @@ export class SetupDetailComponent implements OnInit {
   private filteredRoles = [];
   private filteredTeams = [];
 
-  private players: any = 'All';
+  private players: any = 0;
 
   constructor( private mainService: MainService ) { }
 
@@ -39,6 +39,8 @@ export class SetupDetailComponent implements OnInit {
       buttonClasses: 'btn-group select-with-transition',
       dynamicTitleMaxItems: 5
     };
+
+    this.players = parseInt(this.setup.maximumMember, 0);
 
     this.selectedText = {
       uncheckAll: 'View All',
@@ -166,7 +168,7 @@ export class SetupDetailComponent implements OnInit {
       this.filteredPlayers = this.playersFilter;
     }
 
-    this.players = parseInt(this.players, 0) || 'All';
+    this.players = parseInt(this.players, 0) || parseInt(this.setup.maximumMember, 0);
 
     const teamNames = [];
 
@@ -233,6 +235,7 @@ export class SetupDetailComponent implements OnInit {
 
   calcFrequency(roleFreq) {
     let sum = 0;
+    console.log(this.players);
     roleFreq.map((val, idx) => {
       sum += (idx === this.players || this.players === 'All') ? val : 0;
     });
