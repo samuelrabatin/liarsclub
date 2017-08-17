@@ -1,0 +1,62 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="card topic-list-card">
+    <div class="card-header">
+      <h4><ss-multiselect-dropdown [options]="forumSelectOptions" [settings]="selectSettings" [texts]="selectText" [(ngModel)]="parentForumId" (ngModelChange)="parentForumChanged()"></ss-multiselect-dropdown></h4>
+    </div>
+    <div class="card-content tabledata">
+      <table class="table">
+        <thead class="text-primary">
+        <tr>
+          <th class="text-left">ID</th>
+          <th class="text-left">Title</th>
+          <th class="text-left">Description</th>
+          <th class="text-center">Created User</th>
+          <th class="text-center">Created Date</th>
+          <th class="text-center">Views</th>
+          <th class="text-center">Replies</th>
+          <th class="text-center">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td></td>
+          <td><input class="form-control" [(ngModel)]="newTitle" /></td>
+          <td colspan="4"><input class="form-control" [(ngModel)]="newDescription" /></td>
+          <td>
+            <!--<ss-multiselect-dropdown [options]="forumSelectOptions" [settings]="selectSettings" [(ngModel)]="parentForum"></ss-multiselect-dropdown>-->
+          </td>
+          <td class="text-center">
+            <button class="btn btn-success btn-xs" (click)="addNewTopic()" [disabled]="!canAdd || !parentForumId.length">
+              <i class="material-icons">add_circle</i>
+              Add New Topic
+            </button>
+          </td>
+        </tr>
+        <tr *ngFor="let topic of filterTopics; let idx = index">
+          <td class="text-left">{{idx + 1}}</td>
+          <td class="text-left"><a (click)="gotoTopic(idx)">{{topic.title}}</a></td>
+          <td class="text-left">{{topic.text.length > 50 ? topic.text.substr(0, 50) : topic.text}}</td>
+          <td class="text-center">{{userNames[topic.createdUserId]}}</td>
+          <td class="text-center">{{mainService.getDateString(topic.createdDate)}}</td>
+          <td class="text-center">{{topic.views}}</td>
+          <td class="text-center">{{topic.replies}}</td>
+          <td class="text-center">
+            <button class="btn btn-success btn-xs" *ngIf="!topic.confirmed" (click)="activate(topic._id, idx)">
+              <i class="material-icons">check</i>
+              Approve
+            </button>
+            <button class="btn btn-warning btn-xs" *ngIf="topic.confirmed" (click)="deactivate(topic._id, idx)">
+              <i class="material-icons">close</i>
+              Disprove
+            </button>
+            <button class="btn btn-danger btn-xs" (click)="delete(topic._id, idx)">
+              <i class="material-icons">delete</i>
+              Delete
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

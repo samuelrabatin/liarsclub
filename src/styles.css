@@ -30,6 +30,10 @@ ul.dropdown-menu li.dropdown-item {
   display: inline-block;
 }
 
+.topic-list-card ul.dropdown-menu li.dropdown-item {
+  width: 100%;
+}
+
 small {
   color: #999999 !important;
 }

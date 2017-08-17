@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     const image_src = page.data('image');
 
     if (image_src !== undefined) {
-      const image_container = '<div class="full-page-background" style="background-image: url(' + image_src + ') "/>'
+      const image_container = '<div class="full-page-background" style="background-image: url(' + image_src + ') "/>';
       page.append(image_container);
     }
 
@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
           this.mainService.loading = false;
           localStorage.setItem('username', this.username.nativeElement.value);
           localStorage.setItem('liarsclubtoken', d.data.token);
+          this.mainService.userRole = d.data.type;
           this.loginFaildMsg = '';
 
           this.mainService.getProfileData().subscribe(

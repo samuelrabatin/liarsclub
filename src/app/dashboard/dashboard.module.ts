@@ -19,6 +19,11 @@ import { UploaderComponent } from './setups/uploader/uploader.component';
 import { AboutComponent } from './about/about.component';
 import { SetupDetailComponent } from './setups/setup-detail/setup-detail.component';
 import { ManageSetupsComponent } from './admin/manage-setups/manage-setups.component';
+import { AddForumComponent } from './discuss/forums/add-forum/add-forum.component';
+import { ForumListComponent } from './discuss/forums/forum-list/forum-list.component';
+import { ManageForumsComponent } from './admin/manage-forums/manage-forums.component';
+import { ForumsListComponent } from './admin/manage-forums/forums-list/forums-list.component';
+import { TopicsListComponent } from './admin/manage-forums/topics-list/topics-list.component';
 
 @NgModule({
     imports: [
@@ -33,7 +38,7 @@ import { ManageSetupsComponent } from './admin/manage-setups/manage-setups.compo
         FileUploadModule,
         MultiselectDropdownModule,
     ],
-    declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent, AboutComponent, SetupDetailComponent, ManageSetupsComponent ]
+    declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent, AboutComponent, SetupDetailComponent, ManageSetupsComponent, AddForumComponent, ForumListComponent, ManageForumsComponent, ForumsListComponent, TopicsListComponent ]
 })
 
 export class DashboardModule {}

@@ -1,0 +1,26 @@
+<div class="card container">
+  <div class="card-header">
+    <h4>
+      Add New Forum
+      <!--<i class="material-icons pull-right" *ngIf="!expanded" (click)="expanded = true">expand_more</i>-->
+      <!--<i class="material-icons pull-right" *ngIf="expanded" (click)="expanded = false">expand_less</i>-->
+    </h4>
+  </div>
+  <div class="card-content" *ngIf="expanded">
+    <div class="row">
+      <div class="form-group label-floating col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <label class="control-label">Title</label>
+        <input class="form-control" [(ngModel)]="title" />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <textarea class="form-control" [(ngModel)]="description"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer" *ngIf="expanded">
+    <button class="btn btn-success pull-right" (click)="addForum()">Add</button>
+  </div>
+</div>

@@ -22,4 +22,5 @@ export const ROUTES: RouteInfo[] = [
   { path: 'about', title: 'About Us', menuType: MenuType.LEFT, icon: 'material-icons' },
 
   { path: 'admin/setups', title: 'Manage Setups', menuType: MenuType.LEFT, icon: 'material-icons' },
+  { path: 'admin/forums', title: 'Manage Forums', menuType: MenuType.LEFT, icon: 'material-icons' },
 ];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ViewChild } from '@angular/core';
 import { ROUTES } from './sidebar-routes.config';
 import { MenuType } from './sidebar.metadata';
 import { Router } from '@angular/router';
@@ -13,16 +13,27 @@ declare var $:any;
     templateUrl: 'sidebar.component.html',
 })
 
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, AfterViewChecked {
     public menuItems: any[];
     private fullname: String;
+    private loaded = false;
+    private firstLoad = true;
+
+    @ViewChild('adminPanel') adminPanel;
 
     constructor( private mainService: MainService, private router: Router ) {}
 
     ngOnInit() {
-        $.getScript('../../assets/js/sidebar-moving-tab.js');
+      $.getScript('../../assets/js/sidebar-moving-tab.js');
+      this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
+    }
 
-        this.menuItems = ROUTES.filter(menuItem => menuItem.menuType !== MenuType.BRAND);
+    ngAfterViewChecked() {
+      if (this.loaded && this.firstLoad) {
+        $.getScript('../../assets/js/sidebar-moving-tab.js');
+        this.firstLoad = false;
+        this.loaded = false;
+      }
     }
 
     logout(evt) {
@@ -47,5 +58,9 @@ export class SidebarComponent implements OnInit {
         this.mainService.currentViewSetup.viewDetails = false;
       }
       this.router.navigate(['setups']);
+    }
+
+    loadFinished() {
+      this.loaded = true;
     }
 }

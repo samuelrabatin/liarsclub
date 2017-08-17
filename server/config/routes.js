@@ -8,6 +8,8 @@ const home = require('../app/controllers/home');
 const users = require('../app/controllers/users');
 const clubs = require('../app/controllers/clubs');
 const roles = require('../app/controllers/setups');
+const forums = require('../app/controllers/forums/forums');
+const topics = require('../app/controllers/forums/topics');
 
 /**
  * Expose
@@ -33,12 +35,14 @@ module.exports = function (app, passport) {
   app.get('/', home.index);
 
   app.post('/users/', users.getAllUsers);
+  app.post('/users/getuserbyid/', users.getProfileById);
   app.post('/users/login/', users.login);
   app.post('/users/checktoken/', users.checkToken);
   app.post('/users/register/', users.register);
   app.post('/users/logout/', users.logout);
   app.post('/users/saveprofile/', users.saveProfile);
   app.post('/users/getprofile/', users.getProfile);
+  app.post('/users/getallprofiles/', users.getAllProfiles);
 
   app.post('/clubs/all/', clubs.getClubs);
   app.post('/clubs/add/', clubs.addClub);
@@ -60,6 +64,20 @@ module.exports = function (app, passport) {
   app.post('/setups/deletesetup/', roles.deleteSetup);
   app.post('/setups/restoresetup/', roles.restoreSetup);
   app.post('/setups/getremovedsetups/', roles.getRemovedSetups);
+
+  app.post('/forums/getforums/', forums.getForums);
+  app.post('/forums/getconfirmedforums/', forums.getConfirmedForums);
+  app.post('/forums/addforum/', forums.addForum);
+  app.post('/forums/activateforum/', forums.activateForum);
+  app.post('/forums/deactivateforum/', forums.deactivateForum);
+  app.post('/forums/deleteforum/', forums.deleteForum);
+
+  app.post('/forums/gettopics/', topics.getTopics);
+  app.post('/forums/getconfirmedtopics/', topics.getConfirmedTopics);
+  app.post('/forums/addtopic/', topics.addTopic);
+  app.post('/forums/activatetopic/', topics.activateTopic);
+  app.post('/forums/deactivatetopic/', topics.deactivateTopic);
+  app.post('/forums/deletetopic/', topics.deleteTopic);
 
   /**
    * Error handling

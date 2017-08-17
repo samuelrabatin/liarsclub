@@ -22,7 +22,9 @@ var UserSchema = new Schema(
     updated_date: { type: Date },
     active: { type: Date },
     last_login: { type: Date },
-    token: String
+    token: String,
+    type: { type: String, default: 'user' },
+    confirmed: { type: Boolean, default: false }
   },
   { collection : 'users' }
 );

@@ -7,8 +7,9 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MainService {
-  private apiUrl = 'https://liarsclubserver.herokuapp.com';
-  //private apiUrl = 'http://localhost:3000';
+  //public apiUrl = 'https://liarsclubserver.herokuapp.com';
+  public apiUrl = 'http://192.168.4.36:3000';
+
   public loading;
   public cloudinaryUploadPresets = {
     profile: 'hhfktgrl',
@@ -19,6 +20,7 @@ export class MainService {
 
 
   public name = 'User';
+  public userRole = '';
   public avatarPublicId = '';
 
   public currentViewSetup;
@@ -66,6 +68,15 @@ export class MainService {
       .catch(this.handleError);
   }
 
+
+  getUserProfileById(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/users/getuserbyid/', {access_token: token, id: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   public getAllUsers() {
     this.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
@@ -87,6 +98,14 @@ export class MainService {
     this.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
     return this.http.post(this.apiUrl + '/users/getprofile/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public getAllProfiles() {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/users/getallprofiles/', {access_token: token})
       .map(this.extractData)
       .catch(this.handleError);
   }
@@ -235,6 +254,55 @@ export class MainService {
       .catch(this.handleError);
   }
 
+  ////////--------  Forums Services --------------/////////////////////
+  public addForum(data) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/forums/addforum/', {access_token: token, data: data})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public getConfirmedForums() {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/forums/getconfirmedforums/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public getAllForums() {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/forums/getforums/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public activateForum(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/forums/activateforum/', {access_token: token, id: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public deactivateForum(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/forums/deactivateforum/', {access_token: token, id: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public deleteForum(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/forums/deleteforum/', {access_token: token, id: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   /////////////////////////////////////////////////////////////////////
 
   public validateUsertoken() {
@@ -264,5 +332,10 @@ export class MainService {
     }
 
     return Observable.throw(errMsg);
+  }
+
+  getDateString(str) {
+    const date = new Date(str);
+    return date.toLocaleDateString();
   }
 }

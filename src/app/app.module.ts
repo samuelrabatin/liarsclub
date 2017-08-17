@@ -16,6 +16,7 @@ import { SidebarModule } from './sidebar/sidebar.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
 
 import { MainService } from './services/main.service';
+import { TopicsService } from './services/topics.service';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
@@ -34,6 +35,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     providers: [
       {provide: LocationStrategy, useClass: HashLocationStrategy},
       MainService,
+      TopicsService
     ],
     bootstrap:    [ AppComponent ]
 })

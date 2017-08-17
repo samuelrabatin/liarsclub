@@ -116,7 +116,7 @@ exports.checkToken = function(req, res) {
         res.json({type: false});
       } else {
         user.active = date2;
-        res.json({type: true});
+        res.json({type: true, role: user.type});
         user.save();
       }
     });
@@ -194,6 +194,66 @@ exports.getProfile = function(req, res) {
       return res.status(400).send('Authentication failed');
     } else {
       Profile.findOne({username: user.name}, function(err, userProfile) {
+        var return_val;
+        if (userProfile) {
+          return_val = {
+            firstname: userProfile.firstname,
+            lastname: userProfile.lastname,
+            email: userProfile.email,
+            imgId: userProfile.imgId
+          };
+        } else {
+          return_val = {
+            firstname: '',
+            lastname: '',
+            email: user.email,
+            imgId: user.imgId
+          };
+        }
+
+        res.json({
+          type: true,
+          profile: return_val
+        });
+      });
+    }
+  });
+};
+
+exports.getAllProfiles = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else if (user.type != 'admin') {
+      return res.status(400).send('Forbidden');
+    } else {
+      Profile.find({}, function(err, profiles) {
+        if (err) {
+          return res.status(400).send(err);
+        } else {
+          res.json(profiles);
+        }
+      });
+    }
+  });
+};
+
+exports.getProfileById = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token, _id: req.body.id }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else if (user.type != 'admin') {
+      return res.status(400).send('Forbidden');
+    } else {
+      Profile.findOne({id: user._id}, function(err, userProfile) {
         var return_val;
         if (userProfile) {
           return_val = {

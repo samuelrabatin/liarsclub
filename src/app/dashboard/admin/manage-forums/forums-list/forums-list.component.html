@@ -1,0 +1,57 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="card">
+    <div class="card-content tabledata">
+      <table class="table">
+        <thead class="text-primary">
+        <tr>
+          <th class="text-left">ID</th>
+          <th class="text-left">Title</th>
+          <th class="text-left">Description</th>
+          <th class="text-center">Created User</th>
+          <th class="text-center">Created Date</th>
+          <th class="text-center">Topics</th>
+          <th class="text-center">Posts</th>
+          <th class="text-center">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td></td>
+          <td><input class="form-control" [(ngModel)]="newTitle" /></td>
+          <td colspan="4"><input class="form-control" [(ngModel)]="newDescription" /></td>
+          <td></td>
+          <td class="text-center">
+            <button class="btn btn-success btn-xs" (click)="addNewForum()">
+              <i class="material-icons">add_circle</i>
+              Add New Forum
+            </button>
+          </td>
+        </tr>
+        <tr *ngFor="let forum of forums; let idx = index">
+          <td class="text-left">{{idx + 1}}</td>
+          <td class="text-left"><a (click)="gotoTopic(idx)">{{forum.title}}</a></td>
+          <td class="text-left">{{forum.description.length > 50 ? forum.description.substr(0, 50) : forum.description}}</td>
+          <td class="text-center">{{userNames[forum.createdUserId]}}</td>
+          <td class="text-center">{{mainService.getDateString(forum.createdDate)}}</td>
+          <td class="text-center"><a (click)="gotoTopic(idx)">{{forum.topics}}</a></td>
+          <td class="text-center">{{forum.posts}}</td>
+          <td class="text-center">
+            <button class="btn btn-success btn-xs" *ngIf="!forum.confirmed" (click)="activate(forum._id, idx)">
+              <i class="material-icons">check</i>
+              Approve
+            </button>
+            <button class="btn btn-warning btn-xs" *ngIf="forum.confirmed" (click)="deactivate(forum._id, idx)">
+              <i class="material-icons">close</i>
+              Disprove
+            </button>
+            <button class="btn btn-danger btn-xs" (click)="delete(forum._id, idx)">
+              <i class="material-icons">delete</i>
+              Delete
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

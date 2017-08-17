@@ -26,35 +26,37 @@ import { SetupDetailComponent } from './setups/setup-detail/setup-detail.compone
 
 import { ManageClubsComponent } from './admin/manage-clubs/manage-clubs.component';
 import { ManageSetupsComponent } from './admin/manage-setups/manage-setups.component';
+import { ManageForumsComponent } from './admin/manage-forums/manage-forums.component';
 import { AboutComponent } from './about/about.component';
 
 //
 export const MODULE_ROUTES: Route[] = [
-    { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
 
-    { path: 'connect/clubs', component: ClubsComponent},
-    { path: 'connect/meetings', component: MeetingsComponent},
-    { path: 'connect/people', component: PeopleComponent},
+  { path: 'connect/clubs', component: ClubsComponent},
+  { path: 'connect/meetings', component: MeetingsComponent},
+  { path: 'connect/people', component: PeopleComponent},
 
-    { path: 'setups', component: SetupsComponent},
-    { path: 'setups/add/:index', component: AddEditComponent},
-    { path: 'setups/view', component: SetupDetailComponent},
+  { path: 'setups', component: SetupsComponent},
+  { path: 'setups/add/:index', component: AddEditComponent},
+  { path: 'setups/view', component: SetupDetailComponent},
 
-    { path: 'discuss/forums', component: ForumsComponent},
-    { path: 'discuss/blogs', component: BlogsComponent},
+  { path: 'discuss/forums', component: ForumsComponent},
+  { path: 'discuss/blogs', component: BlogsComponent},
 
-    { path: 'learn/articles', component: ArticlesComponent },
-    { path: 'learn/videos', component: VideosComponent },
+  { path: 'learn/articles', component: ArticlesComponent },
+  { path: 'learn/videos', component: VideosComponent },
 
-    { path: 'users/login', component: LoginComponent },
-    { path: 'users/register', component: RegisterComponent },
-    { path: 'profile', component: ProfileComponent },
+  { path: 'users/login', component: LoginComponent },
+  { path: 'users/register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
 
-    { path: 'admin/clubs', component: ManageClubsComponent },
-    { path: 'admin/setups', component: ManageSetupsComponent },
-    { path: 'about', component: AboutComponent },
+  { path: 'admin/clubs', component: ManageClubsComponent },
+  { path: 'admin/setups', component: ManageSetupsComponent },
+  { path: 'admin/forums', component: ManageForumsComponent },
+  { path: 'about', component: AboutComponent },
 
-    { path: '**', redirectTo: 'home' },
+  { path: '**', redirectTo: 'home' },
 ]
 //
 export const MODULE_COMPONENTS = [
