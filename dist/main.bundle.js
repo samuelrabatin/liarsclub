@@ -25,8 +25,7 @@ var MainService = (function () {
     function MainService(http) {
         var _this = this;
         this.http = http;
-        //public apiUrl = 'https://liarsclubserver.herokuapp.com';
-        this.apiUrl = 'http://192.168.4.36:3000';
+        this.apiUrl = 'https://liarsclubserver.herokuapp.com';
         this.cloudinaryUploadPresets = {
             profile: 'hhfktgrl',
             clubs: 'mpahsbqu',
