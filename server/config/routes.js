@@ -81,6 +81,7 @@ module.exports = function (app, passport) {
   app.post('/forums/activatetopic/', topics.activateTopic);
   app.post('/forums/deactivatetopic/', topics.deactivateTopic);
   app.post('/forums/deletetopic/', topics.deleteTopic);
+  app.post('/forums/topic/increaseview/', topics.increaseView);
 
 
   app.post('/forums/addpost/', posts.addPost);

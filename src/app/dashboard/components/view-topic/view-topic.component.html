@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="card row" *ngIf="topic">
       <div class="card-header">
-        <h3>{{topic.title}}</h3>
+        <h3 [innerHTML]="topic.title"></h3>
         <small><h4>Created by {{mainService.userNames[topic.createdUserId]}} on {{mainService.getDateString(topic.createdDate)}}</h4></small>
         <h5>
           {{topic.text}}
@@ -11,6 +11,9 @@
       <div class="card-content">
         <div class="row" *ngFor="let post of posts">
           <app-post-item (updated)="getData()" [post]="post"></app-post-item>
+        </div>
+        <div>
+          <app-post-reply [topic]="topic" (replied)="getData()"></app-post-reply>
         </div>
       </div>
       <div class="card-footer"></div>

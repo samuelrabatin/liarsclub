@@ -13,45 +13,58 @@ import { PostsService } from '../../../services/posts.service';
 export class VIewTopicComponent implements OnInit {
   private topic;
   private posts;
+  private topicId;
 
   constructor( private route: ActivatedRoute, private router: Router,
        private mainService: MainService, private topicsService: TopicsService, private postService: PostsService ) { }
 
   ngOnInit() {
-    this.getData();
+    this.route.params.subscribe(params => {
+      this.topicId = params['id'];
+
+      if (this.topicId) {
+        this.getData();
+        this.topicsService.increaseView(this.topicId).subscribe(
+          d => {
+            if (d.type === false) {
+              console.log(d);
+            }
+          },
+          e => {
+            console.log(e);
+          }
+        );
+      }
+    });
   }
 
   private getData() {
-    this.route.params.subscribe(params => {
-      const id = params['id'];
-
-      this.topicsService.getTopicById(id).subscribe(
-        d => {
-          if (d.type) {
-            this.topic = d.data;
-          } else {
-            console.log(d.msg);
-          }
-        },
-        e => {
-          console.log(e);
+    this.topicsService.getTopicById(this.topicId).subscribe(
+      d => {
+        if (d.type) {
+          this.topic = d.data;
+        } else {
+          console.log(d.msg);
         }
-      );
+      },
+      e => {
+        console.log(e);
+      }
+    );
 
-      this.postService.getPostsByTopicId(id).subscribe(
-        d => {
-          if (d.type) {
-            this.posts = d.data;
-          } else {
-            console.log(d.msg);
-          }
-        },
-        e => {
-          console.log(e);
+    this.postService.getPostsByTopicId(this.topicId).subscribe(
+      d => {
+        if (d.type) {
+          this.posts = d.data;
+        } else {
+          console.log(d.msg);
         }
-      );
+      },
+      e => {
+        console.log(e);
+      }
+    );
 
-      this.mainService.getUserName();
-    });
+    this.mainService.getUserName();
   }
 }

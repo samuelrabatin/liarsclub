@@ -37,3 +37,7 @@ ul.dropdown-menu li.dropdown-item {
 small {
   color: #999999 !important;
 }
+
+.post-description img {
+  width: auto;
+}

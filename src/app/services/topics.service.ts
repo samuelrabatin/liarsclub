@@ -77,6 +77,14 @@ export class TopicsService {
       .catch(this.handleError);
   }
 
+  public increaseView(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.mainService.apiUrl + '/forums/topic/increaseview/', {access_token: token, id: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
     const body = res.json();
 

@@ -10,6 +10,7 @@ import { FooterModule } from '../shared/footer/footer.module';
 import { SidebarModule } from '../sidebar/sidebar.module';
 import { NavbarModule} from '../shared/navbar/navbar.module';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { QuillModule } from 'ngx-quill';
 
 import { MODULE_ROUTES, MODULE_COMPONENTS } from './dashboard.routes';
 import { ProfileComponent } from './users/profile/profile.component';
@@ -27,23 +28,25 @@ import { PostsListComponent } from './admin/manage-forums/posts-list/posts-list.
 import { AddDialogComponent } from './components/add-dialog/add-dialog.component';
 import { VIewTopicComponent } from './components/view-topic/view-topic.component';
 import { PostItemComponent } from './components/view-topic/post-item/post-item.component';
+import { PostReplyComponent } from './components/post-reply/post-reply.component';
 
 @NgModule({
     imports: [
-        BrowserModule,
-        RouterModule.forChild(MODULE_ROUTES),
-        SidebarModule,
-        NavbarModule,
-        FooterModule,
-        FormsModule,
-        Ng2CloudinaryModule,
-        ColorPickerModule,
-        FileUploadModule,
-        MultiselectDropdownModule,
+      BrowserModule,
+      RouterModule.forChild(MODULE_ROUTES),
+      SidebarModule,
+      NavbarModule,
+      FooterModule,
+      FormsModule,
+      Ng2CloudinaryModule,
+      ColorPickerModule,
+      FileUploadModule,
+      MultiselectDropdownModule,
+      QuillModule
     ],
     declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent,
       AboutComponent, SetupDetailComponent, ManageSetupsComponent, AddForumComponent, ManageForumsComponent,
-      ForumsListComponent, TopicsListComponent, PostsListComponent, AddDialogComponent, VIewTopicComponent, PostItemComponent ]
+      ForumsListComponent, TopicsListComponent, PostsListComponent, AddDialogComponent, VIewTopicComponent, PostItemComponent, PostReplyComponent ]
 })
 
 export class DashboardModule {}

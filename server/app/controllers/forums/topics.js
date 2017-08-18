@@ -151,6 +151,31 @@ exports.deactivateTopic = function(req, res) {
   });
 };
 
+exports.increaseView = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      Topic.findOne({_id: req.body.id}, function(err, topic) {
+        if (err && !forum) {
+          return res.json({
+            type: false,
+            data: "Error occured: " + err
+          });
+        } else {
+          topic.views++;
+          topic.save();
+          return res.json({type: 'true'});
+        }
+      });
+    }
+  });
+};
+
 exports.deleteTopic = function(req, res) {
   if (typeof req.body.access_token === 'undefined') {
     return res.status(400).send('Authentication is required');

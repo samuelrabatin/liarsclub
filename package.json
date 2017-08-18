@@ -37,6 +37,7 @@
     "ng2-cloudinary": "^0.9.2",
     "ng2-file-upload": "^1.2.1",
     "ngx-color-picker": "^4.2.0",
+    "tinymce": "^4.6.5",
     "rxjs": "^5.1.0",
     "zone.js": "^0.8.4"
   },
