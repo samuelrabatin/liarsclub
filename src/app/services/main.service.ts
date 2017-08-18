@@ -17,10 +17,11 @@ export class MainService {
     setups: 'w5wu0ytu'
   };
   public cloudName = 'da2w1aszs';
-
+  public userNames = [];
 
   public name = 'User';
   public userRole = '';
+  public userId = '';
   public avatarPublicId = '';
 
   public currentViewSetup;
@@ -33,6 +34,31 @@ export class MainService {
           this.name = `${d.profile.firstname} ${d.profile.lastname}`;
           this.avatarPublicId = d.profile.imgId;
         }
+      },
+      e => {
+        console.log(e);
+      }
+    );
+  }
+
+  public getUserName() {
+    this.getAllUsers().subscribe(
+      d => {
+        this.getAllProfiles().subscribe(
+          profiles => {
+            d.users.map((val, idx) => {
+              this.userNames[val._id] = val.name;
+              for (let i = 0; i < profiles.length; i++) {
+                if (profiles[i].username === val.name) {
+                  this.userNames[val._id] = `${this.userNames[val._id]} (${profiles[i].firstname} ${profiles[i].lastname})`;
+                }
+              }
+            });
+          },
+          e1 => {
+            console.log(e1);
+          }
+        );
       },
       e => {
         console.log(e);

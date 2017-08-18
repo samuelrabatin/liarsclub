@@ -19,31 +19,10 @@
           <app-forums-list (gotoTopicEvent)="gotoTopic($event)" #forumsList></app-forums-list>
         </div>
         <div class="tab-pane" id="topics-list" #topicsListTab>
-          <app-topics-list [forumSelectOptions]="forumsList.forumSelectOptions" (topicUpdated)="topicUpdated()" #topicsList></app-topics-list>
+          <app-topics-list [forumSelectOptions]="forumsList.forumSelectOptions" (topicUpdated)="topicUpdated()" (gotoPostsEvent)="gotoPosts($event)" #topicsList></app-topics-list>
         </div>
         <div class="tab-pane" id="posts-list" #postsListTab>
-          <div class="card">
-            <div class="card-content">
-              <table class="table">
-                <thead class="text-primary">
-                <tr>
-                  <th class="text-left">Title</th>
-                  <th class="text-left">Description</th>
-                  <th class="text-center">Created User</th>
-                  <th class="text-center">Created Date</th>
-                  <th class="text-center">Topics</th>
-                  <th class="text-center">Posts</th>
-                  <th class="text-center">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let forum of forums; let idx = index">
-
-                </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <app-posts-list (postDeleted)="postUpdated()" #postsList></app-posts-list>
         </div>
       </div>
     </div>

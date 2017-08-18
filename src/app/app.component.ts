@@ -27,6 +27,7 @@ export class AppComponent implements OnInit{
                 this.router.navigate(['/users/login']);
               } else {
                 this.mainService.userRole = d.role;
+                this.mainService.userId = d.id;
               }
               this.mainService.loading = false;
             },

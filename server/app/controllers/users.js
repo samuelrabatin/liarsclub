@@ -110,14 +110,19 @@ exports.checkToken = function(req, res) {
     res.json({type: false});
   } else {
     User.findOne({name: req.body.name, token: req.body.token}, function (err, user) {
-      var date1 = new Date(user.last_login);
-      var date2 = new Date();
-      if (err || user === null || date2.getTime() - date1.getTime() > 60 * 1000 * 60 * 24) {
+      if (err || user === null) {
         res.json({type: false});
       } else {
-        user.active = date2;
-        res.json({type: true, role: user.type});
-        user.save();
+        var date1 = new Date(user.last_login);
+        var date2 = new Date();
+
+        if (date2.getTime() - date1.getTime() > 60 * 1000 * 60 * 24) {
+          res.json({type: false});
+        } else {
+          user.active = date2;
+          res.json({type: true, role: user.type, id: user._id});
+          user.save();
+        }
       }
     });
   }
@@ -228,8 +233,6 @@ exports.getAllProfiles = function(req, res) {
   User.findOne({ token: req.body.access_token }, function(err, user) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
-    } else if (user.type != 'admin') {
-      return res.status(400).send('Forbidden');
     } else {
       Profile.find({}, function(err, profiles) {
         if (err) {
@@ -247,34 +250,36 @@ exports.getProfileById = function(req, res) {
     return res.status(400).send('Authentication is required');
   }
 
-  User.findOne({ token: req.body.access_token, _id: req.body.id }, function(err, user) {
+  User.findOne({ token: req.body.access_token }, function(err, user) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
-    } else if (user.type != 'admin') {
-      return res.status(400).send('Forbidden');
     } else {
-      Profile.findOne({id: user._id}, function(err, userProfile) {
-        var return_val;
-        if (userProfile) {
-          return_val = {
-            firstname: userProfile.firstname,
-            lastname: userProfile.lastname,
-            email: userProfile.email,
-            imgId: userProfile.imgId
-          };
+      User.findOne({_id: req.body.id}, function(err, reqUser) {
+        if (err || !reqUser) {
+          res.json({type: false, msg: 'cannot find user with that id'});
         } else {
-          return_val = {
-            firstname: '',
-            lastname: '',
-            email: user.email,
-            imgId: user.imgId
-          };
+          Profile.findOne({username: reqUser.name}, function(err, userProfile) {
+            var return_val;
+            if (userProfile) {
+              return_val = {
+                firstname: userProfile.firstname,
+                lastname: userProfile.lastname,
+                username: userProfile.username,
+                email: userProfile.email,
+                imgId: userProfile.imgId
+              };
+              res.json({
+                type: true,
+                profile: return_val
+              });
+            } else {
+              res.json({
+                type: false,
+                msg: 'err'
+              });
+            }
+          });
         }
-
-        res.json({
-          type: true,
-          profile: return_val
-        });
       });
     }
   });

@@ -10,6 +10,7 @@ const clubs = require('../app/controllers/clubs');
 const roles = require('../app/controllers/setups');
 const forums = require('../app/controllers/forums/forums');
 const topics = require('../app/controllers/forums/topics');
+const posts = require('../app/controllers/forums/posts');
 
 /**
  * Expose
@@ -73,11 +74,23 @@ module.exports = function (app, passport) {
   app.post('/forums/deleteforum/', forums.deleteForum);
 
   app.post('/forums/gettopics/', topics.getTopics);
+  app.post('/forums/gettopicbyid/', topics.getTopicById);
   app.post('/forums/getconfirmedtopics/', topics.getConfirmedTopics);
+  app.post('/forums/getconfirmedtopicsbyforumid/', topics.getConfirmedTopicsByForumId);
   app.post('/forums/addtopic/', topics.addTopic);
   app.post('/forums/activatetopic/', topics.activateTopic);
   app.post('/forums/deactivatetopic/', topics.deactivateTopic);
   app.post('/forums/deletetopic/', topics.deleteTopic);
+
+
+  app.post('/forums/addpost/', posts.addPost);
+  app.post('/forums/getallposts/', posts.getPosts);
+  app.post('/forums/getpostsbytopicid/', posts.getPostsByTopicId);
+  app.post('/forums/deletepost/', posts.deletePost);
+  app.post('/forums/likepost/', posts.likePostById);
+  app.post('/forums/removelikepost/', posts.removeLikePostById);
+  app.post('/forums/dislikepost/', posts.dislikePostById);
+  app.post('/forums/removedislikepost/', posts.removeDisLikePostById);
 
   /**
    * Error handling

@@ -14,12 +14,11 @@ export class TopicsListComponent implements OnInit {
   private userNames = [];
   private newTitle;
   private newDescription;
-  private parentForum: any = { title: 'All Topics' };
   private parentForumId;
   private filterTopics;
 
   @Input('forumSelectOptions') forumSelectOptions;
-  @Output() gotoTopicEvent: EventEmitter<string> = new EventEmitter();
+  @Output() gotoPostsEvent: EventEmitter<object> = new EventEmitter();
   @Output() topicUpdated: EventEmitter<string> = new EventEmitter();
 
   private forumSelectOption: IMultiSelectOption;
@@ -164,8 +163,8 @@ export class TopicsListComponent implements OnInit {
     );
   }
 
-  private gotoTopic(idx) {
-    this.gotoTopicEvent.emit(idx);
+  private gotoPosts(idx) {
+    this.gotoPostsEvent.emit(this.filterTopics[idx]);
   }
 
   private parentForumChanged() {

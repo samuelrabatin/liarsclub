@@ -1,0 +1,44 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+  <div class="card topic-list-card">
+    <div class="card-header" *ngIf="currentTopic">
+      <h3>
+        {{currentTopic.title}}
+        <div><small>Created by {{userNames[currentTopic.createdUserId]}} on {{mainService.getDateString(currentTopic.createdDate)}}</small></div>
+      </h3>
+      <h4>
+        {{currentTopic.text}}
+      </h4>
+    </div>
+    <div class="card-content tabledata">
+      <table class="table">
+        <thead class="text-primary">
+        <tr>
+          <th class="text-left">ID</th>
+          <th class="text-left">Replied User</th>
+          <th class="text-left">Text</th>
+          <th class="text-center">Replied Date</th>
+          <th class="text-center">Likes</th>
+          <th class="text-center">Unlikes</th>
+          <th class="text-center">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let post of posts; let idx = index">
+          <td class="text-left">{{idx + 1}}</td>
+          <td class="text-left">{{userNames[post.createdUserId]}}</td>
+          <td class="text-left">{{post.text.length > 50 ? post.text.substr(0, 50) + '...' : post.text}}</td>
+          <td class="text-center">{{mainService.getDateString(post.createdDate)}}</td>
+          <td class="text-center">{{post.likeUsersId.length}}</td>
+          <td class="text-center">{{post.unlikeUsersId.length}}</td>
+          <td class="text-center">
+            <button class="btn btn-danger btn-xs" (click)="delete(post._id, idx)">
+              <i class="material-icons">delete</i>
+              Delete
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

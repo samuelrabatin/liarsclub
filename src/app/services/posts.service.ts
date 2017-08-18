@@ -8,71 +8,70 @@ import 'rxjs/add/operator/map';
 import { MainService } from './main.service';
 
 @Injectable()
-export class TopicsService {
-  public loading;
+export class PostsService {
 
   constructor( private http: Http, private mainService: MainService ) { }
 
-  public addTopic(data) {
-    this.loading = true;
+  public getAllPosts() {
+    this.mainService.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
-    return this.http.post(this.mainService.apiUrl + '/forums/addtopic/', {access_token: token, data: data})
+    return this.http.post(this.mainService.apiUrl + '/forums/getallposts/', {access_token: token})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  public getConfirmedTopics() {
-    this.loading = true;
+  public getPostsByTopicId(id) {
+    this.mainService.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
-    return this.http.post(this.mainService.apiUrl + '/forums/getconfirmedtopics/', {access_token: token})
+    return this.http.post(this.mainService.apiUrl + '/forums/getpostsbytopicid/', {access_token: token, id: id})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  public getConfirmedTopicsByForumId(id) {
-    this.loading = true;
+  public addPost(data) {
+    this.mainService.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
-    return this.http.post(this.mainService.apiUrl + '/forums/getconfirmedtopicsbyforumid/', {access_token: token, id: id})
+    return this.http.post(this.mainService.apiUrl + '/forums/addpost/', {access_token: token, data: data})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  public getAllTopics() {
-    this.loading = true;
+  public deletePost(id) {
+    this.mainService.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
-    return this.http.post(this.mainService.apiUrl + '/forums/gettopics/', {access_token: token})
+    return this.http.post(this.mainService.apiUrl + '/forums/deletepost/', {access_token: token, id: id})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  public getTopicById(id) {
-    this.loading = true;
+  public likePost(id) {
+    this.mainService.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
-    return this.http.post(this.mainService.apiUrl + '/forums/gettopicbyid/', {access_token: token, id: id})
+    return this.http.post(this.mainService.apiUrl + '/forums/likepost/', {access_token: token, id: id})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  public activateTopic(id) {
-    this.loading = true;
+  public dislikePost(id) {
+    this.mainService.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
-    return this.http.post(this.mainService.apiUrl + '/forums/activatetopic/', {access_token: token, id: id})
+    return this.http.post(this.mainService.apiUrl + '/forums/dislikepost/', {access_token: token, id: id})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  public deactivateTopic(id) {
-    this.loading = true;
+  public removeLikePost(id) {
+    this.mainService.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
-    return this.http.post(this.mainService.apiUrl + '/forums/deactivatetopic/', {access_token: token, id: id})
+    return this.http.post(this.mainService.apiUrl + '/forums/removelikepost/', {access_token: token, id: id})
       .map(this.extractData)
       .catch(this.handleError);
   }
 
-  public deleteTopic(id) {
-    this.loading = true;
+  public removeDislikePost(id) {
+    this.mainService.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
-    return this.http.post(this.mainService.apiUrl + '/forums/deletetopic/', {access_token: token, id: id})
+    return this.http.post(this.mainService.apiUrl + '/forums/removedislikepost/', {access_token: token, id: id})
       .map(this.extractData)
       .catch(this.handleError);
   }

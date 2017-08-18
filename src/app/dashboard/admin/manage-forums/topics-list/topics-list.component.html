@@ -34,7 +34,7 @@
         </tr>
         <tr *ngFor="let topic of filterTopics; let idx = index">
           <td class="text-left">{{idx + 1}}</td>
-          <td class="text-left"><a (click)="gotoTopic(idx)">{{topic.title}}</a></td>
+          <td class="text-left"><a (click)="gotoPosts(idx)">{{topic.title}}</a></td>
           <td class="text-left">{{topic.text.length > 50 ? topic.text.substr(0, 50) : topic.text}}</td>
           <td class="text-center">{{userNames[topic.createdUserId]}}</td>
           <td class="text-center">{{mainService.getDateString(topic.createdDate)}}</td>

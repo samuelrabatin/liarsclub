@@ -29,6 +29,8 @@ import { ManageSetupsComponent } from './admin/manage-setups/manage-setups.compo
 import { ManageForumsComponent } from './admin/manage-forums/manage-forums.component';
 import { AboutComponent } from './about/about.component';
 
+import { VIewTopicComponent } from './components/view-topic/view-topic.component';
+
 //
 export const MODULE_ROUTES: Route[] = [
   { path: 'home', component: HomeComponent },
@@ -42,6 +44,7 @@ export const MODULE_ROUTES: Route[] = [
   { path: 'setups/view', component: SetupDetailComponent},
 
   { path: 'discuss/forums', component: ForumsComponent},
+  { path: 'discuss/forums/topic/:id', component: VIewTopicComponent},
   { path: 'discuss/blogs', component: BlogsComponent},
 
   { path: 'learn/articles', component: ArticlesComponent },

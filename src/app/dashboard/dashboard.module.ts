@@ -20,10 +20,13 @@ import { AboutComponent } from './about/about.component';
 import { SetupDetailComponent } from './setups/setup-detail/setup-detail.component';
 import { ManageSetupsComponent } from './admin/manage-setups/manage-setups.component';
 import { AddForumComponent } from './discuss/forums/add-forum/add-forum.component';
-import { ForumListComponent } from './discuss/forums/forum-list/forum-list.component';
 import { ManageForumsComponent } from './admin/manage-forums/manage-forums.component';
 import { ForumsListComponent } from './admin/manage-forums/forums-list/forums-list.component';
 import { TopicsListComponent } from './admin/manage-forums/topics-list/topics-list.component';
+import { PostsListComponent } from './admin/manage-forums/posts-list/posts-list.component';
+import { AddDialogComponent } from './components/add-dialog/add-dialog.component';
+import { VIewTopicComponent } from './components/view-topic/view-topic.component';
+import { PostItemComponent } from './components/view-topic/post-item/post-item.component';
 
 @NgModule({
     imports: [
@@ -38,7 +41,9 @@ import { TopicsListComponent } from './admin/manage-forums/topics-list/topics-li
         FileUploadModule,
         MultiselectDropdownModule,
     ],
-    declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent, AboutComponent, SetupDetailComponent, ManageSetupsComponent, AddForumComponent, ForumListComponent, ManageForumsComponent, ForumsListComponent, TopicsListComponent ]
+    declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent,
+      AboutComponent, SetupDetailComponent, ManageSetupsComponent, AddForumComponent, ManageForumsComponent,
+      ForumsListComponent, TopicsListComponent, PostsListComponent, AddDialogComponent, VIewTopicComponent, PostItemComponent ]
 })
 
 export class DashboardModule {}

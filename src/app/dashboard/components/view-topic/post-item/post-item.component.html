@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-content">
+    <div class="row" *ngIf="profile && post">
+      <div class="col-lg-1 col-md-2 col-sm-4 col-xs-6">
+        <div>
+          <a>
+            <cl-image data-u="image" public-id="{{profile.imgId}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="200" width="200" format="jpg">
+            </cl-image>
+          </a>
+        </div>
+
+      </div>
+      <div class="col-lg-11 col-md-10 col-sm-8 col-xs-6">
+        <div class="">
+          {{mainService.userNames[post.createdUserId]}} replied on {{mainService.getDateString(post.createdDate)}}
+          <button class="btn btn-success btn-xs pull-right" *ngIf="!isUnLike()" (click)="dislike()">
+            <i class="material-icons">thumb_down</i>
+          </button>
+          <button class="btn btn-success btn-xs pull-right" *ngIf="isUnLike()" (click)="removeDislike()">
+            <i class="material-icons text-rose">thumb_down</i>
+          </button>
+          <button class="btn btn-success btn-xs pull-right" *ngIf="isLike()" (click)="removeLike()">
+            <i class="material-icons text-rose">thumb_up</i>
+          </button>
+          <button class="btn btn-success btn-xs pull-right" *ngIf="!isLike()" (click)="like()">
+            <i class="material-icons">thumb_up</i>
+          </button>
+        </div>
+        <div class="description">
+          {{post.likeUsersId.length}} users like and {{post.unlikeUsersId.length}} users dislike
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 post-description">
+      {{post.text}}
+    </div>
+  </div>
+</div>

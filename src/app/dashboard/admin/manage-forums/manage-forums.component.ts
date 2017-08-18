@@ -11,6 +11,7 @@ export class ManageForumsComponent implements OnInit {
 
   @ViewChild('forumsList') forumsListComponent;
   @ViewChild('topicsList') topicsListComponent;
+  @ViewChild('postsList') postsListComponent;
 
   @ViewChild('forumsListToggleButton') forumsListToggleButton;
   @ViewChild('topicsListToggleButton') topicsListToggleButton;
@@ -43,7 +44,29 @@ export class ManageForumsComponent implements OnInit {
     this.postsListToggleButton.nativeElement.parentElement.className = '';
   }
 
+  private gotoPosts(topic) {
+    this.postsListComponent.changeTopic(topic);
+
+    this.topicsListToggleButton.nativeElement.setAttribute('aria-expanded', false);
+    this.forumsListToggleButton.nativeElement.setAttribute('aria-expanded', false);
+    this.postsListToggleButton.nativeElement.setAttribute('aria-expanded', true);
+
+    if (!this.postsListTab.nativeElement.className.includes(' active')) {
+      this.postsListTab.nativeElement.className += ' active';
+      this.postsListToggleButton.nativeElement.parentElement.className = 'active';
+    }
+    this.forumsListTab.nativeElement.className = this.topicsListTab.nativeElement.className.replace(' active', '');
+    this.forumsListToggleButton.nativeElement.parentElement.className = '';
+    this.topicsListTab.nativeElement.className = this.postsListTab.nativeElement.className.replace(' active', '');
+    this.topicsListToggleButton.nativeElement.parentElement.className = '';
+  }
+
   private topicUpdated() {
     this.forumsListComponent.getForumData();
+  }
+
+  private postUpdated() {
+    this.forumsListComponent.getForumData();
+    this.topicsListComponent.getTopicData();
   }
 }
