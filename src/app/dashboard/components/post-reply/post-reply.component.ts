@@ -32,6 +32,7 @@ export class PostReplyComponent implements OnInit {
       relative_urls: false,
       document_base_url: 'assets/js/plugins/tinymce/',
       skin_url: 'skins/lightgray',
+      branding: false,
       setup: editor => {
         this.editor = editor;
       },

@@ -20,7 +20,6 @@ var helpers = require('view-helpers');
 var jade = require('jade');
 var config = require('./');
 var pkg = require('../package.json');
-
 var jwt        = require("jsonwebtoken");
 
 var env = process.env.NODE_ENV || 'development';

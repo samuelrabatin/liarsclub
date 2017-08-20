@@ -22,7 +22,16 @@ const config = require('./config');
 const models = join(__dirname, 'app/models');
 const port = process.env.PORT || 3000;
 
-const app = express();
+var app = require('express')();
+var server = require('http').createServer(app);
+
+var io = require('socket.io')(server);
+io.on('connection', function(client){
+  console.log(client);
+  client.on('event', function(data){});
+  client.on('disconnect', function(){});
+});
+
 const connection = connect();
 
 /**
@@ -31,7 +40,8 @@ const connection = connect();
 
 module.exports = {
   app,
-  connection
+  connection,
+  io
 };
 
 // Bootstrap models
@@ -51,7 +61,8 @@ connection
 
 function listen () {
   if (app.get('env') === 'test') return;
-  app.listen(port);
+
+  server.listen(port);
   console.log('Express app started on port ' + port);
 }
 

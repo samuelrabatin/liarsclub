@@ -38,6 +38,7 @@
     "rand-token": "^0.3.0",
     "view-helpers": "~0.1.5",
     "winston": "~2.3.0",
+    "socket.io": "^2.0.3",
     "bcrypt": "^1.0.2"
   },
   "devDependencies": {

@@ -23,14 +23,14 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
     imports:      [
-        BrowserModule,
-        DashboardModule,
-        SidebarModule,
-        NavbarModule,
-        FooterModule,
-        RouterModule.forRoot([]),
-        HttpModule,
-        Ng2AutoCompleteModule
+      BrowserModule,
+      DashboardModule,
+      SidebarModule,
+      NavbarModule,
+      FooterModule,
+      RouterModule.forRoot([]),
+      HttpModule,
+      Ng2AutoCompleteModule
     ],
     declarations: [ AppComponent, DashboardComponent ],
     providers: [

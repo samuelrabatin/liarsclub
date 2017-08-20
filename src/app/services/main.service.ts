@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Response  } from '@angular/http';
 
+import { Socket } from 'ng2-socket-io';
 import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MainService {
-  //public apiUrl = 'https://liarsclubserver.herokuapp.com';
-  public apiUrl = 'http://192.168.4.36:3000';
+  public apiUrl = 'https://liarsclubserver.herokuapp.com';
+  // public apiUrl = 'http://192.168.4.36:3000';
 
   public loading;
   public cloudinaryUploadPresets = {
@@ -27,18 +29,20 @@ export class MainService {
   public currentViewSetup;
 
   constructor ( private http: Http ) {
-    this.getProfileData().subscribe(
-      d => {
-        this.loading = false;
-        if (d.type) {
-          this.name = `${d.profile.firstname} ${d.profile.lastname}`;
-          this.avatarPublicId = d.profile.imgId;
+    if (http) {
+      this.getProfileData().subscribe(
+        d => {
+          this.loading = false;
+          if (d.type) {
+            this.name = `${d.profile.firstname} ${d.profile.lastname}`;
+            this.avatarPublicId = d.profile.imgId;
+          }
+        },
+        e => {
+          console.log(e);
         }
-      },
-      e => {
-        console.log(e);
-      }
-    );
+      );
+    }
   }
 
   public getUserName() {

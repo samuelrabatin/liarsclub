@@ -10,7 +10,6 @@ import { FooterModule } from '../shared/footer/footer.module';
 import { SidebarModule } from '../sidebar/sidebar.module';
 import { NavbarModule} from '../shared/navbar/navbar.module';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
-import { QuillModule } from 'ngx-quill';
 
 import { MODULE_ROUTES, MODULE_COMPONENTS } from './dashboard.routes';
 import { ProfileComponent } from './users/profile/profile.component';
@@ -41,8 +40,7 @@ import { PostReplyComponent } from './components/post-reply/post-reply.component
       Ng2CloudinaryModule,
       ColorPickerModule,
       FileUploadModule,
-      MultiselectDropdownModule,
-      QuillModule
+      MultiselectDropdownModule
     ],
     declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent,
       AboutComponent, SetupDetailComponent, ManageSetupsComponent, AddForumComponent, ManageForumsComponent,
