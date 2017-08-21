@@ -12,6 +12,9 @@
           <li>
             <a data-toggle="tab" href="#posts-list" role="tab" aria-expanded="false" #postsListToggleButton>Posts List</a>
           </li>
+          <li>
+            <a data-toggle="tab" href="#reported-posts-list" role="tab" aria-expanded="false" #reportedpostsListToggleButton>Posts List</a>
+          </li>
         </ul>
       </div>
       <div class="tab-content">
@@ -23,6 +26,9 @@
         </div>
         <div class="tab-pane" id="posts-list" #postsListTab>
           <app-posts-list (postDeleted)="postUpdated()" #postsList></app-posts-list>
+        </div>
+        <div class="tab-pane" id="reported-posts-list" #reportedpostsListTab>
+          <app-reported-posts-list #reportedpostsList></app-reported-posts-list>
         </div>
       </div>
     </div>

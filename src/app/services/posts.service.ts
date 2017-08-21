@@ -76,6 +76,22 @@ export class PostsService {
       .catch(this.handleError);
   }
 
+  public getReportedPosts() {
+    this.mainService.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.mainService.apiUrl + '/forums/getreportposts/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public reportPost(id, text) {
+    this.mainService.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.mainService.apiUrl + '/forums/reportpostbyid/', {access_token: token, postId: id, userId: this.mainService.userId, text: text})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   private extractData(res: Response) {
     const body = res.json();
 

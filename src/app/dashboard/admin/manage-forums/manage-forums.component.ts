@@ -12,14 +12,17 @@ export class ManageForumsComponent implements OnInit {
   @ViewChild('forumsList') forumsListComponent;
   @ViewChild('topicsList') topicsListComponent;
   @ViewChild('postsList') postsListComponent;
+  @ViewChild('reportedpostsList') reportedpostsListComponent;
 
   @ViewChild('forumsListToggleButton') forumsListToggleButton;
   @ViewChild('topicsListToggleButton') topicsListToggleButton;
   @ViewChild('postsListToggleButton') postsListToggleButton;
+  @ViewChild('reportedpostsListToggleButton') reportedpostsListToggleButton;
 
   @ViewChild('forumsListTab') forumsListTab;
   @ViewChild('topicsListTab') topicsListTab;
   @ViewChild('postsListTab') postsListTab;
+  @ViewChild('reportedpostsListTab') reportedpostsListTab;
 
   constructor( private mainService: MainService ) { }
 
@@ -33,6 +36,7 @@ export class ManageForumsComponent implements OnInit {
     this.topicsListToggleButton.nativeElement.setAttribute('aria-expanded', true);
     this.forumsListToggleButton.nativeElement.setAttribute('aria-expanded', false);
     this.postsListToggleButton.nativeElement.setAttribute('aria-expanded', false);
+    this.reportedpostsListToggleButton.nativeElement.setAttribute('aria-expanded', false);
 
     if (!this.topicsListTab.nativeElement.className.includes(' active')) {
       this.topicsListTab.nativeElement.className += ' active';
@@ -42,6 +46,8 @@ export class ManageForumsComponent implements OnInit {
     this.forumsListToggleButton.nativeElement.parentElement.className = '';
     this.postsListTab.nativeElement.className = this.postsListTab.nativeElement.className.replace(' active', '');
     this.postsListToggleButton.nativeElement.parentElement.className = '';
+    this.reportedpostsListTab.nativeElement.className = this.reportedpostsListTab.nativeElement.className.replace(' active', '');
+    this.reportedpostsListToggleButton.nativeElement.parentElement.className = '';
   }
 
   private gotoPosts(topic) {
@@ -49,6 +55,7 @@ export class ManageForumsComponent implements OnInit {
 
     this.topicsListToggleButton.nativeElement.setAttribute('aria-expanded', false);
     this.forumsListToggleButton.nativeElement.setAttribute('aria-expanded', false);
+    this.reportedpostsListToggleButton.nativeElement.setAttribute('aria-expanded', false);
     this.postsListToggleButton.nativeElement.setAttribute('aria-expanded', true);
 
     if (!this.postsListTab.nativeElement.className.includes(' active')) {
@@ -59,6 +66,8 @@ export class ManageForumsComponent implements OnInit {
     this.forumsListToggleButton.nativeElement.parentElement.className = '';
     this.topicsListTab.nativeElement.className = this.postsListTab.nativeElement.className.replace(' active', '');
     this.topicsListToggleButton.nativeElement.parentElement.className = '';
+    this.reportedpostsListTab.nativeElement.className = this.reportedpostsListTab.nativeElement.className.replace(' active', '');
+    this.reportedpostsListToggleButton.nativeElement.parentElement.className = '';
   }
 
   private topicUpdated() {

@@ -22,7 +22,7 @@ export class PostReplyComponent implements OnInit {
     const me = this;
 
     tinymce.init({
-      selector: 'textarea',
+      selector: '.tinymce-editor',
       plugins: [
         'link image hr anchor pagebreak',
         'searchreplace wordcount code fullscreen',

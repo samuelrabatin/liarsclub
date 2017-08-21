@@ -13,6 +13,8 @@ var Schema = mongoose.Schema;
 var ReportedPostSchema = new Schema(
   {
     postId: {type: String, default: null},
+    topic: {type: Object, default: null},
+    forum: {type: Object, default: null},
     createdDate: {type: Date, default: null},
     createdUserId: {type: String, default: null},
     text: {type: String, default: ''}

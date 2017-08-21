@@ -13,7 +13,7 @@
       <div class="col-lg-11 col-md-10 col-sm-8 col-xs-6">
         <div class="">
           {{mainService.userId === post.createdUserId ? 'You' : mainService.userNames[post.createdUserId]}} replied {{mainService.getDateTimeDifference(post.createdDate)}}
-          <button class="btn btn-success btn-xs pull-right" *ngIf="mainService.userId !== post.createdUserId" (click)="report()">
+          <button class="btn btn-success btn-xs pull-right" *ngIf="mainService.userId !== post.createdUserId && !isReported" (click)="reportDiagToggle()">
             <i class="material-icons">report</i>
           </button>
           <button class="btn btn-success btn-xs pull-right" *ngIf="!isUnLike() && mainService.userId !== post.createdUserId" (click)="dislike()">
@@ -32,9 +32,31 @@
         <div class="description">
           {{post.likeUsersId.length}} users like and {{post.unlikeUsersId.length}} users dislike
         </div>
+        <div class="reported-text" *ngIf="isReported" data-color="rose">
+          You reported this post
+        </div>
       </div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 post-description" [innerHTML]="post.text">
+    </div>
+    <div [class]="showReport ? 'report-diag show' : 'report-diag'" [ngStyle]="diagBackgroundStyle">
+      <div [ngStyle]="diagStyle">
+        <div class="card report-card">
+          <div class="card-header" data-background-color="orange">
+            <h4>Report Post</h4>
+          </div>
+          <div class="card-content">
+            <div class="form-group">
+              <label class="control-label">Why are you reporting this post?</label>
+              <textarea class="form-control" [(ngModel)]="reportText"></textarea>
+            </div>
+          </div>
+          <div class="card-footer text-center">
+            <button class="btn btn-success" (click)="report()" [disabled]="reportText == ''">Report</button>
+            <button class="btn btn-danger" (click)="hideDiag()">Cancel</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

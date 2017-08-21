@@ -13,7 +13,7 @@
       <table class="table">
         <thead class="text-primary">
         <tr>
-          <th class="text-left">ID</th>
+          <th class="text-left hidden">ID</th>
           <th class="text-left">Replied User</th>
           <th class="text-left">Text</th>
           <th class="text-center">Replied Date</th>
@@ -24,7 +24,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let post of posts; let idx = index">
-          <td class="text-left">{{idx + 1}}</td>
+          <td class="text-left hidden">{{idx + 1}}</td>
           <td class="text-left">{{userNames[post.createdUserId]}}</td>
           <td class="text-left">{{post.text.length > 50 ? post.text.substr(0, 50) + '...' : post.text}}</td>
           <td class="text-center">{{mainService.getDateString(post.createdDate)}}</td>

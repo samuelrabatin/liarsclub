@@ -12,8 +12,10 @@ import { PostsService } from '../../../services/posts.service';
 })
 export class VIewTopicComponent implements OnInit {
   private topic;
-  private posts;
+  private posts = [];
   private topicId;
+  private reportedPosts = [];
+  private reported = [];
 
   constructor( private route: ActivatedRoute, private router: Router,
        private mainService: MainService, private topicsService: TopicsService, private postService: PostsService ) { }
@@ -56,6 +58,8 @@ export class VIewTopicComponent implements OnInit {
       d => {
         if (d.type) {
           this.posts = d.data;
+
+          this.isReported();
         } else {
           console.log(d.msg);
         }
@@ -65,6 +69,32 @@ export class VIewTopicComponent implements OnInit {
       }
     );
 
+    this.postService.getReportedPosts().subscribe(
+      d => {
+        this.reportedPosts = d;
+
+        this.isReported();
+      },
+      e => {
+        console.log(e);
+      }
+    );
+
     this.mainService.getUserName();
+  }
+
+  isReported() {
+    const reportedPostIds = [];
+    for (let i = 0; i < this.reportedPosts.length; i++) {
+      if (this.reportedPosts[i].createdUserId === this.mainService.userId) {
+        reportedPostIds.push(this.reportedPosts[i].postId);
+      }
+    }
+
+    for (let i = 0; i < this.posts.length; i++) {
+      if (reportedPostIds.indexOf(this.posts[i]._id) > -1) {
+        this.reported[i] = true;
+      }
+    }
   }
 }

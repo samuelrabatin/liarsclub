@@ -10,9 +10,15 @@ import { PostsService } from '../../../../services/posts.service';
 })
 export class PostItemComponent implements OnInit {
   @Input('post') post;
+  @Input('isReported') isReporte;
   @Output() updated: EventEmitter<string> = new EventEmitter();
 
   private profile;
+  private showReport = false;
+  private reportText = '';
+
+  private diagBackgroundStyle: any = {};
+  private diagStyle: any = {};
 
   constructor( private mainService: MainService, private postService: PostsService ) { }
 
@@ -46,6 +52,9 @@ export class PostItemComponent implements OnInit {
           if (d.type) {
             this.removeLike();
           }
+        },
+        e => {
+          console.log(e);
         }
       );
     }
@@ -57,6 +66,9 @@ export class PostItemComponent implements OnInit {
         if (d.type) {
           this.updated.emit('udpated');
         }
+      },
+      e => {
+        console.log(e);
       }
     );
   }
@@ -68,6 +80,9 @@ export class PostItemComponent implements OnInit {
           if (d.type) {
             this.removeDislike();
           }
+        },
+        e => {
+          console.log(e);
         }
       );
     }
@@ -79,11 +94,51 @@ export class PostItemComponent implements OnInit {
         if (d.type) {
           this.updated.emit('udpated');
         }
+      },
+      e => {
+        console.log(e);
       }
     );
   }
 
-  private report() {
+  private reportDiagToggle() {
+    this.showReport = true;
+    if (this.showReport) {
+      this.diagBackgroundStyle = {
+        'position': 'fixed',
+        'width': '100%',
+        'height': (document.getElementsByClassName('main-content')[0].getClientRects()[0].height + 500) + 'px',
+        'z-index': 11,
+        'top': 0,
+        'left': 0,
+        'background': 'rgba(255, 0, 0, 0.1)'
+      };
 
+      const scroll: any = document.getElementsByClassName('ps-scrollbar-y-rail')[1];
+      this.diagStyle = {
+        'width': '500px',
+        'position': 'fixed',
+        'left': 'calc(50% - 250px)',
+        'top': `calc(${(scroll ? scroll.style.top : document.querySelector('.perfect-scrollbar-off .main-panel').scrollTop + 'px')} + 50% - 200px)`
+      };
+    }
+  }
+
+  private report() {
+    this.postService.reportPost(this.post._id, this.reportText).subscribe(
+      d => {
+        if (d.type) {
+          this.updated.emit('udpated');
+        }
+      },
+      e => {
+        console.log(e);
+      }
+    );
+    this.showReport = false;
+  }
+
+  private hideDiag() {
+    this.showReport = false;
   }
 }

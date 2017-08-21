@@ -11,6 +11,7 @@ const roles = require('../app/controllers/setups');
 const forums = require('../app/controllers/forums/forums');
 const topics = require('../app/controllers/forums/topics');
 const posts = require('../app/controllers/forums/posts');
+const reportedposts = require('../app/controllers/forums/reportedposts');
 
 /**
  * Expose
@@ -92,6 +93,9 @@ module.exports = function (app, passport) {
   app.post('/forums/removelikepost/', posts.removeLikePostById);
   app.post('/forums/dislikepost/', posts.dislikePostById);
   app.post('/forums/removedislikepost/', posts.removeDisLikePostById);
+
+  app.post('/forums/reportpostbyid/', reportedposts.reportTest);
+  app.post('/forums/getreportposts/', reportedposts.getReportedPosts);
 
   /**
    * Error handling
