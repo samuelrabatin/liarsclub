@@ -9,8 +9,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MainService {
-  public apiUrl = 'https://liarsclubserver.herokuapp.com';
-  // public apiUrl = 'http://192.168.4.36:3000';
+  //public apiUrl = 'https://liarsclubserver.herokuapp.com';
+  public apiUrl = 'http://192.168.4.36:3000';
 
   public loading;
   public cloudinaryUploadPresets = {
@@ -365,7 +365,41 @@ export class MainService {
   }
 
   getDateString(str) {
+    if (!str) {
+      return '';
+    }
     const date = new Date(str);
     return date.toLocaleDateString();
+  }
+
+  getDateTimeString(str) {
+    if (!str) {
+      return '';
+    }
+    const date = new Date(str);
+    return date.toLocaleString();
+  }
+
+  getDateTimeDifference(str) {
+    if (!str) {
+      return '';
+    } else {
+      const today = new Date();
+      const cday = new Date(str);
+      const diff = today.getTime() - cday.getTime();
+      if (diff < 1000 * 60) {
+        return `${(diff / 1000).toFixed(0)} seconds ago`;
+      } else if (diff < 1000 * 60 * 60) {
+        return `${(diff / 1000 / 60).toFixed(0)} minutes ago`;
+      } else if (diff < 1000 * 60 * 60 * 24) {
+        return `${(diff / 1000 / 60 / 60).toFixed(0)} hours ago`;
+      } else if (diff < 1000 * 60 * 60 * 24 * 30) {
+        return `${(diff / 1000 / 60 / 60 / 24).toFixed(0)} days ago`;
+      } else if (diff < 1000 * 60 * 60 * 24 * 365) {
+        return `${(diff / 1000 / 60 / 60 / 24 / 30).toFixed(0)} months ago`;
+      } else {
+        return `${(diff / 1000 / 60 / 60 / 24 / 365).toFixed(0)} years ago`;
+      }
+    }
   }
 }

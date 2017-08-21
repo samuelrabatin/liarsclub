@@ -41,7 +41,7 @@ exports.getForums = function (req, res) {
     } else if (user.type != 'admin') {
       return res.status(400).send('Access denied');
     } else {
-      Forum.find({}, null, {sort: {createdDate: -1}}, function(err, forums) {
+      Forum.find({}, null, {sort: {lastreplied: -1, createdDate: -1}}, function(err, forums) {
         if (err) {
           return res.json({
             type: false,
@@ -64,7 +64,7 @@ exports.getConfirmedForums = function(req, res) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
     } else {
-      Forum.find({confirmed: true}, null, {sort: {createdDate: -1}}, function(err, forums) {
+      Forum.find({confirmed: true}, null, {lastreplied: -1, sort: {createdDate: -1}}, function(err, forums) {
         if (err) {
           return res.json({
             type: false,

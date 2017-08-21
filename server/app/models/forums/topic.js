@@ -20,9 +20,10 @@ var TopicSchema = new Schema(
     views: {type: Number, default: 0},
     replies: {type: Number, default: 0},
     locked: {type: Boolean, default: false},
-    confirmed: {type: Boolean, default: false},
+    confirmed: {type: Boolean, default: true},
     likedUserIds: {type: Array, default: []},
-    unlikedUserIds: {type: Array, default: []}
+    unlikedUserIds: {type: Array, default: []},
+    lastreplied: Date
   },
   { collection : 'topics' }
 );

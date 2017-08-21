@@ -12,17 +12,20 @@
       </div>
       <div class="col-lg-11 col-md-10 col-sm-8 col-xs-6">
         <div class="">
-          {{mainService.userNames[post.createdUserId]}} replied on {{mainService.getDateString(post.createdDate)}}
-          <button class="btn btn-success btn-xs pull-right" *ngIf="!isUnLike()" (click)="dislike()">
+          {{mainService.userId === post.createdUserId ? 'You' : mainService.userNames[post.createdUserId]}} replied {{mainService.getDateTimeDifference(post.createdDate)}}
+          <button class="btn btn-success btn-xs pull-right" *ngIf="mainService.userId !== post.createdUserId" (click)="report()">
+            <i class="material-icons">report</i>
+          </button>
+          <button class="btn btn-success btn-xs pull-right" *ngIf="!isUnLike() && mainService.userId !== post.createdUserId" (click)="dislike()">
             <i class="material-icons">thumb_down</i>
           </button>
-          <button class="btn btn-success btn-xs pull-right" *ngIf="isUnLike()" (click)="removeDislike()">
+          <button class="btn btn-success btn-xs pull-right" *ngIf="isUnLike() && mainService.userId !== post.createdUserId" (click)="removeDislike()">
             <i class="material-icons text-rose">thumb_down</i>
           </button>
-          <button class="btn btn-success btn-xs pull-right" *ngIf="isLike()" (click)="removeLike()">
+          <button class="btn btn-success btn-xs pull-right" *ngIf="isLike() && mainService.userId !== post.createdUserId" (click)="removeLike()">
             <i class="material-icons text-rose">thumb_up</i>
           </button>
-          <button class="btn btn-success btn-xs pull-right" *ngIf="!isLike()" (click)="like()">
+          <button class="btn btn-success btn-xs pull-right" *ngIf="!isLike() && mainService.userId !== post.createdUserId" (click)="like()">
             <i class="material-icons">thumb_up</i>
           </button>
         </div>

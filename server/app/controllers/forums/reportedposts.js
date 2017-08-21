@@ -1,9 +1,10 @@
 const Topic  = require('../../models/forums/topic');
 const Forum = require('../../models/forums/forum');
+const ReportedPost = require('../../models/forums/reportedpost');
 const Post = require('../../models/forums/post');
 const User = require('../../models/user');
 
-exports.getPosts = function(req, res) {
+exports.getReportedPosts = function(req, res) {
   if (typeof req.body.access_token === 'undefined') {
     return res.status(400).send('Authentication is required');
   }
@@ -12,13 +13,45 @@ exports.getPosts = function(req, res) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
     } else {
-      Post.find({}, null, {sort: {createdDate: -1}}, function(err, posts) {
+      ReportedPost.find({}, null, {sort: {createdDate: -1}}, function(err, posts) {
         if (err) {
           return res.json({
             type: false,
             data: "Error occured: " + err
           });
         } else {
+          for (var i = 0; i < posts.length; i++) {
+            Post.findOne({_id: posts[i].postId}, function(err, post) {
+              if (err || !post) {
+                return res.json({
+                  type: false,
+                  data: "Error occured: " + err
+                });
+              } else {
+                Topic.findOne({_id: post.topicId}, function(err, topic) {
+                  if (err || !topic) {
+                    return res.json({
+                      type: false,
+                      data: "Error occured: " + err
+                    });
+                  } else {
+                    Forum.findOne({_id: topic.forumId}, function(err, forum) {
+                      if (err || !forum) {
+                        return res.json({
+                          type: false,
+                          data: "Error occured: " + err
+                        });
+                      } else {
+                        posts[i].post = post;
+                        posts[i].topic = topic;
+                        posts[i].forum = forum;
+                      }
+                    });
+                  }
+                })
+              }
+            });
+          }
           return res.json(posts);
         }
       });
@@ -249,3 +282,30 @@ exports.deletePost = function(req, res) {
     }
   });
 };
+
+exports.addReportedPosts = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      var item;
+      item.postId = req.body.postId;
+      item.createdUserId = req.body.userId;
+      item.createdDate = new Date();
+      item.text = req.body.text;
+
+      var addItem = new ReportedPost(item);
+      item.save(function(err) {
+        if (err) {
+          return res.json({type: false, msg: 'err: ' + err});
+        } else {
+          return res.json({type: true, msg: 'Added'});
+        }
+      });
+    }
+  });
+}

@@ -40,13 +40,15 @@ export class PostItemComponent implements OnInit {
   }
 
   private dislike() {
-    this.postService.dislikePost(this.post._id).subscribe(
-      d => {
-        if (d.type) {
-          this.removeLike();
+    if (this.post.createdUserId !== this.mainService.userId) {
+      this.postService.dislikePost(this.post._id).subscribe(
+        d => {
+          if (d.type) {
+            this.removeLike();
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   private removeDislike() {
@@ -60,13 +62,15 @@ export class PostItemComponent implements OnInit {
   }
 
   private like() {
-    this.postService.likePost(this.post._id).subscribe(
-      d => {
-        if (d.type) {
-          this.removeDislike();
+    if (this.post.createdUserId !== this.mainService.userId) {
+      this.postService.likePost(this.post._id).subscribe(
+        d => {
+          if (d.type) {
+            this.removeDislike();
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   private removeLike() {
@@ -77,5 +81,9 @@ export class PostItemComponent implements OnInit {
         }
       }
     );
+  }
+
+  private report() {
+
   }
 }

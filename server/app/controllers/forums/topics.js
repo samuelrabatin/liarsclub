@@ -14,7 +14,7 @@ exports.getTopics = function (req, res) {
     } else if (user.type != 'admin') {
       return res.status(400).send('Access denied');
     } else {
-      Topic.find({}, null, {sort: {createdDate: -1}}, function(err, topics) {
+      Topic.find({}, null, {sort: {lastreplied: -1, createdDate: -1}}, function(err, topics) {
         if (err) {
           return res.json({
             type: false,
@@ -37,7 +37,7 @@ exports.getConfirmedTopics = function(req, res) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
     } else {
-      Topic.find({confirmed: true}, null, {sort: {createdDate: -1}}, function(err, topics) {
+      Topic.find({confirmed: true}, null, {lastreplied: -1, sort: {createdDate: -1}}, function(err, topics) {
         if (err) {
           return res.json({
             type: false,
@@ -60,7 +60,7 @@ exports.getConfirmedTopicsByForumId = function(req, res) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
     } else {
-      Topic.find({confirmed: true, forumId: req.body.id}, null, {sort: {createdDate: -1}}, function(err, topics) {
+      Topic.find({confirmed: true, forumId: req.body.id}, null, {lastreplied: -1, sort: {createdDate: -1}}, function(err, topics) {
         if (err) {
           return res.json({
             type: false,

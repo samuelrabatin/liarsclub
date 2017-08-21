@@ -92,6 +92,17 @@ export class ForumsComponent implements OnInit {
         this.topicsService.getConfirmedTopicsByForumId(val._id).subscribe(
           d => {
             this.topics = this.topics.concat(d);
+            this.topics.sort(function(v1, v2) {
+              if (v1.lastreplied && v2.lastreplied) {
+                return v1.lastreplied < v2.lastreplied ? 1 : v1.lastreplied === v2.lastreplied ? 0 : -1;
+              } else if (v1.lastreplied && !v2.lastreplied) {
+                return -1;
+              } else if (!v1.lastreplied && v2.lastreplied) {
+                return 1;
+              } else {
+                return v1.createdDate < v2.createdDate ? 1 : v1.createdDate === v2.createdDate ? 0 : -1;
+              }
+            });
           },
           e => {
             console.log(e);

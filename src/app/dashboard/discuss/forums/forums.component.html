@@ -35,24 +35,26 @@
             <table class="table">
               <thead class="text-primary">
               <tr>
-                <th class="text-left">ID</th>
+                <th class="text-left hidden">ID</th>
                 <th class="text-left">Title</th>
                 <th class="text-left">Description</th>
                 <th class="text-center">Created User</th>
                 <th class="text-center">Created Date</th>
                 <th class="text-center">Views</th>
                 <th class="text-center">Replies</th>
+                <th class="text-center">Last Replied</th>
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let topic of topics; let idx = index">
-                <td class="text-left">{{idx + 1}}</td>
+                <td class="text-left hidden">{{idx + 1}}</td>
                 <td class="text-left"><a [routerLink]="'/discuss/forums/topic/' + topic._id">{{topic.title}}</a></td>
                 <td class="text-left">{{topic.text.length > 50 ? topic.text.substr(0, 50) : topic.text}}</td>
                 <td class="text-center">{{userNames[topic.createdUserId]}}</td>
                 <td class="text-center">{{mainService.getDateString(topic.createdDate)}}</td>
                 <td class="text-center">{{topic.views}}</td>
                 <td class="text-center">{{topic.replies}}</td>
+                <td class="text-center">{{mainService.getDateTimeString(topic.lastreplied)}}</td>
               </tr>
               </tbody>
             </table>

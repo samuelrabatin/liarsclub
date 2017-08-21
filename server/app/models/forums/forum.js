@@ -20,8 +20,9 @@ var ForumSchema = new Schema(
     subForumsId: {type: String, default: null},
     topics: {type: Number, default: 0},
     posts: {type: Number, default: 0},
-    confirmed: {type: Boolean, default: false},
-    level: {type: Number, default: 0}
+    confirmed: {type: Boolean, default: true},
+    level: {type: Number, default: 0},
+    lastreplied: Date
   },
   { collection : 'forums' }
 );
