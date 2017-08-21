@@ -27,6 +27,32 @@ exports.getReportedPosts = function(req, res) {
   });
 };
 
+exports.deleteReportedTest = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      ReportedPost.findOneAndRemove({_id: req.body.id}, function(err) {
+        if (err) {
+          return res.json({
+            type: false,
+            data: "Error occured: " + err
+          });
+        } else {
+          return res.json({
+            type: true,
+            data: "deleted"
+          });
+        }
+      });
+    }
+  });
+}
+
 exports.reportTest = function(req, res) {
   if (typeof req.body.access_token === 'undefined') {
     return res.status(400).send('Authentication is required');

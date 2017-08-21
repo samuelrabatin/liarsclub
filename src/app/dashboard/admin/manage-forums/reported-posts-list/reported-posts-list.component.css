@@ -1,0 +1,21 @@
+
+.report-diag {
+  opacity: 0;
+  display: none;
+  -webkit-transition: opacity 1s linear;
+  transition: opacity 0.1s linear;
+}
+
+.report-diag.show {
+  opacity: 1;
+  display: block;
+}
+
+.reported-text {
+  color: red;
+}
+
+.report-diag .card-content {
+  max-height: 550px;
+  overflow: auto;
+}

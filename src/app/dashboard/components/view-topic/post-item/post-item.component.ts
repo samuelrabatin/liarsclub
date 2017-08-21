@@ -10,7 +10,7 @@ import { PostsService } from '../../../../services/posts.service';
 })
 export class PostItemComponent implements OnInit {
   @Input('post') post;
-  @Input('isReported') isReporte;
+  @Input('isReported') isReported;
   @Output() updated: EventEmitter<string> = new EventEmitter();
 
   private profile;

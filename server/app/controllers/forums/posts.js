@@ -49,6 +49,29 @@ exports.getPostsByTopicId = function(req, res) {
   });
 };
 
+exports.getPostById = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      Post.findOne({_id: req.body.id}, function(err, post) {
+        if (err || !post) {
+          return res.json({
+            type: false,
+            data: "Error occured: " + err
+          });
+        } else {
+          return res.json({type: true, data: post});
+        }
+      });
+    }
+  });
+};
+
 exports.likePostById = function(req, res) {
   if (typeof req.body.access_token === 'undefined') {
     return res.status(400).send('Authentication is required');
@@ -115,7 +138,6 @@ exports.dislikePostById = function(req, res) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
     } else {
-      console.log(req.body.id);
       Post.findOne({_id: req.body.id}, function(err, post) {
         if (err || !post) {
           return res.json({
@@ -127,6 +149,11 @@ exports.dislikePostById = function(req, res) {
             post.unlikeUsersId.push(user._id);
             post.save();
             return res.json({type: true});
+          } else {
+            return res.json({
+              type: false,
+              data: "Error1 occured: " + err
+            });
           }
         }
       });

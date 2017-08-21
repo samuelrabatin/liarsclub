@@ -88,6 +88,7 @@ module.exports = function (app, passport) {
   app.post('/forums/addpost/', posts.addPost);
   app.post('/forums/getallposts/', posts.getPosts);
   app.post('/forums/getpostsbytopicid/', posts.getPostsByTopicId);
+  app.post('/forums/getpostbyid/', posts.getPostById);
   app.post('/forums/deletepost/', posts.deletePost);
   app.post('/forums/likepost/', posts.likePostById);
   app.post('/forums/removelikepost/', posts.removeLikePostById);
@@ -96,6 +97,7 @@ module.exports = function (app, passport) {
 
   app.post('/forums/reportpostbyid/', reportedposts.reportTest);
   app.post('/forums/getreportposts/', reportedposts.getReportedPosts);
+  app.post('/forums/deletereportedpostbyid/', reportedposts.deleteReportedTest);
 
   /**
    * Error handling

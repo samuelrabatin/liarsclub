@@ -41,3 +41,20 @@ small {
 .post-description img {
   width: auto;
 }
+
+.btn-green {
+  background-color: green;
+}
+
+.btn-red {
+  background: red;
+}
+
+.btn-orange {
+  background: yellow;
+  color: black;
+}
+
+.color-black {
+  color: black;
+}

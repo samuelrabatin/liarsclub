@@ -22,6 +22,10 @@
           <td class="text-left">{{post.text.length > 50 ? post.text.substr(0, 50) + '...' : post.text}}</td>
           <td class="text-center">{{mainService.getDateString(post.createdDate)}}</td>
           <td class="text-center">
+            <button class="btn btn-success btn-xs" (click)="showDiagToggle(post)">
+              <i class="material-icons">pageview</i>
+              View
+            </button>
             <button class="btn btn-danger btn-xs">
               <i class="material-icons">delete</i>
               Delete
@@ -30,6 +34,28 @@
         </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+</div>
+
+
+<div [class]="showDiag ? 'report-diag show' : 'report-diag'" [ngStyle]="diagBackgroundStyle" *ngIf="curPost">
+  <div [ngStyle]="diagStyle">
+    <div class="card report-card">
+      <div class="card-header" data-background-color="blue">
+        <h4>Reported Post</h4>
+      </div>
+      <div class="card-content">
+          <h5>Created By {{mainService.userNames[curPost.createdUserId]}} on {{mainService.getDateTimeString(curPost.createdDate)}}</h5>
+          <p [innerHTML]="curPost.text"></p>
+          <h6>----------------------------------------------------------------------------------------------------------</h6>
+          <h5>Flagged By {{mainService.userNames[curReportedPost.createdUserId]}} on {{mainService.getDateTimeString(curReportedPost.createdDate)}}</h5>
+          <p [innerHTML]="curReportedPost.text"></p>
+      </div>
+      <div class="card-footer text-center">
+        <button class="btn btn-success" (click)="deletePost(curPost._id)">Delete</button>
+        <button class="btn btn-danger" (click)="hideDiag()">Cancel</button>
+      </div>
     </div>
   </div>
 </div>

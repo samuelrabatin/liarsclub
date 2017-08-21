@@ -28,6 +28,14 @@ export class PostsService {
       .catch(this.handleError);
   }
 
+  public getPostById(id) {
+    this.mainService.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.mainService.apiUrl + '/forums/getpostbyid/', {access_token: token, id: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   public addPost(data) {
     this.mainService.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
@@ -40,6 +48,14 @@ export class PostsService {
     this.mainService.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
     return this.http.post(this.mainService.apiUrl + '/forums/deletepost/', {access_token: token, id: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public deleteReportedPost(id) {
+    this.mainService.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.mainService.apiUrl + '/forums/deletereportedpostbyid/', {access_token: token, id: id})
       .map(this.extractData)
       .catch(this.handleError);
   }

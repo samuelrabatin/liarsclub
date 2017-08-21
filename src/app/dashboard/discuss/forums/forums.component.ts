@@ -7,14 +7,16 @@ import { PostsService } from '../../../services/posts.service';
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 
 @Component({
-    moduleId: module.id,
-    selector: ' forums-cmp ',
-    templateUrl: 'forums.component.html'
+  moduleId: module.id,
+  selector: ' forums-cmp ',
+  templateUrl: 'forums.component.html',
+  styleUrls: ['forums.component.css']
 })
 
 export class ForumsComponent implements OnInit {
   private forums = [];
   private topics = [];
+  private totalTopics = [];
   private userNames = []
 
   private currentForum = [];
@@ -22,10 +24,14 @@ export class ForumsComponent implements OnInit {
   private selectSettings: IMultiSelectSettings;
   private selectText: IMultiSelectTexts;
 
-  private newForumTitle;
-  private newForumDescription;
-  private newTopicTitle;
-  private newTopicDescription;
+  private newForumTitle = '';
+  private newForumDescription = '';
+  private newTopicTitle = '';
+  private newTopicDescription = '';
+  private searchText = '';
+
+  private showForumRequest = false;
+  private showTopicRequest = false;
 
   constructor( private mainService: MainService, private topicsService: TopicsService, private postService: PostsService ) {
     this.selectSettings = {
@@ -68,7 +74,8 @@ export class ForumsComponent implements OnInit {
   private getTopics() {
     this.topicsService.getConfirmedTopics().subscribe(
       d => {
-        this.topics = d;
+        this.totalTopics = d.slice();
+        this.topics = d.slice();
       },
       e => {
         console.log(e);
@@ -81,7 +88,8 @@ export class ForumsComponent implements OnInit {
     if (this.currentForum.length) {
       this.topicsService.getConfirmedTopicsByForumId(this.currentForum[0]).subscribe(
         d => {
-          this.topics = d;
+          this.topics = d.slice();
+          this.totalTopics = d.slice();
         },
         e => {
           console.log(e);
@@ -93,16 +101,17 @@ export class ForumsComponent implements OnInit {
           d => {
             this.topics = this.topics.concat(d);
             this.topics.sort(function(v1, v2) {
-              if (v1.lastreplied && v2.lastreplied) {
-                return v1.lastreplied < v2.lastreplied ? 1 : v1.lastreplied === v2.lastreplied ? 0 : -1;
-              } else if (v1.lastreplied && !v2.lastreplied) {
-                return -1;
-              } else if (!v1.lastreplied && v2.lastreplied) {
-                return 1;
-              } else {
+              // if (v1.lastreplied && v2.lastreplied) {
+              //   return v1.lastreplied < v2.lastreplied ? 1 : v1.lastreplied === v2.lastreplied ? 0 : -1;
+              // } else if (v1.lastreplied && !v2.lastreplied) {
+              //   return -1;
+              // } else if (!v1.lastreplied && v2.lastreplied) {
+              //   return 1;
+              // } else {
                 return v1.createdDate < v2.createdDate ? 1 : v1.createdDate === v2.createdDate ? 0 : -1;
-              }
+              // }
             });
+            this.totalTopics = this.topics.slice();
           },
           e => {
             console.log(e);
@@ -142,6 +151,8 @@ export class ForumsComponent implements OnInit {
       d => {
         this.newForumTitle = '';
         this.newForumDescription = '';
+        this.showForumRequest = false;
+        this.getAllForums();
       },
       e => {
         console.log(e);
@@ -159,11 +170,34 @@ export class ForumsComponent implements OnInit {
         d => {
           this.newTopicTitle = '';
           this.newTopicDescription = '';
+          this.showTopicRequest = false;
+          this.filterTopics();
         },
         e => {
           console.log(e);
         }
       );
     }
+  }
+
+  private hideForumDiag() {
+    this.showForumRequest = false;
+  }
+
+  private hideTopicDiag() {
+    this.showTopicRequest = false;
+  }
+
+  private searchTopics() {
+    const arrTopics = [];
+    for (let i = 0; i < this.totalTopics.length; i++) {
+      if (this.searchText === ''
+        || this.totalTopics[i].title.toUpperCase().includes(this.searchText.toUpperCase())
+        || this.totalTopics[i].text.toUpperCase().includes(this.searchText.toUpperCase())) {
+        arrTopics.push(this.totalTopics[i]);
+      }
+    }
+
+    this.topics = arrTopics.slice();
   }
 }

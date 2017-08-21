@@ -18,7 +18,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr *ngIf="canAdd && parentForumId.length">
           <td></td>
           <td><input class="form-control" [(ngModel)]="newTitle" /></td>
           <td colspan="4"><input class="form-control" [(ngModel)]="newDescription" /></td>

@@ -42,6 +42,8 @@ export class MainService {
           console.log(e);
         }
       );
+
+      this.getUserName();
     }
   }
 
