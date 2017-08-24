@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MainService } from '../../../services/main.service';
 import { TopicsService } from '../../../services/topics.service';
 import { PostsService } from '../../../services/posts.service';
+import { StorageService } from '../../../services/storage.service';
 
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 
@@ -17,9 +18,10 @@ export class ForumsComponent implements OnInit {
   private forums = [];
   private topics = [];
   private totalTopics = [];
-  private userNames = []
+  private filteredForums = [];
+  private filteredTopics = [];
 
-  private currentForum = [];
+  private currentForum;
   private forumSelectOption: IMultiSelectOption;
   private selectSettings: IMultiSelectSettings;
   private selectText: IMultiSelectTexts;
@@ -32,11 +34,13 @@ export class ForumsComponent implements OnInit {
 
   private showForumRequest = false;
   private showTopicRequest = false;
+  private isTopicList = false;
 
-  constructor( private mainService: MainService, private topicsService: TopicsService, private postService: PostsService ) {
+  constructor( private mainService: MainService, private topicsService: TopicsService
+              , private postService: PostsService, private storageService: StorageService ) {
     this.selectSettings = {
       checkedStyle: 'fontawesome',
-      containerClasses: '',
+      containerClasses: 'dropdown-container',
       buttonClasses: 'btn-group select-with-transition form-control font-size-20 text-left',
       itemClasses: 'w-100',
       dynamicTitleMaxItems: 3,
@@ -53,17 +57,35 @@ export class ForumsComponent implements OnInit {
 
   ngOnInit() {
     this.getAllForums();
-    this.getUserName();
   }
 
   private getAllForums() {
     this.mainService.getConfirmedForums().subscribe(
       d => {
-        this.forums = d;
-        this.filterTopics();
-        this.forumSelectOption = d.map((val, idx) => {
-          return { id: val._id, name: val.title };
-        });
+        this.forums = d.slice();
+        this.filteredForums = d.slice();
+        this.getTopics();
+      },
+      e => {
+        console.log(e);
+      }
+    );
+  }
+
+  private filterForums() {
+    this.filteredForums = [];
+    for (let i = 0; i < this.forums.length; i++) {
+      if (this.searchText === '' || this.forums[i].title.toUpperCase().includes(this.searchText.toUpperCase())
+        || this.forums[i].description.toUpperCase().includes(this.searchText.toUpperCase())) {
+        this.filteredForums.push(this.forums[i]);
+      }
+    }
+  }
+
+  private getTopicsByForumId(i) {
+    this.topicsService.getConfirmedTopicsByForumId(this.filteredForums[i]).subscribe(
+      d => {
+        this.filteredForums[i].totalTopics = d.slice();
       },
       e => {
         console.log(e);
@@ -72,78 +94,24 @@ export class ForumsComponent implements OnInit {
   }
 
   private getTopics() {
-    this.topicsService.getConfirmedTopics().subscribe(
-      d => {
-        this.totalTopics = d.slice();
-        this.topics = d.slice();
-      },
-      e => {
-        console.log(e);
-      }
-    );
-  }
-
-  private filterTopics() {
-    this.topics = [];
-    if (this.currentForum.length) {
-      this.topicsService.getConfirmedTopicsByForumId(this.currentForum[0]).subscribe(
-        d => {
-          this.topics = d.slice();
-          this.totalTopics = d.slice();
-        },
-        e => {
-          console.log(e);
-        }
-      );
-    } else {
-      this.forums.map((val, idx) => {
-        this.topicsService.getConfirmedTopicsByForumId(val._id).subscribe(
-          d => {
-            this.topics = this.topics.concat(d);
-            this.topics.sort(function(v1, v2) {
-              // if (v1.lastreplied && v2.lastreplied) {
-              //   return v1.lastreplied < v2.lastreplied ? 1 : v1.lastreplied === v2.lastreplied ? 0 : -1;
-              // } else if (v1.lastreplied && !v2.lastreplied) {
-              //   return -1;
-              // } else if (!v1.lastreplied && v2.lastreplied) {
-              //   return 1;
-              // } else {
-                return v1.createdDate < v2.createdDate ? 1 : v1.createdDate === v2.createdDate ? 0 : -1;
-              // }
-            });
-            this.totalTopics = this.topics.slice();
-          },
-          e => {
-            console.log(e);
-          }
-        );
-      });
+    for (let i = 0; i < this.filteredForums.length; i++) {
+      this.getTopicsByForumId(i);
     }
   }
 
-  private getUserName() {
-    this.mainService.getAllUsers().subscribe(
-      d => {
-        this.mainService.getAllProfiles().subscribe(
-          profiles => {
-            d.users.map((val, idx) => {
-              this.userNames[val._id] = val.name;
-              for (let i = 0; i < profiles.length; i++) {
-                if (profiles[i].username === val.name) {
-                  this.userNames[val._id] = `${this.userNames[val._id]} (${profiles[i].firstname} ${profiles[i].lastname})`;
-                }
-              }
-            });
-          },
-          e1 => {
-            console.log(e1);
-          }
-        );
-      },
-      e => {
-        console.log(e);
+  private filterTopics(topics) {
+    const tmp = [];
+    for (let i = 0; topics && i < topics.length; i++) {
+      if (topics[i].title.toUpperCase().includes(this.searchText.toUpperCase()) || this.searchText === '') {
+        tmp.push(topics[i]);
       }
-    );
+    }
+
+    return tmp;
+  }
+
+  private updateFilteredTopics() {
+    this.filteredTopics = this.filterTopics(this.filteredForums[this.currentForum].totalTopics);
   }
 
   private addNewForum() {
@@ -161,23 +129,28 @@ export class ForumsComponent implements OnInit {
   }
 
   private addNewTopic() {
-    if (this.currentForum.length) {
-      this.topicsService.addTopic({
-        title: this.newTopicTitle,
-        forumId: this.currentForum[0]
-      }).subscribe(
-        d => {
-          this.newTopicTitle = '';
-          this.postService.addPost({text: this.mainService.editor.getContent(), topicId: d.topic._id });
-          this.newTopicDescription = '';
-          this.showTopicRequest = false;
-          this.filterTopics();
-        },
-        e => {
-          console.log(e);
-        }
-      );
-    }
+    this.topicsService.addTopic({
+      title: this.newTopicTitle,
+      forumId: this.filteredForums[this.currentForum]._id
+    }).subscribe(
+      d => {
+        this.newTopicTitle = '';
+        this.postService.addPost({text: this.mainService.editor.getContent(), topicId: d.topic._id }).subscribe(
+          d1 => {
+            this.newTopicDescription = '';
+            this.showTopicRequest = false;
+
+            this.getTopics();
+          },
+          e1 => {
+            console.log(e1);
+          }
+        );
+      },
+      e => {
+        console.log(e);
+      }
+    );
   }
 
   private hideForumDiag() {
@@ -199,5 +172,18 @@ export class ForumsComponent implements OnInit {
     }
 
     this.topics = arrTopics.slice();
+  }
+
+  private viewTopicList(idx) {
+    this.searchText = '';
+    this.currentForum = idx;
+    this.updateFilteredTopics();
+    this.isTopicList = true;
+  }
+
+  private viewForumList() {
+    this.isTopicList = false;
+    this.searchText = '';
+    this.filterForums();
   }
 }

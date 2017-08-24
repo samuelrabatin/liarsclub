@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MainService } from '../../../../services/main.service';
 import { TopicsService } from '../../../../services/topics.service';
+import { StorageService } from '../../../../services/storage.service';
 
 import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'angular-2-dropdown-multiselect';
 
@@ -11,7 +12,6 @@ import { IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts } from 'ang
 })
 export class TopicsListComponent implements OnInit {
   public topics;
-  private userNames = [];
   private newTitle;
   private newDescription;
   private parentForumId;
@@ -26,7 +26,7 @@ export class TopicsListComponent implements OnInit {
   private selectText: IMultiSelectTexts;
   private canAdd = false;
 
-  constructor( private mainService: MainService, private topicService: TopicsService ) { }
+  constructor( private mainService: MainService, private topicService: TopicsService, private storageService: StorageService ) { }
 
   ngOnInit() {
     this.getTopicData();
@@ -54,8 +54,6 @@ export class TopicsListComponent implements OnInit {
         this.topics = d;
         this.forumSelectOption = this.forumSelectOptions;
         this.updateForum(this.parentForumId);
-
-        this.getUserName();
       },
       e => {
         console.log(e);
@@ -78,31 +76,6 @@ export class TopicsListComponent implements OnInit {
         }
       }
     }
-  }
-
-  private getUserName() {
-    this.mainService.getAllUsers().subscribe(
-      d => {
-        this.mainService.getAllProfiles().subscribe(
-          profiles => {
-            d.users.map((val, idx) => {
-              this.userNames[val._id] = val.name;
-              for (let i = 0; i < profiles.length; i++) {
-                if (profiles[i].username === val.name) {
-                  this.userNames[val._id] = `${this.userNames[val._id]} (${profiles[i].firstname} ${profiles[i].lastname})`;
-                }
-              }
-            });
-          },
-          e1 => {
-            console.log(e1);
-          }
-        );
-      },
-      e => {
-        console.log(e);
-      }
-    );
   }
 
   private activate(id, idx) {

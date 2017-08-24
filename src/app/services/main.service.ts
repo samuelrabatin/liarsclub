@@ -12,8 +12,8 @@ declare var $: any;
 
 @Injectable()
 export class MainService {
-  // public apiUrl = 'https://liarsclubserver.herokuapp.com';
-  public apiUrl = 'http://192.168.4.36:3000';
+  public apiUrl = 'https://liarsclubserver.herokuapp.com';
+  // public apiUrl = 'http://192.168.4.36:3000';
 
   public loading;
   public cloudinaryUploadPresets = {
@@ -100,13 +100,13 @@ export class MainService {
 
   public getUsersData() {
     this.loading = true;
-    return this.http.get(this.apiUrl + '/users')
+    return this.http.get(this.apiUrl + '/users/')
       .map(this.extractData)
       .catch(this.handleError);
   }
 
 
-  getUserProfileById(id) {
+  public getUserProfileById(id) {
     this.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
     return this.http.post(this.apiUrl + '/users/getuserbyid/', {access_token: token, id: id})
@@ -438,6 +438,7 @@ export class MainService {
           });
         }
       },
+      height: 300,
       paste_data_images: true,
       setup: editor => {
         this.editor = editor;

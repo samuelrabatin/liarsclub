@@ -1,7 +1,7 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
   <div class="card topic-list-card">
     <div class="card-header">
-      <h4><ss-multiselect-dropdown [options]="forumSelectOptions" [settings]="selectSettings" [texts]="selectText" [(ngModel)]="parentForumId" (ngModelChange)="parentForumChanged()"></ss-multiselect-dropdown></h4>
+      <h4 *ngIf="false"><ss-multiselect-dropdown [options]="forumSelectOptions" [settings]="selectSettings" [texts]="selectText" [(ngModel)]="parentForumId" (ngModelChange)="parentForumChanged()"></ss-multiselect-dropdown></h4>
     </div>
     <div class="card-content tabledata">
       <table class="table">
@@ -9,7 +9,6 @@
         <tr>
           <th class="text-left">ID</th>
           <th class="text-left">Title</th>
-          <th class="text-left">Description</th>
           <th class="text-center">Created User</th>
           <th class="text-center">Created Date</th>
           <th class="text-center">Views</th>
@@ -18,7 +17,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngIf="canAdd && parentForumId.length">
+        <tr *ngIf="false && canAdd && parentForumId.length">
           <td></td>
           <td><input class="form-control" [(ngModel)]="newTitle" /></td>
           <td colspan="4"><input class="form-control" [(ngModel)]="newDescription" /></td>
@@ -35,8 +34,7 @@
         <tr *ngFor="let topic of filterTopics; let idx = index">
           <td class="text-left">{{idx + 1}}</td>
           <td class="text-left"><a (click)="gotoPosts(idx)">{{topic.title}}</a></td>
-          <td class="text-left">{{topic.text.length > 50 ? topic.text.substr(0, 50) : topic.text}}</td>
-          <td class="text-center">{{userNames[topic.createdUserId]}}</td>
+          <td class="text-center">{{storageService.userNames[topic.createdUserId]}}</td>
           <td class="text-center">{{mainService.getDateString(topic.createdDate)}}</td>
           <td class="text-center">{{topic.views}}</td>
           <td class="text-center">{{topic.replies}}</td>

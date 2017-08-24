@@ -79,8 +79,6 @@ export class VIewTopicComponent implements OnInit {
         console.log(e);
       }
     );
-
-    this.mainService.getUserName();
   }
 
   isReported() {

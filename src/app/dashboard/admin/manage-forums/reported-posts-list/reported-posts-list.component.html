@@ -18,7 +18,7 @@
           <td class="text-left hidden">{{idx + 1}}</td>
           <td class="text-left">{{post.forum.title}}</td>
           <td class="text-left">{{post.topic.title}}</td>
-          <td class="text-left">{{userNames[post.createdUserId]}}</td>
+          <td class="text-left">{{storageService.userNames[post.createdUserId]}}</td>
           <td class="text-left">{{post.text.length > 50 ? post.text.substr(0, 50) + '...' : post.text}}</td>
           <td class="text-center">{{mainService.getDateString(post.createdDate)}}</td>
           <td class="text-center">

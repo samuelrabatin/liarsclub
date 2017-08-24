@@ -18,6 +18,7 @@ import { NavbarModule} from './shared/navbar/navbar.module';
 import { MainService } from './services/main.service';
 import { TopicsService } from './services/topics.service';
 import { PostsService } from './services/posts.service';
+import { StorageService } from './services/storage.service';
 
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
@@ -37,7 +38,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
       {provide: LocationStrategy, useClass: HashLocationStrategy},
       MainService,
       TopicsService,
-      PostsService
+      PostsService,
+      StorageService
     ],
     bootstrap:    [ AppComponent ]
 })

@@ -13,7 +13,7 @@ exports.getPosts = function(req, res) {
       return res.status(400).send('Authentication failed');
     } else {
       Post.find({}, null, {sort: {createdDate: -1}}, function(err, posts) {
-        if (err) {
+        if (err || !posts.length) {
           return res.json({
             type: false,
             data: "Error occured: " + err
@@ -36,7 +36,7 @@ exports.getPostsByTopicId = function(req, res) {
       return res.status(400).send('Authentication failed');
     } else {
       Post.find({topicId: req.body.id}, null, {sort: {createdDate: -1}}, function(err, posts) {
-        if (err) {
+        if (err || !posts.length) {
           return res.json({
             type: false,
             data: "Error occured: " + err
@@ -216,19 +216,19 @@ exports.addPost = function(req, res) {
                 topic.save();
 
                 Forum.findOne({_id: topic.forumId}, function (err, parentForum) {
-                  if (err) {
+                  if (err || !parentForum) {
                     return res.status(500).send('cannot find parent forum');
                   } else {
                     parentForum.posts++;
                     parentForum.lastreplied = new Date();
                     parentForum.save();
-                    return res.json({type: true, topic: topic, msg: 'successfully added'});
+                    return res.json({type: true, msg: 'successfully added'});
                   }
                 })
               }
             });
           } else {
-            return res.json({ type: true, topic: topic, msg: 'successfully added'});
+            return res.json({ type: true, msg: 'successfully added'});
           }
         }
       })
@@ -251,14 +251,14 @@ exports.deletePost = function(req, res) {
         } else {
           if (post.topicId) {
             Topic.findOne({_id: post.topicId}, function(err, topic) {
-              if (err) {
+              if (err || topic) {
                 return res.json({type: false, msg: 'err: ' + err});
               } else {
                 topic.replies--;
                 topic.save();
 
                 Forum.findOne({_id: topic.forumId}, function (err, parentForum) {
-                  if (err) {
+                  if (err || !parentForum) {
                     return res.status(500).send('cannot find parent forum');
                   } else {
                     parentForum.posts--;

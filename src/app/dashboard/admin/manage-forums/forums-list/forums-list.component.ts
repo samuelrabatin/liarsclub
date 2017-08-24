@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MainService } from '../../../../services/main.service';
+import { StorageService } from '../../../../services/storage.service';
 
 @Component({
   selector: 'app-forums-list',
@@ -10,13 +11,12 @@ export class ForumsListComponent implements OnInit {
   public forums;
   public forumSelectOptions;
 
-  private userNames = [];
   private newTitle;
   private newDescription;
 
   @Output() gotoTopicEvent: EventEmitter<string> = new EventEmitter();
 
-  constructor( private mainService: MainService ) { }
+  constructor( private mainService: MainService, private storageService: StorageService ) { }
 
   ngOnInit() {
     this.getForumData();
@@ -26,35 +26,9 @@ export class ForumsListComponent implements OnInit {
     this.mainService.getAllForums().subscribe(
       d => {
         this.forums = d;
-        this.getUserName();
         this.forumSelectOptions = d.map((val, idx) => {
           return {id: val._id, name: val.title};
         });
-      },
-      e => {
-        console.log(e);
-      }
-    );
-  }
-
-  private getUserName() {
-    this.mainService.getAllUsers().subscribe(
-      d => {
-        this.mainService.getAllProfiles().subscribe(
-          profiles => {
-            d.users.map((val, idx) => {
-              this.userNames[val._id] = val.name;
-              for (let i = 0; i < profiles.length; i++) {
-                if (profiles[i].username === val.name) {
-                  this.userNames[val._id] = `${this.userNames[val._id]} (${profiles[i].firstname} ${profiles[i].lastname})`;
-                }
-              }
-            });
-          },
-          e1 => {
-            console.log(e1);
-          }
-        );
       },
       e => {
         console.log(e);

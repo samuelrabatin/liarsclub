@@ -16,7 +16,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr *ngIf="false">
           <td class="hidden"></td>
           <td><input class="form-control" [(ngModel)]="newTitle" /></td>
           <td colspan="4"><input class="form-control" [(ngModel)]="newDescription" /></td>
@@ -32,7 +32,7 @@
           <td class="text-left hidden">{{idx + 1}}</td>
           <td class="text-left"><a (click)="gotoTopic(idx)">{{forum.title}}</a></td>
           <td class="text-left">{{forum.description.length > 50 ? forum.description.substr(0, 50) : forum.description}}</td>
-          <td class="text-center">{{userNames[forum.createdUserId]}}</td>
+          <td class="text-center">{{storageService.userNames[forum.createdUserId]}}</td>
           <td class="text-center">{{mainService.getDateString(forum.createdDate)}}</td>
           <td class="text-center"><a (click)="gotoTopic(idx)">{{forum.topics}}</a></td>
           <td class="text-center">{{forum.posts}}</td>

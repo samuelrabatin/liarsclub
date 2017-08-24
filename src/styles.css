@@ -58,3 +58,7 @@ small {
 .color-black {
   color: black;
 }
+
+.dropdown-container {
+  bottom: 17px;
+}

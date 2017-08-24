@@ -3,6 +3,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MainService } from '../../../../services/main.service';
 import { TopicsService } from '../../../../services/topics.service';
 import { PostsService } from '../../../../services/posts.service';
+import { StorageService } from '../../../../services/storage.service';
 
 @Component({
   selector: 'app-posts-list',
@@ -19,11 +20,10 @@ export class PostsListComponent implements OnInit {
 
   @Output() postDeleted: EventEmitter<string> = new EventEmitter();
 
-  constructor(private mainService: MainService, private topicsService: TopicsService, private postService: PostsService ) { }
+  constructor(private mainService: MainService, private topicsService: TopicsService, private postService: PostsService, private storageService: StorageService ) { }
 
   ngOnInit() {
     this.getPosts();
-    this.getUserName();
   }
 
   private getPosts() {
@@ -40,31 +40,6 @@ export class PostsListComponent implements OnInit {
           this.posts = d;
         }
         console.log(d, this.posts, this.currentTopic);
-      },
-      e => {
-        console.log(e);
-      }
-    );
-  }
-
-  private getUserName() {
-    this.mainService.getAllUsers().subscribe(
-      d => {
-        this.mainService.getAllProfiles().subscribe(
-          profiles => {
-            d.users.map((val, idx) => {
-              this.userNames[val._id] = val.name;
-              for (let i = 0; i < profiles.length; i++) {
-                if (profiles[i].username === val.name) {
-                  this.userNames[val._id] = `${this.userNames[val._id]} (${profiles[i].firstname} ${profiles[i].lastname})`;
-                }
-              }
-            });
-          },
-          e1 => {
-            console.log(e1);
-          }
-        );
       },
       e => {
         console.log(e);

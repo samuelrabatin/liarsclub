@@ -234,11 +234,11 @@ exports.addTopic = function (req, res) {
               } else {
                 parentForum.topics++;
                 parentForum.save();
-                return res.json({type: true, msg: 'successfully added'});
+                return res.json({type: true, topic: topic, msg: 'successfully added'});
               }
             })
           } else {
-            return res.json({ type: true, msg: 'successfully added'});
+            return res.json({ type: true, topic: topic, msg: 'successfully added'});
           }
         }
       })
