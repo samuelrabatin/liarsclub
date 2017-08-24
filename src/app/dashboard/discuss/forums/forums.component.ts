@@ -164,11 +164,11 @@ export class ForumsComponent implements OnInit {
     if (this.currentForum.length) {
       this.topicsService.addTopic({
         title: this.newTopicTitle,
-        text: this.newTopicDescription,
         forumId: this.currentForum[0]
       }).subscribe(
         d => {
           this.newTopicTitle = '';
+          this.postService.addPost({text: this.mainService.editor.getContent(), topicId: d.topic._id });
           this.newTopicDescription = '';
           this.showTopicRequest = false;
           this.filterTopics();

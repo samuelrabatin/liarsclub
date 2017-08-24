@@ -222,13 +222,13 @@ exports.addPost = function(req, res) {
                     parentForum.posts++;
                     parentForum.lastreplied = new Date();
                     parentForum.save();
-                    return res.json({type: true, msg: 'successfully added'});
+                    return res.json({type: true, topic: topic, msg: 'successfully added'});
                   }
                 })
               }
             });
           } else {
-            return res.json({ type: true, msg: 'successfully added'});
+            return res.json({ type: true, topic: topic, msg: 'successfully added'});
           }
         }
       })

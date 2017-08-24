@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { MainService } from '../../../../services/main.service';
 import { PostsService } from '../../../../services/posts.service';
@@ -16,13 +17,15 @@ export class PostItemComponent implements OnInit {
   private profile;
   private showReport = false;
   private reportText = '';
+  private postHTML: SafeHtml;
 
   private diagBackgroundStyle: any = {};
   private diagStyle: any = {};
 
-  constructor( private mainService: MainService, private postService: PostsService ) { }
+  constructor( private mainService: MainService, private postService: PostsService, private satizer: DomSanitizer ) { }
 
   ngOnInit() {
+    this.postHTML = this.satizer.bypassSecurityTrustHtml(this.post.text);
     this.mainService.getUserProfileById(this.post.createdUserId).subscribe(
       d => {
         if (d.type) {
@@ -140,5 +143,9 @@ export class PostItemComponent implements OnInit {
 
   private hideDiag() {
     this.showReport = false;
+  }
+
+  private quote() {
+
   }
 }

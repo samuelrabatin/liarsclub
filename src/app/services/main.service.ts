@@ -7,10 +7,13 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
+declare var tinymce: any;
+declare var $: any;
+
 @Injectable()
 export class MainService {
-  public apiUrl = 'https://liarsclubserver.herokuapp.com';
-  //public apiUrl = 'http://192.168.4.36:3000';
+  // public apiUrl = 'https://liarsclubserver.herokuapp.com';
+  public apiUrl = 'http://192.168.4.36:3000';
 
   public loading;
   public cloudinaryUploadPresets = {
@@ -27,6 +30,8 @@ export class MainService {
   public avatarPublicId = '';
 
   public currentViewSetup;
+
+  public editor;
 
   constructor ( private http: Http ) {
     if (http) {
@@ -403,5 +408,57 @@ export class MainService {
         return `${(diff / 1000 / 60 / 60 / 24 / 365).toFixed(0)} years ago`;
       }
     }
+  }
+
+  initTinyMCE() {
+    const me = this;
+
+    tinymce.init({
+      selector: '.tinymce-editor',
+      plugins: [
+        'link image hr anchor pagebreak',
+        'searchreplace wordcount code fullscreen',
+        'insertdatetime table contextmenu directionality',
+        'emoticons template paste textcolor colorpicker textpattern imagetools codesample toc youtube'
+      ],
+      toolbar1: 'undo redo | bold italic | alignleft aligncenter alignright alignjustify | outdent indent ',
+      toolbar2: 'forecolor backcolor emoticons | codesample | createspan removespan | youtube',
+      menubar: 'edit insert view format table tools',
+      relative_urls: false,
+      document_base_url: 'assets/js/plugins/tinymce/',
+      skin_url: 'skins/lightgray',
+      branding: false,
+      image_advtab: true,
+      extended_valid_elements: '+iframe[src|width|height|name|align|class]',
+      file_picker_callback: function(callback, value, meta) {
+        if (meta.filetype === 'image') {
+          $('#upload').trigger('click');
+          $('#upload').on('change', function(evt) {
+            me.readFile(callback, evt.target);
+          });
+        }
+      },
+      paste_data_images: true,
+      setup: editor => {
+        this.editor = editor;
+        // this.editor.setContent('');
+      },
+    });
+  }
+
+  private readFile(callback, inputFile) {
+    const file: File = inputFile.files[0];
+    const myReader: FileReader = new FileReader();
+
+    myReader.onloadend = function(e) {
+    };
+
+    myReader.onload = function(e: any) {
+      callback(e.target.result, {
+        alt: ''
+      });
+    };
+
+    myReader.readAsDataURL(file);
   }
 }

@@ -47,7 +47,8 @@
         "../node_modules/tinymce/plugins/textpattern/plugin.js",
         "../node_modules/tinymce/plugins/imagetools/plugin.js",
         "../node_modules/tinymce/plugins/codesample/plugin.js",
-        "../node_modules/tinymce/plugins/toc/plugin.js"
+        "../node_modules/tinymce/plugins/toc/plugin.js",
+        "../src/assets/js/plugins/tinymce/plugins/youtube/plugin.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

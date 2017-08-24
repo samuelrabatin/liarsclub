@@ -33,7 +33,6 @@ export class SetupsComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked() {
     if (this.isEditsetup) {
-      console.log(1, this.currentSetup);
       this.editDiag.updateSetupValue(this.currentSetup);
     }
   }

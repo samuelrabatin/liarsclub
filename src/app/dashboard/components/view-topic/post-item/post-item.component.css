@@ -17,3 +17,13 @@
 .reported-text {
   color: red;
 }
+
+.row.profile > div {
+  min-width: 150px;
+  max-width: calc(100% - 150px);
+}
+
+.btn-report {
+  background-color: rgb(255, 255, 212);
+  color: black;
+}

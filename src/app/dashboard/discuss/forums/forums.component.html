@@ -15,7 +15,7 @@
               </div>
               <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 label-floating form-group text-center">
                 <button class="btn btn-success btn-sm" (click)="showForumRequest = true">New Forum</button>
-                <button *ngIf="currentForum.length" class="btn btn-success btn-sm" (click)="showTopicRequest = true">New Topic</button>
+                <button *ngIf="currentForum.length" class="btn btn-success btn-sm" (click)="showTopicRequest = true;this.mainService.initTinyMCE();">New Topic</button>
               </div>
             </div>
           </div>
@@ -84,16 +84,16 @@
       </div>
       <div class="card-content">
         <div class="form-group label-floating">
-          <label class="control-label">Topic Title</label>
-          <input class="form-control" [(ngModel)]="newTopicTitle" />
+          <label class="control-label">Topic</label>
+          <textarea class="form-control tinymce-editor" [(ngModel)]="newTopicTitle"></textarea>
         </div>
         <div class="form-group label-floating">
-          <label class="control-label">Topic Title</label>
-          <textarea class="form-control" [(ngModel)]="newTopicDescription"></textarea>
+          <label class="control-label">Text</label>
+          <textarea class="form-control tinymce-editor" [(ngModel)]="newTopicDescription"></textarea>
         </div>
       </div>
       <div class="card-footer text-center">
-        <button class="btn btn-success" (click)="addNewTopic()" [disabled]="newTopicTitle == ''">Send Request</button>
+        <button class="btn btn-success" (click)="addNewTopic()" [disabled]="newTopicTitle == '' || newTopicDescription == ''">Send Request</button>
         <button class="btn btn-danger" (click)="hideTopicDiag()">Cancel</button>
       </div>
     </div>
