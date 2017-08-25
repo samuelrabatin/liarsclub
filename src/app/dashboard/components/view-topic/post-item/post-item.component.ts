@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import * as copy from 'copy-to-clipboard';
 
 import { MainService } from '../../../../services/main.service';
 import { PostsService } from '../../../../services/posts.service';
@@ -146,6 +147,9 @@ export class PostItemComponent implements OnInit {
   }
 
   private quote() {
-
+    copy(`<blockquote>
+      "${this.post.text}"
+      <p style="font-style: italic">${this.mainService.userNames[this.post.createdUserId]}</p>
+    </blockquote>`);
   }
 }

@@ -1,6 +1,8 @@
 const Forum = require('../../models/forums/forum');
 const User = require('../../models/user');
+
 var jwt = require("jsonwebtoken");
+var async = require("async");
 
 buildForum = function(forums) {
   var structuredForms = forums.slice();
@@ -38,10 +40,8 @@ exports.getForums = function (req, res) {
   User.findOne({ token: req.body.access_token }, function(err, user) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
-    } else if (user.type != 'admin') {
-      return res.status(400).send('Access denied');
     } else {
-      Forum.find({}, null, {sort: {createdDate: -1}}, function(err, forums) {
+      Forum.find({}, null, {sort: {order: 1, createdDate: -1}}, function(err, forums) {
         if (err) {
           return res.json({
             type: false,
@@ -64,7 +64,7 @@ exports.getConfirmedForums = function(req, res) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
     } else {
-      Forum.find({confirmed: true}, null, {sort: {createdDate: -1}}, function(err, forums) {
+      Forum.find({confirmed: true}, null, {sort: {order: 1, createdDate: -1}}, function(err, forums) {
         if (err) {
           return res.json({
             type: false,
@@ -165,6 +165,8 @@ exports.addForum = function (req, res) {
   User.findOne({ token: req.body.access_token }, function(err, user) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
+    } else if (user.type != 'admin') {
+      return res.status(400).send('Forbidden');
     } else {
       var item = req.body.data;
       item.createdDate = new Date();
@@ -189,6 +191,53 @@ exports.addForum = function (req, res) {
           }
         }
       })
+    }
+  });
+};
+
+var callCount = 0;
+var maxCount = 0;
+
+function udpateForumOrderSync(forum, i, res) {
+  Forum.findOne({_id: forum._id}, function (err, forum) {
+    callCount++;
+    var returnVal;
+    if (err || !forum) {
+      returnVal = {
+        type: false,
+        msg: "Error"
+      };
+    } else {
+      forum.order = i;
+      forum.save();
+      returnVal = {
+        type: true,
+        msg: "Updated"
+      };
+    }
+    if (callCount == maxCount) {
+      callCount = 0;
+      res.json(returnVal);
+    }
+  });
+}
+
+exports.updateForumsOrder = function (req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({token: req.body.access_token}, function (err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else if (user.type != 'admin') {
+      return res.status(400).send('Forbidden');
+    } else {
+      var newForums = req.body.forums;
+      maxCount = newForums.length;
+      for (var i = 0; i < newForums.length; i++) {
+        udpateForumOrderSync(newForums[i], i, res);
+      }
     }
   });
 };

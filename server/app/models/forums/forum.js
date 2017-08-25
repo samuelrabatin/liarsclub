@@ -22,7 +22,8 @@ var ForumSchema = new Schema(
     posts: {type: Number, default: 0},
     confirmed: {type: Boolean, default: true},
     level: {type: Number, default: 0},
-    lastreplied: Date
+    lastreplied: Date,
+    order: {type: Number, default: 0xffff}
   },
   { collection : 'forums' }
 );

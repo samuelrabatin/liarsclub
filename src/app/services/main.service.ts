@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response  } from '@angular/http';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 import { Socket } from 'ng2-socket-io';
 import { Observable } from 'rxjs/Observable';
@@ -33,7 +34,7 @@ export class MainService {
 
   public editor;
 
-  constructor ( private http: Http ) {
+  constructor ( private http: Http, private satizer: DomSanitizer ) {
     if (http) {
       this.getProfileData().subscribe(
         d => {
@@ -340,6 +341,14 @@ export class MainService {
       .catch(this.handleError);
   }
 
+  public updateForumsOrder(forums) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/forums/updateforumsorder/', {access_token: token, forums: forums})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   /////////////////////////////////////////////////////////////////////
 
   public validateUsertoken() {
@@ -429,6 +438,15 @@ export class MainService {
       skin_url: 'skins/lightgray',
       branding: false,
       image_advtab: true,
+      paste_preprocess: function(plugin, args) {
+        while (args.content.includes('&lt;')) {
+          args.content = args.content.replace('&lt;', '<');
+        }
+
+        while (args.content.includes('&gt;')) {
+          args.content = args.content.replace('&gt;', '>');
+        }
+      },
       extended_valid_elements: '+iframe[src|width|height|name|align|class]',
       file_picker_callback: function(callback, value, meta) {
         if (meta.filetype === 'image') {
@@ -442,7 +460,8 @@ export class MainService {
       paste_data_images: true,
       setup: editor => {
         this.editor = editor;
-        // this.editor.setContent('');
+        this.editor.on('paste', function(e) {
+        });
       },
     });
   }

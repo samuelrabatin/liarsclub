@@ -73,6 +73,7 @@ module.exports = function (app, passport) {
   app.post('/forums/activateforum/', forums.activateForum);
   app.post('/forums/deactivateforum/', forums.deactivateForum);
   app.post('/forums/deleteforum/', forums.deleteForum);
+  app.post('/forums/updateforumsorder/', forums.updateForumsOrder);
 
   app.post('/forums/gettopics/', topics.getTopics);
   app.post('/forums/gettopicbyid/', topics.getTopicById);

@@ -81,7 +81,7 @@ export class StorageService {
     this.mainService.getAllProfiles().subscribe(
       d => {
         this.allProfiles = d;
-        if (this.allUsers.users.length) {
+        if (this.allUsers && this.allUsers.users.length) {
           const profiles = this.allProfiles;
           this.allUsers.users.map((val, idx) => {
             this.userNames[val._id] = val.name;

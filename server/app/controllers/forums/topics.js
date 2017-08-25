@@ -11,8 +11,6 @@ exports.getTopics = function (req, res) {
   User.findOne({ token: req.body.access_token }, function(err, user) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
-    } else if (user.type != 'admin') {
-      return res.status(400).send('Access denied');
     } else {
       Topic.find({}, null, {sort: {createdDate: -1}}, function(err, topics) {
         if (err) {

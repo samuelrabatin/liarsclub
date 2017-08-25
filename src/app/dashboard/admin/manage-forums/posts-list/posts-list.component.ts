@@ -39,7 +39,6 @@ export class PostsListComponent implements OnInit {
         } else {
           this.posts = d;
         }
-        console.log(d, this.posts, this.currentTopic);
       },
       e => {
         console.log(e);

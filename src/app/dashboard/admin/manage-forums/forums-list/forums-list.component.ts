@@ -14,6 +14,10 @@ export class ForumsListComponent implements OnInit {
   private newTitle;
   private newDescription;
 
+  private tmpForums = [];
+  private curDragStart;
+  private curDragIndex;
+
   @Output() gotoTopicEvent: EventEmitter<string> = new EventEmitter();
 
   constructor( private mainService: MainService, private storageService: StorageService ) { }
@@ -94,5 +98,32 @@ export class ForumsListComponent implements OnInit {
 
   private gotoTopic(idx) {
     this.gotoTopicEvent.emit(idx);
+  }
+
+  private forumDragStart(idx) {
+    console.log('forumDragStart: ', idx);
+    this.tmpForums = this.forums.slice();
+    this.curDragStart = idx;
+    this.curDragIndex = idx;
+  }
+  private forumDragEnd(idx) {
+    console.log('forumDragEnd: ', idx);
+    this.mainService.updateForumsOrder(this.forums).subscribe(
+      d => {
+      },
+      e => {
+        console.log(e);
+      }
+    );
+  }
+  private forumDragEnter(idx) {
+    if (idx !== this.curDragIndex) {
+      this.curDragIndex = idx;
+      this.forums = this.tmpForums.slice();
+
+      const row = this.forums[this.curDragStart];
+      this.forums.splice(this.curDragStart, 1);
+      this.forums.splice(idx, 0, row);
+    }
   }
 }

@@ -62,3 +62,7 @@ small {
 .dropdown-container {
   bottom: 17px;
 }
+
+.main-content {
+  margin-top: 0 !important;
+}

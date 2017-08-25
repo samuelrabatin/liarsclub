@@ -13,6 +13,7 @@
           <th class="text-center">Posts</th>
           <th class="text-center">Last Replied</th>
           <th class="text-center">Action</th>
+          <th class="text-center"></th>
         </tr>
         </thead>
         <tbody>
@@ -28,7 +29,7 @@
             </button>
           </td>
         </tr>
-        <tr *ngFor="let forum of forums; let idx = index">
+        <tr *ngFor="let forum of forums; let idx = index" [draggable]="true" (dragstart)="forumDragStart(idx)" (dragend)="forumDragEnd(idx)" (dragenter)="forumDragEnter(idx)">
           <td class="text-left hidden">{{idx + 1}}</td>
           <td class="text-left"><a (click)="gotoTopic(idx)">{{forum.title}}</a></td>
           <td class="text-left">{{forum.description.length > 50 ? forum.description.substr(0, 50) : forum.description}}</td>
