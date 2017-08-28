@@ -13,8 +13,8 @@ declare var $: any;
 
 @Injectable()
 export class MainService {
-  // public apiUrl = 'https://liarsclubserver.herokuapp.com';
-  public apiUrl = 'http://192.168.4.36:3000';
+  public apiUrl = 'https://liarsclubserver.herokuapp.com';
+  // public apiUrl = 'http://192.168.4.36:3000';
 
   public loading;
   public cloudinaryUploadPresets = {
