@@ -409,17 +409,21 @@ export class MainService {
       const cday = new Date(str);
       const diff = today.getTime() - cday.getTime();
       if (diff < 1000 * 60) {
-        return `${(diff / 1000).toFixed(0)} seconds ago`;
+        return `${(diff / 1000).toFixed(0)} second` + ((diff / 1000).toFixed(0) === '1' ? '' : 's'  + ' ago');
       } else if (diff < 1000 * 60 * 60) {
-        return `${(diff / 1000 / 60).toFixed(0)} minutes ago`;
+        return `${(diff / 1000 / 60).toFixed(0)} minute` + ((diff / 1000 / 60).toFixed(0) === '1' ? '' : 's'  + ' ago');
       } else if (diff < 1000 * 60 * 60 * 24) {
-        return `${(diff / 1000 / 60 / 60).toFixed(0)} hours ago`;
+        return `${(diff / 1000 / 60 / 60).toFixed(0)} hour`
+        + ((diff / 1000 / 60 / 60).toFixed(0) === '1' ? '' : 's'  + ' ago');
       } else if (diff < 1000 * 60 * 60 * 24 * 30) {
-        return `${(diff / 1000 / 60 / 60 / 24).toFixed(0)} days ago`;
+        return `${(diff / 1000 / 60 / 60 / 24).toFixed(0)} day`
+        + ((diff / 1000 / 60 / 60 / 24).toFixed(0) === '1' ? '' : 's'  + ' ago');
       } else if (diff < 1000 * 60 * 60 * 24 * 365) {
-        return `${(diff / 1000 / 60 / 60 / 24 / 30).toFixed(0)} months ago`;
+        return `${(diff / 1000 / 60 / 60 / 24 / 30).toFixed(0)} month`
+        + ((diff / 1000 / 60 / 60 / 24 / 30).toFixed(0) === '1' ? '' : 's'  + ' ago');
       } else {
-        return `${(diff / 1000 / 60 / 60 / 24 / 365).toFixed(0)} years ago`;
+        return `${(diff / 1000 / 60 / 60 / 24 / 365).toFixed(0)} year`
+        + ((diff / 1000 / 60 / 60 / 24 / 365).toFixed(0) === '1' ? '' : 's'  + ' ago');
       }
     }
   }

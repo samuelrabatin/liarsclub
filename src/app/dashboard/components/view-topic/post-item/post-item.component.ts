@@ -148,10 +148,10 @@ export class PostItemComponent implements OnInit {
   }
 
   private quote() {
-    const quoteString = `<blockquote>
+    const quoteString = `<div><blockquote>
       "${this.post.text}"
       <p style="font-style: italic">${this.mainService.userDisplayNames[this.post.createdUserId]}</p>
-    </blockquote>`;
+    </blockquote></div><div></div>`;
     copy(quoteString);
 
     this.mainService.editor.execCommand('mceInsertContent', false, quoteString);

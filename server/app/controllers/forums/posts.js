@@ -269,7 +269,7 @@ exports.deletePost = function(req, res) {
               }
             });
           } else {
-            return res.json({ type: true, msg: 'successfully added'});
+            return res.json({ type: false, msg: 'topic id invalid'});
           }
         }
       })
