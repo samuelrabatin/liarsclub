@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { MainService } from '../../../services/main.service';
 import { TopicsService } from '../../../services/topics.service';
@@ -37,7 +38,7 @@ export class ForumsComponent implements OnInit {
   private isTopicList = false;
 
   constructor( private mainService: MainService, private topicsService: TopicsService
-              , private postService: PostsService, private storageService: StorageService ) {
+              , private postService: PostsService, private storageService: StorageService, private router: Router ) {
     this.selectSettings = {
       checkedStyle: 'fontawesome',
       containerClasses: 'dropdown-container',
@@ -140,7 +141,10 @@ export class ForumsComponent implements OnInit {
             this.newTopicDescription = '';
             this.showTopicRequest = false;
 
-            this.getTopics();
+            // this.getTopics();
+            this.router.navigate([`discuss/forums/topic/${d.topic._id}`]);
+            console.log(d.topic);
+
           },
           e1 => {
             console.log(e1);

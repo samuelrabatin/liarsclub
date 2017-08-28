@@ -1271,7 +1271,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(10);
+var router_1 = __webpack_require__(9);
 var main_service_1 = __webpack_require__(1);
 var topics_service_1 = __webpack_require__(24);
 var posts_service_1 = __webpack_require__(16);
@@ -1376,7 +1376,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(10);
+var router_1 = __webpack_require__(9);
 var main_service_1 = __webpack_require__(1);
 var AddEditComponent = (function () {
     function AddEditComponent(mainService, route, router) {
@@ -2224,7 +2224,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(7);
-var router_1 = __webpack_require__(10);
+var router_1 = __webpack_require__(9);
 var footer_component_1 = __webpack_require__(188);
 var FooterModule = (function () {
     function FooterModule() {
@@ -2256,7 +2256,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(7);
-var router_1 = __webpack_require__(10);
+var router_1 = __webpack_require__(9);
 var navbar_component_1 = __webpack_require__(189);
 var NavbarModule = (function () {
     function NavbarModule() {
@@ -2317,7 +2317,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(7);
-var router_1 = __webpack_require__(10);
+var router_1 = __webpack_require__(9);
 var sidebar_component_1 = __webpack_require__(190);
 var ng2_cloudinary_1 = __webpack_require__(33);
 var SidebarModule = (function () {
@@ -2445,7 +2445,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(10);
+var router_1 = __webpack_require__(9);
 var common_1 = __webpack_require__(7);
 var main_service_1 = __webpack_require__(1);
 var AppComponent = (function () {
@@ -2517,7 +2517,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var platform_browser_1 = __webpack_require__(15);
-var router_1 = __webpack_require__(10);
+var router_1 = __webpack_require__(9);
 var http_1 = __webpack_require__(27);
 var ng2_auto_complete_1 = __webpack_require__(273);
 // import { ROUTER_PROVIDERS } from '@angular/router-deprecated';
@@ -3934,7 +3934,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(10);
+var router_1 = __webpack_require__(9);
 var platform_browser_1 = __webpack_require__(15);
 var forms_1 = __webpack_require__(26);
 var ng2_cloudinary_1 = __webpack_require__(33);
@@ -4163,16 +4163,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
+var router_1 = __webpack_require__(9);
 var main_service_1 = __webpack_require__(1);
 var topics_service_1 = __webpack_require__(24);
 var posts_service_1 = __webpack_require__(16);
 var storage_service_1 = __webpack_require__(23);
 var ForumsComponent = (function () {
-    function ForumsComponent(mainService, topicsService, postService, storageService) {
+    function ForumsComponent(mainService, topicsService, postService, storageService, router) {
         this.mainService = mainService;
         this.topicsService = topicsService;
         this.postService = postService;
         this.storageService = storageService;
+        this.router = router;
         this.forums = [];
         this.topics = [];
         this.totalTopics = [];
@@ -4269,7 +4271,9 @@ var ForumsComponent = (function () {
             _this.postService.addPost({ text: _this.mainService.editor.getContent(), topicId: d.topic._id }).subscribe(function (d1) {
                 _this.newTopicDescription = '';
                 _this.showTopicRequest = false;
-                _this.getTopics();
+                // this.getTopics();
+                _this.router.navigate(["discuss/forums/topic/" + d.topic._id]);
+                console.log(d.topic);
             }, function (e1) {
                 console.log(e1);
             });
@@ -4318,10 +4322,10 @@ ForumsComponent = __decorate([
         template: __webpack_require__(331),
         styles: [__webpack_require__(265)]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object, typeof (_b = typeof topics_service_1.TopicsService !== "undefined" && topics_service_1.TopicsService) === "function" && _b || Object, typeof (_c = typeof posts_service_1.PostsService !== "undefined" && posts_service_1.PostsService) === "function" && _c || Object, typeof (_d = typeof storage_service_1.StorageService !== "undefined" && storage_service_1.StorageService) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object, typeof (_b = typeof topics_service_1.TopicsService !== "undefined" && topics_service_1.TopicsService) === "function" && _b || Object, typeof (_c = typeof posts_service_1.PostsService !== "undefined" && posts_service_1.PostsService) === "function" && _c || Object, typeof (_d = typeof storage_service_1.StorageService !== "undefined" && storage_service_1.StorageService) === "function" && _d || Object, typeof (_e = typeof router_1.Router !== "undefined" && router_1.Router) === "function" && _e || Object])
 ], ForumsComponent);
 exports.ForumsComponent = ForumsComponent;
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=forums.component.js.map
 
 /***/ }),
@@ -4595,7 +4599,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(10);
+var router_1 = __webpack_require__(9);
 var main_service_1 = __webpack_require__(1);
 var LoginComponent = (function () {
     function LoginComponent(mainService, router) {
@@ -4677,7 +4681,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(10);
+var router_1 = __webpack_require__(9);
 var main_service_1 = __webpack_require__(1);
 var RegisterComponent = (function () {
     function RegisterComponent(mainService, router) {
@@ -4841,7 +4845,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var sidebar_routes_config_1 = __webpack_require__(92);
 var sidebar_metadata_1 = __webpack_require__(46);
-var router_1 = __webpack_require__(10);
+var router_1 = __webpack_require__(9);
 var main_service_1 = __webpack_require__(1);
 var SidebarComponent = (function () {
     function SidebarComponent(mainService, router) {
