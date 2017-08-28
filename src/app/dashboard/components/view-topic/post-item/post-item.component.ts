@@ -14,6 +14,7 @@ export class PostItemComponent implements OnInit {
   @Input('post') post;
   @Input('isReported') isReported;
   @Output() updated: EventEmitter<string> = new EventEmitter();
+  @Output() quoted: EventEmitter<string> = new EventEmitter();
 
   private profile;
   private showReport = false;
@@ -147,9 +148,13 @@ export class PostItemComponent implements OnInit {
   }
 
   private quote() {
-    copy(`<blockquote>
+    const quoteString = `<blockquote>
       "${this.post.text}"
-      <p style="font-style: italic">${this.mainService.userNames[this.post.createdUserId]}</p>
-    </blockquote>`);
+      <p style="font-style: italic">${this.mainService.userDisplayNames[this.post.createdUserId]}</p>
+    </blockquote>`;
+    copy(quoteString);
+
+    this.mainService.editor.execCommand('mceInsertContent', false, quoteString);
+    this.quoted.emit(quoteString);
   }
 }

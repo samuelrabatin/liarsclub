@@ -16,10 +16,12 @@ export class ProfileComponent implements OnInit {
   private lastName = '';
   private email = '';
   private imgId = '';
+  private displayName = '';
 
   private orgFirstname = '';
   private orgLastname = '';
   private orgEmail = '';
+  private orgDisplayName = '';
 
   private uploader: CloudinaryUploader;
   private imgChanged = false;
@@ -75,11 +77,13 @@ export class ProfileComponent implements OnInit {
           this.orgFirstname = d.profile.firstname;
           this.orgLastname = d.profile.lastname;
           this.orgEmail = d.profile.email;
+          this.orgDisplayName = d.profile.displayname;
 
           this.firstName = d.profile.firstname;
           this.lastName = d.profile.lastname;
           this.email = d.profile.email;
           this.imgId = d.profile.imgId;
+          this.displayName = d.profile.displayname;
 
           this.getClubsData();
         }
@@ -117,7 +121,8 @@ export class ProfileComponent implements OnInit {
       firstname: this.firstName,
       lastname: this.lastName,
       email: this.email,
-      imgId: this.imgId
+      imgId: this.imgId,
+      displayname: this.displayName
     };
 
     this.mainService.saveProfile(profile).subscribe(
@@ -126,6 +131,7 @@ export class ProfileComponent implements OnInit {
         this.orgFirstname = d.profile.firstname;
         this.orgLastname = d.profile.lastname;
         this.orgEmail = d.profile.email;
+        this.orgDisplayName = d.profile.displayname;
         this.imgChanged = false;
         this.mainService.avatarPublicId = d.profile.imgId;
 

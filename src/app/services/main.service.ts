@@ -13,8 +13,8 @@ declare var $: any;
 
 @Injectable()
 export class MainService {
-  public apiUrl = 'https://liarsclubserver.herokuapp.com';
-  // public apiUrl = 'http://192.168.4.36:3000';
+  // public apiUrl = 'https://liarsclubserver.herokuapp.com';
+  public apiUrl = 'http://192.168.4.36:3000';
 
   public loading;
   public cloudinaryUploadPresets = {
@@ -24,6 +24,7 @@ export class MainService {
   };
   public cloudName = 'da2w1aszs';
   public userNames = [];
+  public userDisplayNames = [];
 
   public name = 'User';
   public userRole = '';
@@ -60,9 +61,13 @@ export class MainService {
           profiles => {
             d.users.map((val, idx) => {
               this.userNames[val._id] = val.name;
+              this.userDisplayNames[val._id] = val.name;
               for (let i = 0; i < profiles.length; i++) {
                 if (profiles[i].username === val.name) {
                   this.userNames[val._id] = `${this.userNames[val._id]} (${profiles[i].firstname} ${profiles[i].lastname})`;
+                  profiles[i].displayname ?
+                    this.userDisplayNames[val._id] = `${this.userDisplayNames[val._id]} (${profiles[i].displayname})` :
+                    this.userDisplayNames[val._id] = `${this.userDisplayNames[val._id]}`;
                 }
               }
             });
@@ -456,7 +461,8 @@ export class MainService {
           });
         }
       },
-      height: 300,
+      height: 200,
+      max_height: 'calc(100% - 500px)',
       paste_data_images: true,
       setup: editor => {
         this.editor = editor;

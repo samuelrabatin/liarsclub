@@ -17,6 +17,7 @@ var ProfileSchema = new Schema(
     firstname: { type: String, default: '' },
     lastname: { type: String, default: '' },
     username: { type: String, default: '' },
+    displayname: { type: String, default: '' },
     email: { type: String, default: '' },
     imgId: { type: String, default: '' },
     created_date: { type: Date },

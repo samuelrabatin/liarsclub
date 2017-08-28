@@ -26,7 +26,8 @@ var MainService = (function () {
         var _this = this;
         this.http = http;
         this.satizer = satizer;
-        this.apiUrl = 'https://liarsclubserver.herokuapp.com';
+        // public apiUrl = 'https://liarsclubserver.herokuapp.com';
+        this.apiUrl = 'http://192.168.4.36:3000';
         this.cloudinaryUploadPresets = {
             profile: 'hhfktgrl',
             clubs: 'mpahsbqu',
@@ -34,6 +35,7 @@ var MainService = (function () {
         };
         this.cloudName = 'da2w1aszs';
         this.userNames = [];
+        this.userDisplayNames = [];
         this.name = 'User';
         this.userRole = '';
         this.userId = '';
@@ -57,9 +59,13 @@ var MainService = (function () {
             _this.getAllProfiles().subscribe(function (profiles) {
                 d.users.map(function (val, idx) {
                     _this.userNames[val._id] = val.name;
+                    _this.userDisplayNames[val._id] = val.name;
                     for (var i = 0; i < profiles.length; i++) {
                         if (profiles[i].username === val.name) {
                             _this.userNames[val._id] = _this.userNames[val._id] + " (" + profiles[i].firstname + " " + profiles[i].lastname + ")";
+                            profiles[i].displayname ?
+                                _this.userDisplayNames[val._id] = _this.userDisplayNames[val._id] + " (" + profiles[i].displayname + ")" :
+                                _this.userDisplayNames[val._id] = "" + _this.userDisplayNames[val._id];
                         }
                     }
                 });
@@ -412,7 +418,8 @@ var MainService = (function () {
                     });
                 }
             },
-            height: 300,
+            height: 200,
+            max_height: 'calc(100% - 500px)',
             paste_data_images: true,
             setup: function (editor) {
                 _this.editor = editor;
@@ -2069,9 +2076,11 @@ var ProfileComponent = (function () {
         this.lastName = '';
         this.email = '';
         this.imgId = '';
+        this.displayName = '';
         this.orgFirstname = '';
         this.orgLastname = '';
         this.orgEmail = '';
+        this.orgDisplayName = '';
         this.imgChanged = false;
         this.clubs = [];
         this.uploader = new ng2_cloudinary_1.CloudinaryUploader(new ng2_cloudinary_1.CloudinaryOptions({
@@ -2110,10 +2119,12 @@ var ProfileComponent = (function () {
                 _this.orgFirstname = d.profile.firstname;
                 _this.orgLastname = d.profile.lastname;
                 _this.orgEmail = d.profile.email;
+                _this.orgDisplayName = d.profile.displayname;
                 _this.firstName = d.profile.firstname;
                 _this.lastName = d.profile.lastname;
                 _this.email = d.profile.email;
                 _this.imgId = d.profile.imgId;
+                _this.displayName = d.profile.displayname;
                 _this.getClubsData();
             }
         }, function (e) {
@@ -2145,13 +2156,15 @@ var ProfileComponent = (function () {
             firstname: this.firstName,
             lastname: this.lastName,
             email: this.email,
-            imgId: this.imgId
+            imgId: this.imgId,
+            displayname: this.displayName
         };
         this.mainService.saveProfile(profile).subscribe(function (d) {
             _this.mainService.loading = false;
             _this.orgFirstname = d.profile.firstname;
             _this.orgLastname = d.profile.lastname;
             _this.orgEmail = d.profile.email;
+            _this.orgDisplayName = d.profile.displayname;
             _this.imgChanged = false;
             _this.mainService.avatarPublicId = d.profile.imgId;
             _this.mainService.name = d.profile.firstname + " " + d.profile.lastname;
@@ -3294,6 +3307,7 @@ var PostItemComponent = (function () {
         this.postService = postService;
         this.satizer = satizer;
         this.updated = new core_1.EventEmitter();
+        this.quoted = new core_1.EventEmitter();
         this.showReport = false;
         this.reportText = '';
         this.diagBackgroundStyle = {};
@@ -3399,7 +3413,10 @@ var PostItemComponent = (function () {
         this.showReport = false;
     };
     PostItemComponent.prototype.quote = function () {
-        copy("<blockquote>\n      \"" + this.post.text + "\"\n      <p style=\"font-style: italic\">" + this.mainService.userNames[this.post.createdUserId] + "</p>\n    </blockquote>");
+        var quoteString = "<blockquote>\n      \"" + this.post.text + "\"\n      <p style=\"font-style: italic\">" + this.mainService.userDisplayNames[this.post.createdUserId] + "</p>\n    </blockquote>";
+        copy(quoteString);
+        this.mainService.editor.execCommand('mceInsertContent', false, quoteString);
+        this.quoted.emit(quoteString);
     };
     return PostItemComponent;
 }());
@@ -3415,16 +3432,20 @@ __decorate([
     core_1.Output(),
     __metadata("design:type", typeof (_a = typeof core_1.EventEmitter !== "undefined" && core_1.EventEmitter) === "function" && _a || Object)
 ], PostItemComponent.prototype, "updated", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", typeof (_b = typeof core_1.EventEmitter !== "undefined" && core_1.EventEmitter) === "function" && _b || Object)
+], PostItemComponent.prototype, "quoted", void 0);
 PostItemComponent = __decorate([
     core_1.Component({
         selector: 'app-post-item',
         template: __webpack_require__(321),
         styles: [__webpack_require__(259)]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _b || Object, typeof (_c = typeof posts_service_1.PostsService !== "undefined" && posts_service_1.PostsService) === "function" && _c || Object, typeof (_d = typeof platform_browser_1.DomSanitizer !== "undefined" && platform_browser_1.DomSanitizer) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _c || Object, typeof (_d = typeof posts_service_1.PostsService !== "undefined" && posts_service_1.PostsService) === "function" && _d || Object, typeof (_e = typeof platform_browser_1.DomSanitizer !== "undefined" && platform_browser_1.DomSanitizer) === "function" && _e || Object])
 ], PostItemComponent);
 exports.PostItemComponent = PostItemComponent;
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=post-item.component.js.map
 
 /***/ }),
@@ -4280,6 +4301,11 @@ var ForumsComponent = (function () {
         this.isTopicList = false;
         this.searchText = '';
         this.filterForums();
+    };
+    ForumsComponent.prototype.popupScroll = function (evt) {
+        console.log(evt);
+        evt.stopPropagation();
+        evt.preventDefault();
     };
     return ForumsComponent;
 }());
@@ -5241,7 +5267,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, "\n.diag {\n  opacity: 0;\n  display: none;\n  transition: opacity 0.1s linear;\n}\n\n.diag.show {\n  opacity: 1;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: rgba(255,0,0,0.1);\n  z-index: 11;\n}\n\n.diag.show > div {\n  width: 700px;\n  position: relative;\n  top: 100px;\n  left: calc(50% - 350px);\n  max-width: 100%;\n}\n\n.search-input {\n  display: inline-block;\n  width: auto;\n}\n\n.form-item .card-header {\n  display: block;\n}\n\na {\n  cursor: pointer;\n}\n\n.forum-list-card > .card-content > .row {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n}\n", ""]);
+exports.push([module.i, "\n.diag {\n  opacity: 0;\n  display: none;\n  transition: opacity 0.1s linear;\n}\n\n.diag.show {\n  opacity: 1;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 2000px;\n  background: rgba(255,0,0,0.1);\n  z-index: 11;\n}\n\n.diag.show > div {\n  width: 700px;\n  position: relative;\n  top: 100px;\n  left: calc(50% - 350px);\n  max-width: 100%;\n}\n\n.search-input {\n  display: inline-block;\n  width: auto;\n}\n\n.form-item .card-header {\n  display: block;\n}\n\na {\n  cursor: pointer;\n}\n\n.forum-list-card > .card-content > .row {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n}\n", ""]);
 
 // exports
 
@@ -5408,7 +5434,7 @@ module.exports = module.exports.toString();
 /* 309 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"wrapper\">\n    <div class=\"sidebar\" *ngIf=\"!isUsers\" data-active-color=\"white\" data-background-color=\"red\">\n    <!-- <div class=\"sidebar\" data-color=\"red\" data-image=\"\"> -->\n        <sidebar-cmp></sidebar-cmp>\n        <div class=\"sidebar-background\" style=\"background-image: url(assets/img/sidebar-1.jpg);\"></div>\n    </div>\n    <div class=\"{{!isUsers ? 'main-panel' : ''}}\">\n        <dashboard-cmp></dashboard-cmp>\n    </div>\n</div>\n\n"
+module.exports = "\n<div class=\"wrapper\">\n  <div class=\"sidebar\" *ngIf=\"!isUsers\" data-active-color=\"white\" data-background-color=\"red\">\n  <!-- <div class=\"sidebar\" data-color=\"red\" data-image=\"\"> -->\n    <sidebar-cmp></sidebar-cmp>\n    <div class=\"sidebar-background\" style=\"background-image: url(assets/img/sidebar-1.jpg);\"></div>\n  </div>\n  <div class=\"{{!isUsers ? 'main-panel' : ''}}\">\n    <navbar-cmp></navbar-cmp>\n    <dashboard-cmp></dashboard-cmp>\n  </div>\n</div>\n\n"
 
 /***/ }),
 /* 310 */
@@ -5474,13 +5500,13 @@ module.exports = "<p>\n  add-dialog works!\n</p>\n"
 /* 320 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"card-content\">\n    <textarea class=\"tinymce-editor\" [(ngModel)]=\"text\"></textarea>\n    <div>\n      <button class=\"btn btn-success pull-right\" (click)=\"reply()\">Reply</button>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\">\n  <div class=\"card-content\">\n    <textarea class=\"tinymce-editor\" [(ngModel)]=\"text\"></textarea>\n    <div>\n      <button class=\"btn btn-success pull-right\" (click)=\"reply()\" [disabled]=\"mainService.editor.getContent() == ''\">Reply</button>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 321 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"card-content\">\n    <div class=\"row profile\" *ngIf=\"profile && post\">\n      <div class=\"col-lg-1 col-md-2 col-sm-4 col-xs-6\">\n        <div>\n          <a>\n            <cl-image data-u=\"image\" public-id=\"{{profile.imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"200\" width=\"200\" format=\"jpg\">\n            </cl-image>\n          </a>\n        </div>\n      </div>\n      <div class=\"col-lg-11 col-md-10 col-sm-8 col-xs-6\">\n        <div class=\"buttons\">\n          {{mainService.userId === post.createdUserId ? 'You' : mainService.userNames[post.createdUserId]}} replied {{mainService.getDateTimeDifference(post.createdDate)}}\n          <button class=\"btn btn-orange btn-xs pull-right\" (click)=\"quote()\">\n            <i class=\"material-icons\">format_quote</i>\n          </button>\n          <button class=\"btn btn-red btn-xs pull-right\" *ngIf=\"!isUnLike() && mainService.userId !== post.createdUserId\" (click)=\"dislike()\">\n            <i class=\"material-icons\">thumb_down</i>\n          </button>\n          <button class=\"btn btn-red btn-xs pull-right\" *ngIf=\"isUnLike() && mainService.userId !== post.createdUserId\" (click)=\"removeDislike()\">\n            <i class=\"material-icons text-warning\">thumb_down</i>\n          </button>\n          <button class=\"btn btn-green btn-xs pull-right\" *ngIf=\"isLike() && mainService.userId !== post.createdUserId\" (click)=\"removeLike()\">\n            <i class=\"material-icons text-warning\">thumb_up</i>\n          </button>\n          <button class=\"btn btn-green btn-xs pull-right\" *ngIf=\"!isLike() && mainService.userId !== post.createdUserId\" (click)=\"like()\">\n            <i class=\"material-icons\">thumb_up</i>\n          </button>\n        </div>\n        <div class=\"description\">\n          {{post.likeUsersId.length}} users like and {{post.unlikeUsersId.length}} users dislike\n        </div>\n        <div class=\"reported-text\" *ngIf=\"isReported\" data-color=\"rose\">\n          You reported this post\n        </div>\n        <div class=\"buttons\">\n          <button class=\"btn btn-xs btn-report\" *ngIf=\"mainService.userId !== post.createdUserId && !isReported\" (click)=\"reportDiagToggle()\">\n            <i class=\"material-icons\">report</i> Flag inappropriate content\n          </button>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 post-description\" [innerHTML]=\"postHTML\">\n    </div>\n    <div [class]=\"showReport ? 'report-diag show' : 'report-diag'\" [ngStyle]=\"diagBackgroundStyle\">\n      <div [ngStyle]=\"diagStyle\">\n        <div class=\"card report-card\">\n          <div class=\"card-header\" data-background-color=\"orange\">\n            <h4>Report Post</h4>\n          </div>\n          <div class=\"card-content\">\n            <div class=\"form-group\">\n              <label class=\"control-label\">Why are you reporting this post?</label>\n              <textarea class=\"form-control\" [(ngModel)]=\"reportText\"></textarea>\n            </div>\n          </div>\n          <div class=\"card-footer text-center\">\n            <button class=\"btn btn-success\" (click)=\"report()\" [disabled]=\"reportText == ''\">Report</button>\n            <button class=\"btn btn-danger\" (click)=\"hideDiag()\">Cancel</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\">\n  <div class=\"card-content\">\n    <div class=\"row profile\" *ngIf=\"profile && post\">\n      <div class=\"col-lg-1 col-md-2 col-sm-4 col-xs-6\">\n        <div>\n          <a>\n            <cl-image data-u=\"image\" public-id=\"{{profile.imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"200\" width=\"200\" format=\"jpg\">\n            </cl-image>\n          </a>\n        </div>\n      </div>\n      <div class=\"col-lg-11 col-md-10 col-sm-8 col-xs-6\">\n        <div class=\"buttons\">\n          {{mainService.userId === post.createdUserId ? 'You' : mainService.userDisplayNames[post.createdUserId]}} replied {{mainService.getDateTimeDifference(post.createdDate)}}\n          <button class=\"btn btn-orange btn-xs pull-right\" (click)=\"quote()\">\n            <i class=\"material-icons\">format_quote</i>\n          </button>\n          <button class=\"btn btn-red btn-xs pull-right\" *ngIf=\"!isUnLike() && mainService.userId !== post.createdUserId\" (click)=\"dislike()\">\n            <i class=\"material-icons\">thumb_down</i>\n          </button>\n          <button class=\"btn btn-red btn-xs pull-right\" *ngIf=\"isUnLike() && mainService.userId !== post.createdUserId\" (click)=\"removeDislike()\">\n            <i class=\"material-icons text-warning\">thumb_down</i>\n          </button>\n          <button class=\"btn btn-green btn-xs pull-right\" *ngIf=\"isLike() && mainService.userId !== post.createdUserId\" (click)=\"removeLike()\">\n            <i class=\"material-icons text-warning\">thumb_up</i>\n          </button>\n          <button class=\"btn btn-green btn-xs pull-right\" *ngIf=\"!isLike() && mainService.userId !== post.createdUserId\" (click)=\"like()\">\n            <i class=\"material-icons\">thumb_up</i>\n          </button>\n        </div>\n        <div class=\"description\">\n          {{post.likeUsersId.length}} users like and {{post.unlikeUsersId.length}} users dislike\n        </div>\n        <div class=\"reported-text\" *ngIf=\"isReported\" data-color=\"rose\">\n          You reported this post\n        </div>\n        <div class=\"buttons\">\n          <button class=\"btn btn-xs btn-report\" *ngIf=\"mainService.userId !== post.createdUserId && !isReported\" (click)=\"reportDiagToggle()\">\n            <i class=\"material-icons\">report</i> Flag inappropriate content\n          </button>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 post-description\" [innerHTML]=\"postHTML\">\n    </div>\n    <div [class]=\"showReport ? 'report-diag show' : 'report-diag'\" [ngStyle]=\"diagBackgroundStyle\">\n      <div [ngStyle]=\"diagStyle\">\n        <div class=\"card report-card\">\n          <div class=\"card-header\" data-background-color=\"orange\">\n            <h4>Report Post</h4>\n          </div>\n          <div class=\"card-content\">\n            <div class=\"form-group\">\n              <label class=\"control-label\">Why are you reporting this post?</label>\n              <textarea class=\"form-control\" [(ngModel)]=\"reportText\"></textarea>\n            </div>\n          </div>\n          <div class=\"card-footer text-center\">\n            <button class=\"btn btn-success\" (click)=\"report()\" [disabled]=\"reportText == ''\">Report</button>\n            <button class=\"btn btn-danger\" (click)=\"hideDiag()\">Cancel</button>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 322 */
@@ -5540,7 +5566,7 @@ module.exports = "<div class=\"card container\">\n  <div class=\"card-header\">\
 /* 331 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n        <div class=\"card forum-list-card\" *ngIf=\"!isTopicList\">\n          <div class=\"card-header\">\n            <div class=\"row\">\n              <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 label-floating form-group text-right\">\n                <h3 class=\"pull-left\">Forums</h3>\n                <input class=\"form-control search-input\" placeholder=\"Search\" [(ngModel)]=\"searchText\" (keyup)=\"filterForums()\" />\n                <button *ngIf=\"mainService.userRole === 'admin'\" class=\"btn btn-success btn-sm\" (click)=\"showForumRequest = true\">New Forum</button>\n              </div>\n            </div>\n          </div>\n          <div class=\"card-content\">\n            <div class=\"row\">\n              <div *ngFor=\"let forum of filteredForums; let idx = index;\" class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12\">\n                <div class=\"card form-item\">\n                  <div class=\"card-header btn btn-orange\" data-background-color=\"blue\" data-color=\"grey\" (click)=\"viewTopicList(idx)\">{{forum.title}}</div>\n                  <div class=\"card-content\">{{forum.description}}</div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"card topic-list-card\" *ngIf=\"isTopicList\">\n          <div class=\"card-header\">\n            <div class=\"row\">\n              <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 label-floating form-group text-right\">\n                <h3 class=\"pull-left\"><a (click)=\"viewForumList()\">Forums</a> > {{filteredForums[currentForum].title}}</h3>\n                <input class=\"form-control search-input\" placeholder=\"Search\" [(ngModel)]=\"searchText\" (keyup)=\"updateFilteredTopics()\" />\n                <button class=\"btn btn-success btn-sm\" (click)=\"showTopicRequest = true;this.mainService.initTinyMCE();\">New Topic</button>\n              </div>\n            </div>\n          </div>\n          <div class=\"card-content tabledata\">\n            <table class=\"table\">\n              <thead class=\"text-primary\">\n              <tr>\n                <th class=\"text-left hidden\">ID</th>\n                <th class=\"text-left\">Title</th>\n                <th class=\"text-center\">Created User</th>\n                <th class=\"text-center\">Created Date</th>\n                <th class=\"text-center\">Views</th>\n                <th class=\"text-center\">Replies</th>\n                <th class=\"text-center\">Last Replied</th>\n              </tr>\n              </thead>\n              <tbody>\n              <tr *ngFor=\"let topic of filteredTopics; let idx = index\">\n                <td class=\"text-left hidden\">{{idx + 1}}</td>\n                <td class=\"text-left\"><a [routerLink]=\"'/discuss/forums/topic/' + topic._id\">{{topic.title}}</a></td>\n                <td class=\"text-center\">{{storageService.userNames[topic.createdUserId]}}</td>\n                <td class=\"text-center\">{{mainService.getDateString(topic.createdDate)}}</td>\n                <td class=\"text-center\">{{topic.views}}</td>\n                <td class=\"text-center\">{{topic.replies}}</td>\n                <td class=\"text-center\">{{mainService.getDateTimeString(topic.lastreplied)}}</td>\n              </tr>\n              </tbody>\n            </table>\n          </div>\n        </div>\n      </div>\n    </div>\n</div>\n\n<div [class]=\"showForumRequest ? 'diag show' : 'diag'\">\n  <div>\n    <div class=\"card report-card\">\n      <div class=\"card-header\" data-background-color=\"orange\">\n        <h4>New Forum Request</h4>\n      </div>\n      <div class=\"card-content\">\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Forum Title</label>\n          <input class=\"form-control\" [(ngModel)]=\"newForumTitle\" />\n        </div>\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Forum Description</label>\n          <textarea class=\"form-control\" [(ngModel)]=\"newForumDescription\"></textarea>\n        </div>\n      </div>\n      <div class=\"card-footer text-center\">\n        <button class=\"btn btn-success\" (click)=\"addNewForum()\" [disabled]=\"newForumTitle == ''\">Send Request</button>\n        <button class=\"btn btn-danger\" (click)=\"hideForumDiag()\">Cancel</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div [class]=\"showTopicRequest ? 'diag show' : 'diag'\">\n  <div>\n    <div class=\"card report-card\">\n      <div class=\"card-header\" data-background-color=\"orange\">\n        <h4>New Topic Request</h4>\n      </div>\n      <div class=\"card-content\">\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Topic</label>\n          <input class=\"form-control\" [(ngModel)]=\"newTopicTitle\" />\n        </div>\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Text</label>\n          <textarea class=\"form-control tinymce-editor\" [(ngModel)]=\"newTopicDescription\"></textarea>\n        </div>\n      </div>\n      <div class=\"card-footer text-center\">\n        <button class=\"btn btn-success\" (click)=\"addNewTopic()\" [disabled]=\"newTopicTitle == ''\">Send Request</button>\n        <button class=\"btn btn-danger\" (click)=\"hideTopicDiag()\">Cancel</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n      <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\n        <div class=\"card forum-list-card\" *ngIf=\"!isTopicList\">\n          <div class=\"card-header\">\n            <div class=\"row\">\n              <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 label-floating form-group text-right\">\n                <h3 class=\"pull-left\">Forums</h3>\n                <input class=\"form-control search-input\" placeholder=\"Search\" [(ngModel)]=\"searchText\" (keyup)=\"filterForums()\" />\n                <button *ngIf=\"mainService.userRole === 'admin'\" class=\"btn btn-success btn-sm\" (click)=\"showForumRequest = true\">New Forum</button>\n              </div>\n            </div>\n          </div>\n          <div class=\"card-content\">\n            <div class=\"row\">\n              <div *ngFor=\"let forum of filteredForums; let idx = index;\" class=\"col-lg-6 col-md-6 col-sm-12 col-xs-12\">\n                <div class=\"card form-item\">\n                  <div class=\"card-header btn btn-orange\" data-background-color=\"blue\" data-color=\"grey\" (click)=\"viewTopicList(idx)\">{{forum.title}}</div>\n                  <div class=\"card-content\">{{forum.description}}</div>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"card topic-list-card\" *ngIf=\"isTopicList\">\n          <div class=\"card-header\">\n            <div class=\"row\">\n              <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 label-floating form-group text-right\">\n                <h3 class=\"pull-left\"><a (click)=\"viewForumList()\">Forums</a> > {{filteredForums[currentForum].title}}</h3>\n                <input class=\"form-control search-input\" placeholder=\"Search\" [(ngModel)]=\"searchText\" (keyup)=\"updateFilteredTopics()\" />\n                <button class=\"btn btn-success btn-sm\" (click)=\"showTopicRequest = true;this.mainService.initTinyMCE();\">New Topic</button>\n              </div>\n            </div>\n          </div>\n          <div class=\"card-content tabledata\">\n            <table class=\"table\">\n              <thead class=\"text-primary\">\n              <tr>\n                <th class=\"text-left hidden\">ID</th>\n                <th class=\"text-left\">Title</th>\n                <th class=\"text-center\">Created User</th>\n                <th class=\"text-center\">Created Date</th>\n                <th class=\"text-center\">Views</th>\n                <th class=\"text-center\">Replies</th>\n                <th class=\"text-center\">Last Replied</th>\n              </tr>\n              </thead>\n              <tbody>\n              <tr *ngFor=\"let topic of filteredTopics; let idx = index\">\n                <td class=\"text-left hidden\">{{idx + 1}}</td>\n                <td class=\"text-left\"><a [routerLink]=\"'/discuss/forums/topic/' + topic._id\">{{topic.title}}</a></td>\n                <td class=\"text-center\">{{storageService.userNames[topic.createdUserId]}}</td>\n                <td class=\"text-center\">{{mainService.getDateString(topic.createdDate)}}</td>\n                <td class=\"text-center\">{{topic.views}}</td>\n                <td class=\"text-center\">{{topic.replies}}</td>\n                <td class=\"text-center\">{{mainService.getDateTimeString(topic.lastreplied)}}</td>\n              </tr>\n              </tbody>\n            </table>\n          </div>\n        </div>\n      </div>\n    </div>\n</div>\n\n<div [class]=\"showForumRequest ? 'diag show' : 'diag'\" (scroll)=\"popupScroll($event)\">\n  <div>\n    <div class=\"card report-card\">\n      <div class=\"card-header\" data-background-color=\"orange\">\n        <h4>New Forum Request</h4>\n      </div>\n      <div class=\"card-content\">\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Forum Title</label>\n          <input class=\"form-control\" [(ngModel)]=\"newForumTitle\" />\n        </div>\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Forum Description</label>\n          <textarea class=\"form-control\" [(ngModel)]=\"newForumDescription\"></textarea>\n        </div>\n      </div>\n      <div class=\"card-footer text-center\">\n        <button class=\"btn btn-success\" (click)=\"addNewForum()\" [disabled]=\"newForumTitle == ''\">Send Request</button>\n        <button class=\"btn btn-danger\" (click)=\"hideForumDiag()\">Cancel</button>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div [class]=\"showTopicRequest ? 'diag show' : 'diag'\" (scroll)=\"popupScroll($event)\">\n  <div>\n    <div class=\"card report-card\">\n      <div class=\"card-header\" data-background-color=\"orange\">\n        <h4>New Topic Request</h4>\n      </div>\n      <div class=\"card-content\">\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Topic</label>\n          <input class=\"form-control\" [(ngModel)]=\"newTopicTitle\" />\n        </div>\n        <div class=\"form-group label-floating\">\n          <label class=\"control-label\">Text</label>\n          <textarea class=\"form-control tinymce-editor\" [(ngModel)]=\"newTopicDescription\"></textarea>\n        </div>\n      </div>\n      <div class=\"card-footer text-center\">\n        <button class=\"btn btn-success\" (click)=\"addNewTopic()\" [disabled]=\"newTopicTitle == ''\">Send Request</button>\n        <button class=\"btn btn-danger\" (click)=\"hideTopicDiag()\">Cancel</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 332 */
@@ -5594,7 +5620,7 @@ module.exports = "<nav class=\"navbar navbar-primary navbar-transparent navbar-a
 /* 340 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2\">\n      <form (submit)=\"saveProfile()\">\n        <div class=\"card\">\n          <div class=\"card-header\">\n            <div class=\"card-header\" data-background-color=\"orange\">\n              <h3 class=\"text-center\">My Profile</h3>\n            </div>\n          </div>\n          <div class=\"card-content\">\n              <div class=\"row\">\n                <div class=\"col-md-5 pull-right upload-avatar\">\n                  <div class=\"col-lg-5 col-md-5 col-sm-12 col-xs-12\">\n                    <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                      <div class=\"fileinput-new thumbnail\">\n                        <img src=\"../../../../../assets/img/image_placeholder.jpg\" alt=\"...\" #clubImg *ngIf=\"imgChanged\">\n                        <cl-image data-u=\"image\" public-id=\"{{imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"560\" width=\"860\" format=\"jpg\">\n                        </cl-image>\n                      </div>\n                      <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                      <div>\n                        <span class=\"btn btn-rose btn-round btn-file btn-sm\">\n                            <span class=\"fileinput-new\">Select image</span>\n                            <span class=\"fileinput-exists\">Select image</span>\n                            <input type=\"file\" name=\"...\" #avatar class=\"btn btn-file\" ng2FileSelect [uploader]=\"uploader\" (change)=\"imgChanged = true\"/>\n                        </span>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"col-md-7\">\n                  <div class=\"form-group\">\n                    <label class=\"control-label\">First Name</label>\n                    <input class=\"form-control\" required [(ngModel)]=\"firstName\" name=\"firstName\"/>\n                  </div>\n                  <div class=\"form-group\">\n                    <label class=\"control-label\">Last Name</label>\n                    <input class=\"form-control\" required [(ngModel)]=\"lastName\" name=\"lastName\" />\n                  </div>\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"form-group\">\n                  <label class=\"control-label\">Email address</label>\n                  <input class=\"form-control\" type=\"email\" required [(ngModel)]=\"email\" name=\"email\" />\n                </div>\n              </div>\n            <div class=\"row\">\n              <h3><small>I tagged myself as a member of these clubs</small></h3>\n              <div class=\"\" *ngFor=\"let club of clubs\">\n                <p>{{club.mytag.memberState}} {{club.mytag.memberType}} of {{club.title}}</p>\n              </div>\n            </div>\n          </div>\n          <div class=\"card-footer\">\n            <button type=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"orgFirstname == firstName && orgLastname == lastName && orgEmail == email && !imgChanged\">Save</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"row col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2\">\n      <form (submit)=\"saveProfile()\">\n        <div class=\"card\">\n          <div class=\"card-header\">\n            <div class=\"card-header\" data-background-color=\"orange\">\n              <h3 class=\"text-center\">My Profile</h3>\n            </div>\n          </div>\n          <div class=\"card-content\">\n              <div class=\"row\">\n                <div class=\"col-md-5 pull-right upload-avatar\">\n                  <div class=\"col-lg-5 col-md-5 col-sm-12 col-xs-12\">\n                    <div class=\"fileinput fileinput-new text-center\" data-provides=\"fileinput\">\n                      <div class=\"fileinput-new thumbnail\">\n                        <img src=\"../../../../../assets/img/image_placeholder.jpg\" alt=\"...\" #clubImg *ngIf=\"imgChanged\">\n                        <cl-image data-u=\"image\" public-id=\"{{imgId}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"560\" width=\"860\" format=\"jpg\">\n                        </cl-image>\n                      </div>\n                      <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n                      <div>\n                        <span class=\"btn btn-rose btn-round btn-file btn-sm\">\n                            <span class=\"fileinput-new\">Select image</span>\n                            <span class=\"fileinput-exists\">Select image</span>\n                            <input type=\"file\" name=\"...\" #avatar class=\"btn btn-file\" ng2FileSelect [uploader]=\"uploader\" (change)=\"imgChanged = true\"/>\n                        </span>\n                      </div>\n                    </div>\n                  </div>\n                </div>\n                <div class=\"col-md-7\">\n                  <div class=\"form-group\">\n                    <label class=\"control-label\">First Name</label>\n                    <input class=\"form-control\" required [(ngModel)]=\"firstName\" name=\"firstName\"/>\n                  </div>\n                  <div class=\"form-group\">\n                    <label class=\"control-label\">Last Name</label>\n                    <input class=\"form-control\" required [(ngModel)]=\"lastName\" name=\"lastName\" />\n                  </div>\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"form-group\">\n                  <label class=\"control-label\">Display Name</label>\n                  <input class=\"form-control\" required [(ngModel)]=\"displayName\" name=\"displayName\" />\n                </div>\n              </div>\n              <div class=\"row\">\n                <div class=\"form-group\">\n                  <label class=\"control-label\">Email address</label>\n                  <input class=\"form-control\" type=\"email\" required [(ngModel)]=\"email\" name=\"email\" />\n                </div>\n              </div>\n            <div class=\"row\">\n              <h3><small>I tagged myself as a member of these clubs</small></h3>\n              <div class=\"\" *ngFor=\"let club of clubs\">\n                <p>{{club.mytag.memberState}} {{club.mytag.memberType}} of {{club.title}}</p>\n              </div>\n            </div>\n          </div>\n          <div class=\"card-footer\">\n            <button type=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"orgFirstname == firstName && orgLastname == lastName && orgEmail == email && !imgChanged && orgDisplayName == displayName\">Save</button>\n          </div>\n        </div>\n      </form>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 341 */

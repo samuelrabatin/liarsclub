@@ -2,7 +2,7 @@
   <div class="card-content">
     <textarea class="tinymce-editor" [(ngModel)]="text"></textarea>
     <div>
-      <button class="btn btn-success pull-right" (click)="reply()">Reply</button>
+      <button class="btn btn-success pull-right" (click)="reply()" [disabled]="mainService.editor.getContent() == ''">Reply</button>
     </div>
   </div>
 </div>

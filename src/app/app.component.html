@@ -1,12 +1,13 @@
 
 <div class="wrapper">
-    <div class="sidebar" *ngIf="!isUsers" data-active-color="white" data-background-color="red">
-    <!-- <div class="sidebar" data-color="red" data-image=""> -->
-        <sidebar-cmp></sidebar-cmp>
-        <div class="sidebar-background" style="background-image: url(assets/img/sidebar-1.jpg);"></div>
-    </div>
-    <div class="{{!isUsers ? 'main-panel' : ''}}">
-        <dashboard-cmp></dashboard-cmp>
-    </div>
+  <div class="sidebar" *ngIf="!isUsers" data-active-color="white" data-background-color="red">
+  <!-- <div class="sidebar" data-color="red" data-image=""> -->
+    <sidebar-cmp></sidebar-cmp>
+    <div class="sidebar-background" style="background-image: url(assets/img/sidebar-1.jpg);"></div>
+  </div>
+  <div class="{{!isUsers ? 'main-panel' : ''}}">
+    <navbar-cmp></navbar-cmp>
+    <dashboard-cmp></dashboard-cmp>
+  </div>
 </div>
 

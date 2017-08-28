@@ -35,7 +35,7 @@ exports.getPostsByTopicId = function(req, res) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
     } else {
-      Post.find({topicId: req.body.id}, null, {sort: {createdDate: -1}}, function(err, posts) {
+      Post.find({topicId: req.body.id}, null, {sort: {createdDate: 1}}, function(err, posts) {
         if (err || !posts.length) {
           return res.json({
             type: false,

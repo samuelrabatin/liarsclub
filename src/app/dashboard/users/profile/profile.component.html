@@ -42,6 +42,12 @@
               </div>
               <div class="row">
                 <div class="form-group">
+                  <label class="control-label">Display Name</label>
+                  <input class="form-control" required [(ngModel)]="displayName" name="displayName" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group">
                   <label class="control-label">Email address</label>
                   <input class="form-control" type="email" required [(ngModel)]="email" name="email" />
                 </div>
@@ -54,7 +60,7 @@
             </div>
           </div>
           <div class="card-footer">
-            <button type="submit" class="btn btn-success pull-right" [disabled]="orgFirstname == firstName && orgLastname == lastName && orgEmail == email && !imgChanged">Save</button>
+            <button type="submit" class="btn btn-success pull-right" [disabled]="orgFirstname == firstName && orgLastname == lastName && orgEmail == email && !imgChanged && orgDisplayName == displayName">Save</button>
           </div>
         </div>
       </form>

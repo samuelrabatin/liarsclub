@@ -186,4 +186,10 @@ export class ForumsComponent implements OnInit {
     this.searchText = '';
     this.filterForums();
   }
+
+  private popupScroll(evt) {
+    console.log(evt);
+    evt.stopPropagation();
+    evt.preventDefault();
+  }
 }

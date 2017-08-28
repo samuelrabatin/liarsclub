@@ -63,7 +63,7 @@
     </div>
 </div>
 
-<div [class]="showForumRequest ? 'diag show' : 'diag'">
+<div [class]="showForumRequest ? 'diag show' : 'diag'" (scroll)="popupScroll($event)">
   <div>
     <div class="card report-card">
       <div class="card-header" data-background-color="orange">
@@ -87,7 +87,7 @@
   </div>
 </div>
 
-<div [class]="showTopicRequest ? 'diag show' : 'diag'">
+<div [class]="showTopicRequest ? 'diag show' : 'diag'" (scroll)="popupScroll($event)">
   <div>
     <div class="card report-card">
       <div class="card-header" data-background-color="orange">

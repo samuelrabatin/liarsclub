@@ -11,7 +11,7 @@
       </div>
       <div class="col-lg-11 col-md-10 col-sm-8 col-xs-6">
         <div class="buttons">
-          {{mainService.userId === post.createdUserId ? 'You' : mainService.userNames[post.createdUserId]}} replied {{mainService.getDateTimeDifference(post.createdDate)}}
+          {{mainService.userId === post.createdUserId ? 'You' : mainService.userDisplayNames[post.createdUserId]}} replied {{mainService.getDateTimeDifference(post.createdDate)}}
           <button class="btn btn-orange btn-xs pull-right" (click)="quote()">
             <i class="material-icons">format_quote</i>
           </button>
