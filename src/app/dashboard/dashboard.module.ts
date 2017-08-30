@@ -29,6 +29,7 @@ import { VIewTopicComponent } from './components/view-topic/view-topic.component
 import { PostItemComponent } from './components/view-topic/post-item/post-item.component';
 import { PostReplyComponent } from './components/post-reply/post-reply.component';
 import { ReportedPostsListComponent } from './admin/manage-forums/reported-posts-list/reported-posts-list.component';
+import { ClubMembersListComponent } from './components/club-members-list/club-members-list.component';
 
 @NgModule({
     imports: [
@@ -45,7 +46,8 @@ import { ReportedPostsListComponent } from './admin/manage-forums/reported-posts
     ],
     declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent,
       AboutComponent, SetupDetailComponent, ManageSetupsComponent, AddForumComponent, ManageForumsComponent,
-      ForumsListComponent, TopicsListComponent, PostsListComponent, AddDialogComponent, VIewTopicComponent, PostItemComponent, PostReplyComponent, ReportedPostsListComponent ]
+      ForumsListComponent, TopicsListComponent, PostsListComponent, AddDialogComponent, VIewTopicComponent,
+      PostItemComponent, PostReplyComponent, ReportedPostsListComponent, ClubMembersListComponent ]
 })
 
 export class DashboardModule {}

@@ -7,15 +7,38 @@
             <table class="table">
               <thead class="text-primary">
                 <tr>
-                  <th class="text-left">Club Name</th>
-                  <th class="text-center">Tagged Username</th>
-                  <th class="text-center">Tagged User Type</th>
-                  <th class="text-center">Tagged User State</th>
-                  <th class="text-center">Tagged Date</th>
-                  <th class="text-center">Action</th>
+                  <td class="text-left">Title</td>
+                  <td class="text-left">Created User</td>
+                  <td class="text-left">Created Date</td>
+                  <td class="text-center">Location</td>
+                  <td class="text-center">Address</td>
+                  <td class="text-center">Members</td>
+                  <td class="text-center">Actions</td>
                 </tr>
               </thead>
-              <tbody #tblBody (click)="tblClicked($event)">
+              <tbody>
+                <tr *ngFor="let club of clubs; let idx = index;">
+                  <td class="text-left">{{club.title}}</td>
+                  <td class="text-left">{{club.username}}</td>
+                  <td class="text-left">{{mainService.getDateString(club.created)}}</td>
+                  <td class="text-center">{{club.location}}</td>
+                  <td class="text-center">{{club.address}}</td>
+                  <td class="text-center"><a [routerLink]="['userslist/' + club._id]">{{club.pastMembers + club.activeMembers + club.tagWaitingMembers}}</a></td>
+                  <td class="text-center">
+                    <button class="btn btn-success btn-xs" *ngIf="!club.confirmed" (click)="approveClub(club._id)">
+                      <i class="material-icons">check</i>
+                      Approve
+                    </button>
+                    <button class="btn btn-warning btn-xs" *ngIf="club.confirmed" (click)="rejectClub(club._id)">
+                      <i class="material-icons">close</i>
+                      Reject
+                    </button>
+                    <button class="btn btn-danger btn-xs" (click)="deleteClub(club._id)">
+                      <i class="material-icons">delete</i>
+                      Delete
+                    </button>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>

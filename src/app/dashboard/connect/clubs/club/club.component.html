@@ -1,12 +1,14 @@
 <div class="card">
   <div class="card-content">
-    <cl-image data-u="image" public-id="{{club.imgUrl}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
+    <cl-image data-u="image" public-id="{{club.imgUrl}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="80" width="80" format="jpg">
     </cl-image>
     <span>
         <span class="club-title">
           {{club.title}}
           <small>{{club.tagged ? '   -- You tagged yourself as ' + (club.taggedUsers[club.taggedIndex].memberState === 'active' ? 'an ' : 'a ')
-            +  club.taggedUsers[club.taggedIndex].memberState + ' ' + club.taggedUsers[club.taggedIndex].memberType + ' of this club' : ''}}</small>
+            + club.taggedUsers[club.taggedIndex].memberState + ' ' + club.taggedUsers[club.taggedIndex].memberType + ' of this club'
+            + (!club.tagConfirmed ? ' (waiting for approval)' : '')
+            : ''}}</small>
         </span>
         <span class="club-desciption">{{club.dayOfWeek}}s at {{club.time}}, {{club.activeMembers + club.pastMembers}} members</span>
     </span>
@@ -33,9 +35,9 @@
           </select>
         </div>
       </div>
-      <div class="">
-        <button class="btn btn-success pull-right" (click)="tag()" *ngIf="!club.tagged">Tag myself with this club</button>
-        <button class="btn btn-danger pull-right" (click)="unTag()" *ngIf="club.tagged">Untag this club</button>
+      <div class="text-right">
+        <button class="btn btn-success btn-sm" (click)="tag()" *ngIf="!club.tagged">Tag myself with this club</button>
+        <button class="btn btn-danger btn-sm" (click)="unTag()" *ngIf="club.tagged && club.tagConfirmed">Untag this club</button>
       </div>
     </div>
   </div>

@@ -47,11 +47,16 @@ module.exports = function (app, passport) {
   app.post('/users/getallprofiles/', users.getAllProfiles);
 
   app.post('/clubs/all/', clubs.getClubs);
+  app.post('/clubs/confirmed/', clubs.getConfirmedClubs);
+  app.post('/clubs/approve/', clubs.approveClub);
+  app.post('/clubs/reject/', clubs.rejectClub);
   app.post('/clubs/add/', clubs.addClub);
   app.post('/clubs/tag/', clubs.tagClub);
   app.post('/clubs/remove/', clubs.removeClub);
   app.post('/clubs/untag/', clubs.untagClub);
   app.post('/clubs/admin/untag/', clubs.untagFromAdmin);
+  app.post('/clubs/getclubbyid/', clubs.getClubById);
+  app.post('/clubs/updateusertag/', clubs.updateUserTag);
 
   app.post('/setups/getallroles/', roles.getAllRoles);
   app.post('/setups/getallvotings/', roles.getAllVotings);

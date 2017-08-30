@@ -1,15 +1,15 @@
 webpackJsonp([3,5],{
 
-/***/ 130:
+/***/ 131:
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(247);
+var content = __webpack_require__(248);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(374)(content, {});
+var update = __webpack_require__(377)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -27,22 +27,7 @@ if(false) {
 
 /***/ }),
 
-/***/ 247:
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(3)();
-// imports
-
-
-// module
-exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n  background-color: rgb(213, 236, 214);\n}\n\n.dropdown-menu li a {\n  display: block;\n  clear: both;\n  font-weight: 400;\n  line-height: 1.42857143;\n  color: #333;\n  white-space: nowrap;\n  font-size: 13px;\n  padding: 10px 20px;\n  margin: 0 5px;\n  border-radius: 2px;\n  transition: all 150ms linear;\n}\n\nul.dropdown-menu {\n  min-width: 320px;\n}\n\nul.dropdown-menu li.dropdown-item {\n  width: 50%;\n  display: inline-block;\n}\n\n.topic-list-card ul.dropdown-menu li.dropdown-item {\n  width: 100%;\n}\n\nsmall {\n  color: #999999 !important;\n}\n\n.post-description img {\n  width: auto;\n}\n\n.btn-green {\n  background-color: green;\n}\n\n.btn-red {\n  background: red;\n}\n\n.btn-orange {\n  background: yellow;\n  color: black;\n}\n\n.color-black {\n  color: black;\n}\n\n.dropdown-container {\n  bottom: 17px;\n}\n\n.main-content {\n  margin-top: 40px !important;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ 3:
+/***/ 2:
 /***/ (function(module, exports) {
 
 /*
@@ -99,7 +84,22 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ 374:
+/***/ 248:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)();
+// imports
+
+
+// module
+exports.push([module.i, "/* You can add global styles to this file, and also import other style files */\nbody {\n  background-color: rgb(213, 236, 214);\n}\n\n.dropdown-menu li a {\n  display: block;\n  clear: both;\n  font-weight: 400;\n  line-height: 1.42857143;\n  color: #333;\n  white-space: nowrap;\n  font-size: 13px;\n  padding: 10px 20px;\n  margin: 0 5px;\n  border-radius: 2px;\n  transition: all 150ms linear;\n}\n\nul.dropdown-menu {\n  min-width: 320px;\n}\n\nul.dropdown-menu li.dropdown-item {\n  width: 50%;\n  display: inline-block;\n}\n\n.topic-list-card ul.dropdown-menu li.dropdown-item {\n  width: 100%;\n}\n\nsmall {\n  color: #999999 !important;\n}\n\n.post-description img {\n  width: auto;\n}\n\n.btn-green {\n  background-color: green;\n}\n\n.btn-red {\n  background: red;\n}\n\n.btn-orange {\n  background: yellow;\n  color: black;\n}\n\n.color-black {\n  color: black;\n}\n\n.dropdown-container {\n  bottom: 17px;\n}\n\n.main-content {\n  margin-top: 40px !important;\n}\n\n.club-members-list .bootstrap-select.btn-group .dropdown-toggle .filter-option {\n  text-align: center;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 377:
 /***/ (function(module, exports) {
 
 /*
@@ -352,13 +352,13 @@ function updateLink(linkElement, obj) {
 
 /***/ }),
 
-/***/ 379:
+/***/ 382:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(130);
+module.exports = __webpack_require__(131);
 
 
 /***/ })
 
-},[379]);
+},[382]);
 //# sourceMappingURL=styles.bundle.js.map

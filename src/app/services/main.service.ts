@@ -161,11 +161,62 @@ export class MainService {
       .catch(this.handleError);
   }
 
+  public getClubById(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/clubs/getclubbyid/', {access_token: token, id: id})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public getConfirmedClubs() {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/clubs/confirmed/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   public addClub(data) {
     this.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
     data.access_token = token;
     return this.http.post(this.apiUrl + '/clubs/add/', data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public updateUserTag(clubId, user) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    const data = {
+      access_token: token,
+      id: clubId,
+      user: user
+    };
+    return this.http.post(this.apiUrl + '/clubs/updateusertag/', data);
+  }
+
+  public approveClub(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    const data = {
+      access_token: token,
+      id: id
+    };
+    return this.http.post(this.apiUrl + '/clubs/approve/', data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public rejectClub(id) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    const data = {
+      access_token: token,
+      id: id
+    };
+    return this.http.post(this.apiUrl + '/clubs/reject/', data)
       .map(this.extractData)
       .catch(this.handleError);
   }

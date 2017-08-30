@@ -30,6 +30,7 @@ import { ManageForumsComponent } from './admin/manage-forums/manage-forums.compo
 import { AboutComponent } from './about/about.component';
 
 import { VIewTopicComponent } from './components/view-topic/view-topic.component';
+import { ClubMembersListComponent } from './components/club-members-list/club-members-list.component';
 
 //
 export const MODULE_ROUTES: Route[] = [
@@ -55,6 +56,7 @@ export const MODULE_ROUTES: Route[] = [
   { path: 'profile', component: ProfileComponent },
 
   { path: 'admin/clubs', component: ManageClubsComponent },
+  { path: 'admin/clubs/userslist/:id', component: ClubMembersListComponent },
   { path: 'admin/setups', component: ManageSetupsComponent },
   { path: 'admin/forums', component: ManageForumsComponent },
   { path: 'about', component: AboutComponent },

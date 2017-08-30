@@ -1,0 +1,57 @@
+<div class="main-content club-members-list">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card">
+        <div class="card-content">
+          <table class="table">
+            <thead>
+              <tr>
+                <th class="text-left">User</th>
+                <th class="text-center">Tagged Date</th>
+                <th class="text-center">Member State</th>
+                <th class="text-center">Member Type</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users; let idx = index;">
+                <td class="text-left">{{user.user}}</td>
+                <td class="text-center">{{mainService.getDateString(user.taggedDate)}}</td>
+                <td class="text-center">
+                  <select class="selectpicker text-center" data-style="select-with-transition" [value]="memberState[idx]" [(ngModel)]="memberState[idx]">
+                    <option value="active">Active</option>
+                    <option value="past">Past</option>
+                  </select>
+                </td>
+                <td class="text-center">
+                  <select class="selectpicker text-center" data-style="select-with-transition" [value]="memberType[idx]" [(ngModel)]="memberType[idx]">
+                    <option value="admin">Admin</option>
+                    <option value="member">Member</option>
+                  </select>
+                </td>
+                <td class="text-center">
+                  <button class="btn btn-success btn-xs" [disabled]="memberState[idx] == user.memberState && memberType[idx] == user.memberType" (click)="updateUser(idx, user)">
+                    <i class="material-icons">save</i>
+                    Save
+                  </button>
+                  <button class="btn btn-success btn-xs" *ngIf="!user.confirmed" (click)="approveTag(user)">
+                    <i class="material-icons">check</i>
+                    Approve
+                  </button>
+                  <button class="btn btn-warning btn-xs" *ngIf="user.confirmed" (click)="rejectTag(user)">
+                    <i class="material-icons">close</i>
+                    Reject
+                  </button>
+                  <button class="btn btn-danger btn-xs" (click)="removeTag(user)">
+                    <i class="material-icons">delete</i>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

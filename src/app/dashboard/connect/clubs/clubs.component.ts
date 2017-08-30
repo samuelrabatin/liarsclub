@@ -22,7 +22,7 @@ export class ClubsComponent implements OnInit {
     }
 
     public getClubs() {
-      this.mainService.getClubs().subscribe(
+      this.mainService.getConfirmedClubs().subscribe(
         d => {
           this.clubs = d.data;
           for (let i = 0; i < this.clubs.length; i++) {
@@ -30,6 +30,7 @@ export class ClubsComponent implements OnInit {
             const index = taggedUsers.indexOf(localStorage.getItem('username'));
             if (index !== -1) {
               this.clubs[i].tagged = true;
+              this.clubs[i].tagConfirmed = this.clubs[i].taggedUsers[index].confirmed;
               this.clubs[i].taggedIndex = index;
             } else {
               this.clubs[i].tagged = false;

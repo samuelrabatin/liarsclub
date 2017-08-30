@@ -66,3 +66,7 @@ small {
 .main-content {
   margin-top: 40px !important;
 }
+
+.club-members-list .bootstrap-select.btn-group .dropdown-toggle .filter-option {
+  text-align: center;
+}
