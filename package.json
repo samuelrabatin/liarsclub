@@ -43,7 +43,8 @@
     "rxjs": "^5.1.0",
     "socket.io": "^2.0.3",
     "tinymce": "^4.6.5",
-    "zone.js": "^0.8.4"
+    "zone.js": "^0.8.4",
+    "typescript": "~2.2.0"
   },
   "devDependencies": {
     "@types/jasmine": "2.5.38",
@@ -59,7 +60,6 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.0",
     "ts-node": "~2.0.0",
-    "tslint": "~4.5.0",
-    "typescript": "~2.2.0"
+    "tslint": "~4.5.0"
   }
 }
