@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "heroku-postbuild": "ng build",
+    "ng": "ng",
     "start": "node server.js",
     "dev": "ng serve --host 0.0.0.0",
     "dev1": "ng serve --host 0.0.0.0 --port 4201",
