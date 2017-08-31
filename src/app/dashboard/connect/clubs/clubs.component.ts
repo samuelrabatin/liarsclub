@@ -4,6 +4,8 @@ import { AddClubComponent } from './add-club/add-club.component';
 
 import { MainService } from '../../../services/main.service';
 
+declare var $: any;
+
 @Component({
     moduleId: module.id,
     selector: 'clubs-cmp ',
@@ -41,5 +43,18 @@ export class ClubsComponent implements OnInit {
         },
         e => { console.log(e); this.mainService.loading = false; }
       );
+    }
+
+    private clubAdded() {
+      $.notify({
+        icon: 'notifications',
+        message: 'Your new club request is under review'
+      }, {
+        timer: 3000,
+        placement: {
+          from: 'top',
+          align: 'right'
+        }
+      });
     }
 }

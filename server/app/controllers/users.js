@@ -120,7 +120,7 @@ exports.checkToken = function(req, res) {
           res.json({type: false});
         } else {
           user.active = date2;
-          res.json({type: true, role: user.type, id: user._id});
+          res.json({type: true, role: user.type, id: user._id, name: user.name});
           user.save();
         }
       }

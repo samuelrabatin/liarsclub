@@ -13,7 +13,7 @@ exports.getClubs = function (req, res) {
     } else if ( user.type != 'admin' ) {
       return res.status(400).send('Forbidden');
     } else {
-      Club.find({}, null, {created_date: -1}, function(err, clubs) {
+      Club.find({}, null, {sort: {created: -1}}, function(err, clubs) {
         if (err) {
           return res.json({
             type: false,
@@ -38,7 +38,7 @@ exports.getConfirmedClubs = function (req, res) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
     } else {
-      Club.find({confirmed: true}, null, {created_date: -1}, function(err, clubs) {
+      Club.find({confirmed: true}, null, {sort: {created: -1}}, function(err, clubs) {
         if (err) {
           return res.json({
             type: false,
@@ -65,6 +65,7 @@ exports.addClub = function (req, res) {
     } else {
       var item = req.body;
       item.username = user.name;
+      item.userId = user._id;
       var club = new Club(item);
       club.save(function (err) {
         if (err) {
@@ -78,6 +79,61 @@ exports.addClub = function (req, res) {
             type: true,
             msg: 'Added'
           })
+        }
+      });
+    }
+  });
+};
+
+exports.updateClub = function (req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      var item = req.body;
+
+      Club.findOne({_id: item.club._id}, function(err, club) {
+        if (err || !club) {
+          return res.json({
+            type: false,
+            msg: err || "club not found"
+          });
+        } else {
+          var isAdmin = user.type == 'admin';
+          for (var i = 0; !isAdmin && i < club.taggedUsers.length; i++) {
+            if (club.taggedUsers[i].memberType == 'admin' && club.taggedUsers[i].confirmed && club.taggedUsers[i].userId.toString() == user._id.toString()) {
+              isAdmin = true;
+            }
+          }
+
+          if (isAdmin) {
+            for (key in item.club) {
+              club[key] = item.club[key];
+            }
+
+            club.save(function(err) {
+              if (err) {
+                return res.json({
+                  type: false,
+                  msg: err + " save failed"
+                });
+              } else {
+                return res.json({
+                  type: true,
+                  msg: "udpated"
+                });
+              }
+            });
+          } else {
+            return res.json({
+              type: false,
+              msg: "Forbidden"
+            });
+          }
         }
       });
     }
@@ -148,8 +204,6 @@ exports.getClubById = function(req, res) {
   User.findOne({ token: req.body.access_token }, function(err, user) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
-    } else if ( user.type != 'admin' ) {
-      return res.status(400).send('Forbidden');
     } else {
       Club.findOne({_id: req.body.id}, function(err, club) {
         if (err || !club) {
@@ -271,6 +325,7 @@ exports.tagClub = function(req, res) {
         } else if (findIndex(club.taggedUsers, user.name) == -1) {
           club.taggedUsers.push({
             user: user.name,
+            userId: user._id,
             memberState: req.body.memberState,
             memberType: req.body.memberType,
             taggedDate: new Date(),
@@ -323,8 +378,8 @@ exports.untagClub = function(req, res) {
             type: false,
             msg: err || 'club not found'
           });
-        } else if (findIndex(club.taggedUsers, user.name) != -1) {
-          var index = findIndex(club.taggedUsers, user.name);
+        } else if (findIndex(club.taggedUsers, user._id) != -1) {
+          var index = findIndex(club.taggedUsers, user._id);
           club.taggedUsers[index].memberState == 'active' ? club.activeMembers-- : club.pastMembers--;
           club.taggedUsers.splice(index, 1);
 
@@ -368,8 +423,8 @@ exports.untagFromAdmin = function(req, res) {
             type: false,
             msg: err || 'club not found'
           });
-        } else if (findIndex(club.taggedUsers, req.body.user) != -1) {
-          var index = findIndex(club.taggedUsers, req.body.user);
+        } else if (findIndex(club.taggedUsers, req.body.userId) != -1) {
+          var index = findIndex(club.taggedUsers, req.body.userId);
           club.taggedUsers[index].memberState == 'active' ? club.activeMembers-- : club.pastMembers--;
           club.taggedUsers.splice(index, 1);
 
@@ -399,7 +454,7 @@ exports.untagFromAdmin = function(req, res) {
 
 function findIndex(arr, user) {
   for (var i = 0; i < arr.length; i++) {
-    if (arr[i].user == user) {
+    if (arr[i].userId == user) {
       return i;
     }
   }

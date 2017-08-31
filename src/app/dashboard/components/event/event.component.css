@@ -1,0 +1,14 @@
+.event-container {
+  display: flex;
+  border: 1px solid #eee;
+  margin: 5px;
+  padding: 5px;
+}
+
+.has-error.event-container {
+  border-color: red;
+}
+
+i {
+  cursor: pointer;
+}

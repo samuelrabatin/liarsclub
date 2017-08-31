@@ -11,9 +11,12 @@ import { MainService } from '../../../services/main.service';
 })
 export class UploaderComponent implements OnInit {
   @Input('imgId') public imgId;
+  @Input('autoupload') autoupload;
+
   private uploader: CloudinaryUploader;
   private uploading = false;
   private isChanged = false;
+
 
   @Output() uploaded: EventEmitter<string> = new EventEmitter();
   @Output() changed: EventEmitter<string> = new EventEmitter();
@@ -52,6 +55,13 @@ export class UploaderComponent implements OnInit {
     this.isChanged = true;
     this.changed.emit('changed');
     this.uploading = true;
+
+    if (this.autoupload) {
+      this.uploadAll();
+    }
+  }
+
+  private uploadAll() {
     this.uploader.uploadAll();
   }
 }

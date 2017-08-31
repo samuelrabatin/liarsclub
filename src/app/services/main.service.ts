@@ -13,8 +13,9 @@ declare var $: any;
 
 @Injectable()
 export class MainService {
-  public apiUrl = 'https://liarsclubserver.herokuapp.com';
-  // public apiUrl = 'http://192.168.4.36:3000';
+  // public apiUrl = 'https://liarsclubserver.herokuapp.com';
+  public apiUrl = 'http://192.168.4.36:3000';
+  public jQuery = $;
 
   public loading;
   public cloudinaryUploadPresets = {
@@ -29,6 +30,7 @@ export class MainService {
   public name = 'User';
   public userRole = '';
   public userId = '';
+  public username = '';
   public avatarPublicId = '';
 
   public currentViewSetup;
@@ -186,6 +188,18 @@ export class MainService {
       .catch(this.handleError);
   }
 
+  public updateClub(club) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    const data = {
+      access_token: token,
+      club: club
+    };
+    return this.http.post(this.apiUrl + '/clubs/update/', data)
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   public updateUserTag(clubId, user) {
     this.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
@@ -256,10 +270,10 @@ export class MainService {
       .catch(this.handleError);
   }
 
-  public untagClubWithUsername(id, username) {
+  public untagClubWithUserId(id, userId) {
     this.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
-    return this.http.post(this.apiUrl + '/clubs/admin/untag/', {access_token: token, clubId: id, user: username})
+    return this.http.post(this.apiUrl + '/clubs/admin/untag/', {access_token: token, clubId: id, userId: userId})
       .map(this.extractData)
       .catch(this.handleError);
   }

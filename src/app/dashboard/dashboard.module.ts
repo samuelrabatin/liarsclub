@@ -30,6 +30,8 @@ import { PostItemComponent } from './components/view-topic/post-item/post-item.c
 import { PostReplyComponent } from './components/post-reply/post-reply.component';
 import { ReportedPostsListComponent } from './admin/manage-forums/reported-posts-list/reported-posts-list.component';
 import { ClubMembersListComponent } from './components/club-members-list/club-members-list.component';
+import { ClubDetailComponent } from './connect/clubs/club-detail/club-detail.component';
+import { EventComponent } from './components/event/event.component';
 
 @NgModule({
     imports: [
@@ -47,7 +49,7 @@ import { ClubMembersListComponent } from './components/club-members-list/club-me
     declarations: [ MODULE_COMPONENTS, ProfileComponent, AddEditComponent, ClubDetailLineComponent, UploaderComponent,
       AboutComponent, SetupDetailComponent, ManageSetupsComponent, AddForumComponent, ManageForumsComponent,
       ForumsListComponent, TopicsListComponent, PostsListComponent, AddDialogComponent, VIewTopicComponent,
-      PostItemComponent, PostReplyComponent, ReportedPostsListComponent, ClubMembersListComponent ]
+      PostItemComponent, PostReplyComponent, ReportedPostsListComponent, ClubMembersListComponent, ClubDetailComponent, EventComponent ]
 })
 
 export class DashboardModule {}

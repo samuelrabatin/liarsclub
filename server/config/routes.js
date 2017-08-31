@@ -51,6 +51,7 @@ module.exports = function (app, passport) {
   app.post('/clubs/approve/', clubs.approveClub);
   app.post('/clubs/reject/', clubs.rejectClub);
   app.post('/clubs/add/', clubs.addClub);
+  app.post('/clubs/update/', clubs.updateClub);
   app.post('/clubs/tag/', clubs.tagClub);
   app.post('/clubs/remove/', clubs.removeClub);
   app.post('/clubs/untag/', clubs.untagClub);

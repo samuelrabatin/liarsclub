@@ -29,17 +29,6 @@ export class ManageClubsComponent implements OnInit {
 
   }
 
-  public tblClicked(evt) {
-    if (evt.target.tagName === 'BUTTON') {
-      const clubId = evt.target.getAttribute('club-id');
-      const username = evt.target.getAttribute('username');
-      this.mainService.untagClubWithUsername(clubId, username).subscribe(
-        d => { this.getClubs(); },
-        e => { console.log(e); }
-      );
-    }
-  }
-
   private approveClub(clubId) {
     this.mainService.approveClub(clubId).subscribe(
       d => {
@@ -64,5 +53,28 @@ export class ManageClubsComponent implements OnInit {
         console.log(e);
       }
     );
+  }
+
+  private deleteClub(clubId) {
+    this.mainService.removeClub(clubId).subscribe(
+      d => {
+        if (d.type) {
+          this.getClubs();
+        }
+      },
+      e => {
+        console.log(e);
+      }
+    );
+  }
+
+  private waitingMsg(club) {
+    if (club.tagWaitingMembers === 1) {
+      return '(one is waiting for approval)';
+    } else if (club.tagWaitingMembers > 1) {
+      return `(${club.tagWaitingMembers} are waiting for approval)`;
+    } else {
+      return '';
+    }
   }
 }

@@ -30,7 +30,6 @@ export class StorageService {
     this.getAllTopics();
     this.getAllUsers();
     this.getAllVotings();
-    this.getClubs();
     this.getConfirmedForums();
     this.getConfirmedTopics();
     this.getProfileData();

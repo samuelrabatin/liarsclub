@@ -32,6 +32,8 @@ import { AboutComponent } from './about/about.component';
 import { VIewTopicComponent } from './components/view-topic/view-topic.component';
 import { ClubMembersListComponent } from './components/club-members-list/club-members-list.component';
 
+import { ClubDetailComponent } from './connect/clubs/club-detail/club-detail.component';
+
 //
 export const MODULE_ROUTES: Route[] = [
   { path: 'home', component: HomeComponent },
@@ -61,8 +63,11 @@ export const MODULE_ROUTES: Route[] = [
   { path: 'admin/forums', component: ManageForumsComponent },
   { path: 'about', component: AboutComponent },
 
+  { path: 'connect/clubs/club/:id', component: ClubDetailComponent },
+
   { path: '**', redirectTo: 'home' },
 ]
+
 //
 export const MODULE_COMPONENTS = [
     HomeComponent,

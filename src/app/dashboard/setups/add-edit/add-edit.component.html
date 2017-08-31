@@ -8,7 +8,7 @@
         <form (submit)="saveSetup()">
           <div class="row">
             <div class="col-xs-12 setup-image">
-              <app-uploader [imgId]="imgId" (changed)="uploading = true;" (uploaded)="mainImgUploaded($event)" #mainUploader></app-uploader>
+              <app-uploader [imgId]="imgId" (changed)="uploading = true;" (uploaded)="mainImgUploaded($event)" [autoupload]="true" #mainUploader></app-uploader>
             </div>
             <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
               <div class="form-group label-floating col-lg-12 col-md-12 col-sm-12">
@@ -111,7 +111,7 @@
                 <i class="material-icons pull-right" (click)="removeRole(ii)">delete</i>
                 <i class="material-icons pull-right" (click)="roleDown(ii)" *ngIf="ii != roles.length - 1">arrow_downward</i>
                 <i class="material-icons pull-right" (click)="roleUp(ii)" *ngIf="ii != 0">arrow_upward</i>
-                <app-uploader class="col-md-2 col-lg-2 col-sm-2" [imgId]="role.imgId" (changed)="uploaders[ii] = true" (uploaded)="roleImgUploaded(ii, $event);"></app-uploader>
+                <app-uploader class="col-md-2 col-lg-2 col-sm-2" [imgId]="role.imgId" (changed)="uploaders[ii] = true" [autoupload]="true" (uploaded)="roleImgUploaded(ii, $event);"></app-uploader>
                 <div class="col-md-10 col-lg-10 col-sm-10">
                   <div class="col-lg-6 col-md-6 col-sm-6 roles-names form-group">
                     <label class="control-label">Role Name</label>

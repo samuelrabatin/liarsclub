@@ -15,22 +15,9 @@ declare var google: any;
   styleUrls: ['./add-club.component.css']
 })
 export class AddClubComponent implements OnInit {
-  @ViewChild('clubName') clubName;
-  @ViewChild('clubAddress') clubAddress;
-  @ViewChild('clubImg') clubImg;
-  @ViewChild('irregulary') irregulary;
-  @ViewChild('regularly') regularly;
-  @ViewChild('repeatPeriod') repeatPeriod;
-  @ViewChild('repeatType') repeatType;
-  @ViewChild('dayOfWeek') dayOfWeek;
-  @ViewChild('time') time;
-  @ViewChild('phsicalLocation') phsicalLocation;
-  @ViewChild('email') email;
-  @ViewChild('websiteLink') websiteLink;
-  @ViewChild('facebookLink') facebookLink;
-
-  private imgUrl;
   private imgChanged = false;
+
+  private club: any;
 
   private uploader: CloudinaryUploader;
 
@@ -49,7 +36,7 @@ export class AddClubComponent implements OnInit {
     this.uploader.onSuccessItem = ( item, response, status, headers) => {
       const img = JSON.parse(response);
 
-      this.imgUrl = img.public_id;
+      this.club.imgUrl = img.public_id;
 
       return {item, response, status, headers};
     };
@@ -70,6 +57,22 @@ export class AddClubComponent implements OnInit {
           align: 'right'
         }
       });
+    };
+
+    this.club = {
+      title: '',
+      address: '',
+      type: '',
+      imgUrl: '',
+      regularType: '',
+      regularPeriod: '',
+      dayOfWeek: '',
+      time: '',
+      starting: '',
+      location: '',
+      email: '',
+      websiteLink: '',
+      facebookLink: ''
     };
   }
 
@@ -116,6 +119,7 @@ export class AddClubComponent implements OnInit {
 
           $('#clubAddress').val(results[1].formatted_address);
           $('#clubAddress').parent().removeClass('is-empty');
+          $('#clubAddress').parent().removeClass('has-error');
 
           const map = new google.maps.Map(document.getElementById('regularMap'), mapOptions);
           map.addListener('click', window.addClubComponent.mapLocationChange);
@@ -131,48 +135,42 @@ export class AddClubComponent implements OnInit {
   }
 
   private save() {
-    const club = {
-      title: this.clubName.nativeElement.value,
-      address: this.clubAddress.nativeElement.value,
-      type: this.regularly.nativeElement.checked ? 'Regularly' : 'Irreglarly',
-      imgUrl: this.imgUrl,
-      regularType: this.repeatType.nativeElement.value,
-      regularPeriod: this.repeatPeriod.nativeElement.value,
-      dayOfWeek: this.dayOfWeek.nativeElement.value,
-      time: this.time.nativeElement.value,
-      starting: this.time.nativeElement.value,
-      location: this.phsicalLocation.nativeElement.value,
-      activeMembers: 0,
-      pastMembers: 0
-    };
+    console.log(this.club);
 
-    const requireInputs = $('input,select').filter('[required]:visible');
-    requireInputs.map((index, val) => {
-      $(val).val() === '' ? $(val).parent().addClass('has-error') : $(val).parent().removeClass('has-error');
-    });
+    this.mainService.addClub(this.club).subscribe(
+      d => {
+        this.mainService.loading = false;
 
-    if ($('.has-error').length === 0) {
-      this.mainService.addClub(club).subscribe(
-        d => {
-          this.mainService.loading = false;
-          this.clubAdded.emit('club added');
-        },
-        e => {
-          this.mainService.loading = false;
-          console.log(e);
-        }
-      );
-    }
+        this.club = {
+          title: '',
+          address: '',
+          type: '',
+          imgUrl: '',
+          regularType: '',
+          regularPeriod: '',
+          dayOfWeek: '',
+          time: '',
+          starting: '',
+          location: '',
+          email: '',
+          websiteLink: '',
+          facebookLink: ''
+        };
+        this.clubAdded.emit('club added');
+      },
+      e => {
+        this.mainService.loading = false;
+        console.log(e);
+      }
+    );
 
     return false;
   }
 
   addClub(evt) {
     if (this.imgChanged) {
-      console.log('ch');
       this.uploader.uploadAll();
     } else {
-      console.log('unch')
       this.save();
     }
 
@@ -202,5 +200,9 @@ export class AddClubComponent implements OnInit {
       } else {
       }
     });
+  }
+
+  private timeChanged(evt) {
+    this.club.time = evt.target.value;
   }
 }

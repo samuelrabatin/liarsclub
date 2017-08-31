@@ -58,6 +58,7 @@
   display: block;
 }
 
-i.delete-icon {
+i {
   margin-left: 7px;
+  color: black;
 }

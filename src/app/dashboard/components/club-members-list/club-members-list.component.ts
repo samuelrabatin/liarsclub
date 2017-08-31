@@ -101,4 +101,17 @@ export class ClubMembersListComponent implements OnInit, AfterViewChecked {
       }
     );
   }
+
+  private removeTag(user) {
+    this.mainService.untagClubWithUserId(this.clubId, user.userId).subscribe(
+      d => {
+        if (d.type) {
+          this.getClub();
+        }
+      },
+      e => {
+        console.log(e);
+      }
+    );
+  }
 }

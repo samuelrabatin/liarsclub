@@ -28,6 +28,7 @@ export class AppComponent implements OnInit{
               } else {
                 this.mainService.userRole = d.role;
                 this.mainService.userId = d.id;
+                this.mainService.username = d.name;
               }
               this.mainService.loading = false;
             },

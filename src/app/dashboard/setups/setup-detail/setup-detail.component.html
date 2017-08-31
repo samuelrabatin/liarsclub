@@ -25,7 +25,7 @@
           <div class="row">
             <div class="">
               <div class="col-sm-12 col-xs-12 setup-image">
-                <cl-image data-u="image" public-id="{{setup.imgId}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="200" width="280" format="jpg">
+                <cl-image data-u="image" public-id="{{setup.imgId}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="200" width="280" format="gif">
                 </cl-image>
               </div>
               <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
@@ -87,7 +87,7 @@
             <div class="roles-list card-content">
               <div class="row" *ngFor="let role of filterIndividualRole(); let ii = index;" [ngStyle]="getBorderColor(role)">
                 <div class="col-md-2 col-lg-2 col-sm-2">
-                  <cl-image data-u="image" public-id="{{role.imgId}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="jpg">
+                  <cl-image data-u="image" public-id="{{role.imgId}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="560" width="860" format="gif">
                   </cl-image>
                 </div>
                 <div class="col-md-10 col-lg-10 col-sm-10">

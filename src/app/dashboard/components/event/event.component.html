@@ -1,0 +1,24 @@
+<div [class]="datafilled ? 'event-container' : 'event-container has-error'">
+  <div class="featured-image col-xs-12 col-sm-4">
+    <app-uploader [imgId]="event.imgUrl" [autoupload]="true" (uploaded)="imageUpdated($event)"></app-uploader>
+  </div>
+  <div class="event-detail col-xs-12 col-sm-8">
+    <i class="material-icons pull-right" (click)="deleteEvent()">delete</i>
+    <div class="form-group ">
+      <label class="control-label">Title</label>
+      <input class="form-control" [(ngModel)]="event.title" (change)="eventUpdated()" />
+    </div>
+    <div class="form-group ">
+      <label class="control-label">Date</label>
+      <input class="form-control event-date-picker" [(ngModel)]="event.date" (blur)="timeChanged($event)" />
+    </div>
+    <div class="form-group ">
+      <label class="control-label">Location</label>
+      <input class="form-control" required [(ngModel)]="event.location" (change)="eventUpdated()" />
+    </div>
+    <div class="form-group ">
+      <label class="control-label">Description</label>
+      <input class="form-control" required [(ngModel)]="event.description" (change)="eventUpdated()" />
+    </div>
+  </div>
+</div>

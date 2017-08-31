@@ -3,16 +3,16 @@
     <legend>Add a Club</legend>
   </div>
   <div class="card-content">
-    <form>
+    <form (submit)="addClub($event)">
       <div class="row">
         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
           <div class="form-group label-floating">
             <label class="control-label">Club Name</label>
-            <input class="form-control" required #clubName />
+            <input class="form-control" required [(ngModel)]="club.title" name="title" />
           </div>
           <div class="form-group label-floating">
             <label class="control-label">Club Address</label>
-            <input class="form-control" id="clubAddress" #clubAddress required (keyup)="locationChange($event)" />
+            <input class="form-control" id="clubAddress" [(ngModel)]="club.address" name="address" required (keyup)="locationChange($event)"/>
           </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -25,7 +25,7 @@
               <span class="btn btn-rose btn-round btn-file btn-sm">
                   <span class="fileinput-new">Select image</span>
                   <span class="fileinput-exists">Select image</span>
-                  <input type="file" name="..." #clubImg ng2FileSelect [uploader]="uploader" (change)="imgChanged = true" />
+                  <input type="file" name="..." ng2FileSelect [uploader]="uploader" (change)="imgChanged = true" />
               </span>
             </div>
           </div>
@@ -51,31 +51,31 @@
                 <div class="row">
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 checkbox">
                     <label>
-                      <input type="checkbox" #irregulary>  Irregularly
+                      <input type="checkbox" [(ngModel)]="club.irregularly" name="type">  Irregularly
                     </label>
                   </div>
                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 checkbox">
                     <label>
-                      <input type="checkbox" #regularly>  Regularly
+                      <input type="checkbox" [(ngModel)]="club.regularly" name="type">  Regularly
                     </label>
                   </div>
                 </div>
                 <div class="row repeat">
                   <label class="col-sm-2 label-on-left">Every</label>
                   <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 m-t-m-15">
-                    <input type="number" min="1" class="form-control" value="1" #repeatPeriod required>
+                    <input type="number" min="1" class="form-control" value="1" required [(ngModel)]="club.regularPeriod" name="regularPeriod">
                   </div>
                   <div class="col-lg-8 col-md-8 col-sm-6 col-xs-6 m-t-m-10">
-                    <select class="selectpicker" data-style="select-with-transition" required #repeatType>
-                      <option>weeks</option>
-                      <option>months</option>
+                    <select class="selectpicker" data-style="select-with-transition" required [(ngModel)]="club.regularType" name="regularType">
+                      <option value="weeks">weeks</option>
+                      <option value="months">months</option>
                     </select>
                   </div>
                 </div>
                 <div class="row repeat">
                   <label class="col-sm-2 label-on-left">On</label>
                   <div class="col-lg-10">
-                    <select class="selectpicker" multiple data-style="select-with-transition" required #dayOfWeek>
+                    <select class="selectpicker" multiple data-style="select-with-transition" required [(ngModel)]="club.dayOfWeek" name="dayOfWeek">
                       <option>Sunday</option>
                       <option>Monday</option>
                       <option>Tuesday</option>
@@ -89,7 +89,7 @@
                 <div class="row repeat">
                   <label class="col-sm-2 label-on-left">At</label>
                   <div class="col-md-10 m-t-m-15">
-                    <input type="text"class="form-control timepicker" #time>
+                    <input type="text"class="form-control timepicker" (blur)="timeChanged($event)" [(ngModel)]="club.time" name="time">
                   </div>
                 </div>
               </div>
@@ -100,23 +100,23 @@
       <div class="row">
         <div class="form-group label-floating">
           <label class="control-label">Physical Location</label>
-          <input class="form-control" id="physicalLocation" required #phsicalLocation />
+          <input class="form-control" id="physicalLocation" required [(ngModel)]="club.location" name="location" />
         </div>
         <div class="form-group label-floating">
           <label class="control-label">Email address</label>
-          <input class="form-control" type="email" required #email />
+          <input class="form-control" type="email" required [(ngModel)]="club.email" name="email" />
         </div>
         <div class="form-group label-floating">
           <label class="control-label">Link to website</label>
-          <input class="form-control" #websiteLink />
+          <input class="form-control" [(ngModel)]="club.websiteLink" name="websiteLink" />
         </div>
         <div class="form-group label-floating">
           <label class="control-label">Link to Facebook page</label>
-          <input class="form-control" #facebookLink />
+          <input class="form-control" [(ngModel)]="club.facebookLink" name="facebookLink" />
         </div>
       </div>
 
-      <a (click)="addClub($event)" class="btn btn-fill btn-rose pull-right" >Submit</a>
+      <input type="submit" class="btn btn-fill btn-rose pull-right" value="Create New Club">
     </form>
   </div>
 </div>

@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
           this.mainService.loading = false;
           localStorage.setItem('username', this.username.nativeElement.value);
           localStorage.setItem('liarsclubtoken', d.data.token);
-          this.mainService.userRole = d.data.type;
           this.loginFaildMsg = '';
 
           this.mainService.getProfileData().subscribe(

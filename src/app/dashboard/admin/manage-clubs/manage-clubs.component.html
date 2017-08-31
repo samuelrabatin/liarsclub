@@ -18,12 +18,12 @@
               </thead>
               <tbody>
                 <tr *ngFor="let club of clubs; let idx = index;">
-                  <td class="text-left">{{club.title}}</td>
+                  <td class="text-left"><a [routerLink]="['/connect/clubs/club/' + club._id]">{{club.title}}</a></td>
                   <td class="text-left">{{club.username}}</td>
                   <td class="text-left">{{mainService.getDateString(club.created)}}</td>
                   <td class="text-center">{{club.location}}</td>
                   <td class="text-center">{{club.address}}</td>
-                  <td class="text-center"><a [routerLink]="['userslist/' + club._id]">{{club.pastMembers + club.activeMembers + club.tagWaitingMembers}}</a></td>
+                  <td class="text-center"><a [routerLink]="['userslist/' + club._id]">{{club.pastMembers + club.activeMembers}} {{waitingMsg(club)}}</a></td>
                   <td class="text-center">
                     <button class="btn btn-success btn-xs" *ngIf="!club.confirmed" (click)="approveClub(club._id)">
                       <i class="material-icons">check</i>
