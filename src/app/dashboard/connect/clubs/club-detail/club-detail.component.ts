@@ -191,8 +191,10 @@ export class ClubDetailComponent implements OnInit, AfterViewChecked {
           if (this.club.events) {
             for (const event of this.club.events) {
               const eventDate = new Date(event.date);
-              const today = new Date();
+              let today = new Date();
+              today = new Date(today.toUTCString());
               if (today.getTime() < eventDate.getTime()) {
+                event.defaultEvt = true;
                 this.upcomingEvents.push(event);
 
                 this.orgUpcomingEvents.push({
@@ -246,6 +248,7 @@ export class ClubDetailComponent implements OnInit, AfterViewChecked {
   }
 
   private save() {
+    this.club.events = this.upcomingEvents.slice();
     this.mainService.updateClub(this.club).subscribe(
       d => {
         if (d.type) {
@@ -305,6 +308,7 @@ export class ClubDetailComponent implements OnInit, AfterViewChecked {
       location: '',
       imgUrl: '',
       description: '',
+      notificationText: '',
       createdUserId: this.mainService.userId,
       createdDate: new Date()
     };

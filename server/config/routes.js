@@ -12,6 +12,7 @@ const forums = require('../app/controllers/forums/forums');
 const topics = require('../app/controllers/forums/topics');
 const posts = require('../app/controllers/forums/posts');
 const reportedposts = require('../app/controllers/forums/reportedposts');
+const notifications = require('../app/controllers/notifications');
 
 /**
  * Expose
@@ -105,6 +106,8 @@ module.exports = function (app, passport) {
   app.post('/forums/reportpostbyid/', reportedposts.reportTest);
   app.post('/forums/getreportposts/', reportedposts.getReportedPosts);
   app.post('/forums/deletereportedpostbyid/', reportedposts.deleteReportedTest);
+
+  app.post('/notifications/get/', notifications.getNotification);
 
   /**
    * Error handling

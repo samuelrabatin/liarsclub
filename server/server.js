@@ -25,24 +25,11 @@ const port = process.env.PORT || 3000;
 var app = require('express')();
 var server = require('http').createServer(app);
 
-var io = require('socket.io')(server);
-io.on('connection', function(client){
-  console.log(client);
-  client.on('event', function(data){});
-  client.on('disconnect', function(){});
-});
-
 const connection = connect();
 
 /**
  * Expose
  */
-
-module.exports = {
-  app,
-  connection,
-  io
-};
 
 // Bootstrap models
 fs.readdirSync(models)
@@ -71,3 +58,36 @@ function connect () {
   var connection = mongoose.connect(config.db, options).connection;
   return connection;
 }
+
+//    Create web socket server
+var io = require('socket.io')(server);
+const notificationCtrl = require('./app/controllers/notifications');
+
+io.on('connection', function(socket) {
+  console.log('USER CONNECTED');
+
+  socket.on('disconnect', function(){
+    console.log('USER DISCONNECTED');
+  });
+
+  socket.on('add-message', function(message) {
+    io.emit('message', {type:'new-message', text: message});
+  });
+
+  socket.on('userid', function(id) {
+    notificationCtrl.addClient(id, socket);
+  });
+});
+
+
+module.exports = {
+  app: app,
+  connection: connection,
+  io: io
+};
+
+
+setInterval(function() {
+  notificationCtrl.checkEvents();
+}, 50000);
+

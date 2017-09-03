@@ -25,7 +25,7 @@ export class EventComponent implements OnInit, AfterViewChecked {
 
   private initDatePicker() {
     this.mainService.jQuery('.event-date-picker').datetimepicker({
-      format: 'MM/DD/YYYY',
+      format: 'MM/DD/YYYY h:mm A',
       icons: {
         time: 'fa fa-clock-o',
         date: 'fa fa-calendar',
@@ -49,7 +49,8 @@ export class EventComponent implements OnInit, AfterViewChecked {
     const today = new Date();
     const newDate = new Date(evt.target.value);
 
-    this.event.date = this.mainService.getDateString(today.getTime() > newDate.getTime() ? new Date(today.getTime() + 1000 * 60 * 60 * 24)
+    this.event.date = this.mainService.getDateTimeString(today.getTime() > newDate.getTime()
+      ? new Date(today.getTime() + 1000 * 60 * 60 * 24)
       : new Date(evt.target.value));
 
     this.eventUpdated();

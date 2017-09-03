@@ -3,22 +3,26 @@
     <app-uploader [imgId]="event.imgUrl" [autoupload]="true" (uploaded)="imageUpdated($event)"></app-uploader>
   </div>
   <div class="event-detail col-xs-12 col-sm-8">
-    <i class="material-icons pull-right" (click)="deleteEvent()">delete</i>
+    <i class="material-icons pull-right" (click)="deleteEvent()" *ngIf="event.createdUserId == mainService.userId">delete</i>
     <div class="form-group ">
       <label class="control-label">Title</label>
-      <input class="form-control" [(ngModel)]="event.title" (change)="eventUpdated()" />
+      <input class="form-control" [(ngModel)]="event.title" (change)="eventUpdated()" [readonly]="event.defaultEvt" />
     </div>
     <div class="form-group ">
       <label class="control-label">Date</label>
-      <input class="form-control event-date-picker" [(ngModel)]="event.date" (blur)="timeChanged($event)" />
+      <input class="form-control event-date-picker" [(ngModel)]="event.date" (blur)="timeChanged($event)" [readonly]="event.defaultEvt" />
     </div>
     <div class="form-group ">
       <label class="control-label">Location</label>
-      <input class="form-control" required [(ngModel)]="event.location" (change)="eventUpdated()" />
+      <input class="form-control" required [(ngModel)]="event.location" (change)="eventUpdated()" [readonly]="event.defaultEvt" />
     </div>
     <div class="form-group ">
       <label class="control-label">Description</label>
       <input class="form-control" required [(ngModel)]="event.description" (change)="eventUpdated()" />
+    </div>
+    <div class="form-group ">
+      <label class="control-label">Notification Text</label>
+      <input class="form-control" required [(ngModel)]="event.notificationText" (change)="eventUpdated()" [readonly]="event.defaultEvt" />
     </div>
   </div>
 </div>

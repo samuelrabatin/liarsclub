@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response  } from '@angular/http';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { Socket } from 'ng2-socket-io';
+import { SocketService } from './socket.service';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/catch';
@@ -13,8 +13,8 @@ declare var $: any;
 
 @Injectable()
 export class MainService {
-  // public apiUrl = 'https://liarsclubserver.herokuapp.com';
-  public apiUrl = 'http://192.168.4.36:3000';
+  public apiUrl = 'https://liarsclubserver.herokuapp.com';
+  // public apiUrl = 'http://192.168.4.36:3000';
   public jQuery = $;
 
   public loading;
@@ -415,6 +415,15 @@ export class MainService {
     this.loading = true;
     const token = localStorage.getItem('liarsclubtoken');
     return this.http.post(this.apiUrl + '/forums/updateforumsorder/', {access_token: token, forums: forums})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  // -----    Notifications API   ----- //
+  public getNotifications() {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/notifications/get/', {access_token: token})
       .map(this.extractData)
       .catch(this.handleError);
   }

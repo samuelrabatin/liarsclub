@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 
 import { MainService } from './services/main.service';
+import { SocketService } from './services/socket.service';
 
 declare var $: any;
 @Component({
@@ -11,11 +12,11 @@ declare var $: any;
     styleUrls: ['app.component.css']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
     location: Location;
     private isUsers = true;
 
-    constructor(location: Location, private mainService: MainService, private router: Router) {
+    constructor(location: Location, private mainService: MainService, private router: Router, private socketService: SocketService) {
         this.location = location;
 
         router.events.subscribe((val: any) => {
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit{
               } else {
                 this.mainService.userRole = d.role;
                 this.mainService.userId = d.id;
+                this.socketService.sendMessage('userid', d.id);
                 this.mainService.username = d.name;
               }
               this.mainService.loading = false;

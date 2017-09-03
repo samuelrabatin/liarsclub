@@ -4,14 +4,19 @@ import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar.component';
 
 import { MainService } from '../../services/main.service';
+import { SocketService } from '../../services/socket.service';
 
 @NgModule({
-    imports: [
-      RouterModule,
-      CommonModule
-    ],
-    declarations: [ NavbarComponent ],
-    exports: [ NavbarComponent ]
+  imports: [
+    RouterModule,
+    CommonModule
+  ],
+  declarations: [ NavbarComponent ],
+  exports: [ NavbarComponent ],
+  providers: [
+    MainService,
+    SocketService
+  ]
 })
 
 export class NavbarModule {}
