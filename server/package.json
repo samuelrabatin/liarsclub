@@ -30,18 +30,21 @@
     "express-session": "~1.15.1",
     "express-ws": "^3.0.0",
     "forever": "~0.15.1",
+    "gmail-send": "^1.2.11",
     "jade": "~1.11.0",
     "jsonwebtoken": "^7.4.1",
     "method-override": "~2.3.5",
     "mongoose": "~4.11.0",
     "mongoose-user": "~0.0.1",
     "morgan": "~1.8.1",
+    "nodemailer": "^4.1.0",
     "passport": "~0.3.2",
     "passport-local": "~1.0.0",
     "rand-token": "^0.3.0",
     "socket.io": "^2.0.3",
     "view-helpers": "~0.1.5",
-    "winston": "~2.3.0"
+    "winston": "~2.3.0",
+    "gmail-send": "^1.2.11"
   },
   "devDependencies": {
     "babel-eslint": "~7.2.1",

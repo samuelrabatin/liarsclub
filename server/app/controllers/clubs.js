@@ -1,5 +1,6 @@
 const Club = require('../models/club');
 const User = require('../models/user');
+const Notification = require('../controllers/notifications');
 var jwt = require("jsonwebtoken");
 
 exports.getClubs = function (req, res) {
@@ -446,6 +447,30 @@ exports.untagFromAdmin = function(req, res) {
             type: false,
             msg: 'already untagged'
           });
+        }
+      });
+    }
+  });
+};
+
+exports.sendNotificationNow = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  }
+
+  User.findOne({ token: req.body.access_token }, function(err, user) {
+    if (err || !user) {
+      return res.status(400).send('Authentication failed');
+    } else {
+      Club.findOne({_id: req.body.event.clubId}, function(err1, club) {
+        if (err || !club) {
+          console.log('sendNotificationNow err: ', err1);
+          return res.json({type: false});
+        } else {
+          for (var userIndex = 0; userIndex < club.taggedUsers.length; userIndex++) {
+            Notification.addNotification("event", req.body.event, club.taggedUsers[userIndex].userId);
+          }
+          return res.json({type: true, msg: 'notification sent'});
         }
       });
     }

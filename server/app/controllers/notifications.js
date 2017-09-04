@@ -26,13 +26,6 @@ function add(type, text, userId) {
   });
 }
 
-function currentUTCTime() {
-  var now = new Date();
-  now = new Date(now.toUTCString());
-
-  return now;
-}
-
 exports.checkEvents = function() {
   Club.find({}, function(err, clubs) {
     if (err || !clubs) {
@@ -43,10 +36,10 @@ exports.checkEvents = function() {
       for (var i = 0; i < clubs.length; i++) {
         for (var j = 0; j < clubs[i].events.length; j++) {
           var event = clubs[i].events[j];
-          var now = currentUTCTime();
-          var eventDate = new Date(event.date);
+          var now = new Date();
+          var eventDate = new Date(event.notifyDate);
 
-          if (eventDate.getTime() - now.getTime() < 1000 * 60 * 10 * 6 * 24 && !event.notificationSent) {
+          if (eventDate.getTime() - now.getTime() < 1000 * 60 && !event.notificationSent) {
             for (var userIndex = 0; userIndex < clubs[i].taggedUsers.length; userIndex++) {
               add("event", event, clubs[i].taggedUsers[userIndex].userId);
             }
@@ -65,7 +58,7 @@ exports.checkEvents = function() {
 };
 
 exports.addNotification = function(type, text, userId) {
-  addNotification(type, text, userId);
+  add(type, text, userId);
 };
 
 exports.getNotification = function (req, res) {
@@ -79,9 +72,9 @@ exports.getNotification = function (req, res) {
     } else {
       Notification.find({userId: user._id}, null, {sort: {createdDate: -1}}, function(err, notifications) {
         if (err || !notifications) {
-          res.json({type: false, msg: "err: " + err});
+          return res.json({type: false, msg: "err: " + err});
         } else {
-          res.json({type: true, notifications: notifications});
+          return res.json({type: true, notifications: notifications});
         }
       });
     }

@@ -382,6 +382,13 @@ var MainService = (function () {
             .map(this.extractData)
             .catch(this.handleError);
     };
+    MainService.prototype.sendNotification = function (event) {
+        this.loading = true;
+        var token = localStorage.getItem('liarsclubtoken');
+        return this.http.post(this.apiUrl + '/clubs/sendnotificationnow/', { access_token: token, event: event })
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
     /////////////////////////////////////////////////////////////////////
     MainService.prototype.validateUsertoken = function () {
         this.loading = false;
@@ -1868,6 +1875,8 @@ var ClubDetailComponent = (function () {
             imgUrl: '',
             description: '',
             notificationText: '',
+            notifyDate: '',
+            clubId: this.clubId,
             createdUserId: this.mainService.userId,
             createdDate: new Date()
         };
@@ -3897,12 +3906,22 @@ var EventComponent = (function () {
             : new Date(evt.target.value));
         this.eventUpdated();
     };
+    EventComponent.prototype.notifyTimeChanged = function (evt) {
+        this.event.notifyDate = this.mainService.getDateTimeString(new Date(evt.target.value));
+        this.eventUpdated();
+    };
     EventComponent.prototype.imageUpdated = function (imgUrl) {
         this.event.imgUrl = imgUrl;
         this.updated.emit(this.event);
     };
     EventComponent.prototype.deleteEvent = function () {
         this.delete.emit('delete');
+    };
+    EventComponent.prototype.sendNotification = function () {
+        this.mainService.sendNotification(this.event).subscribe(function (d) {
+        }, function (e) {
+            console.log(e);
+        });
     };
     return EventComponent;
 }());
@@ -6320,7 +6339,7 @@ module.exports = "<div class=\"main-content club-members-list\">\n  <div class=\
 /* 366 */
 /***/ (function(module, exports) {
 
-module.exports = "<div [class]=\"datafilled ? 'event-container' : 'event-container has-error'\">\n  <div class=\"featured-image col-xs-12 col-sm-4\">\n    <app-uploader [imgId]=\"event.imgUrl\" [autoupload]=\"true\" (uploaded)=\"imageUpdated($event)\"></app-uploader>\n  </div>\n  <div class=\"event-detail col-xs-12 col-sm-8\">\n    <i class=\"material-icons pull-right\" (click)=\"deleteEvent()\" *ngIf=\"event.createdUserId == mainService.userId\">delete</i>\n    <div class=\"form-group \">\n      <label class=\"control-label\">Title</label>\n      <input class=\"form-control\" [(ngModel)]=\"event.title\" (change)=\"eventUpdated()\" [readonly]=\"event.defaultEvt\" />\n    </div>\n    <div class=\"form-group \">\n      <label class=\"control-label\">Date</label>\n      <input class=\"form-control event-date-picker\" [(ngModel)]=\"event.date\" (blur)=\"timeChanged($event)\" [readonly]=\"event.defaultEvt\" />\n    </div>\n    <div class=\"form-group \">\n      <label class=\"control-label\">Location</label>\n      <input class=\"form-control\" required [(ngModel)]=\"event.location\" (change)=\"eventUpdated()\" [readonly]=\"event.defaultEvt\" />\n    </div>\n    <div class=\"form-group \">\n      <label class=\"control-label\">Description</label>\n      <input class=\"form-control\" required [(ngModel)]=\"event.description\" (change)=\"eventUpdated()\" />\n    </div>\n    <div class=\"form-group \">\n      <label class=\"control-label\">Notification Text</label>\n      <input class=\"form-control\" required [(ngModel)]=\"event.notificationText\" (change)=\"eventUpdated()\" [readonly]=\"event.defaultEvt\" />\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div [class]=\"datafilled ? 'event-container' : 'event-container has-error'\">\n  <div class=\"featured-image col-xs-12 col-sm-4\">\n    <app-uploader [imgId]=\"event.imgUrl\" [autoupload]=\"true\" (uploaded)=\"imageUpdated($event)\"></app-uploader>\n  </div>\n  <div class=\"event-detail col-xs-12 col-sm-8\">\n    <i class=\"material-icons pull-right\" (click)=\"deleteEvent()\" *ngIf=\"event.createdUserId == mainService.userId\">delete</i>\n    <div class=\"form-group \">\n      <label class=\"control-label\">Title</label>\n      <input class=\"form-control\" [(ngModel)]=\"event.title\" (change)=\"eventUpdated()\" [readonly]=\"event.defaultEvt\" />\n    </div>\n    <div class=\"form-group \">\n      <label class=\"control-label\">Date</label>\n      <input class=\"form-control event-date-picker\" [(ngModel)]=\"event.date\" (blur)=\"timeChanged($event)\" [readonly]=\"event.defaultEvt\" />\n    </div>\n    <div class=\"form-group \">\n      <label class=\"control-label\">Location</label>\n      <input class=\"form-control\" required [(ngModel)]=\"event.location\" (change)=\"eventUpdated()\" [readonly]=\"event.defaultEvt\" />\n    </div>\n    <div class=\"form-group \">\n      <label class=\"control-label\">Description</label>\n      <input class=\"form-control\" required [(ngModel)]=\"event.description\" (change)=\"eventUpdated()\" />\n    </div>\n    <div class=\"form-group \">\n      <label class=\"control-label\">Notification Text</label>\n      <input class=\"form-control\" required [(ngModel)]=\"event.notificationText\" (change)=\"eventUpdated()\" [readonly]=\"event.defaultEvt\" />\n    </div>\n    <div class=\"form-group \">\n      <label class=\"control-label\">Notification Sending Date</label>\n      <input class=\"form-control event-date-picker\" [(ngModel)]=\"event.notifyDate\" (blur)=\"notifyTimeChanged($event)\" [readonly]=\"event.defaultEvt\" />\n    </div>\n    <button class=\"btn btn-success btn-sm pull-right\" (click)=\"sendNotification()\">Send Notification Now</button>\n  </div>\n</div>\n"
 
 /***/ }),
 /* 367 */

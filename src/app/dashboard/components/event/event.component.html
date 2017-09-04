@@ -24,5 +24,10 @@
       <label class="control-label">Notification Text</label>
       <input class="form-control" required [(ngModel)]="event.notificationText" (change)="eventUpdated()" [readonly]="event.defaultEvt" />
     </div>
+    <div class="form-group ">
+      <label class="control-label">Notification Sending Date</label>
+      <input class="form-control event-date-picker" [(ngModel)]="event.notifyDate" (blur)="notifyTimeChanged($event)" [readonly]="event.defaultEvt" />
+    </div>
+    <button class="btn btn-success btn-sm pull-right" (click)="sendNotification()">Send Notification Now</button>
   </div>
 </div>

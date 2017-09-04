@@ -428,6 +428,14 @@ export class MainService {
       .catch(this.handleError);
   }
 
+  public sendNotification(event) {
+    this.loading = true;
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.apiUrl + '/clubs/sendnotificationnow/', {access_token: token, event: event})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   /////////////////////////////////////////////////////////////////////
 
   public validateUsertoken() {

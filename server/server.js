@@ -89,5 +89,5 @@ module.exports = {
 
 setInterval(function() {
   notificationCtrl.checkEvents();
-}, 50000);
+}, 60000);
 

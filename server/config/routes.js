@@ -59,6 +59,7 @@ module.exports = function (app, passport) {
   app.post('/clubs/admin/untag/', clubs.untagFromAdmin);
   app.post('/clubs/getclubbyid/', clubs.getClubById);
   app.post('/clubs/updateusertag/', clubs.updateUserTag);
+  app.post('/clubs/sendnotificationnow/', clubs.sendNotificationNow);
 
   app.post('/setups/getallroles/', roles.getAllRoles);
   app.post('/setups/getallvotings/', roles.getAllVotings);

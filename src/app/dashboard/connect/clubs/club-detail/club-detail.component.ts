@@ -309,6 +309,8 @@ export class ClubDetailComponent implements OnInit, AfterViewChecked {
       imgUrl: '',
       description: '',
       notificationText: '',
+      notifyDate: '',
+      clubId: this.clubId,
       createdUserId: this.mainService.userId,
       createdDate: new Date()
     };

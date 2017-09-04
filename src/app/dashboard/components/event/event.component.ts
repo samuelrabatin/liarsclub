@@ -56,6 +56,11 @@ export class EventComponent implements OnInit, AfterViewChecked {
     this.eventUpdated();
   }
 
+  private notifyTimeChanged(evt) {
+    this.event.notifyDate = this.mainService.getDateTimeString(new Date(evt.target.value));
+    this.eventUpdated();
+  }
+
   private imageUpdated(imgUrl) {
     this.event.imgUrl = imgUrl;
     this.updated.emit(this.event);
@@ -63,5 +68,16 @@ export class EventComponent implements OnInit, AfterViewChecked {
 
   private deleteEvent() {
     this.delete.emit('delete');
+  }
+
+  private sendNotification() {
+    this.mainService.sendNotification(this.event).subscribe(
+      d => {
+
+      },
+      e => {
+        console.log(e);
+      }
+    );
   }
 }
