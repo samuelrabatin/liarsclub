@@ -110,14 +110,16 @@
             <div class="card">
               <div class="card-header">
                 <h3>
-                  Events
+                  {{upcomingEvents.length}} upcoming events
+                  <i class="material-icons pull-right" (click)="expanded = false" *ngIf="expanded">expand_less</i>
+                  <i class="material-icons pull-right" (click)="expanded = true" *ngIf="!expanded">expand_more</i>
                   <i class="material-icons pull-right" (click)="addEvent()">alarm_add</i>
                 </h3>
               </div>
-              <div class="card-content">
+              <div [class]="expanded ? 'card-content' : 'card-content collpased'">
                 <h4 *ngIf="!upcomingEvents || !upcomingEvents.length">No upcoming events</h4>
                 <div *ngFor="let evt of upcomingEvents; let idx = index;">
-                  <app-event [event]="evt" [datafilled]="evt.date && evt.title" (updated)="eventUpdated(evt, $event)" (delete)="removeEvent(idx)"></app-event>
+                  <app-event [event]="evt" [datafilled]="evt.date && evt.title" (updated)="eventUpdated(evt, $event)" (delete)="removeEvent(idx)" (save)="saveClub($event)"></app-event>
                 </div>
               </div>
             </div>

@@ -10,6 +10,7 @@ export class EventComponent implements OnInit, AfterViewChecked {
   @Input('event') event;
   @Input('datafilled') datafilled;
   @Output() updated: EventEmitter<Object> = new EventEmitter();
+  @Output() save: EventEmitter<Object> = new EventEmitter();
   @Output() delete: EventEmitter<String> = new EventEmitter();
 
   private firstLoad = true;
@@ -79,5 +80,9 @@ export class EventComponent implements OnInit, AfterViewChecked {
         console.log(e);
       }
     );
+  }
+
+  private saveEvent() {
+    this.save.emit('save now');
   }
 }

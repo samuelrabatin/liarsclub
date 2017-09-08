@@ -19,7 +19,7 @@
               <tbody>
                 <tr *ngFor="let club of clubs; let idx = index;">
                   <td class="text-left"><a [routerLink]="['/connect/clubs/club/' + club._id]">{{club.title}}</a></td>
-                  <td class="text-left">{{club.username}}</td>
+                  <td class="text-left">{{mainService.userNames[club.userId]}}</td>
                   <td class="text-left">{{mainService.getDateString(club.created)}}</td>
                   <td class="text-center">{{club.location}}</td>
                   <td class="text-center">{{club.address}}</td>

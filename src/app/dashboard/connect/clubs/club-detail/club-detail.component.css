@@ -39,3 +39,16 @@
 i {
   cursor: pointer;
 }
+
+.events .card-content {
+  transition: max-height 0.2s;
+  transition: padding 0.2s;
+  max-height: 1000px;
+  overflow: auto;
+}
+
+.events .card-content.collpased {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}

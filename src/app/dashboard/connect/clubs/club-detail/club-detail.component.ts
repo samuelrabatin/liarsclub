@@ -38,6 +38,8 @@ export class ClubDetailComponent implements OnInit, AfterViewChecked {
   private regularTypeSelectOption: IMultiSelectOption[];
   private regularTypeSettings: IMultiSelectSettings;
 
+  private expanded;
+
   constructor(private mainService: MainService, private storageService: StorageService,
               private router: Router, private route: ActivatedRoute) {
 
@@ -316,6 +318,7 @@ export class ClubDetailComponent implements OnInit, AfterViewChecked {
     };
 
     this.upcomingEvents.push(newEvent);
+    this.expanded = true;
   }
 
   private eventUpdated(evt, newEvt) {
@@ -325,6 +328,7 @@ export class ClubDetailComponent implements OnInit, AfterViewChecked {
 
   private removeEvent(idx) {
     this.upcomingEvents.splice(idx, 1);
+    this.saveClub('deleted');
   }
 
   mapLocationChange(e) {

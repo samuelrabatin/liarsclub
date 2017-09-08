@@ -11,8 +11,6 @@ exports.getClubs = function (req, res) {
   User.findOne({ token: req.body.access_token }, function(err, user) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
-    } else if ( user.type != 'admin' ) {
-      return res.status(400).send('Forbidden');
     } else {
       Club.find({}, null, {sort: {created: -1}}, function(err, clubs) {
         if (err) {
@@ -21,8 +19,17 @@ exports.getClubs = function (req, res) {
             data: "Error occured: " + err
           });
         } else {
+          var tmpclubs = [];
+          for (var i = 0; i < clubs.length; i++) {
+            for (var j = 0; j < clubs[i].taggedUsers.length; j++) {
+              if (user.type == 'admin' || (clubs[i].taggedUsers[j].userId == user._id && clubs[i].taggedUsers[j].memberType == 'admin')) {
+                tmpclubs.push(clubs[i]);
+                break;
+              }
+            }
+          }
           return res.json({
-            data: clubs
+            data: tmpclubs
           });
         }
       });
@@ -149,20 +156,43 @@ exports.removeClub = function(req, res) {
   User.findOne({ token: req.body.access_token }, function(err, user) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
-    } else if ( user.type != 'admin' ) {
-      return res.status(400).send('Forbidden');
     } else {
-      Club.remove({_id: req.body.id}, function(err) {
-        if (err) {
-          res.json({
+      var item = req.body;
+
+      Club.findOne({_id: item._id}, function(err, club) {
+        if (err || !club) {
+          return res.json({
             type: false,
-            msg: 'remove failed'
+            msg: err || "club not found"
           });
         } else {
-          res.json({
-            type: true,
-            msg: 'removed'
-          })
+          var isAdmin = user.type == 'admin';
+          for (var i = 0; !isAdmin && i < club.taggedUsers.length; i++) {
+            if (club.taggedUsers[i].memberType == 'admin' && club.taggedUsers[i].confirmed && club.taggedUsers[i].userId.toString() == user._id.toString()) {
+              isAdmin = true;
+            }
+          }
+
+          if (isAdmin) {
+            Club.remove({_id: req.body.id}, function(err) {
+              if (err) {
+                res.json({
+                  type: false,
+                  msg: 'remove failed'
+                });
+              } else {
+                res.json({
+                  type: true,
+                  msg: 'removed'
+                })
+              }
+            });
+          } else {
+            return res.json({
+              type: false,
+              msg: "Forbidden"
+            });
+          }
         }
       });
     }
@@ -177,10 +207,8 @@ exports.approveClub = function(req, res) {
   User.findOne({ token: req.body.access_token }, function(err, user) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
-    } else if ( user.type != 'admin' ) {
-      return res.status(400).send('Forbidden');
     } else {
-      Club.update({_id: req.body.id}, { $set: { confirmed: true }}, function(err) {
+      Club.update({_id: req.body.id}, { $set: { confirmed: true }}, function(err, club) {
         if (err) {
           res.json({
             type: false,
@@ -231,8 +259,6 @@ exports.updateUserTag = function(req, res) {
   User.findOne({ token: req.body.access_token }, function(err, user) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
-    } else if ( user.type != 'admin' ) {
-      return res.status(400).send('Forbidden');
     } else {
       Club.findOne({_id: req.body.id}, function(err, club) {
         if (err || !club) {
@@ -288,8 +314,6 @@ exports.rejectClub = function(req, res) {
   User.findOne({ token: req.body.access_token }, function(err, user) {
     if (err || !user) {
       return res.status(400).send('Authentication failed');
-    } else if ( user.type != 'admin' ) {
-      return res.status(400).send('Forbidden');
     } else {
       Club.update({_id: req.body.id}, { $set: { confirmed: false }}, function(err) {
         if (err) {

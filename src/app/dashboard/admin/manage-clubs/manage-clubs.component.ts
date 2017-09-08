@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+
 import { MainService } from '../../../services/main.service';
 
 @Component({

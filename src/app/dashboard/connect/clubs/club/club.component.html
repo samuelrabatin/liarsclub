@@ -15,7 +15,6 @@
     </span>
     <i class="material-icons hover delete-icon" (click)="clubDelete()" *ngIf="isMine(club)">delete</i>
     <i class="material-icons hover" (click)="showEditDiag = !showEditDiag">info</i>
-    <a [routerLink]="['club/' + club._id]" *ngIf="club.tagged && club.tagConfirmed"><i class="material-icons hover" (click)="showEditDiag = !showEditDiag">library_books</i></a>
   </div>
 
   <div class="card-footer" *ngIf="showEditDiag">

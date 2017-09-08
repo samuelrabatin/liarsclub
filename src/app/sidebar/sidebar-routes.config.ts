@@ -4,7 +4,7 @@ export const ROUTES: RouteInfo[] = [
   { path: 'home', title: 'Home', menuType: MenuType.LEFT, icon: 'material-icons' },
 
   { path: 'connect/clubs', title: 'Clubs', menuType: MenuType.LEFT, icon: 'material-icons' },
-  { path: 'connect/meetings', title: 'Meetings', menuType: MenuType.LEFT, icon: 'material-icons' },
+  { path: 'connect/events', title: 'Events', menuType: MenuType.LEFT, icon: 'material-icons' },
   { path: 'connect/people', title: 'People', menuType: MenuType.LEFT, icon: 'material-icons' },
 
   { path: 'setups', title: 'Setups', menuType: MenuType.LEFT, icon: 'material-icons' },

@@ -29,5 +29,6 @@
       <input class="form-control event-date-picker" [(ngModel)]="event.notifyDate" (blur)="notifyTimeChanged($event)" [readonly]="event.defaultEvt" />
     </div>
     <button class="btn btn-success btn-sm pull-right" (click)="sendNotification()">Send Notification Now</button>
+    <button class="btn btn-success btn-sm pull-right" (click)="saveEvent()">Save Event</button>
   </div>
 </div>
