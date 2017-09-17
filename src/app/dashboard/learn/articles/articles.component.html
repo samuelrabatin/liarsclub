@@ -1,5 +1,7 @@
 <div class="main-content">
     <div class="container-fluid">
-        <h1>Coming Soon!</h1>
+      <div *ngFor="let article of articles; let idx = index">
+        <app-article [article]="article"></app-article>
+      </div>
     </div>
 </div>

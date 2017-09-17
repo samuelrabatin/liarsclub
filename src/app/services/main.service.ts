@@ -510,7 +510,7 @@ export class MainService {
     }
   }
 
-  initTinyMCE() {
+  initTinyMCE(defaultText = '') {
     const me = this;
 
     tinymce.init({
@@ -552,6 +552,7 @@ export class MainService {
       paste_data_images: true,
       setup: editor => {
         this.editor = editor;
+
         this.editor.on('paste', function(e) {
         });
       },

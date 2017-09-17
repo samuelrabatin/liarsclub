@@ -49,42 +49,9 @@
             </div>
         </div>
         <div class="row" *ngIf="userLoggedIn">
-            <div class="col-md-7 col-lg-7 col-xs-12 col-sm-12">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="../../../assets/img/image_placeholder.jpg" class="col-md-12 col-lg-12 col-xs-12 col-sm-12" alt="" >
-                                <h4>Main Article</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content col-lg-6 col-md-6 col-sm-12 col-xs-6">
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="../../../assets/img/image_placeholder.jpg" class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                                <h4>Article 1</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-content col-lg-6 col-md-6 col-sm-12 col-xs-6">
-                        <div class="card">
-                            <div class="card-content">
-                                <img src="/../../../assets/img/image_placeholder.jpg" class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                                <h4>Article 2</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5 col-lg-5 col-xs-12 col-sm-12">
-                <div class="card">
-                    <div class="card-content">
-                        <img src="../../../assets/img/image_placeholder.jpg" class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                        <h4>Main Forum/Blog Post</h4>
-                    </div>
-                </div>
-            </div>
+            <app-article class="col-sm-6 col-xs-12" [article]="articles[0]" *ngIf="articles[0]"></app-article>
+            <app-article class="col-sm-6 col-xs-12" [article]="articles[1]" *ngIf="articles[1]"></app-article>
+            <app-article class="col-xs-12" [article]="articles[2]" *ngIf="articles[2]"></app-article>
         </div>
         <div class="coming-soon" *ngIf="!userLoggedIn">
             <h1>Signup Form here, coming soon</h1>

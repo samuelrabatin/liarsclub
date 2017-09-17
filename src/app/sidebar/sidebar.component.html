@@ -183,7 +183,12 @@
                             <p>{{menuItems[13].title}}</p>
                           </a>
                         </li>
-                        {{ loadFinished() }}
+                        <li routerLinkActive="active">
+                          <a  [routerLink]="[menuItems[14].path]">
+                            <i class="{{menuItems[14].icon}}">account_balance</i>
+                            <p>{{menuItems[14].title}}</p>
+                          </a>
+                        </li>
                       </ul>
                     </div>
                   </li>

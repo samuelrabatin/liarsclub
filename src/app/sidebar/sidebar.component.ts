@@ -59,8 +59,4 @@ export class SidebarComponent implements OnInit, AfterViewChecked {
       }
       this.router.navigate(['setups']);
     }
-
-    loadFinished() {
-      this.loaded = true;
-    }
 }

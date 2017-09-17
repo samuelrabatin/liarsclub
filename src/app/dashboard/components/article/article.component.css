@@ -1,0 +1,16 @@
+.card-content {
+  display: flex;
+}
+
+.card-content .article-text {
+  width: calc(100% - 150px);
+  padding: 0 40px;
+}
+
+i.material-icons {
+  cursor: pointer;
+}
+
+i.material-icons.liked {
+  color: red;
+}

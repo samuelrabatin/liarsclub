@@ -1,0 +1,44 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <h3>{{articles.length}} articles
+        <a class="btn btn-success btn-sm pull-right" (click)="showAddDiag()">New Article</a>
+        </h3>
+      </div>
+      <div class="card-content">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-primary">
+              <tr>
+                <th>Created Date</th>
+                <th>Created User</th>
+                <th class="text-center">Title</th>
+                <th class="text-center">Text</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let article of articles; let idx = index" [draggable]="true" (dragstart)="dragStart(idx)" (dragenter)="dragEnter(idx)" (dragend)="dragEnd(idx)">
+                <td>{{ mainService.getDateTimeString(article.createdDate) }}</td>
+                <td>{{ mainService.userNames[article.createdUserId] }}</td>
+                <td class="text-center">{{ article.title.length > 50 ? article.title.substr(0, 50) + '...' : article.title }}</td>
+                <td class="text-center">{{ article.text.length > 50 ? article.text.substr(0, 50) + '...' : article.text }}</td>
+                <td class="text-center">
+                  <a class="btn btn-warning btn-xs" [routerLink]="['edit', article._id]"><i class="material-icons">edit</i>Edit</a>
+                  <button class="btn btn-warning btn-xs" (click)="removeArticle(idx)"><i class="material-icons">delete</i>Remove</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isAdd" class="add-article-diag">
+  <div>
+    <app-add-article (add)="addArticle($event)" (close)="isAdd = false"></app-add-article>
+  </div>
+</div>

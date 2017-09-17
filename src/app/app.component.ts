@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 import { LocationStrategy, PlatformLocation, Location } from '@angular/common';
 
 import { MainService } from './services/main.service';
@@ -22,26 +22,28 @@ export class AppComponent implements OnInit {
         router.events.subscribe((val: any) => {
           this.isUsers = val.url.includes('/users/');
 
-          this.mainService.validateUsertoken().subscribe(
-            d => {
-              if (d.type === false && !this.isUsers) {
-                this.router.navigate(['/users/login']);
-              } else {
-                this.mainService.userRole = d.role;
-                this.mainService.userId = d.id;
-                this.socketService.sendMessage('userid', d.id);
-                this.mainService.username = d.name;
+          if (val instanceof NavigationStart) {
+            this.mainService.validateUsertoken().subscribe(
+              d => {
+                if (d.type === false && !this.isUsers) {
+                  this.router.navigate(['/users/login']);
+                } else {
+                  this.mainService.userRole = d.role;
+                  this.mainService.userId = d.id;
+                  this.socketService.sendMessage('userid', d.id);
+                  this.mainService.username = d.name;
+                }
+                this.mainService.loading = false;
+              },
+              e => {
+                this.mainService.loading = false;
+                console.log(e);
+                if (!this.isUsers) {
+                  this.router.navigate(['/users/login']);
+                }
               }
-              this.mainService.loading = false;
-            },
-            e => {
-              this.mainService.loading = false;
-              console.log(e);
-              if (!this.isUsers) {
-                this.router.navigate(['/users/login']);
-              }
-            }
-          );
+            );
+          }
         });
     }
 

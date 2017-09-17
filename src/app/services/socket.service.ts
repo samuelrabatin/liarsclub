@@ -16,7 +16,6 @@ export class SocketService {
 
   sendMessage(type, message) {
     this.socket.emit(type, message);
-    console.log('MESSAGE SENT');
   }
 
   getMessages() {

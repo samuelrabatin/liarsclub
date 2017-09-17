@@ -12,6 +12,8 @@ import { ForumsComponent } from './discuss/forums/forums.component';
 import { BlogsComponent } from './discuss/blogs/blogs.component';
 
 import { ArticlesComponent } from './learn/articles/articles.component';
+import { EditArticleComponent } from './components/edit-article/edit-article.component';
+
 import { VideosComponent } from './learn/videos/videos.component';
 
 import { LoginComponent } from './users/login/login.component';
@@ -27,6 +29,7 @@ import { SetupDetailComponent } from './setups/setup-detail/setup-detail.compone
 import { ManageClubsComponent } from './admin/manage-clubs/manage-clubs.component';
 import { ManageSetupsComponent } from './admin/manage-setups/manage-setups.component';
 import { ManageForumsComponent } from './admin/manage-forums/manage-forums.component';
+import { ManageArticlesComponent } from './admin/manage-articles/manage-articles.component';
 import { AboutComponent } from './about/about.component';
 
 import { VIewTopicComponent } from './components/view-topic/view-topic.component';
@@ -65,8 +68,11 @@ export const MODULE_ROUTES: Route[] = [
 
   { path: 'connect/clubs/club/:id', component: ClubDetailComponent },
 
+  { path: 'admin/articles', component: ManageArticlesComponent },
+  { path: 'admin/articles/edit/:id', component: EditArticleComponent },
+
   { path: '**', redirectTo: 'home' },
-]
+];
 
 //
 export const MODULE_COMPONENTS = [
@@ -91,4 +97,4 @@ export const MODULE_COMPONENTS = [
     ProfileComponent,
     ManageClubsComponent,
     AboutComponent
-]
+];

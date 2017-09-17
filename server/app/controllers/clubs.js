@@ -21,10 +21,14 @@ exports.getClubs = function (req, res) {
         } else {
           var tmpclubs = [];
           for (var i = 0; i < clubs.length; i++) {
-            for (var j = 0; j < clubs[i].taggedUsers.length; j++) {
-              if (user.type == 'admin' || (clubs[i].taggedUsers[j].userId == user._id && clubs[i].taggedUsers[j].memberType == 'admin')) {
-                tmpclubs.push(clubs[i]);
-                break;
+            if (user.type == 'admin') {
+              tmpclubs.push(clubs[i]);
+            } else {
+              for (var j = 0; j < clubs[i].taggedUsers.length; j++) {
+                if (clubs[i].taggedUsers[j].userId == user._id.toString() && clubs[i].taggedUsers[j].memberType == 'admin') {
+                  tmpclubs.push(clubs[i]);
+                  break;
+                }
               }
             }
           }
@@ -159,7 +163,7 @@ exports.removeClub = function(req, res) {
     } else {
       var item = req.body;
 
-      Club.findOne({_id: item._id}, function(err, club) {
+      Club.findOne({_id: item.id}, function(err, club) {
         if (err || !club) {
           return res.json({
             type: false,

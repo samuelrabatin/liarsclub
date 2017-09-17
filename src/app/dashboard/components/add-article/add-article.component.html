@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-content">
+    <div class="header">
+      <app-uploader (uploaded)="imgUploaded($event)" (changed)="imgChanged = true" [autoupload]="true"></app-uploader>
+      <div class="form-group title">
+        <label class="control-label">Title</label>
+        <input class="form-control" [(ngModel)]="title"/>
+      </div>
+    </div>
+    <div class="form-group ">
+      <textarea class="tinymce-editor"></textarea>
+    </div>
+  </div>
+  <div class="card-footer text-center">
+    <button class="btn btn-success" (click)="addArticle()" [disabled]="title == '' && imgId">Save</button>
+    <button class="btn btn-danger" (click)="closeArticle()">Close</button>
+  </div>
+</div>

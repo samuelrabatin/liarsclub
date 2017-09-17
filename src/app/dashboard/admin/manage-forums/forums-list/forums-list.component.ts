@@ -101,13 +101,11 @@ export class ForumsListComponent implements OnInit {
   }
 
   private forumDragStart(idx) {
-    console.log('forumDragStart: ', idx);
     this.tmpForums = this.forums.slice();
     this.curDragStart = idx;
     this.curDragIndex = idx;
   }
   private forumDragEnd(idx) {
-    console.log('forumDragEnd: ', idx);
     this.mainService.updateForumsOrder(this.forums).subscribe(
       d => {
       },

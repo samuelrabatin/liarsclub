@@ -1,0 +1,8 @@
+.card-content .header {
+  display: flex;
+}
+
+.card-content .header .title {
+  width: 80%;
+  padding: 0 40px;
+}
