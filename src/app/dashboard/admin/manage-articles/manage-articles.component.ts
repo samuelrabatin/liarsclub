@@ -48,6 +48,17 @@ export class ManageArticlesComponent implements OnInit {
     );
   }
 
+  private removeArticle(idx) {
+    this.articleService.removeArticleById(this.articles[idx]._id).subscribe(
+      d => {
+        this.getArticles();
+      },
+      e => {
+        console.log(e);
+      }
+    );
+  }
+
   private showAddDiag() {
     this.isAdd = true;
   }

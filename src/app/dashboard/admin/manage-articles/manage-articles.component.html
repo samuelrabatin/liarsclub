@@ -26,7 +26,7 @@
                 <td class="text-center">{{ article.text.length > 50 ? article.text.substr(0, 50) + '...' : article.text }}</td>
                 <td class="text-center">
                   <a class="btn btn-warning btn-xs" [routerLink]="['edit', article._id]"><i class="material-icons">edit</i>Edit</a>
-                  <button class="btn btn-warning btn-xs" (click)="removeArticle(idx)"><i class="material-icons">delete</i>Remove</button>
+                  <button class="btn btn-danger btn-xs" (click)="removeArticle(idx)"><i class="material-icons">delete</i>Remove</button>
                 </td>
               </tr>
             </tbody>
