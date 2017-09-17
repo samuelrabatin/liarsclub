@@ -1567,7 +1567,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card-content {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n\n.card-content .article-text {\n  width: calc(100% - 150px);\n  padding: 0 40px;\n}\n\ni.material-icons {\n  cursor: pointer;\n}\n\ni.material-icons.liked {\n  color: red;\n}\n", ""]);
+exports.push([module.i, ".card-content {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n\n.card-content .article-text {\n  width: calc(100% - 150px);\n  padding: 0 40px;\n}\n\ni.material-icons {\n  cursor: pointer;\n}\n\ni.material-icons.liked {\n  color: red;\n}\n\n.loading-image {\n  width: 30px;\n  height: 30px;\n  margin-right: 20px;\n}\n", ""]);
 
 // exports
 
@@ -1580,7 +1580,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard/components/article/article.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"card-header\">\n    <h3>{{article.title}}</h3>\n    <h5>\n      <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,\n      <i>Likes: {{article.likedUsers.length}}</i>\n      <i [class]=\"isLiked(idx) ? 'material-icons pull-right liked' : 'material-icons pull-right'\" (click)=\"like(idx)\">thumb_up</i>\n    </h5>\n  </div>\n  <div class=\"card-content\">\n    <div class=\"article-image\">\n      <cl-image data-u=\"image\" public-id=\"{{article.featuredImage}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"150\" width=\"150\" format=\"jpg\">\n      </cl-image>\n    </div>\n    <div class=\"article-text\" [innerHTML]=\"article.text\"></div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\">\n  <div class=\"card-header\">\n    <h3>{{article.title}}</h3>\n    <h5>\n      <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,\n      <i>Likes: {{article.likedUsers.length}}</i>\n      <i [class]=\"isLiked(idx) ? 'material-icons pull-right liked' : 'material-icons pull-right'\" (click)=\"like(idx)\">thumb_up</i>\n      <img class=\"loading-image pull-right\" src=\"../../../../assets/img/loading.gif\" *ngIf=\"updating\" />\n    </h5>\n  </div>\n  <div class=\"card-content\">\n    <div class=\"article-image\">\n      <cl-image data-u=\"image\" public-id=\"{{article.featuredImage}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"150\" width=\"150\" format=\"jpg\">\n      </cl-image>\n    </div>\n    <div class=\"article-text\" [innerHTML]=\"article.text\"></div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1606,6 +1606,7 @@ var ArticleComponent = (function () {
     function ArticleComponent(mainService, articleService) {
         this.mainService = mainService;
         this.articleService = articleService;
+        this.updating = false;
     }
     ArticleComponent.prototype.ngOnInit = function () {
     };
@@ -1613,13 +1614,19 @@ var ArticleComponent = (function () {
         return this.article.likedUsers.indexOf(this.mainService.userId) > -1;
     };
     ArticleComponent.prototype.like = function (idx) {
+        var _this = this;
+        if (this.updating) {
+            return;
+        }
+        this.updating = true;
         if (!this.isLiked(idx)) {
             this.article.likedUsers.push(this.mainService.userId);
         }
         else {
-            this.article.likedUsers.splice(this.article.likedUsers.indexOf, 1);
+            this.article.likedUsers.splice(this.article.likedUsers.indexOf(this.mainService.userId), 1);
         }
         this.articleService.updateArticle(this.article).subscribe(function (d) {
+            _this.updating = false;
         }, function (e) {
             console.log(e);
         });

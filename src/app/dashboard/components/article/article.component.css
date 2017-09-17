@@ -14,3 +14,9 @@ i.material-icons {
 i.material-icons.liked {
   color: red;
 }
+
+.loading-image {
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+}

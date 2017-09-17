@@ -5,6 +5,7 @@
       <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,
       <i>Likes: {{article.likedUsers.length}}</i>
       <i [class]="isLiked(idx) ? 'material-icons pull-right liked' : 'material-icons pull-right'" (click)="like(idx)">thumb_up</i>
+      <img class="loading-image pull-right" src="../../../../assets/img/loading.gif" *ngIf="updating" />
     </h5>
   </div>
   <div class="card-content">

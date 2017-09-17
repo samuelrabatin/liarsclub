@@ -11,6 +11,8 @@ import { ArticlesService } from '../../../services/articles.service';
 export class ArticleComponent implements OnInit {
   @Input() article;
 
+  private updating = false;
+
   constructor( private mainService: MainService, private articleService: ArticlesService ) { }
 
   ngOnInit() {
@@ -21,14 +23,21 @@ export class ArticleComponent implements OnInit {
   }
 
   private like(idx) {
+    if (this.updating) {
+      return;
+    }
+
+    this.updating = true;
+
     if (!this.isLiked(idx)) {
       this.article.likedUsers.push(this.mainService.userId);
     } else {
-      this.article.likedUsers.splice(this.article.likedUsers.indexOf, 1);
+      this.article.likedUsers.splice(this.article.likedUsers.indexOf(this.mainService.userId), 1);
     }
 
     this.articleService.updateArticle(this.article).subscribe(
       d => {
+        this.updating = false;
       },
       e => {
         console.log(e);
