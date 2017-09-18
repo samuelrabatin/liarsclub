@@ -14,6 +14,7 @@ const posts = require('../app/controllers/forums/posts');
 const reportedposts = require('../app/controllers/forums/reportedposts');
 const notifications = require('../app/controllers/notifications');
 const articles = require('../app/controllers/articles');
+const settings = require('../app/controllers/home');
 
 /**
  * Expose
@@ -115,7 +116,11 @@ module.exports = function (app, passport) {
   app.post('/article/update/', articles.updateArticle);
   app.post('/article/remove/', articles.removeArticle);
   app.post('/article/getall/', articles.getArticles);
+  app.post('/article/gethome/', articles.getHomeArticles);
   app.post('/article/getbyid/', articles.getArticleById);
+
+  app.post('/setting/article/get/', settings.getArticleSetting);
+  app.post('/setting/article/set/', settings.setArticleSetting);
 
   /**
    * Error handling

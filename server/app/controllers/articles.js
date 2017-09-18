@@ -1,5 +1,6 @@
 const Article = require('../models/article');
 const User = require('../models/user');
+const Settings = require('../models/home');
 
 exports.addArticle = function(req, res) {
   if (typeof req.body.access_token === 'undefined') {
@@ -62,6 +63,46 @@ exports.getArticles = function(req, res) {
             return res.json({
               type: true,
               data: articles
+            });
+          }
+        });
+      }
+    });
+  }
+};
+
+exports.getHomeArticles = function(req, res) {
+  if (typeof req.body.access_token === 'undefined') {
+    return res.status(400).send('Authentication is required');
+  } else {
+    User.findOne({ token: req.body.access_token }, function(err, user) {
+      if (err || !user) {
+        return res.status(400).send('Authentication failed');
+      } else {
+        Article.find({}, null, {sort: {order: -1}}, function(err, articles) {
+          if (err || !articles) {
+            return res.json({
+              type: false,
+              msg: 'err: ' + err
+            });
+          } else {
+            Settings.findOne({type: 'article'}, function(err, setting) {
+              if (err) {
+                return res.json({
+                  type: false,
+                  msg: 'err1: ' + err
+                });
+              } else if (!setting) {
+                return res.json({
+                  type: true,
+                  data: articles
+                });
+              } else {
+                return res.json({
+                  type: true,
+                  data: articles.slice(0, setting.setting.count)
+                });
+              }
             });
           }
         });

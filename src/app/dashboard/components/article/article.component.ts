@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { MainService } from '../../../services/main.service';
 import { ArticlesService } from '../../../services/articles.service';
@@ -10,12 +11,29 @@ import { ArticlesService } from '../../../services/articles.service';
 })
 export class ArticleComponent implements OnInit {
   @Input() article;
+  @Input() shortform;
+
+  private articleId = '';
 
   private updating = false;
 
-  constructor( private mainService: MainService, private articleService: ArticlesService ) { }
+  constructor( private mainService: MainService, private articleService: ArticlesService, private route: ActivatedRoute ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.articleId = params['id']; // (+) converts string 'id' to a number
+
+      if (this.articleId) {
+        this.articleService.getArticleById(this.articleId).subscribe(
+          d => {
+            this.article = d.article;
+          },
+          e => {
+            console.log(e);
+          }
+        );
+      }
+    });
   }
 
   private isLiked(idx) {

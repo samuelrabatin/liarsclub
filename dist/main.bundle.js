@@ -256,7 +256,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".add-article-diag {\n  background: rgba(255, 0, 0, 0.1);\n  width: 100%;\n  height: 100%;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1111;\n}\n\n.add-article-diag > div {\n  padding: 80px;\n}\n", ""]);
+exports.push([module.i, ".add-article-diag {\n  background: rgba(255, 0, 0, 0.1);\n  width: 100%;\n  height: 100%;\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 1111;\n}\n\n.add-article-diag > div {\n  padding: 80px;\n}\n\n.setting .card-content {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n}\n", ""]);
 
 // exports
 
@@ -269,7 +269,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard/admin/manage-articles/manage-articles.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h3>{{articles.length}} articles\n        <a class=\"btn btn-success btn-sm pull-right\" (click)=\"showAddDiag()\">New Article</a>\n        </h3>\n      </div>\n      <div class=\"card-content\">\n        <div class=\"table-responsive\">\n          <table class=\"table\">\n            <thead class=\"text-primary\">\n              <tr>\n                <th>Created Date</th>\n                <th>Created User</th>\n                <th class=\"text-center\">Title</th>\n                <th class=\"text-center\">Text</th>\n                <th class=\"text-center\">Actions</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let article of articles; let idx = index\" [draggable]=\"true\" (dragstart)=\"dragStart(idx)\" (dragenter)=\"dragEnter(idx)\" (dragend)=\"dragEnd(idx)\">\n                <td>{{ mainService.getDateTimeString(article.createdDate) }}</td>\n                <td>{{ mainService.userNames[article.createdUserId] }}</td>\n                <td class=\"text-center\">{{ article.title.length > 50 ? article.title.substr(0, 50) + '...' : article.title }}</td>\n                <td class=\"text-center\">{{ article.text.length > 50 ? article.text.substr(0, 50) + '...' : article.text }}</td>\n                <td class=\"text-center\">\n                  <a class=\"btn btn-warning btn-xs\" [routerLink]=\"['edit', article._id]\"><i class=\"material-icons\">edit</i>Edit</a>\n                  <button class=\"btn btn-danger btn-xs\" (click)=\"removeArticle(idx)\"><i class=\"material-icons\">delete</i>Remove</button>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div *ngIf=\"isAdd\" class=\"add-article-diag\">\n  <div>\n    <app-add-article (add)=\"addArticle($event)\" (close)=\"isAdd = false\"></app-add-article>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"card setting\">\n      <div class=\"card-header\">\n        <h3>Setting</h3>\n      </div>\n      <div class=\"card-content\">\n        <div class=\"form-group\">\n          <label class=\"control-label\">Article Counts on Home Page</label>\n          <input class=\"form-control text-right\" type=\"number\" [(ngModel)]=\"setting.setting.count\" />\n        </div>\n      </div>\n      <div class=\"card-footer\">\n        <button class=\"btn btn-success btn-sm pull-right\" (click)=\"saveSetting()\" [disabled]=\"orgSetting.count == setting.setting.count\">Save Setting</button>\n      </div>\n    </div>\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h3>{{articles.length}} articles\n        <a class=\"btn btn-success btn-sm pull-right\" (click)=\"showAddDiag()\">New Article</a>\n        </h3>\n      </div>\n      <div class=\"card-content\">\n        <div class=\"table-responsive\">\n          <table class=\"table\">\n            <thead class=\"text-primary\">\n              <tr>\n                <th>Created Date</th>\n                <th>Created User</th>\n                <th class=\"text-center\">Title</th>\n                <th class=\"text-center\">Text</th>\n                <th class=\"text-center\">Priority</th>\n                <th class=\"text-center\">Actions</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr *ngFor=\"let article of articles; let idx = index\" [draggable]=\"true\" (dragstart)=\"dragStart(idx)\" (dragenter)=\"dragEnter(idx)\" (dragend)=\"dragEnd(idx)\">\n                <td>{{ mainService.getDateTimeString(article.createdDate) }}</td>\n                <td>{{ mainService.userNames[article.createdUserId] }}</td>\n                <td class=\"text-center\">{{ article.title.length > 50 ? article.title.substr(0, 50) + '...' : article.title }}</td>\n                <td class=\"text-center\">{{ article.text.length > 50 ? article.text.substr(0, 50) + '...' : article.text }}</td>\n                <td><input class=\"form-control text-center\" type=\"number\" [value]=\"idx+1\" (change)=\"orderChange(idx, $event)\"></td>\n                <td class=\"text-center\">\n                  <a class=\"btn btn-warning btn-xs\" [routerLink]=\"['edit', article._id]\"><i class=\"material-icons\">edit</i>Edit</a>\n                  <button class=\"btn btn-danger btn-xs\" (click)=\"removeArticle(idx)\"><i class=\"material-icons\">delete</i>Remove</button>\n                </td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n\n<div *ngIf=\"isAdd\" class=\"add-article-diag\">\n  <div>\n    <app-add-article (add)=\"addArticle($event)\" (close)=\"isAdd = false\"></app-add-article>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -298,20 +298,48 @@ var ManageArticlesComponent = (function () {
         this.articleService = articleService;
         this.router = router;
         this.articles = [];
+        this.tmpArticles = [];
+        this.defaultOrders = [];
         this.isAdd = false;
+        this.setting = {
+            _id: '',
+            type: 'article',
+            setting: {
+                count: 5
+            }
+        };
+        this.orgSetting = {
+            count: 0
+        };
     }
     ManageArticlesComponent.prototype.ngOnInit = function () {
         this.getArticles();
+        this.getArticleSetting();
     };
     ManageArticlesComponent.prototype.getArticles = function () {
         var _this = this;
         this.articleService.getArticles().subscribe(function (d) {
             if (d.type) {
                 _this.articles = d.data;
+                _this.tmpArticles = _this.articles.slice();
+                _this.defaultOrders = _this.articles.map(function (val, idx) { return val.order; });
             }
             else {
                 console.log(d.msg);
             }
+        }, function (e) {
+            console.log(e);
+        });
+    };
+    ManageArticlesComponent.prototype.getArticleSetting = function () {
+        var _this = this;
+        this.articleService.getSettings().subscribe(function (d) {
+            if (d.type) {
+                _this.setting = d.setting;
+                _this.orgSetting.count = d.setting.setting.count;
+            }
+        }, function (e) {
+            console.log(e);
         });
     };
     ManageArticlesComponent.prototype.addArticle = function (article) {
@@ -332,6 +360,16 @@ var ManageArticlesComponent = (function () {
             console.log(e);
         });
     };
+    ManageArticlesComponent.prototype.saveSetting = function () {
+        var _this = this;
+        this.articleService.setSettings(this.setting).subscribe(function (d) {
+            if (d.type) {
+                _this.getArticleSetting();
+            }
+        }, function (e) {
+            console.log(e);
+        });
+    };
     ManageArticlesComponent.prototype.showAddDiag = function () {
         this.isAdd = true;
     };
@@ -340,17 +378,46 @@ var ManageArticlesComponent = (function () {
     };
     ManageArticlesComponent.prototype.dragEnter = function (idx) {
         this.curDragIdx = idx;
+        if (this.prevDragidx !== this.curDragIdx) {
+            this.articles = this.tmpArticles.slice();
+            this.articles.splice(this.dragStartIdx, 1);
+            this.articles.splice(this.curDragIdx, 0, this.tmpArticles[this.dragStartIdx]);
+            this.prevDragidx = this.curDragIdx;
+        }
     };
     ManageArticlesComponent.prototype.dragEnd = function (idx) {
-        if (this.curDragIdx !== this.dragStartIdx) {
-            _a = [this.articles[this.dragStartIdx], this.articles[this.curDragIdx]], this.articles[this.curDragIdx] = _a[0], this.articles[this.dragStartIdx] = _a[1];
-            var tmpOrder = this.articles[this.curDragIdx].order;
-            this.articles[this.curDragIdx].order = this.articles[this.dragStartIdx].order;
-            this.articles[this.dragStartIdx].order = tmpOrder;
-            this.articleService.updateArticle(this.articles[this.curDragIdx]).subscribe();
-            this.articleService.updateArticle(this.articles[this.dragStartIdx]).subscribe();
+        for (var i = 0; i < this.articles.length; i++) {
+            this.articles[i].order = this.defaultOrders[i];
         }
-        var _a;
+        this.tmpArticles = this.articles.slice();
+        var start = this.getMin(this.dragStartIdx, this.curDragIdx);
+        var end = this.getMax(this.dragStartIdx, this.curDragIdx);
+        this.saveOrders(start, end);
+    };
+    ManageArticlesComponent.prototype.saveOrders = function (start, end) {
+        for (var i = start; i <= end; i++) {
+            this.articleService.updateArticle(this.articles[i]).subscribe();
+        }
+    };
+    ManageArticlesComponent.prototype.orderChange = function (idx, evt) {
+        if (idx + 1 !== Number.parseInt(evt.target.value)) {
+            var start = idx;
+            var end = Number.parseInt(evt.target.value) > this.articles.length ? this.articles.length : Number.parseInt(evt.target.value) - 1;
+            this.articles = this.tmpArticles.slice();
+            this.articles.splice(start, 1);
+            this.articles.splice(end, 0, this.tmpArticles[start]);
+            for (var i = 0; i < this.articles.length; i++) {
+                this.articles[i].order = this.defaultOrders[i];
+            }
+            this.tmpArticles = this.articles.slice();
+            this.saveOrders(this.getMin(start, end), this.getMax(start, end));
+        }
+    };
+    ManageArticlesComponent.prototype.getMin = function (a, b) {
+        return a > b ? b : a;
+    };
+    ManageArticlesComponent.prototype.getMax = function (a, b) {
+        return a < b ? b : a;
     };
     return ManageArticlesComponent;
 }());
@@ -1588,7 +1655,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard/components/article/article.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n  <div class=\"card-header\">\n    <h3>{{article.title}}</h3>\n    <h5>\n      <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,\n      <i>Likes: {{article.likedUsers.length}}</i>\n      <i [class]=\"isLiked(idx) ? 'material-icons pull-right liked' : 'material-icons pull-right'\" (click)=\"like(idx)\">thumb_up</i>\n      <img class=\"loading-image pull-right\" src=\"../../../../assets/img/loading.gif\" *ngIf=\"updating\" />\n    </h5>\n  </div>\n  <div class=\"card-content\">\n    <div class=\"article-image\">\n      <cl-image data-u=\"image\" public-id=\"{{article.featuredImage}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"150\" width=\"150\" format=\"jpg\">\n      </cl-image>\n    </div>\n    <div class=\"article-text\" [innerHTML]=\"article.text\"></div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\" *ngIf=\"!articleId\">\n  <div class=\"card-header\">\n    <h3><a [routerLink]=\"['/article', article._id]\">{{article.title}}</a></h3>\n    <h5>\n      <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,\n      <i>Likes: {{article.likedUsers.length}}</i>\n      <i [class]=\"isLiked(idx) ? 'material-icons pull-right liked' : 'material-icons pull-right'\" (click)=\"like(idx)\">thumb_up</i>\n      <img class=\"loading-image pull-right\" src=\"../../../../assets/img/loading.gif\" *ngIf=\"updating\" />\n    </h5>\n  </div>\n  <div class=\"card-content\">\n    <div class=\"article-image\">\n      <cl-image data-u=\"image\" public-id=\"{{article.featuredImage}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"150\" width=\"150\" format=\"jpg\">\n      </cl-image>\n    </div>\n    <div class=\"article-text\" [innerHTML]=\"shortform ? article.text.length > 300 ? article.text.substr(0, 299) + '...' : article.text : article.text\"></div>\n  </div>\n</div>\n\n<div class=\"main-content\" *ngIf=\"articleId && article\">\n  <div class=\"container-fluid\">\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h3>{{article.title}}</h3>\n        <h5>\n          <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,\n          <i>Likes: {{article.likedUsers.length}}</i>\n          <i [class]=\"isLiked(idx) ? 'material-icons pull-right liked' : 'material-icons pull-right'\" (click)=\"like(idx)\">thumb_up</i>\n          <img class=\"loading-image pull-right\" src=\"../../../../assets/img/loading.gif\" *ngIf=\"updating\" />\n        </h5>\n      </div>\n      <div class=\"card-content\">\n        <div class=\"article-image\">\n          <cl-image data-u=\"image\" public-id=\"{{article.featuredImage}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"150\" width=\"150\" format=\"jpg\">\n          </cl-image>\n        </div>\n        <div class=\"article-text\" [innerHTML]=\"shortform ? article.text.length > 300 ? article.text.substr(0, 299) + '...' : article.text : article.text\"></div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1608,15 +1675,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var router_1 = __webpack_require__("../../../router/@angular/router.es5.js");
 var main_service_1 = __webpack_require__("../../../../../src/app/services/main.service.ts");
 var articles_service_1 = __webpack_require__("../../../../../src/app/services/articles.service.ts");
 var ArticleComponent = (function () {
-    function ArticleComponent(mainService, articleService) {
+    function ArticleComponent(mainService, articleService, route) {
         this.mainService = mainService;
         this.articleService = articleService;
+        this.route = route;
+        this.articleId = '';
         this.updating = false;
     }
     ArticleComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.route.params.subscribe(function (params) {
+            _this.articleId = params['id']; // (+) converts string 'id' to a number
+            if (_this.articleId) {
+                _this.articleService.getArticleById(_this.articleId).subscribe(function (d) {
+                    _this.article = d.article;
+                }, function (e) {
+                    console.log(e);
+                });
+            }
+        });
     };
     ArticleComponent.prototype.isLiked = function (idx) {
         return this.article.likedUsers.indexOf(this.mainService.userId) > -1;
@@ -1645,16 +1726,20 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], ArticleComponent.prototype, "article", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], ArticleComponent.prototype, "shortform", void 0);
 ArticleComponent = __decorate([
     core_1.Component({
         selector: 'app-article',
         template: __webpack_require__("../../../../../src/app/dashboard/components/article/article.component.html"),
         styles: [__webpack_require__("../../../../../src/app/dashboard/components/article/article.component.css")]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object, typeof (_b = typeof articles_service_1.ArticlesService !== "undefined" && articles_service_1.ArticlesService) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof main_service_1.MainService !== "undefined" && main_service_1.MainService) === "function" && _a || Object, typeof (_b = typeof articles_service_1.ArticlesService !== "undefined" && articles_service_1.ArticlesService) === "function" && _b || Object, typeof (_c = typeof router_1.ActivatedRoute !== "undefined" && router_1.ActivatedRoute) === "function" && _c || Object])
 ], ArticleComponent);
 exports.ArticleComponent = ArticleComponent;
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=article.component.js.map
 
 /***/ }),
@@ -1866,6 +1951,7 @@ var EditArticleComponent = (function () {
             text: '',
             featuredImage: ''
         };
+        this.imgChanged = false;
     }
     EditArticleComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -1886,6 +1972,7 @@ var EditArticleComponent = (function () {
                     featuredImage: d.article.featuredImage
                 };
                 _this.mainService.editor.setContent(_this.article.text);
+                _this.imgChanged = false;
             }
             else {
             }
@@ -1895,10 +1982,12 @@ var EditArticleComponent = (function () {
         return this.article.title !== ''
             && (this.orgArticle.featuredImage !== this.article.featuredImage
                 || this.orgArticle.title !== this.article.title
-                || this.orgArticle.text !== this.mainService.editor.getContent());
+                || this.orgArticle.text !== this.mainService.editor.getContent()
+                || this.imgChanged);
     };
     EditArticleComponent.prototype.imgUploaded = function (imgId) {
         this.article.featuredImage = imgId;
+        this.imgChanged = true;
     };
     EditArticleComponent.prototype.saveArticle = function () {
         var _this = this;
@@ -3507,6 +3596,7 @@ var manage_articles_component_1 = __webpack_require__("../../../../../src/app/da
 var about_component_1 = __webpack_require__("../../../../../src/app/dashboard/about/about.component.ts");
 var view_topic_component_1 = __webpack_require__("../../../../../src/app/dashboard/components/view-topic/view-topic.component.ts");
 var club_members_list_component_1 = __webpack_require__("../../../../../src/app/dashboard/components/club-members-list/club-members-list.component.ts");
+var article_component_1 = __webpack_require__("../../../../../src/app/dashboard/components/article/article.component.ts");
 var club_detail_component_1 = __webpack_require__("../../../../../src/app/dashboard/connect/clubs/club-detail/club-detail.component.ts");
 //
 exports.MODULE_ROUTES = [
@@ -3533,6 +3623,7 @@ exports.MODULE_ROUTES = [
     { path: 'connect/clubs/club/:id', component: club_detail_component_1.ClubDetailComponent },
     { path: 'admin/articles', component: manage_articles_component_1.ManageArticlesComponent },
     { path: 'admin/articles/edit/:id', component: edit_article_component_1.EditArticleComponent },
+    { path: 'article/:id', component: article_component_1.ArticleComponent },
     { path: '**', redirectTo: 'home' },
 ];
 //
@@ -3887,7 +3978,7 @@ var _a, _b, _c, _d, _e;
 /***/ "../../../../../src/app/dashboard/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngIf=\"userLoggedIn\">\n            <div class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\">\n                <div class=\"card\">\n                    <div class=\"card-header\">\n                    </div>\n                    <div class=\"card-content\">\n                        <div class=\"row\">\n                            <div class=\"col-md-2\">\n                                <ul class=\"nav nav-pills nav-pills-icons nav-pills-rose nav-stacked\" role=\"tablist\">\n                                    <li class=\"active\">\n                                        <a href=\"#dashboard-2\" role=\"tab\" data-toggle=\"tab\">\n                                            <i class=\"material-icons\">dashboard</i> Updates\n                                        </a>\n                                    </li>\n                                    <li>\n                                        <a href=\"#schedule-2\" role=\"tab\" data-toggle=\"tab\">\n                                            <i class=\"material-icons\">schedule</i> Social\n                                        </a>\n                                    </li>\n                                </ul>\n                            </div>\n                            <div class=\"col-md-10\">\n                                <div class=\"tab-content\">\n                                    <div class=\"tab-pane active\" id=\"dashboard-2\">\n                                        <div>\n                                            <i class=\"material-icons btn-lg\">event</i>\n                                            <span>The Stanford Liars Club is meeting on <strong>Sunday at 8pm</strong></span>\n                                        </div>\n                                        <div>\n                                            <i class=\"material-icons btn-lg\">receipt</i>\n                                            <span><strong>activatedalien</strong> has uploaded a new article, <strong>\"Ax Endgames\"</strong></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"tab-pane\" id=\"schedule-2\">\n                                        <div>\n                                            <i class=\"material-icons\">straighten</i>\n                                            <span><strong>2 meetings</strong> near you this week</span>\n                                        </div>\n                                        <button class=\"btn btn-success btn-large\"> Review Your Games </button>\n                                        <button class=\"btn btn-success btn-large\"> Manage Your Groups </button>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\" *ngIf=\"userLoggedIn\">\n            <app-article class=\"col-sm-6 col-xs-12\" [article]=\"articles[0]\" *ngIf=\"articles[0]\"></app-article>\n            <app-article class=\"col-sm-6 col-xs-12\" [article]=\"articles[1]\" *ngIf=\"articles[1]\"></app-article>\n            <app-article class=\"col-xs-12\" [article]=\"articles[2]\" *ngIf=\"articles[2]\"></app-article>\n        </div>\n        <div class=\"coming-soon\" *ngIf=\"!userLoggedIn\">\n            <h1>Signup Form here, coming soon</h1>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngIf=\"userLoggedIn\">\n            <div class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\">\n                <div class=\"card\">\n                    <div class=\"card-header\">\n                    </div>\n                    <div class=\"card-content\">\n                        <div class=\"row\">\n                            <div class=\"col-md-2\">\n                                <ul class=\"nav nav-pills nav-pills-icons nav-pills-rose nav-stacked\" role=\"tablist\">\n                                    <li class=\"active\">\n                                        <a href=\"#dashboard-2\" role=\"tab\" data-toggle=\"tab\">\n                                            <i class=\"material-icons\">dashboard</i> Updates\n                                        </a>\n                                    </li>\n                                    <li>\n                                        <a href=\"#schedule-2\" role=\"tab\" data-toggle=\"tab\">\n                                            <i class=\"material-icons\">schedule</i> Social\n                                        </a>\n                                    </li>\n                                </ul>\n                            </div>\n                            <div class=\"col-md-10\">\n                                <div class=\"tab-content\">\n                                    <div class=\"tab-pane active\" id=\"dashboard-2\">\n                                        <div>\n                                            <i class=\"material-icons btn-lg\">event</i>\n                                            <span>The Stanford Liars Club is meeting on <strong>Sunday at 8pm</strong></span>\n                                        </div>\n                                        <div>\n                                            <i class=\"material-icons btn-lg\">receipt</i>\n                                            <span><strong>activatedalien</strong> has uploaded a new article, <strong>\"Ax Endgames\"</strong></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"tab-pane\" id=\"schedule-2\">\n                                        <div>\n                                            <i class=\"material-icons\">straighten</i>\n                                            <span><strong>2 meetings</strong> near you this week</span>\n                                        </div>\n                                        <button class=\"btn btn-success btn-large\"> Review Your Games </button>\n                                        <button class=\"btn btn-success btn-large\"> Manage Your Groups </button>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row\" *ngIf=\"userLoggedIn\">\n            <app-article class=\"col-sm-12 col-xs-12\" [article]=\"articles[0]\" *ngIf=\"articles[0]\" [shortform]=\"true\"></app-article>\n            <app-article class=\"col-sm-6 col-xs-12\" *ngFor=\"let article of articles.slice(1, articles.length)\" [article]=\"article\" [shortform]=\"true\"></app-article>\n        </div>\n        <div class=\"coming-soon\" *ngIf=\"!userLoggedIn\">\n            <h1>Signup Form here, coming soon</h1>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -3918,9 +4009,10 @@ var HomeComponent = (function () {
     }
     HomeComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.articleService.getArticles().subscribe(function (d) {
-            _this.articles = d.data.slice(0, 5);
+        this.articleService.getHomeArticles().subscribe(function (d) {
+            _this.articles = d.data;
         }, function (e) {
+            console.log(e);
         });
     };
     return HomeComponent;
@@ -5435,6 +5527,24 @@ var ArticlesService = (function () {
     ArticlesService.prototype.getArticles = function () {
         var token = localStorage.getItem('liarsclubtoken');
         return this.http.post(this.mainService.apiUrl + '/article/getall/', { access_token: token })
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    ArticlesService.prototype.getHomeArticles = function () {
+        var token = localStorage.getItem('liarsclubtoken');
+        return this.http.post(this.mainService.apiUrl + '/article/gethome/', { access_token: token })
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    ArticlesService.prototype.getSettings = function () {
+        var token = localStorage.getItem('liarsclubtoken');
+        return this.http.post(this.mainService.apiUrl + '/setting/article/get/', { access_token: token })
+            .map(this.extractData)
+            .catch(this.handleError);
+    };
+    ArticlesService.prototype.setSettings = function (setting) {
+        var token = localStorage.getItem('liarsclubtoken');
+        return this.http.post(this.mainService.apiUrl + '/setting/article/set/', { access_token: token, articleSetting: setting })
             .map(this.extractData)
             .catch(this.handleError);
     };

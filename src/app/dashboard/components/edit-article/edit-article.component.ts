@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { ArticlesService } from '../../../services/articles.service';
 import { MainService } from '../../../services/main.service';
@@ -22,6 +22,8 @@ export class EditArticleComponent implements OnInit {
     text: '',
     featuredImage: ''
   };
+
+  private imgChanged = false;
 
   constructor( private route: ActivatedRoute, private articleService: ArticlesService, private mainService: MainService ) { }
 
@@ -46,6 +48,7 @@ export class EditArticleComponent implements OnInit {
           };
 
           this.mainService.editor.setContent(this.article.text);
+          this.imgChanged = false;
         } else {
         }
       }
@@ -56,11 +59,13 @@ export class EditArticleComponent implements OnInit {
     return this.article.title !== ''
       && (this.orgArticle.featuredImage !== this.article.featuredImage
       || this.orgArticle.title !== this.article.title
-      || this.orgArticle.text !== this.mainService.editor.getContent());
+      || this.orgArticle.text !== this.mainService.editor.getContent()
+      || this.imgChanged);
   }
 
   private imgUploaded(imgId) {
     this.article.featuredImage = imgId;
+    this.imgChanged = true;
   }
 
   private saveArticle() {

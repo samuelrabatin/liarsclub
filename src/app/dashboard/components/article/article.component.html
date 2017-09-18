@@ -1,6 +1,6 @@
-<div class="card">
+<div class="card" *ngIf="!articleId">
   <div class="card-header">
-    <h3>{{article.title}}</h3>
+    <h3><a [routerLink]="['/article', article._id]">{{article.title}}</a></h3>
     <h5>
       <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,
       <i>Likes: {{article.likedUsers.length}}</i>
@@ -13,6 +13,29 @@
       <cl-image data-u="image" public-id="{{article.featuredImage}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="150" width="150" format="jpg">
       </cl-image>
     </div>
-    <div class="article-text" [innerHTML]="article.text"></div>
+    <div class="article-text" [innerHTML]="shortform ? article.text.length > 300 ? article.text.substr(0, 299) + '...' : article.text : article.text"></div>
+  </div>
+</div>
+
+<div class="main-content" *ngIf="articleId && article">
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header">
+        <h3>{{article.title}}</h3>
+        <h5>
+          <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,
+          <i>Likes: {{article.likedUsers.length}}</i>
+          <i [class]="isLiked(idx) ? 'material-icons pull-right liked' : 'material-icons pull-right'" (click)="like(idx)">thumb_up</i>
+          <img class="loading-image pull-right" src="../../../../assets/img/loading.gif" *ngIf="updating" />
+        </h5>
+      </div>
+      <div class="card-content">
+        <div class="article-image">
+          <cl-image data-u="image" public-id="{{article.featuredImage}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="150" width="150" format="jpg">
+          </cl-image>
+        </div>
+        <div class="article-text" [innerHTML]="shortform ? article.text.length > 300 ? article.text.substr(0, 299) + '...' : article.text : article.text"></div>
+      </div>
+    </div>
   </div>
 </div>

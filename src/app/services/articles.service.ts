@@ -19,6 +19,27 @@ export class ArticlesService {
       .catch(this.handleError);
   }
 
+  public getHomeArticles() {
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.mainService.apiUrl + '/article/gethome/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public getSettings() {
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.mainService.apiUrl + '/setting/article/get/', {access_token: token})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
+  public setSettings(setting) {
+    const token = localStorage.getItem('liarsclubtoken');
+    return this.http.post(this.mainService.apiUrl + '/setting/article/set/', {access_token: token, articleSetting: setting})
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
   public getArticleById(id) {
     const token = localStorage.getItem('liarsclubtoken');
     return this.http.post(this.mainService.apiUrl + '/article/getbyid/', {access_token: token, id: id})

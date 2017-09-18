@@ -11,3 +11,8 @@
 .add-article-diag > div {
   padding: 80px;
 }
+
+.setting .card-content {
+  display: flex;
+  align-items: center;
+}

@@ -34,6 +34,7 @@ import { AboutComponent } from './about/about.component';
 
 import { VIewTopicComponent } from './components/view-topic/view-topic.component';
 import { ClubMembersListComponent } from './components/club-members-list/club-members-list.component';
+import { ArticleComponent } from './components/article/article.component';
 
 import { ClubDetailComponent } from './connect/clubs/club-detail/club-detail.component';
 
@@ -70,6 +71,8 @@ export const MODULE_ROUTES: Route[] = [
 
   { path: 'admin/articles', component: ManageArticlesComponent },
   { path: 'admin/articles/edit/:id', component: EditArticleComponent },
+
+  { path: 'article/:id', component: ArticleComponent },
 
   { path: '**', redirectTo: 'home' },
 ];

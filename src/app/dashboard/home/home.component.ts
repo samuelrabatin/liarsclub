@@ -14,19 +14,16 @@ export class HomeComponent implements OnInit {
 
     private articles = [];
 
-    constructor( private mainService: MainService, private articleService: ArticlesService ) {
-
-    }
+    constructor( private mainService: MainService, private articleService: ArticlesService ) { }
 
     ngOnInit() {
-      this.articleService.getArticles().subscribe(
+      this.articleService.getHomeArticles().subscribe(
         d => {
-          this.articles = d.data.slice(0, 5);
+          this.articles = d.data;
         },
         e => {
-
+          console.log(e);
         }
       );
     }
-
 }
