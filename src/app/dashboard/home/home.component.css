@@ -1,0 +1,8 @@
+.articles {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.articles > app-article {
+  height: 100%;
+}

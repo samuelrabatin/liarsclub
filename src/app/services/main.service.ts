@@ -19,11 +19,11 @@ export class MainService {
 
   public loading;
   public cloudinaryUploadPresets = {
-    profile: 'hhfktgrl',
-    clubs: 'mpahsbqu',
-    setups: 'w5wu0ytu'
+    profile: 'dnqs3sro',
+    clubs: 'vzyghp9n',
+    setups: 'mvfr6hdk'
   };
-  public cloudName = 'da2w1aszs';
+  public cloudName = 'liars-club';
   public userNames = [];
   public userDisplayNames = [];
 

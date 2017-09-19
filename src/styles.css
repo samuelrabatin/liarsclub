@@ -70,3 +70,7 @@ small {
 .club-members-list .bootstrap-select.btn-group .dropdown-toggle .filter-option {
   text-align: center;
 }
+
+.card .card-content .article-text img {
+  width: auto;
+}

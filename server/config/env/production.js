@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-  db: 'mongodb://sruser1:password123@ds028310.mlab.com:28310/liars_club',
+  db: 'mongodb://user1:9jFwN2J$^qFc_tH@ds141464.mlab.com:41464/liars_club',
   facebook: {
     clientID: 'APP_ID',
     clientSecret: 'SECRET',
