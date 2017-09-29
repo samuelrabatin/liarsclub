@@ -5,6 +5,8 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SocketService } from './socket.service';
 import { Observable } from 'rxjs/Observable';
 
+import { environment } from '../../environments/environment';
+
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -13,8 +15,7 @@ declare var $: any;
 
 @Injectable()
 export class MainService {
-  public apiUrl = 'https://liarsclubserver.herokuapp.com';
-  // public apiUrl = 'http://192.168.4.36:3000';
+  public apiUrl = environment.apiurl;
   public jQuery = $;
 
   public loading;

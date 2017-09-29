@@ -34,7 +34,7 @@
           <cl-image data-u="image" public-id="{{article.featuredImage}}" cloud-name="{{mainService.cloudName}}" class="md-card-image" crop="fill" quality="80" height="150" width="150" format="jpg">
           </cl-image>
         </div>
-        <div class="article-text" [innerHTML]="shortform ? article.text.length > 300 ? article.text.substr(0, 299) + '...' : article.text : article.text"></div>
+        <div class="article-text" [innerHTML]="shortform ? article.abstractText : article.text"></div>
       </div>
     </div>
   </div>

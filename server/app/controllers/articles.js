@@ -128,6 +128,7 @@ exports.updateArticle = function(req, res) {
           } else {
             article.title = req.body.article.title;
             article.text = req.body.article.text;
+            article.abstractText = req.body.article.abstractText;
             article.likedUsers = req.body.article.likedUsers.slice();
             article.order = req.body.article.order;
             article.featuredImage = req.body.article.featuredImage;

@@ -13,12 +13,14 @@ export class EditArticleComponent implements OnInit {
   private articleId = '';
   private article = {
     title: '',
+    abstractText: '',
     text: '',
     featuredImage: ''
   };
 
   private orgArticle = {
     title: '',
+    abstractText: '',
     text: '',
     featuredImage: ''
   };
@@ -44,6 +46,7 @@ export class EditArticleComponent implements OnInit {
           this.orgArticle = {
             title: d.article.title,
             text: d.article.text,
+            abstractText: d.article.abstractText,
             featuredImage: d.article.featuredImage
           };
 
@@ -59,6 +62,7 @@ export class EditArticleComponent implements OnInit {
     return this.article.title !== ''
       && (this.orgArticle.featuredImage !== this.article.featuredImage
       || this.orgArticle.title !== this.article.title
+      || this.orgArticle.abstractText !== this.article.abstractText
       || this.orgArticle.text !== this.mainService.editor.getContent()
       || this.imgChanged);
   }

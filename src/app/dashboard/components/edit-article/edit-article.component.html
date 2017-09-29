@@ -3,10 +3,18 @@
     <div class="card" *ngIf="article">
       <div class="card-content">
         <div class="header">
-          <app-uploader [imgId]="article.featuredImage" (uploaded)="imgUploaded($event)" [autoupload]="true"></app-uploader>
-          <div class="form-group title">
-            <label class="control-label">Title</label>
-            <input class="form-control" [(ngModel)]="article.title"/>
+          <div>
+            <app-uploader [imgId]="article.featuredImage" (uploaded)="imgUploaded($event)" [autoupload]="true"></app-uploader>
+          </div>
+          <div class="titles">
+            <div class="form-group title">
+              <label class="control-label">Title</label>
+              <input class="form-control" [(ngModel)]="article.title"/>
+            </div>
+            <div class="form-group abstract-text">
+              <label class="control-label">Abstract Text</label>
+              <input class="form-control" [(ngModel)]="article.abstractText"/>
+            </div>
           </div>
         </div>
         <div class="form-group">

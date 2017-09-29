@@ -19,6 +19,7 @@ var ArticleSchema = new Schema(
     likedUsers: Array,
     order: Number,
     featuredImage: String,
+    abstractText: String,
     isPrivate: {type: Boolean, default: true}
   },
   { collection : 'articles' }

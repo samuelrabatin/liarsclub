@@ -1642,7 +1642,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card-content {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n\n.card-content .article-text {\n  width: calc(100% - 150px);\n  padding: 0 40px;\n}\n\ni.material-icons {\n  cursor: pointer;\n}\n\ni.material-icons.liked {\n  color: red;\n}\n\n.loading-image {\n  width: 30px;\n  height: 30px;\n  margin-right: 20px;\n}\n", ""]);
+exports.push([module.i, ".card-content {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n\n.card-content .article-text {\n  width: calc(100% - 150px);\n  padding: 0 40px;\n}\n\ni.material-icons {\n  cursor: pointer;\n}\n\ni.material-icons.liked {\n  color: red;\n}\n\n.loading-image {\n  width: 30px;\n  height: 30px;\n  margin-right: 20px;\n}\n\n.card {\n  height: calc(100% - 50px);\n}\n", ""]);
 
 // exports
 
@@ -1655,7 +1655,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard/components/article/article.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\" *ngIf=\"!articleId\">\n  <div class=\"card-header\">\n    <h3><a [routerLink]=\"['/article', article._id]\">{{article.title}}</a></h3>\n    <h5>\n      <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,\n      <i>Likes: {{article.likedUsers.length}}</i>\n      <i [class]=\"isLiked(idx) ? 'material-icons pull-right liked' : 'material-icons pull-right'\" (click)=\"like(idx)\">thumb_up</i>\n      <img class=\"loading-image pull-right\" src=\"../../../../assets/img/loading.gif\" *ngIf=\"updating\" />\n    </h5>\n  </div>\n  <div class=\"card-content\">\n    <div class=\"article-image\">\n      <cl-image data-u=\"image\" public-id=\"{{article.featuredImage}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"150\" width=\"150\" format=\"jpg\">\n      </cl-image>\n    </div>\n    <div class=\"article-text\" [innerHTML]=\"shortform ? article.text.length > 50 ? article.text.substr(0, 50) + '...' : article.text : article.text\"></div>\n  </div>\n</div>\n\n<div class=\"main-content\" *ngIf=\"articleId && article\">\n  <div class=\"container-fluid\">\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h3>{{article.title}}</h3>\n        <h5>\n          <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,\n          <i>Likes: {{article.likedUsers.length}}</i>\n          <i [class]=\"isLiked(idx) ? 'material-icons pull-right liked' : 'material-icons pull-right'\" (click)=\"like(idx)\">thumb_up</i>\n          <img class=\"loading-image pull-right\" src=\"../../../../assets/img/loading.gif\" *ngIf=\"updating\" />\n        </h5>\n      </div>\n      <div class=\"card-content\">\n        <div class=\"article-image\">\n          <cl-image data-u=\"image\" public-id=\"{{article.featuredImage}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"150\" width=\"150\" format=\"jpg\">\n          </cl-image>\n        </div>\n        <div class=\"article-text\" [innerHTML]=\"shortform ? article.text.length > 300 ? article.text.substr(0, 299) + '...' : article.text : article.text\"></div>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"card\" *ngIf=\"!articleId\">\n  <div class=\"card-header\">\n    <h3><a [routerLink]=\"['/article', article._id]\">{{article.title}}</a></h3>\n    <h5>\n      <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,\n      <i>Likes: {{article.likedUsers.length}}</i>\n      <i [class]=\"isLiked(idx) ? 'material-icons pull-right liked' : 'material-icons pull-right'\" (click)=\"like(idx)\">thumb_up</i>\n      <img class=\"loading-image pull-right\" src=\"../../../../assets/img/loading.gif\" *ngIf=\"updating\" />\n    </h5>\n  </div>\n  <div class=\"card-content\">\n    <div class=\"article-image\">\n      <cl-image data-u=\"image\" public-id=\"{{article.featuredImage}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"150\" width=\"150\" format=\"jpg\">\n      </cl-image>\n    </div>\n    <div class=\"article-text\" [innerHTML]=\"shortform ? article.text.length > 50 ? article.text.substr(0, 50) + '...' : article.text : article.text\"></div>\n  </div>\n</div>\n\n<div class=\"main-content\" *ngIf=\"articleId && article\">\n  <div class=\"container-fluid\">\n    <div class=\"card\">\n      <div class=\"card-header\">\n        <h3>{{article.title}}</h3>\n        <h5>\n          <i>Author: {{mainService.userNames[article.createdUserId]}}</i>,\n          <i>Likes: {{article.likedUsers.length}}</i>\n          <i [class]=\"isLiked(idx) ? 'material-icons pull-right liked' : 'material-icons pull-right'\" (click)=\"like(idx)\">thumb_up</i>\n          <img class=\"loading-image pull-right\" src=\"../../../../assets/img/loading.gif\" *ngIf=\"updating\" />\n        </h5>\n      </div>\n      <div class=\"card-content\">\n        <div class=\"article-image\">\n          <cl-image data-u=\"image\" public-id=\"{{article.featuredImage}}\" cloud-name=\"{{mainService.cloudName}}\" class=\"md-card-image\" crop=\"fill\" quality=\"80\" height=\"150\" width=\"150\" format=\"jpg\">\n          </cl-image>\n        </div>\n        <div class=\"article-text\" [innerHTML]=\"shortform ? article.abstractText : article.text\"></div>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1899,7 +1899,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".card-content .header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n\n.card-content .header .title {\n  width: 80%;\n  padding: 0 40px;\n}\n", ""]);
+exports.push([module.i, ".card-content .header {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n}\n\n.card-content .header .titles {\n  width: 80%;\n  padding: 0 40px;\n}\n", ""]);
 
 // exports
 
@@ -1912,7 +1912,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard/components/edit-article/edit-article.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"card\" *ngIf=\"article\">\n      <div class=\"card-content\">\n        <div class=\"header\">\n          <app-uploader [imgId]=\"article.featuredImage\" (uploaded)=\"imgUploaded($event)\" [autoupload]=\"true\"></app-uploader>\n          <div class=\"form-group title\">\n            <label class=\"control-label\">Title</label>\n            <input class=\"form-control\" [(ngModel)]=\"article.title\"/>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <textarea class=\"tinymce-editor form-control\"></textarea>\n        </div>\n      </div>\n      <div class=\"card-footer text-center\">\n        <button class=\"btn btn-success\" (click)=\"saveArticle()\" [disabled]=\"!articleChanged()\">Save</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n  <div class=\"container-fluid\">\n    <div class=\"card\" *ngIf=\"article\">\n      <div class=\"card-content\">\n        <div class=\"header\">\n          <div>\n            <app-uploader [imgId]=\"article.featuredImage\" (uploaded)=\"imgUploaded($event)\" [autoupload]=\"true\"></app-uploader>\n          </div>\n          <div class=\"titles\">\n            <div class=\"form-group title\">\n              <label class=\"control-label\">Title</label>\n              <input class=\"form-control\" [(ngModel)]=\"article.title\"/>\n            </div>\n            <div class=\"form-group abstract-text\">\n              <label class=\"control-label\">Abstract Text</label>\n              <input class=\"form-control\" [(ngModel)]=\"article.abstractText\"/>\n            </div>\n          </div>\n        </div>\n        <div class=\"form-group\">\n          <textarea class=\"tinymce-editor form-control\"></textarea>\n        </div>\n      </div>\n      <div class=\"card-footer text-center\">\n        <button class=\"btn btn-success\" (click)=\"saveArticle()\" [disabled]=\"!articleChanged()\">Save</button>\n      </div>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1943,11 +1943,13 @@ var EditArticleComponent = (function () {
         this.articleId = '';
         this.article = {
             title: '',
+            abstractText: '',
             text: '',
             featuredImage: ''
         };
         this.orgArticle = {
             title: '',
+            abstractText: '',
             text: '',
             featuredImage: ''
         };
@@ -1969,6 +1971,7 @@ var EditArticleComponent = (function () {
                 _this.orgArticle = {
                     title: d.article.title,
                     text: d.article.text,
+                    abstractText: d.article.abstractText,
                     featuredImage: d.article.featuredImage
                 };
                 _this.mainService.editor.setContent(_this.article.text);
@@ -1982,6 +1985,7 @@ var EditArticleComponent = (function () {
         return this.article.title !== ''
             && (this.orgArticle.featuredImage !== this.article.featuredImage
                 || this.orgArticle.title !== this.article.title
+                || this.orgArticle.abstractText !== this.article.abstractText
                 || this.orgArticle.text !== this.mainService.editor.getContent()
                 || this.imgChanged);
     };
@@ -3983,7 +3987,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, ".articles {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n}\n\n.articles > app-article {\n  height: 100%;\n}\n", ""]);
+exports.push([module.i, ".articles {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -ms-flex-wrap: wrap;\n      flex-wrap: wrap;\n}\n", ""]);
 
 // exports
 
@@ -3996,7 +4000,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/dashboard/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row\" *ngIf=\"userLoggedIn\">\n            <div class=\"col-md-12 col-lg-12 col-xs-12 col-sm-12\">\n                <div class=\"card\">\n                    <div class=\"card-header\">\n                    </div>\n                    <div class=\"card-content\">\n                        <div class=\"row\">\n                            <div class=\"col-md-2\">\n                                <ul class=\"nav nav-pills nav-pills-icons nav-pills-rose nav-stacked\" role=\"tablist\">\n                                    <li class=\"active\">\n                                        <a href=\"#dashboard-2\" role=\"tab\" data-toggle=\"tab\">\n                                            <i class=\"material-icons\">dashboard</i> Updates\n                                        </a>\n                                    </li>\n                                    <li>\n                                        <a href=\"#schedule-2\" role=\"tab\" data-toggle=\"tab\">\n                                            <i class=\"material-icons\">schedule</i> Social\n                                        </a>\n                                    </li>\n                                </ul>\n                            </div>\n                            <div class=\"col-md-10\">\n                                <div class=\"tab-content\">\n                                    <div class=\"tab-pane active\" id=\"dashboard-2\">\n                                        <div>\n                                            <i class=\"material-icons btn-lg\">event</i>\n                                            <span>The Stanford Liars Club is meeting on <strong>Sunday at 8pm</strong></span>\n                                        </div>\n                                        <div>\n                                            <i class=\"material-icons btn-lg\">receipt</i>\n                                            <span><strong>activatedalien</strong> has uploaded a new article, <strong>\"Ax Endgames\"</strong></span>\n                                        </div>\n                                    </div>\n                                    <div class=\"tab-pane\" id=\"schedule-2\">\n                                        <div>\n                                            <i class=\"material-icons\">straighten</i>\n                                            <span><strong>2 meetings</strong> near you this week</span>\n                                        </div>\n                                        <button class=\"btn btn-success btn-large\"> Review Your Games </button>\n                                        <button class=\"btn btn-success btn-large\"> Manage Your Groups </button>\n                                    </div>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"row articles\" *ngIf=\"userLoggedIn\">\n            <app-article class=\"col-sm-12 col-xs-12\" [article]=\"articles[0]\" *ngIf=\"articles[0]\" [shortform]=\"true\"></app-article>\n            <app-article class=\"col-sm-6 col-xs-12\" *ngFor=\"let article of articles.slice(1, articles.length)\" [article]=\"article\" [shortform]=\"true\"></app-article>\n        </div>\n        <div class=\"coming-soon\" *ngIf=\"!userLoggedIn\">\n            <h1>Signup Form here, coming soon</h1>\n        </div>\n    </div>\n</div>\n"
+module.exports = "<div class=\"main-content\">\n    <div class=\"container-fluid\">\n        <div class=\"row articles\" *ngIf=\"userLoggedIn\">\n            <app-article class=\"col-sm-12 col-xs-12\" [article]=\"articles[0]\" *ngIf=\"articles[0]\" [shortform]=\"true\"></app-article>\n            <app-article class=\"col-sm-6 col-xs-12\" *ngFor=\"let article of articles.slice(1, articles.length)\" [article]=\"article\" [shortform]=\"true\"></app-article>\n        </div>\n        <div class=\"coming-soon\" *ngIf=\"!userLoggedIn\">\n            <h1>Signup Form here, coming soon</h1>\n        </div>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -5638,6 +5642,7 @@ var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
 var http_1 = __webpack_require__("../../../http/@angular/http.es5.js");
 var platform_browser_1 = __webpack_require__("../../../platform-browser/@angular/platform-browser.es5.js");
 var Observable_1 = __webpack_require__("../../../../rxjs/Observable.js");
+var environment_1 = __webpack_require__("../../../../../src/environments/environment.ts");
 __webpack_require__("../../../../rxjs/add/operator/catch.js");
 __webpack_require__("../../../../rxjs/add/operator/map.js");
 var MainService = (function () {
@@ -5645,8 +5650,7 @@ var MainService = (function () {
         var _this = this;
         this.http = http;
         this.satizer = satizer;
-        this.apiUrl = 'https://liarsclubserver.herokuapp.com';
-        // public apiUrl = 'http://192.168.4.36:3000';
+        this.apiUrl = environment_1.environment.apiurl;
         this.jQuery = $;
         this.cloudinaryUploadPresets = {
             profile: 'dnqs3sro',
@@ -7095,7 +7099,8 @@ if (true) {
 
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.environment = {
-    production: false
+    production: false,
+    apiurl: 'http://192.168.4.36:3000'
 };
 //# sourceMappingURL=environment.js.map
 

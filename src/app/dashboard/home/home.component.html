@@ -1,53 +1,5 @@
 <div class="main-content">
     <div class="container-fluid">
-        <div class="row" *ngIf="userLoggedIn">
-            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12">
-                <div class="card">
-                    <div class="card-header">
-                    </div>
-                    <div class="card-content">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <ul class="nav nav-pills nav-pills-icons nav-pills-rose nav-stacked" role="tablist">
-                                    <li class="active">
-                                        <a href="#dashboard-2" role="tab" data-toggle="tab">
-                                            <i class="material-icons">dashboard</i> Updates
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#schedule-2" role="tab" data-toggle="tab">
-                                            <i class="material-icons">schedule</i> Social
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-md-10">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="dashboard-2">
-                                        <div>
-                                            <i class="material-icons btn-lg">event</i>
-                                            <span>The Stanford Liars Club is meeting on <strong>Sunday at 8pm</strong></span>
-                                        </div>
-                                        <div>
-                                            <i class="material-icons btn-lg">receipt</i>
-                                            <span><strong>activatedalien</strong> has uploaded a new article, <strong>"Ax Endgames"</strong></span>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="schedule-2">
-                                        <div>
-                                            <i class="material-icons">straighten</i>
-                                            <span><strong>2 meetings</strong> near you this week</span>
-                                        </div>
-                                        <button class="btn btn-success btn-large"> Review Your Games </button>
-                                        <button class="btn btn-success btn-large"> Manage Your Groups </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="row articles" *ngIf="userLoggedIn">
             <app-article class="col-sm-12 col-xs-12" [article]="articles[0]" *ngIf="articles[0]" [shortform]="true"></app-article>
             <app-article class="col-sm-6 col-xs-12" *ngFor="let article of articles.slice(1, articles.length)" [article]="article" [shortform]="true"></app-article>

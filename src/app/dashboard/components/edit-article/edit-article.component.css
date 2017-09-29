@@ -2,7 +2,7 @@
   display: flex;
 }
 
-.card-content .header .title {
+.card-content .header .titles {
   width: 80%;
   padding: 0 40px;
 }

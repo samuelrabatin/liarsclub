@@ -20,3 +20,7 @@ i.material-icons.liked {
   height: 30px;
   margin-right: 20px;
 }
+
+.card {
+  height: calc(100% - 50px);
+}

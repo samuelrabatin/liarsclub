@@ -7,6 +7,7 @@
     "start": "node server.js",
     "dev": "ng serve --host 0.0.0.0",
     "dev1": "ng serve --host 0.0.0.0 --port 4201",
+    "prod": "ng serve --host 0.0.0.0 --env=prod 4201",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
